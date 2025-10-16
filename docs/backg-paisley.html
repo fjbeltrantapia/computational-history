@@ -58,7 +58,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-024ac060266fa5a17f3ddf9677394547.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f8fa45338e7d851592d6b4ad57ea2445.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -165,7 +165,7 @@ div.csl-indent {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -178,7 +178,7 @@ div.csl-indent {
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -187,7 +187,7 @@ div.csl-indent {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -201,8 +201,8 @@ div.csl-indent {
 
 <p>The fist case-study deals with the admission records from the Paisley prison, an institution located in a village near Glasgow (The Scottish National Archives). Kept in the National Archives of Scotland, these registers provide individual information on those prisoners who were admitted into this institution between 1841 and 1883.</p>
 <p>For an illustration on how this type of source looks like, see the register included below of John Hearn, a 12-year old convicted in 1873 for stealing 11 pieces of leather who was sentenced to one month of hard labour. Interestingly, prison records provide info on both males and females, a feature that is relatively uncommon for this period (when most of the height data come from military conscripts).</p>
-<div id="fig-john" class="quarto-layout-panel page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div id="fig-john" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-john-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
@@ -210,14 +210,14 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-john-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-john-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Admission register, H.M. Prison Wandsworth (June 14, 1873).
 </figcaption>
 </figure>
 </div>
 <p>The previous picture comes from the <a href="https://discovery.nationalarchives.gov.uk/details/r/d0cbdc1e-f297-4488-9acf-1da291f28f76">H.M. Prison Wandsworth</a>, near London. The Paisley records are not as fancy. <a href="#fig-source" class="quarto-xref">Figure&nbsp;2</a> below shows a sample of the original source. While each column records different pieces of information (case number, date of admission, name, etc.), each row refers to each inmate in the data set. The data set was originally collected by Hamish Maxwell-Stewart, James Bradley and Tamsin O’Connor who systematically sample every fourth double page of all registers, resulting in a total of 13,879 observations. For practical reasons, we will rely on a subset of the full data set, containing a thousand prisoners.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This source presents information in a very structured form, that can be easily transferred to a digital version.</p>
-<div id="fig-source" class="quarto-layout-panel page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div id="fig-source" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -236,15 +236,15 @@ Figure&nbsp;1: Admission register, H.M. Prison Wandsworth (June 14, 1873).
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Admission Register, Paisley Prison, National Archives of Scotland, Paisley 1841-1883 HH21/32/1, HH21/39/1-9.
 </figcaption>
 </figure>
 </div>
 <p>As well as the case number, the source reports name, sex, age, place (and country) of birth, place of residence, height, weight, occupation and literacy level, etc. As well demographic and socio-economic information, the registers also include the offence committed and the sentence they were punished with (see image below). The education, occupations, and types of crimes (mostly petty crimes) suggest that these prisoners were drawn from the low working classes, which constituted a large proportion of the full population at the time. Comparing the prisoners’ registers with those of the 1861 population census also confirms that they were “ordinary if vulnerable workers” <span class="citation" data-cites="meredith2015">(<a href="#ref-meredith2015" role="doc-biblioref">Meredith and Oxley 2015, 209</a>)</span>.</p>
 <p>Inputing the raw data into an Excel spreadsheet results in <a href="#fig-excel" class="quarto-xref">Figure&nbsp;3</a> below. Each column, known as <strong>field</strong> or <strong>variable</strong> presents a piece of information. As well as the case number (<em>casen</em>) and the date of admission (information that is split in two fields: <em>month</em> and <em>year</em>), the source records several pieces of information about these inmates, such <em>name</em> and <em>surname</em>, <em>sex</em>, <em>age</em>, place of birth (<em>born</em>) and country of birth (<em>countryb</em>), the place where the were living before being imprisoned (<em>reside</em>), height (in <em>feet</em> and <em>inches</em>) and <em>weight</em>, occupation (<em>occup</em>) and whether they were <em>employed</em> or not. It also reports their <em>literacy</em>, the <em>marks</em> that were visible in their bodies, the <em>offence</em> they committed and the <em>sentence</em> they received. While the first row displays the name of these variables, the remaining rows are devoted to each individual in the dataset.</p>
-<div id="fig-excel" class="quarto-layout-panel page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div id="fig-excel" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
@@ -252,7 +252,7 @@ Figure&nbsp;2: Admission Register, Paisley Prison, National Archives of Scotland
 </div>
 </div>
 </div>
-<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Digital version of the Paisley data (Excel file).
 </figcaption>
 </figure>

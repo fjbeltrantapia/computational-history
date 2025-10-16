@@ -65,9 +65,12 @@ bibliography: refs.bib
 
 format:
   html:
+    page-layout: full
+    grid:
+      margin-width: 420px
     theme: cosmo
     css: styles.css
     toc: true
-    fig-cap-location: margin
-    fig-align: center
+    fig-cap: false
+    fig-number: false
     linkcolor: $blue

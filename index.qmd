@@ -1,10 +1,18 @@
 ## Welcome to computational history!
 
-Spring 2026 -- Tuesdays -- 09:15-12:00 -- Room U201 ([Akrinn](https://maps.app.goo.gl/neGSMmi15nzrfNyr5), Kalvskinnet)
+Spring 2026 -- Tuesdays -- 09:15-12:00 -- TBC ([Akrinn](https://maps.app.goo.gl/neGSMmi15nzrfNyr5), Kalvskinnet)
 
 Instructor: [Francisco J. Beltrán Tapia](https://fjbeltrantapia.github.io)
 
 \vspace{1em}
+
+::: {.column-margin}  
+![Household register card, 1860 Spanish population census](images/censo-1860-cropped.jpg){width=100% height=100%} 
+:::
+
+::: {.column-margin}  
+![Percentage of the male population who were able to read and write, 1860](images/map_lit_1860.jpg){width=100% height=100%} 
+:::
 
 This intermediate bachelor course (level 2), offered by the [Department of Historical Studies](https://www.ntnu.edu/ims) at the [Norwegian University of Science and Technology](https://www.ntnu.edu), provides a practical introduction on how historians can use computational tools to learn about the past.
 
