@@ -19,7 +19,10 @@ website:
       href: instructions.qmd
     - text: "Intro to R"
       icon: fa-book
-      href: get-r.qmd      
+      href: get-r.qmd 
+    - text: "Intro to Quarto"
+      icon: fa-book
+      href: quarto.qmd       
     - text: "Case-studies"
       icon: fa-book
       menu: 
