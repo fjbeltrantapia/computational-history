@@ -11,9 +11,9 @@ website:
     - text: "Overview"
       icon: fa-home
       href: index.qmd
-    - text: "Syllabus"
-      icon: fa-home
-      href: syllabus.qmd      
+   # - text: "Syllabus"
+    #  icon: fa-home
+    #  href: syllabus.qmd      
     - text: "Instructions"
       icon: fa-list-ul
       href: instructions.qmd
