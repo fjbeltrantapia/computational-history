@@ -7,6 +7,7 @@ website:
   
   navbar:
     type: inverse
+    
     right:
     - text: "Overview"
       icon: fa-home
@@ -36,6 +37,7 @@ website:
       href: other-data.qmd
     - text: "Further readings"
       href: further-readings.qmd  
+  
   sidebar:
     title: "Contents"
     style: "docked"
