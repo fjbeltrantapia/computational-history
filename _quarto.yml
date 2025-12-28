@@ -31,8 +31,8 @@ website:
         href: backg-paisley.qmd
       - text: "The State of the Union Speeches"
         href: backg-speeches.qmd
-      #- text: "The Tudor Network of Letters"
-       # href: backg-tnp.qmd  
+      - text: "The Tudor Network of Letters"
+        href: backg-tnp.qmd  
     - text: "Other sources"
       href: other-data.qmd
     - text: "Further readings"
