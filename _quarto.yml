@@ -12,9 +12,6 @@ website:
     - text: "Overview"
       icon: fa-home
       href: index.qmd
-   # - text: "Syllabus"
-    #  icon: fa-home
-    #  href: syllabus.qmd      
     - text: "Instructions"
       icon: fa-list-ul
       href: instructions.qmd
@@ -37,6 +34,9 @@ website:
       href: other-data.qmd
     - text: "Further readings"
       href: further-readings.qmd  
+    - text: "Coursework"
+      icon: fa-home
+      href: exam.qmd    
   
   sidebar:
     title: "Contents"
@@ -59,13 +59,17 @@ website:
           - text: "1.5. Mapping" 
             #file: r-scripts/mapping.qmd  
           #- text: "1.6. Social networks" 
-            #file: r-scripts/networks.qmd              
-      - text: "2. Dealing with uncertainty"
-        #file: r-scripts/uncert.qmd
-      - section: "3. Writing history in Quarto"
+            #file: r-scripts/networks.qmd 
+      - section: "2. From sources to data"
         contents:   
-          - text: "3.1 PDFs"
-          - text: "3.2 Blogposts"
+          - text: "2.1 Digitisation"
+          - text: "2.2 Data cleaning" 
+      - text: "3. Dealing with uncertainty"
+        #file: r-scripts/uncert.qmd
+      - section: "4. Writing history in Quarto"
+        contents:   
+          - text: "4.1 PDFs"
+          - text: "4.2 Blogposts"
 bibliography: refs.bib
 
 format:

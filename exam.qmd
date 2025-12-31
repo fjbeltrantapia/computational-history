@@ -1,0 +1,77 @@
+---
+title: "Coursework"
+---
+
+Student attendance is compulsory (80%). Grading will be based on weekly assignments (20%) and a final take-home exam in the form of an essay (80%).
+
+# Weekly assignments
+
+Students are expected to go through weekly assignments in order to prepare the in-person sessions in advance and cover the basics. The course sessions are mostly devoted to solidifying concepts, answering questions, students’ presentations and working on small tasks. Weekly assignments will be explained in class and circulated via Blackboard and email. 
+
+# Final assignment
+
+The final assignment consists of a take-home exam in the form of an essay. You will work on a data set of your choice and write an essay as if it were a post to be published and shared online. The aim is to address a historical question using that source and relying on tools covered during the course. The style of the essay is quite free but it should include an introduction explaining the historical question(s) you are exploring, a clear argument and structure. Overall, the essays needs to show how you have addressed the chosen topic methodologically. The ability to capture the readers' attention and engage with your potential audience is a plus. For inspiration, I have included some examples of this type of texts below.
+
+You can find digitised historical sources [here](other-data.html) but feel free to come up with your own (after all, you are going to study it, so it is better if it is something that interests you).^[It is also possible to use the Paisley Dataset or the State of the Union Speeches but this would prevent you from getting an A.] We need to agree on the data set that you will be using before the exam. You will also need to think about what potential research questions can be asked to that type of source. Think about the data set as a historical artifact that has survived from the society you are studying. What does it tell us about that society? What kind of questions can be asked? You can also start by a potential question and find a historical source that allows you to tackle the question. Alternatively, it is also possible to write a text based on the process of digitising a historical source. 
+
+Relying on this material, the text should:
+
+1) Explain the dataset: topic, structure, number of observations, pieces of information provided, etc.
+
+2) Describe the research question(s): Are rural women marrying earlier than urban women in Norway circa 1910? What about those from Oslo and Trondheim? Are men and women talking about different things in the Friend TV Show? Are these topics changing over time?).
+
+3) Analyse the data set and extract information (i.e. demographic, economic, cultural, etc.) that helps addressing your research question. The results should be interpreted.
+
+4) Conclusion
+
+Use the methods learned during this course. The material you are working with (qualitative, numerical, textual) will obviously require different methods. You can produce tables and graphs to better present your results (even maps if your material and research question has a spatial dimension). 
+
+Remember that you must include both (1) the R code and the results obtained from the different analyses, and (2) the interpretation of those results. Please detail all the steps behind your research process. Start from the very beginning (needed packages, importing the dataset, describing the material, making the research question explicit, etc.). 
+
+The take-home assignment will be open in [Inspera](https://i.ntnu.no/wiki/-/wiki/norsk/digital+hjemmeeksamen+-+for+studenter) from early April until May 12^th^. Remember to upload your text before the deadline (May 12). You will need to upload a PDF file created in Quarto, so you integrate code and the subsequent results with your own writing.
+
+The best texts will be converted into posts and published in the course website.
+
+### Examples
+
+I am including here is a list with blogposts (and short essays published online) presenting historical data. The examples here are quite varied in terms of length, style and so on. They are only meant as samples for ideas and inspiration. Do not feel obliged to follow them. Feel free to find your own style. Although not written by a historian, pay also special attention to these posts on [understanding gender in art history data](https://juliasilge.com/blog/art-history/) and [gender roles in Jane Austen's novels](https://juliasilge.com/blog/gender-pronouns/) for examples of how to integrate code and writing.
+
+- [Convict tattoos](https://www.digitalpanopticon.org/Convict_tattoos) (see also [Tattoos, 1793-1925](https://www.digitalpanopticon.org/Tattoos,_1793-1925))
+
+- [Postal geography and the Golden West](https://cblevins.github.io/posts/postal-geography-and-the-golden-west/) (see also [A Dissertation's infancy: The geography of the post](https://cblevins.github.io/posts/a-dissertations-infancy-the-geography-of-the-post/))
+
+- [Text analysis of Martha Ballard's diary](https://cblevins.github.io/posts/text-analysis-of-martha-ballards-diary-part-1/) (and [Part 2](https://cblevins.github.io/posts/text-analysis-of-martha-ballards-diary-part-2/) and [Part 3](https://cblevins.github.io/posts/text-analysis-of-martha-ballards-diary-part-3/))
+
+- [The language of the State of the Union](https://www.theatlantic.com/politics/archive/2015/01/the-language-of-the-state-of-the-union/384575/) (see also [Mapping the State of the Union](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/))
+
+- [What years do historians write about?](https://sappingattention.blogspot.com/2013/05/what-years-do-historians-write-about.html) and [Turning-points years in history](https://sappingattention.blogspot.com/2013/05/turning-point-years-in-history.html)
+
+- [Seeing things differently: Visualising patterns of data from the Old Bailey Procceedings](https://blog.digitalpanopticon.org/seeing-things-differently-visualising-patterns-of-data-from-the-old-bailey-proceedings/)
+
+- [A better map of slavery in 1860](https://lincolnmullen.com/blog/a-better-map-of-slavery-in-1860/)
+
+- [Historical religion data in the NHGIS and what you can do with it](https://lincolnmullen.com/blog/historical-religion-data-in-the-nhgis-and-what-you-can-do-with-it/)
+
+- [Missing girls in Italy, 1861-1921](https://cepr.org/voxeu/columns/missing-girls-liberal-italy-1861-1921) (see also [Sex ratios and missing girls in 19^th^-century Europe](https://ehs.org.uk/sex-ratios-and-missing-girls-in-nineteenth-century-europe/))
+
+- [Quantifying the ATS: Using Library Catalog Data for historical research](https://lincolnmullen.com/blog/quantifying-the-ats-using-library-catalog-data-for-historical-research/)
+
+- [What age did people marry in the British past?](https://www.campop.geog.cam.ac.uk/blog/2024/07/11/what-age-did-people-marry/)
+
+- [When did England and Wales industrialise?](https://www.campop.geog.cam.ac.uk/blog/2025/01/02/when-did-england-industrialise/)
+
+- [The making of America: Migration in colonial times](https://www.broadstreet.blog/p/the-making-of-america-migration-in)
+
+- [The spread of Romantic nationalism across Europe: A case of ideational difussion](https://www.broadstreet.blog/p/the-spread-of-romantic-nationalism)
+
+- [Stalin's famine](https://www.broadstreet.blog/p/stalins-famine)
+
+- [The instability of gender](https://tedunderwood.com/2016/01/09/the-instability-of-gender/)
+
+- [What did women and men do in Early Modern England?](https://earlymodernwomenswork.wordpress.com/2018/03/09/the-projects-findings-what-work-did-women-and-men-do-in-early-modern-england/)
+
+- [The Correspondence Network of Daniel van der Meulen, 1578–1591](https://www.jessesadler.com/project/dvdm-correspondence)
+
+- [A new lens into the Archive](https://generativelives.substack.com/p/a-new-lens-into-the-archive?r=fbg8f&utm_campaign=post&utm_medium=web&triedRedirect=true)
+
+- [The writing is on the wall for handwriting recognition](https://newsletter.dancohen.org/archive/the-writing-is-on-the-wall-for-handwriting-recognition)
