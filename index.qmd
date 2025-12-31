@@ -28,9 +28,11 @@ The course is taught once a week in 3-hour sessions. Each session combines lectu
 
 No previous background in computing or statistics is required. For more information, contact [Francisco J. Beltrán Tapia](https://fjbeltrantapia.github.io). 
 
-[**Course schedule**]{.underline}: The course involves 8 sessions. 
+### Course schedule 
 
-Tentative dates: Jan 13, 20 and 27; Feb 3 and 24; March 3, 17 and 24.
+The course involves 8 sessions. Tentative dates: 
+
+Jan 13, 20 and 27; Feb 3 and 24; March 3, 17 and 24.
 
 There will be an extra optional session in April/May to solidify concepts, ask questions, etc.
 
