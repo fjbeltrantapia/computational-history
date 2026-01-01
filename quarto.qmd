@@ -12,7 +12,8 @@ library(tidyverse)
 library(readxl)
 data <- read_excel("data/paisley-data.xlsx")
 ```
-Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analysis (tables, visualisation, etc.) using **Quarto**.[^1] Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications. 
+
+Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using **Quarto**.[^1] Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications. 
 
 [^1]: Quarto is an open-source publishing system built on [Pandoc](https://pandoc.org) and authored using [Markdown](https://en.wikipedia.org/wiki/Markdown).]
 
@@ -55,7 +56,7 @@ Feel free now to change the `format` in the yaml to `pdf` and create one yoursel
 
 # Authoring
 
-Rather than using menus as in Word documents, Quarto relies on plain text source code to format the document. This implies following some conventions (Markdown syntax) depending on how you want your text to look like.
+Rather than using menus as in Word documents, Quarto relies on plain text source code to format the document. This implies following some conventions (Markdown syntax) depending on how you want your text to look like. It takes a while to get used to write in plain text but it comes with some advantages: light weight, publish online documents, reproducibility, etc. Below you can find some basic conventions to add format to your texts:
 
 1. Change the text style by enclosing it with asterisks: `*italics*`, `**bold**` or `***bold italics***`. Likewise, formatting text as a superscript involves enclosing it between carets: `the 18^th^ century`.
 
@@ -68,6 +69,8 @@ Rather than using menus as in Word documents, Quarto relies on plain text source
 6. Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: `...check the [course website](https://fjbeltrantapia.github.io/computational-history/)`
 
 7.  Check [here](https://quarto.org/docs/authoring/markdown-basics.html#lists) to see how to create list with unordered or ordered items.
+
+You can also check the Quarto guide for [Markdown style](https://quarto.org/docs/authoring/markdown-basics.html), the following guide created by Sarah Simpkin for the [Programming Historian](https://programminghistorian.org/en/lessons/getting-started-with-markdown) or Jesse Sadler's [course notes](https://jessesadler.github.io/vt5454-s24/guides/markdown-syntax.html).
 
 ## Images
 
@@ -295,4 +298,4 @@ All items refer to in the text will be compiled into the reference list, which w
 :::
 ```
 
-This will suffice for our purposes. This is in any case just a taste. There in anIf you want to learn more and discover all the different possibilities, check the [program documentation](https://quarto.org/docs/guide/). It should nonetheless be stressed that RStudio allows seeing the document in "source" or "visual" mode. The latter gives you a sense of how the source document will look like when rendered. It also allows using toolbars for formatting (similar to a Word document). The underlying plain text source code will be written for you, so it might be a way to learn how to use it. You can switch between the two modes at your wish.
+This will suffice for our purposes. This is in any case just a taste. If you want to learn more and discover all the different possibilities, check the [program documentation](https://quarto.org/docs/guide/) or this [Hello Quarto](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) presentation. It should nonetheless be stressed that RStudio allows seeing the document in "source" or "visual" mode. The latter gives you a sense of how the source document will look like when rendered. It also allows using toolbars for formatting (similar to a Word document). The underlying plain text source code will be written for you, so it might be a way to learn how to use it. You can switch between the two modes at your wish.

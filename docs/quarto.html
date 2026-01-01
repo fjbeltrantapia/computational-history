@@ -284,7 +284,7 @@ window.Quarto = {
 </header>
 
 
-<p>Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analysis (tables, visualisation, etc.) using <strong>Quarto</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications.</p>
+<p>Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using <strong>Quarto</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications.</p>
 <p>The following seeks to provide a short introduction, especially aimed at historians, covering the basics.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <section id="getting-started" class="level1">
 <h1>Getting started</h1>
@@ -312,7 +312,7 @@ window.Quarto = {
 </section>
 <section id="authoring" class="level1">
 <h1>Authoring</h1>
-<p>Rather than using menus as in Word documents, Quarto relies on plain text source code to format the document. This implies following some conventions (Markdown syntax) depending on how you want your text to look like.</p>
+<p>Rather than using menus as in Word documents, Quarto relies on plain text source code to format the document. This implies following some conventions (Markdown syntax) depending on how you want your text to look like. It takes a while to get used to write in plain text but it comes with some advantages: light weight, publish online documents, reproducibility, etc. Below you can find some basic conventions to add format to your texts:</p>
 <ol type="1">
 <li><p>Change the text style by enclosing it with asterisks: <code>*italics*</code>, <code>**bold**</code> or <code>***bold italics***</code>. Likewise, formatting text as a superscript involves enclosing it between carets: <code>the 18^th^ century</code>.</p></li>
 <li><p>Underline or highlight a particular text, enclosed between squared brackets, by adding {.underline} or {.mark}. The following, for instance, will underline the enclosed text: <code>[This text is underlined]{.underline}</code>. It is also possible to highlight particular terms using <code>`verbatim code`</code>. The latter is usually done to refer to R packages and functions.</p></li>
@@ -321,6 +321,7 @@ window.Quarto = {
 <li><p>Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: <code>...check the [course website](https://fjbeltrantapia.github.io/computational-history/)</code></p></li>
 <li><p>Check <a href="https://quarto.org/docs/authoring/markdown-basics.html#lists">here</a> to see how to create list with unordered or ordered items.</p></li>
 </ol>
+<p>You can also check the Quarto guide for <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown style</a>, the following guide created by Sarah Simpkin for the <a href="https://programminghistorian.org/en/lessons/getting-started-with-markdown">Programming Historian</a> or Jesse Sadler’s <a href="https://jessesadler.github.io/vt5454-s24/guides/markdown-syntax.html">course notes</a>.</p>
 <section id="images" class="level2">
 <h2 class="anchored" data-anchor-id="images">Images</h2>
 <p>Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file <code>letter-mary.png</code>, stored in the folder <code>images</code>. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets <code>{}</code> label the figure and adjust its size.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
@@ -502,7 +503,7 @@ Figure&nbsp;2: Age and weight in the Paisley data set.
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will suffice for our purposes. This is in any case just a taste. There in anIf you want to learn more and discover all the different possibilities, check the <a href="https://quarto.org/docs/guide/">program documentation</a>. It should nonetheless be stressed that RStudio allows seeing the document in “source” or “visual” mode. The latter gives you a sense of how the source document will look like when rendered. It also allows using toolbars for formatting (similar to a Word document). The underlying plain text source code will be written for you, so it might be a way to learn how to use it. You can switch between the two modes at your wish.</p>
+<p>This will suffice for our purposes. This is in any case just a taste. If you want to learn more and discover all the different possibilities, check the <a href="https://quarto.org/docs/guide/">program documentation</a> or this <a href="https://mine.quarto.pub/hello-quarto/#/hello-quarto-title">Hello Quarto</a> presentation. It should nonetheless be stressed that RStudio allows seeing the document in “source” or “visual” mode. The latter gives you a sense of how the source document will look like when rendered. It also allows using toolbars for formatting (similar to a Word document). The underlying plain text source code will be written for you, so it might be a way to learn how to use it. You can switch between the two modes at your wish.</p>
 
 
 
