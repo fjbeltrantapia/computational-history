@@ -65,17 +65,20 @@ Rather than using menus as in Word documents, Quarto relies on plain text source
 
 5. Footnotes are added by opening it with a `^` and enclosing the text between square brackets: `blablabla.^[Text of the footnote.]` The footnote will be automatically numbered accordingly.
 
-6.  Check [here](https://quarto.org/docs/authoring/markdown-basics.html#lists) to see how to create list with unordered or ordered items.
+6. Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: `...check the [course website](https://fjbeltrantapia.github.io/computational-history/)`
+
+7.  Check [here](https://quarto.org/docs/authoring/markdown-basics.html#lists) to see how to create list with unordered or ordered items.
 
 ## Images
 
-Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file `letter-mary.png`, stored in the folder `images`. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets `{}` label the figure and adjust its size.
+Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file `letter-mary.png`, stored in the folder `images`. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets `{}` label the figure and adjust its size.^[Note that the figure caption starts with `Figure 1`. Quarto will automatically number all images, graphs, etc. (unless you explicitly instruct otherwise).]
 
 ``` markdown
 ![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-elephant width=50%}
 ```
+![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-elephant width=50%}
 
-There are however many different possibilities, so you should check [here](https://quarto.org/docs/authoring/figures.html) if you plan to insert several figures simultaneously or play around with other options.
+There are in any case many different possibilities, so you should check [here](https://quarto.org/docs/authoring/figures.html) if you plan to insert several figures simultaneously or play around with other options.
 
 ## Equations
 
@@ -97,8 +100,6 @@ There are many conventions to write equations in LaTeX. For more details, see th
 
 One of the biggest advantages of using Quarto documents is that it supports executable code blocks, so you can embed code and output and create fully reproducible documents (the code required to produce the output is part of the document itself).^[As well as R, Quarto can work with other programming languages like Python, Julia and JavaScript.] R code chunks are identified with ```` ```{r} ```` and can be introduced manually or using the appropriate icon. Do not forget to close it using three backticks ```` ``` ````. 
 
-
-
 ```{{r}}
 library(tidyverse)
 library(readxl)
@@ -106,11 +107,9 @@ data <- read_excel("data/paisley-data.xlsx")
 data |> count(sex)
 ```
 
-
-
 Code blocks will be executed by Quarto when rendering. However, you can independently run the code without the need for rendering the whole document. You can therefore interactively check if the code works and tinker with it at will until you are satisfied. In order to do so, click the ![](https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png) icon or keyboard shortcut (⇧⌘⏎). RStudio will execute the code and display the results.
 
-By default, both the code and its output are displayed in the resulting document. It is however possible to hide the code and/or the subsequent results for each code chunk separately. This is done by including different chunk options after they symbol `#|` at the top of the chunk: while `echo: false` will hide the code, `results: false` will suppress the output. Similarly, you can hide other warnings and messages that sometimes pop up when running your code.
+By default, both the code and its output are displayed in the resulting document. It is however possible to hide the code and/or the subsequent results for each code chunk separately. This is done by including different chunk options after the symbol `#|` at the top of the chunk: while `echo: false` will hide the code, `results: false` will suppress the output. Similarly, you can hide other warnings and messages that sometimes pop up when running your code. As shown below, this can also be set up within the `yaml`, so it applies to all code chunks within the project (the behaviour set up in individual blocks will override the yaml set up).
 
 ```{{r}}
 #| echo: false
@@ -156,6 +155,8 @@ Sometimes, you will want to include executable expressions within the text itsel
 There are `{{r}} nrow(data)` prisoners in the Paisley data.
 ````
 
+> There are `{r} nrow(data)` prisoners in the Paisley data.
+
 The rendered document won't show the expression inside the backticks above but the actual number of observations. You can write the actual number yourself but this may come in handy when you are playing around with different data sets (or samples) simultaneously. 
 
 For more complex expressions, it is possible to have hidden code chunks (`echo: false`) that assign the results to an object, so it can be called using inline code. See below for a different way of doing what we did above, plus reporting the average age for male and female prisoners.^[Note that we need to use `pull()` to transform the tibble generated by `summarize()` into a numeric object.]
@@ -168,12 +169,14 @@ avg_age_female <- data |> filter(sex=="female") |>
   summarise(mean = mean(age, na.rm = TRUE)) |> pull(mean) |> round(1)
 ```
 
-````markdown
+```markdown
 There are `{{r}} obs` prisoners in the Paisley data. The average age is `{{r}} avg_age_male` and `{{r}} avg_age_female` for men and women, respectively. 
-````
+```
+
+> There are `{r} obs` prisoners in the Paisley data. The average age is `{r} avg_age_male` and `{r} avg_age_female` for men and women, respectively. 
 
 
-# YAML
+# YAML and YAML Header
 
 As mentioned above, the section enclosed between three dashes (`---`) is called the **YAML header** and serves to configure how the source document is processed and how the final document will look like. 
 
@@ -185,24 +188,7 @@ format: html
 ---
 ```
 
-As well as specifying title (and the author) of the document, the YAML defines the `format` to which the document will be rendered to. There are however many other features that can be configured through the YAML that shape the way the document is rendered. They basically constitute a set of instructions that indicate Quarto how to process and present the document. Most of them are pre-defined by default but you can explicitly define them to fit your needs. Let's review them.
-
-Firstly, `format` denotes the type of document that will be created. The different available options for the YAML fields are slightly different depending on whether you are creating [HTML](/docs/reference/formats/html.qmd), [PDF](/docs/reference/formats/pdf.qmd) or [MS Word](/docs/reference/formats/docx.qmd) documents. Below you can find two examples for html and pdf.
-
-
-The yaml also allows controlling other features like font type and size. Crucially, you can also indicate that you want to hide all code chunks from the rendered document within `execute`, (this option can be overturned in each individual code block though by setting `echo: true` there).
-
-``` yaml
----
-title: "Computational history. Session 1"
-author: "John Smith"
-format: pdf
-execute:
-  echo: false
----
-```
-
-It is also possible to automatically add a table of contents and/or section numbering to better structure the document.
+As well as specifying title (and the author) of the document, the YAML defines the `format` to which the document will be rendered to. There are however many other features that can be configured through the YAML that shape the way the document is rendered. They basically constitute a set of instructions that indicate Quarto how to process and present the document. Most of them are pre-defined by default but you can explicitly define them to fit your needs. The example below, for instance, defines font size an margins length, as well as automatically adding a table of contents and/or section numbering to better structure the document. We are also indicating which file stores the list of references that the document relies on (more on this below). There exists a wide range of options for customizing your document via the `yaml`.
 
 ``` yaml
 ---
@@ -212,9 +198,14 @@ format:
     fontsize: 11
     toc: true
     number-sections: true
+    geometry:
+      - top=30mm
+      - left=30mm
 bibliography: refs.bib
 ---
 ```
+
+The different available options for the YAML fields are slightly different depending on whether you are creating [HTML](/docs/reference/formats/html.qmd), [PDF](/docs/reference/formats/pdf.qmd) or [MS Word](/docs/reference/formats/docx.qmd) documents. While the one above is aimed at producing a PDF file, the one below sets instructions for a html file.
 
 ``` yaml
 ---
@@ -230,46 +221,44 @@ bibliography: refs.bib
 ---
 ```
 
+Crucially, you can also indicate that you want to hide all code chunks from the rendered document within `execute`. This option can be overturned in each individual code block though by setting `echo: true` there.
+
+``` yaml
+---
+title: "Computational history. Session 1"
+author: "John Smith"
+format: pdf
+execute:
+  echo: false
+---
+```
+
 ## Project-level YAML
 
-For simple documents, it is not necessary to have a .yml file. Having a YAML header, demarcated by three dashes `---` at the top of the document, will suffice.
-
-``` yaml
----
-title: "Computational history. Session 1"
-format: pdf
----
-```
-
-We rely on YAML headers for now and move on to YAML pages later on.
-
-Depending on whether you are creating PDFs or HTMLs, the range of yaml options are slightly different.
-
-``` yaml
----
-title: "Computational history. Session 1"
-format: 
-  pdf:
-    geometry:
-      - top=30mm
-      - left=30mm
----
-```
-
-``` yaml
----
-title: "Computational history. Session 1"
-format: 
-  html:
-    code-fold: true
----
-```
-
+For simple documents, having a **YAML header**, demarcated by three dashes `---` at the top of the document as shown above, is enough. However, for more complex documents or projects (i.e. books, websites, etc.), it is advisable to have a **project-level YAML**, stored in a file named `_quarto.yml` which lives in the root directory of the project. This set of instructions applies to every .qmd file in the project but can be override by document-level yamls or code chunk options.
 
 # Referencing
 
-Quarto relies on .bib files to be able to cross reference citations and create a reference list.
-.bib
+Quarto relies on `.bib` files to be able to cross reference citations and create a reference list. Each reference is stored following this type of structure, that differs slightly depending whether you are referencing a book, a journal article, a website or other type of material:
+
+``` yaml
+@book{guldi2023,
+	title = {The dangerous art of text mining},
+	publisher = {Cambridge University Press},
+	author = {Guldi, Jo},
+	year = {2023},
+}
+
+@article{mccants2020,
+	title = {Economic history and the historians},
+	volume = {50},
+	number = {4},
+	journal = {Journal of Interdisciplinary History},
+	author = {McCants, Anne E.C.},
+	year = {2020},
+	pages = {547--566},
+}
+```
 
 Programmes like Zotero or help creating this type of .bib documents. You can also manually add references to the .bib document. Note that .bib documents can be reused and their contents copied and pasted into other documents. Having them will therefore save you tons of time when creating your reference lists in the future. 
 
@@ -286,12 +275,16 @@ bibliography: refs.bib
 You can then easily cite those references in the text using the `@citeid` syntax. There are different ways of citing. See the differences below
 
 ``` markdown
-As @beltran2025 [p. 10] argues blablabla.
+As @guldi2023 [p. 10] argues blablabla.
 ```
 
+> As @guldi2023 [p. 10] argues blablabla.
+
 ``` markdown
-Computational methods are crucial for historians [@beltran2025, p. 10].
+Computational methods are crucial for historians [@guldi2023, p. 10].
 ```
+
+> Computational methods are crucial for historians [@guldi2023, p. 10].
 
 All items refer to in the text will be compiled into the reference list, which will be automatically added at the end of the document. If you want to add a section title, you can do the following at the end of your .qmd file:
 

@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -234,7 +254,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code">Inline code</a></li>
   </ul></li>
-  <li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml">YAML</a>
+  <li><a href="#yaml-and-yaml-header" id="toc-yaml-and-yaml-header" class="nav-link" data-scroll-target="#yaml-and-yaml-header">YAML and YAML Header</a>
   <ul class="collapse">
   <li><a href="#project-level-yaml" id="toc-project-level-yaml" class="nav-link" data-scroll-target="#project-level-yaml">Project-level YAML</a></li>
   </ul></li>
@@ -298,13 +318,24 @@ window.Quarto = {
 <li><p>Underline or highlight a particular text, enclosed between squared brackets, by adding {.underline} or {.mark}. The following, for instance, will underline the enclosed text: <code>[This text is underlined]{.underline}</code>. It is also possible to highlight particular terms using <code>`verbatim code`</code>. The latter is usually done to refer to R packages and functions.</p></li>
 <li><p>Sections and subsections are denoted by adding one, two or more hashtags (<code>#</code>). They form a nested structure: while different sections will be created using one (<code>#</code>), subsections will need two (<code>##</code>). More hashtags are added if you want to keep adding lower levels.</p></li>
 <li><p>Footnotes are added by opening it with a <code>^</code> and enclosing the text between square brackets: <code>blablabla.^[Text of the footnote.]</code> The footnote will be automatically numbered accordingly.</p></li>
+<li><p>Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: <code>...check the [course website](https://fjbeltrantapia.github.io/computational-history/)</code></p></li>
 <li><p>Check <a href="https://quarto.org/docs/authoring/markdown-basics.html#lists">here</a> to see how to create list with unordered or ordered items.</p></li>
 </ol>
 <section id="images" class="level2">
 <h2 class="anchored" data-anchor-id="images">Images</h2>
-<p>Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file <code>letter-mary.png</code>, stored in the folder <code>images</code>. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets <code>{}</code> label the figure and adjust its size.</p>
+<p>Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file <code>letter-mary.png</code>, stored in the folder <code>images</code>. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets <code>{}</code> label the figure and adjust its size.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png)</span>{#fig-elephant width=50%}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>There are however many different possibilities, so you should check <a href="https://quarto.org/docs/authoring/figures.html">here</a> if you plan to insert several figures simultaneously or play around with other options.</p>
+<div id="fig-elephant" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/letter-mary.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elephant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Letter from Queen Mary I to Lord Paget, 1554
+</figcaption>
+</figure>
+</div>
+<p>There are in any case many different possibilities, so you should check <a href="https://quarto.org/docs/authoring/figures.html">here</a> if you plan to insert several figures simultaneously or play around with other options.</p>
 </section>
 <section id="equations" class="level2">
 <h2 class="anchored" data-anchor-id="equations">Equations</h2>
@@ -320,7 +351,7 @@ y_i = a_i + b_i \times x_i + e
 </section>
 <section id="code-chunks" class="level1">
 <h1>Code chunks</h1>
-<p>One of the biggest advantages of using Quarto documents is that it supports executable code blocks, so you can embed code and output and create fully reproducible documents (the code required to produce the output is part of the document itself).<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> R code chunks are identified with <code>```{r}</code> and can be introduced manually or using the appropriate icon. Do not forget to close it using three backticks <code>```</code>.</p>
+<p>One of the biggest advantages of using Quarto documents is that it supports executable code blocks, so you can embed code and output and create fully reproducible documents (the code required to produce the output is part of the document itself).<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> R code chunks are identified with <code>```{r}</code> and can be introduced manually or using the appropriate icon. Do not forget to close it using three backticks <code>```</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -328,7 +359,7 @@ y_i = a_i + b_i \times x_i + e
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">count</span>(sex)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Code blocks will be executed by Quarto when rendering. However, you can independently run the code without the need for rendering the whole document. You can therefore interactively check if the code works and tinker with it at will until you are satisfied. In order to do so, click the <img src="https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png" class="img-fluid"> icon or keyboard shortcut (⇧⌘⏎). RStudio will execute the code and display the results.</p>
-<p>By default, both the code and its output are displayed in the resulting document. It is however possible to hide the code and/or the subsequent results for each code chunk separately. This is done by including different chunk options after they symbol <code>#|</code> at the top of the chunk: while <code>echo: false</code> will hide the code, <code>results: false</code> will suppress the output. Similarly, you can hide other warnings and messages that sometimes pop up when running your code.</p>
+<p>By default, both the code and its output are displayed in the resulting document. It is however possible to hide the code and/or the subsequent results for each code chunk separately. This is done by including different chunk options after the symbol <code>#|</code> at the top of the chunk: while <code>echo: false</code> will hide the code, <code>results: false</code> will suppress the output. Similarly, you can hide other warnings and messages that sometimes pop up when running your code. As shown below, this can also be set up within the <code>yaml</code>, so it applies to all code chunks within the project (the behaviour set up in individual blocks will override the yaml set up).</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: false</span></span>
@@ -357,7 +388,7 @@ y_i = a_i + b_i \times x_i + e
 <img src="quarto_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Age and weight in the Paisley data set.
+Figure&nbsp;2: Age and weight in the Paisley data set.
 </figcaption>
 </figure>
 </div>
@@ -367,8 +398,11 @@ Figure&nbsp;1: Age and weight in the Paisley data set.
 <h2 class="anchored" data-anchor-id="inline-code">Inline code</h2>
 <p>Sometimes, you will want to include executable expressions within the text itself. The code should be enclosed within <code>`{r} `</code>. For example, you can write the following when reporting how many prisoners the Paisley data contains.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>There are <span class="in">`{r} nrow(data)`</span> prisoners in the Paisley data.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>There are 1000 prisoners in the Paisley data.</p>
+</blockquote>
 <p>The rendered document won’t show the expression inside the backticks above but the actual number of observations. You can write the actual number yourself but this may come in handy when you are playing around with different data sets (or samples) simultaneously.</p>
-<p>For more complex expressions, it is possible to have hidden code chunks (<code>echo: false</code>) that assign the results to an object, so it can be called using inline code. See below for a different way of doing what we did above, plus reporting the average age for male and female prisoners.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>For more complex expressions, it is possible to have hidden code chunks (<code>echo: false</code>) that assign the results to an object, so it can be called using inline code. See below for a different way of doing what we did above, plus reporting the average age for male and female prisoners.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>avg_age_male <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"male"</span>) <span class="sc">|&gt;</span> </span>
@@ -377,104 +411,123 @@ Figure&nbsp;1: Age and weight in the Paisley data set.
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">pull</span>(mean) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>There are <span class="in">`{r} obs`</span> prisoners in the Paisley data. The average age is <span class="in">`{r} avg_age_male`</span> and <span class="in">`{r} avg_age_female`</span> for men and women, respectively. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>There are 1000 prisoners in the Paisley data. The average age is 28.9 and 31.3 for men and women, respectively.</p>
+</blockquote>
 </section>
 </section>
-<section id="yaml" class="level1">
-<h1>YAML</h1>
+<section id="yaml-and-yaml-header" class="level1">
+<h1>YAML and YAML Header</h1>
 <p>As mentioned above, the section enclosed between three dashes (<code>---</code>) is called the <strong>YAML header</strong> and serves to configure how the source document is processed and how the final document will look like.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"John Smith"</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As well as specifying title (and the author) of the document, the YAML defines the <code>format</code> to which the document will be rendered to. There are however many other features that can be configured through the YAML that shape the way the document is rendered. They basically constitute a set of instructions that indicate Quarto how to process and present the document. Most of them are pre-defined by default but you can explicitly define them to fit your needs. Let’s review them.</p>
-<p>Firstly, <code>format</code> denotes the type of document that will be created. The different available options for the YAML fields are slightly different depending on whether you are creating <a href="./docs/reference/formats/html.qmd">HTML</a>, <a href="./docs/reference/formats/pdf.qmd">PDF</a> or <a href="./docs/reference/formats/docx.qmd">MS Word</a> documents. Below you can find two examples for html and pdf.</p>
-<p>The yaml also allows controlling other features like font type and size. Crucially, you can also indicate that you want to hide all code chunks from the rendered document within <code>execute</code>, (this option can be overturned in each individual code block though by setting <code>echo: true</code> there).</p>
+<p>As well as specifying title (and the author) of the document, the YAML defines the <code>format</code> to which the document will be rendered to. There are however many other features that can be configured through the YAML that shape the way the document is rendered. They basically constitute a set of instructions that indicate Quarto how to process and present the document. Most of them are pre-defined by default but you can explicitly define them to fit your needs. The example below, for instance, defines font size an margins length, as well as automatically adding a table of contents and/or section numbering to better structure the document. We are also indicating which file stores the list of references that the document relies on (more on this below). There exists a wide range of options for customizing your document via the <code>yaml</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history. Session 1"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"John Smith"</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It is also possible to automatically add a table of contents and/or section numbering to better structure the document.</p>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> </span><span class="dv">11</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> top=30mm</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> left=30mm</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The different available options for the YAML fields are slightly different depending on whether you are creating <a href="./docs/reference/formats/html.qmd">HTML</a>, <a href="./docs/reference/formats/pdf.qmd">PDF</a> or <a href="./docs/reference/formats/docx.qmd">MS Word</a> documents. While the one above is aimed at producing a PDF file, the one below sets instructions for a html file.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> </span><span class="dv">11</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # adds a code fold button</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-copy</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # adds a copy button to code blocks</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Crucially, you can also indicate that you want to hide all code chunks from the rendered document within <code>execute</code>. This option can be overturned in each individual code block though by setting <code>echo: true</code> there.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # adds a code fold button</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-copy</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # adds a copy button to code blocks</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history. Session 1"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"John Smith"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="project-level-yaml" class="level2">
 <h2 class="anchored" data-anchor-id="project-level-yaml">Project-level YAML</h2>
-<p>For simple documents, it is not necessary to have a .yml file. Having a YAML header, demarcated by three dashes <code>---</code> at the top of the document, will suffice.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history. Session 1"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We rely on YAML headers for now and move on to YAML pages later on.</p>
-<p>Depending on whether you are creating PDFs or HTMLs, the range of yaml options are slightly different.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history. Session 1"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> top=30mm</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> left=30mm</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history. Session 1"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For simple documents, having a <strong>YAML header</strong>, demarcated by three dashes <code>---</code> at the top of the document as shown above, is enough. However, for more complex documents or projects (i.e.&nbsp;books, websites, etc.), it is advisable to have a <strong>project-level YAML</strong>, stored in a file named <code>_quarto.yml</code> which lives in the root directory of the project. This set of instructions applies to every .qmd file in the project but can be override by document-level yamls or code chunk options.</p>
 </section>
 </section>
 <section id="referencing" class="level1">
 <h1>Referencing</h1>
-<p>Quarto relies on .bib files to be able to cross reference citations and create a reference list. .bib</p>
+<p>Quarto relies on <code>.bib</code> files to be able to cross reference citations and create a reference list. Each reference is stored following this type of structure, that differs slightly depending whether you are referencing a book, a journal article, a website or other type of material:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="at">@book{guldi2023,</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">    title = {The dangerous art of text mining},</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">    publisher = {Cambridge University Press},</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">    author = {Guldi, Jo},</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">    year = {2023},</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="at">}</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="at">@article{mccants2020,</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="at">    title = {Economic history and the historians},</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="at">    volume = {50},</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">    number = {4},</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="at">    journal = {Journal of Interdisciplinary History},</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="at">    author = {McCants, Anne E.C.},</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="at">    year = {2020},</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="at">    pages = {547--566},</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="at">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Programmes like Zotero or help creating this type of .bib documents. You can also manually add references to the .bib document. Note that .bib documents can be reused and their contents copied and pasted into other documents. Having them will therefore save you tons of time when creating your reference lists in the future.</p>
 <p>You can call this file <code>references.bib</code> (or <code>refs.bib</code>). You will need to specifically indicate in the YAML that your bibliography is stored in that document:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Computational history"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> refs.bib</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then easily cite those references in the text using the <code>@citeid</code> syntax. There are different ways of citing. See the differences below</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>As @beltran2025 <span class="co">[</span><span class="ot">p. 10</span><span class="co">]</span> argues blablabla.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Computational methods are crucial for historians <span class="co">[</span><span class="ot">@beltran2025, p. 10</span><span class="co">]</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>As @guldi2023 <span class="co">[</span><span class="ot">p. 10</span><span class="co">]</span> argues blablabla.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>As <span class="citation" data-cites="guldi2023">Guldi (<a href="#ref-guldi2023" role="doc-biblioref">2023, 10</a>)</span> argues blablabla.</p>
+</blockquote>
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Computational methods are crucial for historians <span class="co">[</span><span class="ot">@guldi2023, p. 10</span><span class="co">]</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Computational methods are crucial for historians <span class="citation" data-cites="guldi2023">(<a href="#ref-guldi2023" role="doc-biblioref">Guldi 2023, 10</a>)</span>.</p>
+</blockquote>
 <p>All items refer to in the text will be compiled into the reference list, which will be automatically added at the end of the document. If you want to add a section title, you can do the following at the end of your .qmd file:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will suffice for our purposes. This is in any case just a taste. There in anIf you want to learn more and discover all the different possibilities, check the <a href="https://quarto.org/docs/guide/">program documentation</a>. It should nonetheless be stressed that RStudio allows seeing the document in “source” or “visual” mode. The latter gives you a sense of how the source document will look like when rendered. It also allows using toolbars for formatting (similar to a Word document). The underlying plain text source code will be written for you, so it might be a way to learn how to use it. You can switch between the two modes at your wish.</p>
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-alexander2023" class="csl-entry" role="listitem">
+Alexander, Rohan. 2023. <em>Telling Stories with Data. With Applications in r</em>. CRC Press.
+</div>
+<div id="ref-guldi2023" class="csl-entry" role="listitem">
+Guldi, Jo. 2023. <em>The Dangerous Art of Text Mining</em>. Cambridge University Press.
+</div>
+<div id="ref-hadley2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garret Grolemund. 2023. <em>R for Data Science</em>. O’Reilly. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Quarto is an open-source publishing system built on <a href="https://pandoc.org">Pandoc</a> and authored using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>.]<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>As well as this <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto tutorial</a> itself, you can check <span class="citation" data-cites="hadley2023">(<a href="#ref-hadley2023" role="doc-biblioref"><strong>hadley2023?</strong></a>, ch.&nbsp;28-29)</span> and <span class="citation" data-cites="alexander2023">(<a href="#ref-alexander2023" role="doc-biblioref"><strong>alexander2023?</strong></a>, ch.&nbsp;3)</span> for an introduction on how to integrate R code in Quarto documents.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>As well as this <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto tutorial</a> itself, you can check <span class="citation" data-cites="hadley2023">Wickham, Çetinkaya-Rundel, and Grolemund (<a href="#ref-hadley2023" role="doc-biblioref">2023</a>, ch.&nbsp;28-29)</span> and <span class="citation" data-cites="alexander2023">Alexander (<a href="#ref-alexander2023" role="doc-biblioref">2023</a>, ch.&nbsp;3)</span> for an introduction on how to integrate R code in Quarto documents.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Note that .html files will be stored in a subfolder called <code>docs</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>As well as R, Quarto can work with other programming languages like Python, Julia and JavaScript.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Note that we need to use <code>pull()</code> to transform the tibble generated by <code>summarize()</code> into a numeric object.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Note that the figure caption starts with <code>Figure 1</code>. Quarto will automatically number all images, graphs, etc. (unless you explicitly instruct otherwise).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>As well as R, Quarto can work with other programming languages like Python, Julia and JavaScript.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Note that we need to use <code>pull()</code> to transform the tibble generated by <code>summarize()</code> into a numeric object.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

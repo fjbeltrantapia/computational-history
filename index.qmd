@@ -1,6 +1,10 @@
 ## Welcome to computational history!
 
-Spring 2026 -- Tuesdays -- 09:15-12:00 -- Room D7 (2 first weeks) / D153
+::: {.callout-note appearance="simple"}
+
+Spring 2026 -- Tuesdays -- 09:15-12:00 -- Room D7 (2 first weeks) / D153 (after)
+
+:::
 
 Instructor: [Francisco J. Beltrán Tapia](https://fjbeltrantapia.github.io)
 
@@ -28,6 +32,7 @@ The course is taught once a week in 3-hour sessions. Each session combines lectu
 
 No previous background in computing or statistics is required. For more information, contact [Francisco J. Beltrán Tapia](https://fjbeltrantapia.github.io). 
 
+::: {.callout-note}
 ### Course schedule 
 
 The course involves 8 sessions. Tentative dates: 
@@ -36,6 +41,12 @@ Jan 13, 20 and 27; Feb 3 and 24; March 3, 17 and 24.
 
 There will be an extra optional session in April/May to solidify concepts, ask questions, etc.
 
+:::
+
+::: {.callout-important}
 ### Important warning
 
 Please follow the [Instructions](instructions.html) section to prepare for the course in advance. As well as reading the article [Quantifying history]{.underline}, this involves downloading the [course materials]{.underline}, installing and getting familiar with [R]{.underline} and [RStudio]{.underline} and going through the background information on the [case-studies]{.underline} we will be exploring.
+
+:::
+
