@@ -2,7 +2,7 @@
 
 ::: {.callout-note appearance="simple"}
 
-Spring 2026 -- Tuesdays -- 09:15-12:00 -- Room D7 (2 first weeks) / D153 (after)
+Spring 2026 -- Tuesdays -- 10:15-13:00 -- Room D7 (2 first weeks) / D153 (after)
 
 :::
 
@@ -39,7 +39,7 @@ The course involves 8 sessions. Tentative dates:
 
 Jan 13, 20 and 27; Feb 3 and 24; March 3, 17 and 24.
 
-There will be an extra optional session in April/May to solidify concepts, ask questions, etc.
+There will be an extra optional session in April/May to present the final project, solidify concepts, ask questions, etc.
 
 :::
 
