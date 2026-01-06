@@ -36,7 +36,7 @@ website:
       href: further-readings.qmd  
     - text: "Coursework"
       icon: fa-home
-      href: exam.qmd    
+      href: coursework.qmd    
   
   sidebar:
     title: "Contents"
