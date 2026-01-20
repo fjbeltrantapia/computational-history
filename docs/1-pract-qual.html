@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -177,8 +212,14 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">Solution:</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full column-page-left" id="quarto-document-content">
@@ -218,41 +259,29 @@ div.csl-indent {
 <li><p>What were the two most common topics for filing a petition. Draw a bar plot to visualise this information. Which fraction of all the petitions these two topics represent? Use also the information of subtopic to shed more light on this issue.</p></li>
 <li><p>Imagine that you are especially interested in “poor relief”. Can you provide more information about who was filing these petitions and the type of response they got from the Royal authorities.</p></li>
 </ul>
-<!--
-
-# Solution: 
-
-The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use `list.files()` to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory. By contrast, `list.files("/data)"` will list the files in the folder named `data`. 
-
-In my case, I put the files in the folder `data-assign`, so I can read in using `read_excel()` (remember to load the package `readxl`).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-rm(list=ls())
-library(tidyverse)
-library(readxl)
-data <- read_excel("data-assign/petitions/data/tpop_petitions_petitioners_v1_202208.xlsx")
-```
-:::
-
-
-Let's explore how the data set looks like.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 1,728 × 19
+<section id="solution" class="level1 page-columns page-full">
+<h1>Solution:</h1>
+<p>The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use <code>list.files()</code> to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory. By contrast, <code>list.files("/data)"</code> will list the files in the folder named <code>data</code>.</p>
+<p>In my case, I put the files in the folder <code>data-assign</code>, so I can read in using <code>read_excel()</code> (remember to load the package <code>readxl</code>).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data-assign/petitions/data/tpop_petitions_petitioners_v1_202208.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Let’s explore how the data set looks like.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,728 × 19
    petition_id county     year  date      topic subtopic named_petrs subscribers
-         <dbl> <chr>      <chr> <chr>     <chr> <chr>          <dbl>       <dbl>
+         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;
  1           1 Derbyshire 1632  after 25… pate… anti               1           7
  2           2 Derbyshire 1639  20 April… cott… pro                1           3
  3           3 Derbyshire 1649  13 March… poor… reimbur…           1           0
@@ -264,63 +293,42 @@ data
  9           9 Derbyshire 1680  5 Octobe… poor… pro                1           0
 10          10 Derbyshire 1680  5 Octobe… liti… anti               1           0
 # ℹ 1,718 more rows
-# ℹ 11 more variables: petition_type <chr>, petition_gender <chr>,
-#   sub_gender <chr>, response_cat <chr>, petitioner <chr>, abstract <chr>,
-#   repository <chr>, collection <chr>, reference <chr>, ll_img <chr>,
-#   bho_transcribed <chr>
-```
-
-
-:::
-:::
-
-
-As indicated above, this data frame contains 1,728 rows, that is observations. Each row refers to petitions filed in England during the period of study. The unit of analysis is therefore these petitions. There are 19 columns, meaning that there 19 pieces of information about these petitions. Given that we are focusing on qualitative dimensions, we will explore things like the locations where these petitions were filed (*county*), what they refer to (*topic* and *subtopic*), the type of petition (*petition_type*), the name and gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). The data set also includes a textual description of the petition itself (*abstract*).
-
-Regarding the particular questions indicated above, you can list the places or origin of these petitions by using `count()` on the variable *county*.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |> 
-  count(county)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 5 × 2
+# ℹ 11 more variables: petition_type &lt;chr&gt;, petition_gender &lt;chr&gt;,
+#   sub_gender &lt;chr&gt;, response_cat &lt;chr&gt;, petitioner &lt;chr&gt;, abstract &lt;chr&gt;,
+#   repository &lt;chr&gt;, collection &lt;chr&gt;, reference &lt;chr&gt;, ll_img &lt;chr&gt;,
+#   bho_transcribed &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>As indicated above, this data frame contains 1,728 rows, that is observations. Each row refers to petitions filed in England during the period of study. The unit of analysis is therefore these petitions. There are 19 columns, meaning that there 19 pieces of information about these petitions. Given that we are focusing on qualitative dimensions, we will explore things like the locations where these petitions were filed (<em>county</em>), what they refer to (<em>topic</em> and <em>subtopic</em>), the type of petition (<em>petition_type</em>), the name and gender of the petitioner (<em>petition_gender</em>) or the response they received (<em>response_cat</em>). The data set also includes a textual description of the petition itself (<em>abstract</em>).</p>
+<p>Regarding the particular questions indicated above, you can list the places or origin of these petitions by using <code>count()</code> on the variable <em>county</em>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(county)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
   county             n
-  <chr>          <int>
+  &lt;chr&gt;          &lt;int&gt;
 1 Cheshire         613
 2 Derbyshire        94
 3 Staffordshire    239
 4 Westminster      422
-5 Worcestershire   360
-```
-
-
-:::
-:::
-
-
-Doing the same by *topic* and sorting the results in descending order gives you the most important topics behind the petitions. You could also do it by *subtopic* but the results are not that clearcut.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  count(topic, sort = TRUE)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 13 × 2
+5 Worcestershire   360</code></pre>
+</div>
+</div>
+<p>Doing the same by <em>topic</em> and sorting the results in descending order gives you the most important topics behind the petitions. You could also do it by <em>subtopic</em> but the results are not that clearcut.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(topic, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 2
    topic                  n
-   <chr>              <int>
+   &lt;chr&gt;              &lt;int&gt;
  1 litigation           474
  2 poor relief          290
  3 rates                174
@@ -333,51 +341,40 @@ data |>
 10 alehouse              53
 11 imprisoned debtors    44
 12 charitable brief      37
-13 dissenting worship    37
-```
-
-
-:::
-:::
-
-
-We can have a look at the distribution of petitions by displaying it into a graph.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  ggplot(aes(x = topic)) +
-  geom_bar() +
-  coord_flip()
-```
-
-::: {.cell-output-display}
-![](1-pract-qual_files/figure-html/unnamed-chunk-5-1.png){width=672}
-:::
-:::
-
-
-Let's now compute the fraction that the two most common categories represent (ouf all the petitions). As we know, `count()` generates a data frame with two columns, one listing the categories present in the field we are exploring and the other, named *n*, indicating the number of observations belonging to each category. Building on that, we can create another field that computes that fraction by dividing the number of cases (`n`) by the total number of observations (`sum(n)`). Instead of summing up the values of the most common categories ourselfs, we utilise the function `cumsum()` to do it for us and report the **cumulative frequency**. Lastly, the last line ask R to round the fields *fraction* and *cum_sum* up to 2 decimal places.^[`across()` within `mutate()` is a very useful short cut for implementing the same operation to a set of different columns.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  count(topic, sort = TRUE) |>
-  mutate(fraction = n/sum(n),
-         cum_sum = cumsum(fraction)) |>
-  mutate(across(c(fraction, cum_sum), round, 2))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 13 × 4
+13 dissenting worship    37</code></pre>
+</div>
+</div>
+<p>We can have a look at the distribution of petitions by displaying it into a graph.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> topic)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="1-pract-qual_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s now compute the fraction that the two most common categories represent (ouf all the petitions). As we know, <code>count()</code> generates a data frame with two columns, one listing the categories present in the field we are exploring and the other, named <em>n</em>, indicating the number of observations belonging to each category. Building on that, we can create another field that computes that fraction by dividing the number of cases (<code>n</code>) by the total number of observations (<code>sum(n)</code>). Instead of summing up the values of the most common categories ourselfs, we utilise the function <code>cumsum()</code> to do it for us and report the <strong>cumulative frequency</strong>. Lastly, the last line ask R to round the fields <em>fraction</em> and <em>cum_sum</em> up to 2 decimal places.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<code>across()</code> within <code>mutate()</code> is a very useful short cut for implementing the same operation to a set of different columns.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(topic, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fraction =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cum_sum =</span> <span class="fu">cumsum</span>(fraction)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(fraction, cum_sum), round, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 4
    topic                  n fraction cum_sum
-   <chr>              <int>    <dbl>   <dbl>
+   &lt;chr&gt;              &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;
  1 litigation           474     0.27    0.27
  2 poor relief          290     0.17    0.44
  3 rates                174     0.1     0.54
@@ -390,35 +387,24 @@ data |>
 10 alehouse              53     0.03    0.93
 11 imprisoned debtors    44     0.03    0.96
 12 charitable brief      37     0.02    0.98
-13 dissenting worship    37     0.02    1   
-```
-
-
-:::
-:::
-
-  
-The topics "litigation" and "poor relief" therefore constitute 44 per cent of the total number of petitions.
-
-To know more about what is behind these topics, you can use *subtopic* but focusing only on particular "topics" (categories within *topic*). The following for instance reports what are the most common subtopics for "poor relief" (you can explore this further focusing on other topics).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(topic=="poor relief") |>
-  count(subtopic, sort = TRUE)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 15 × 2
+13 dissenting worship    37     0.02    1   </code></pre>
+</div>
+</div>
+<p>The topics “litigation” and “poor relief” therefore constitute 44 per cent of the total number of petitions.</p>
+<p>To know more about what is behind these topics, you can use <em>subtopic</em> but focusing only on particular “topics” (categories within <em>topic</em>). The following for instance reports what are the most common subtopics for “poor relief” (you can explore this further focusing on other topics).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(topic<span class="sc">==</span><span class="st">"poor relief"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(subtopic, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 2
    subtopic                             n
-   <chr>                            <int>
+   &lt;chr&gt;                            &lt;int&gt;
  1 pro                                174
- 2 <NA>                                65
+ 2 &lt;NA&gt;                                65
  3 removal                             23
  4 anti                                10
  5 pauper apprenticeship                4
@@ -431,49 +417,34 @@ data |>
 12 pro: pauper apprenticeship           1
 13 pro: rentable housing                1
 14 pro: settlement                      1
-15 settlement certificate               1
-```
-
-
-:::
-:::
-
-
-It seems a significant majority of petitions under this topic were in favour of "poor relief" (174 + 2). Only 12 petitions seem to be anti-"poor relief". 
-
-Regarding who was filing these petitions, the field *petition_type* shows that they could be filed individually (the majority), by multiple persons or collectively. I am not expert on these sources, so we should make sure that we understand what these categories actually mean.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(topic=="poor relief") |>
-  count(petition_type)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 5 × 2
+15 settlement certificate               1</code></pre>
+</div>
+</div>
+<p>It seems a significant majority of petitions under this topic were in favour of “poor relief” (174 + 2). Only 12 petitions seem to be anti-“poor relief”.</p>
+<p>Regarding who was filing these petitions, the field <em>petition_type</em> shows that they could be filed individually (the majority), by multiple persons or collectively. I am not expert on these sources, so we should make sure that we understand what these categories actually mean.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(topic<span class="sc">==</span><span class="st">"poor relief"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(petition_type)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
   petition_type            n
-  <chr>                <int>
+  &lt;chr&gt;                &lt;int&gt;
 1 collective              45
 2 collective on behalf     6
 3 multiple                13
 4 multiple on behalf       2
-5 single                 224
-```
+5 single                 224</code></pre>
+</div>
+</div>
+<p>We could continue this exploration focusing perhaps on “single” petitions and exploring the gender of the petitioner (<em>petition_gender</em>) or the response they received (<em>response_cat</em>). I leave that to you.</p>
 
 
-:::
-:::
 
-
-We could continue this exploration focusing perhaps on "single" petitions and exploring the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). I leave that to you.
--->
-
-
+</section>
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

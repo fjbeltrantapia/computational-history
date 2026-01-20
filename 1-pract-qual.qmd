@@ -30,8 +30,6 @@ Let's practice what we have learned during the first session on extracting infor
 
 - Imagine that you are especially interested in "poor relief". Can you provide more information about who was filing these petitions and the type of response they got from the Royal authorities.
 
-<!--
-
 # Solution: 
 
 The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use `list.files()` to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory. By contrast, `list.files("/data)"` will list the files in the folder named `data`. 
@@ -109,4 +107,3 @@ data |>
 ```
 
 We could continue this exploration focusing perhaps on "single" petitions and exploring the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). I leave that to you.
--->
