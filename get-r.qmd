@@ -10,7 +10,9 @@ execute:
 
 Implementing quantitative or computational analyses to historical (or any other) data requires some sort of statistical software. We will rely on **R**, a open-source free statistical software widely used by practitioners in many different fields both inside and outside academia. Although it is possible to work directly in R, using an integrated interface such as **RStudio** makes things much easier. RStudio basically integrates a text editor with the R console, so you can write, run and see the results of your analyses more easily. 
 
-We will be therefore download and install both software (**R** and **RStudio**) in your computer. Here is a [link](https://posit.co/download/rstudio-desktop/) to access them (the version you install depends on whether you are using Windows or Mac).
+We will be therefore download and install both software (**R** and **RStudio**) in your computer. Here is a [link](https://posit.co/download/rstudio-desktop/) to access them (the version you install depends on whether you are using Windows or Mac). 
+
+The following helps you getting familiar with these tools. It is very important that you are able to replicate what is shown below in your own computer. Please contact me if you have questions or get stuck, so we don't need to devote time to this in the first session.
 
 ## R interface
 

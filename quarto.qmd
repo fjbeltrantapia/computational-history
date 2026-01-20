@@ -77,9 +77,9 @@ You can also check the Quarto guide for [Markdown style](https://quarto.org/docs
 Inserting images can also be very useful if you want, for instance, to show how your source looks like. The code below inserts the file `letter-mary.png`, stored in the folder `images`. While the text between squared brackets defines the figure caption, the options enclosed between curly brackets `{}` label the figure and adjust its size.^[Note that the figure caption starts with `Figure 1`. Quarto will automatically number all images, graphs, etc. (unless you explicitly instruct otherwise).]
 
 ``` markdown
-![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-elephant width=50%}
+![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-letter width=50%}
 ```
-![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-elephant width=50%}
+![Letter from Queen Mary I to Lord Paget, 1554](images/letter-mary.png){#fig-letter width=50%}
 
 There are in any case many different possibilities, so you should check [here](https://quarto.org/docs/authoring/figures.html) if you plan to insert several figures simultaneously or play around with other options.
 
@@ -89,12 +89,12 @@ Equations and numerical expressions, based on LaTeX, can be inserted by enclosin
 
 ``` markdown
 $$
-y_i = a_i + b_ix x_i + e
+y_i = a_i + b_i \cdot x_i + e
 $$
 ```
 
 $$
-y_i = a_i + b_i \times x_i + e
+y_i = a_i + b_i \cdot x_i + e
 $$
 
 There are many conventions to write equations in LaTeX. For more details, see the Quarto documentation [here](https://quarto.org/docs/get-started/authoring/rstudio.html#equations).
@@ -110,7 +110,7 @@ data <- read_excel("data/paisley-data.xlsx")
 data |> count(sex)
 ```
 
-Code blocks will be executed by Quarto when rendering. However, you can independently run the code without the need for rendering the whole document. You can therefore interactively check if the code works and tinker with it at will until you are satisfied. In order to do so, click the ![](https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png) icon or keyboard shortcut (⇧⌘⏎). RStudio will execute the code and display the results.
+Code blocks will be executed by Quarto when rendering. However, you can independently run the code without the need for rendering the whole document. You can therefore interactively check if the code works and tinker with it at will until you are satisfied. In order to do so, click the ![](https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png) icon or keyboard shortcut. RStudio will execute the code and display the results.
 
 By default, both the code and its output are displayed in the resulting document. It is however possible to hide the code and/or the subsequent results for each code chunk separately. This is done by including different chunk options after the symbol `#|` at the top of the chunk: while `echo: false` will hide the code, `results: false` will suppress the output. Similarly, you can hide other warnings and messages that sometimes pop up when running your code. As shown below, this can also be set up within the `yaml`, so it applies to all code chunks within the project (the behaviour set up in individual blocks will override the yaml set up).
 

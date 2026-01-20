@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>In-class: Comparing dimensions – Computational History - HIST2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6f26f2b31957413ebcc7940b6bc95bf4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Computational History - HIST2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./instructions.html"> <i class="bi bi-fa-list-ul" role="img">
+</i> 
+<span class="menu-text">Instructions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./get-r.html"> <i class="bi bi-fa-book" role="img">
+</i> 
+<span class="menu-text">Intro to R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
+</i> 
+<span class="menu-text">Intro to Quarto</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-fa-book" role="img">
+</i> 
+ <span class="menu-text">Case-studies</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
+        <li>
+    <a class="dropdown-item" href="./backg-paisley.html">
+ <span class="dropdown-text">The Paisley Prisoners</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./backg-speeches.html">
+ <span class="dropdown-text">The State of the Union Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./backg-tnp.html">
+ <span class="dropdown-text">The Tudor Network of Letters</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./coursework.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Coursework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./other-data.html"> 
+<span class="menu-text">Other sources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./further-readings.html"> 
+<span class="menu-text">Further readings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">In-class: Comparing dimensions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We will rely on census data for the province of Zaragoza (Spain) in 1860. The available data contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/censo-1860-cropped.jpg" style="width:100.0%;height:100.0%" class="figure-img"></p>
+<figcaption>Household register card, 1860 Spanish population census.</figcaption>
+</figure>
+</div>
+</div><div class="">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Distribution of the population in the locations studied here.</p>
+</div></div>
+<p>In total, this data set contains information on 132,500 individuals: name and surname, place of residence, sex, age, marital status, household size, occupation, and so on. Note also that there is a field identifying each family and also who in that family is the father and the mother. We are mostly interested in learning more about the factors that help explaining the educational level of the population. In this regard, the source reports whether these individuals were able to read and/or write. For children, it also reports whether they are attending school or not but the coverage of this information is less consistent. Extract the information requested below and interpret your results as a html file using Quarto.</p>
+<ol type="1">
+<li><p>What fraction of the population is able to read and write. This information is contained in the variable <em>write</em> which has two categories: “NO” and “SI” (yes). Distinguish also by <em>sex</em> and socio-economic status. The latter is reported in the field <em>ses</em> which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. Likewise, it would also be interesting to know whether the literacy rate changed over time. Focusing only on children, report also how literacy rates evolved as children grew older. Lastly, explore now whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.</p></li>
+<li><p>Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?</p></li>
+<li><p>What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.</p></li>
+<li><p>Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e.&nbsp;after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother).</p></li>
+</ol>
+<p>You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article <a href="https://fjbeltrantapia.github.io/papers/names-education-2024.pdf">What was in a name? Culture, naming practices and education in the past</a> (especially pages 1-10).</p>
+<!--
+
+# Results
+
+1. What fraction of the population is able to read and write. This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. Likewise, it would also be interesting to know whether the literacy rate changed over time. Focusing only on children, report also how literacy rates evolved as children grew older. Lastly, explore now whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.
+
+We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing a fraction based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `frac = round(n/sum(n), 3)`.]{.margin} 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  count(write) |>
+  mutate(frac = n/sum(n)) |>
+  mutate(frac = round(frac, 3))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 3 × 3
+  write      n  frac
+  <chr>  <int> <dbl>
+1 NO    100373 0.758
+2 SI     31960 0.241
+3 <NA>     167 0.001
+```
+
+
+:::
+:::
+
+
+We are now going to compute it for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writting the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  filter(!is.na(sex)) |>
+  mutate(d_write = if_else(write=="SI", 1, 0)) 
+
+data |>
+  select(name, sex, write, d_write)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 132,499 × 4
+   name     sex    write d_write
+   <chr>    <chr>  <chr>   <dbl>
+ 1 FELIPE   Male   NO          0
+ 2 MARIA    Female NO          0
+ 3 HIPOLITO Male   NO          0
+ 4 HIPOLITO Male   NO          0
+ 5 ANTONIA  Female NO          0
+ 6 MATEO    Male   NO          0
+ 7 FERNANDA Female NO          0
+ 8 MATEO    Male   NO          0
+ 9 MANUELA  Female NO          0
+10 LUISA    Female NO          0
+# ℹ 132,489 more rows
+```
+
+
+:::
+:::
+
+
+It seems the dummy variable *d_write* does what we wanted. We then have many 0s and 1s. Computing the average literacy by sex therefore implies computing the mean of this variable, using `group_by()` to do it for each sex separately.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(sex) |>
+  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 2 × 2
+  sex    lit_rate
+  <chr>     <dbl>
+1 Female     12.7
+2 Male       34.9
+```
+
+
+:::
+:::
+
+
+Literacy rates are generally low but we can see that most women were illiterate. Let's now explore how these values may differ by socio-economic status. The variable *ses* relies on the occupation held by the head of the family and classifies each individual according this information into groups (you can use `count()` to explore this field on your own). To make things easier, we are just going to focus on males and compute their literacy rates by *ses*:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  filter(sex=="Male") |>
+  group_by(ses) |>
+  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 11 × 2
+   ses                         lit_rate
+   <chr>                          <dbl>
+ 1 Artisan                         52.6
+ 2 Elite                           70.6
+ 3 Farmer                          35.8
+ 4 Labourer                        12.1
+ 5 Merchant                        77.6
+ 6 Militar                         54.7
+ 7 Missing                         31.7
+ 8 Otros                           53.0
+ 9 Semi-skilled                    31.7
+10 Tenant                          21.0
+11 Unknown/No occ. (unskilled)     20.2
+```
+
+
+:::
+:::
+
+
+The results clearly show how class shaped educational achievements: while more than 70 per cent of the individuals in the upper socio-economic strata (i.e. elites, merchants) were able to read and write, only 12 per cent of those classified as labourers did (this category includes those who did not have access to land or other property and therefore had to sell their work for a living). Note that here we are considering all males, regardless of age. You could explore how these results would change if you narrow the analysis to particular age-groups. Here, we are now going to do it for children aged 6-10, compute it separately for boys and girls and plot the results. The coding is a bit more involved mainly because the graph looks better if we re-order the categories in *ses*, so they are depicted from highest to lowest literacy rate. The socio-economic disparities are also clear here. Girls from the lowest backgrounds were especially disadvantaged in terms of literacy.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  filter(age>=6 & age<=10) |>
+  group_by(sex, ses) |>
+  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
+  mutate(ses = fct_reorder( # <1>
+    ses,
+    lit_rate)) |> 
+  ggplot(aes(x = ses, y = lit_rate, fill = sex)) +
+  geom_col(position = "dodge2") +
+  coord_flip() +  
+  labs(x = "Socio-economic status", y = "Literacy rate")
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-7-1.png){width=672}
+:::
+:::
+
+
+1. The function `fct_reorder()` re-orders the categories in *ses* according to the values computed in *lit_rate*. Note that we are also reporting results by sex, so the ordering happens within the first category in *sex*, which is "Female". Ordering by "Male" literacy rates would bit a little bit more coding.
+
+We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias: those who are older have more chances of not being observed in the 1860 census due to survival or out-migration (older people also have more time to become literate). Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  mutate(birth_year = 1860-age) |>
+  group_by(birth_year, sex) |>
+  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = birth_year, y = lit_rate, col = sex)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous("Year of birth", breaks = seq(1760, 1860, 10)) +
+  scale_y_continuous("Literacy rate", breaks = seq(0, 100, 10))
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-8-1.png){width=672}
+:::
+:::
+
+
+The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstanced that plagued the late 18^th^ century and the first half of the 19^th^ century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that (note also that while Zaragoza tend to receive migrants, the villages around tend to send them). Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance. 
+
+The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e. before 1775) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smooting trend using `geom_smooth()` to better grasp the underlying long-term trends. Try it yourself. 
+
+As shown above, exploring literacy children literacy rates would just imply filtering by age; you can perform other types of analysis as those above yourself. Here we show how literacy rates evolved as boys and girls grew up (from 4 to 14), something that is also somewhat visible in the right-hand side of the previous graph: 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  filter(age>=4 & age<=14) |>
+  group_by(age, sex) |>
+  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = age, y = lit_rate, col = sex)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous("Age", breaks = seq(4, 14, 1)) +
+  scale_y_continuous("Literacy", breaks = seq(0, 45, 5)) +
+  theme_minimal()
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-9-1.png){width=672}
+:::
+:::
+
+
+The results illustrate how the learning process is faster for boys. By age 10, however, very few extra boys and girls got literate. This may reflect the time when they dropped out of school due to their working responsibilities in the field or at home. The disparities between boys and girls are probably explained by the different value that parents (and society in general) put into educating their sons and daughters. The curriculum at school itself reflected these values: while boys were expected to learn to read and write, arithmetic and other subjects (i.e. geography and history), girls were only expected to learn how to read (so they could read the Bible) and devoted a lot of time to learn houseskills (i.e. sewing, embroidery, etc.). Female schoolteachers were also significantly less educated than their male counterparts. Exploring what shaped the fraction of children attending school helps shedding more light on these issues. This information is contained in the variable *school*, which is a dummy variable with the value 1 or 0 depending whether the child was attending school or not. The code below computes the percentage of boys and girls aged 6-10 that were attending school.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |> 
+  filter(age<=6 & age<=10) |>
+  group_by(sex) |>
+  count(school) |>
+  mutate(perc = 100*n/sum(n))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 4 × 4
+# Groups:   sex [2]
+  sex    school     n  perc
+  <chr>   <dbl> <int> <dbl>
+1 Female      0  9002 94.7 
+2 Female      1   505  5.31
+3 Male        0  9099 91.6 
+4 Male        1   836  8.41
+```
+
+
+:::
+:::
+
+
+The schooling enrolment that arises from this source is really low. The problem with this variable though is that this information was contained in the field *occ* (occupation) but was not reported systematically. There are locations that, from other sources, we know had a school (and children attending it) but the census does not report any children (or very few) doing so. This obviously infra-estimates the real schooling enrolment rate. A potential solution would be to identify those locations which recorded this information consistently (that is, checking whether the numbers arising from the census are similar to those reported from other sources) and restrict the analysis only to those municipalities. It is possible though that the locations that recorded schooling systematically are different from those who did not, so the results from analysing this sample may not be representative of all the locations in the full original sample. You could however test whether these two groups of villages are similar based on other features (i.e. size, occupational structure, literacy rates, etc.). If they are, you could argue that the results from analysing that subsample are representative of the whole area. We are not following this path here but you can check the [article]((https://fjbeltrantapia.github.io/papers/names-education-2024.pdf)) referenced above to learn more about this procedure and the actual enrolment rates (pages 9-10).
+
+2. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
+
+The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  count(settlement, sort = TRUE)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 78 × 2
+   settlement                n
+   <chr>                 <int>
+ 1 ZARAGOZA              67400
+ 2 EPILA                  3926
+ 3 BELCHITE               3296
+ 4 ALAGON                 2890
+ 5 PINA DE EBRO           2840
+ 6 ZUERA                  2190
+ 7 FUENTES DE EBRO        2090
+ 8 PEDROLA                2053
+ 9 VILLAMAYOR DE GALLEGO  1922
+10 CALATORAO              1909
+# ℹ 68 more rows
+```
+
+
+:::
+:::
+
+
+The largest location, Zaragoza, has almost 70,000 inhabitants. The other ones are however quite small. The following computes the mean and median size, as well as the smallest and the largerst settlement (we already know the latter figure).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(settlement) |>
+  summarise(pop = n()) |>
+  summarise(mean = mean(pop, na.rm = TRUE),
+            median = median(pop, na.rm = TRUE),
+            min = min(pop, na.rm = TRUE),
+            max = max(pop, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 × 4
+   mean median   min   max
+  <dbl>  <dbl> <int> <int>
+1 1699.   684.    17 67400
+```
+
+
+:::
+:::
+
+
+It is noteworthy how the mean is much higher than the median. This is because this distribution is quite skewed: most location are relatively small but Zaragoza, the capital city, is way bigger. The average reflects this extreme value. The median, however, is not affected by this type of outlier since it splits the distribution into two and takes the value of the observation that sits in the middle (regardless the values at the top or the bottom). We can have a sense of the full distribution by plotting a histogram or a kernel density graph. Given how different the city of Zaragoza is from the rest of locations, the following creates two histogram: one with all the locations and another one excluding Zaragoza. We are using the package `patchwork` to depict these two plots side by side. Note that adjusting the `bin` argument changes the way the plots look like (there is no perfect solution here but it is up to the researcher to balance between precision and noise).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+p1 <- data |>
+  group_by(settlement) |>
+  summarise(pop = n()) |>
+  ggplot(aes(x = pop)) +
+  geom_histogram(bin = 50)
+
+p2 <- data |>
+  group_by(settlement) |>
+  summarise(pop = n()) |>
+  filter(pop<20000) |>
+  ggplot(aes(x = pop)) +
+  geom_histogram(bin = 50)
+
+library(patchwork)
+p1 + p2
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-13-1.png){width=672}
+:::
+:::
+
+
+Coming back to our original question about education, how do we assess whether there were differences in literacy rates between rural and urban areas? There are different ways of doing this. One possibility is to compute both population size and literacy rates for each settlement. We can do this for all the population of distinguishing by sex. Let's do the latter, so it enables a more refined analysis. As you can see, the code below computes the number of men and women living in each municipality and their literacy rate, which is basically the average of the dummy variable *d_write*. An alternative would have been to also compute the number of literate individuals, so we could divide that number by the total population to obtain the literacy rate. We store the results in a new object called `munic`.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+munic <- data |>
+  group_by(settlement, sex) |> 
+  summarise(pop = n(),
+            lit = mean(d_write, na.rm = TRUE))
+munic
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 156 × 4
+# Groups:   settlement [78]
+   settlement      sex      pop    lit
+   <chr>           <chr>  <int>  <dbl>
+ 1 AGUILAR DE EBRO Female    32 0     
+ 2 AGUILAR DE EBRO Male      29 0.0345
+ 3 ALAGON          Female  1438 0.0605
+ 4 ALAGON          Male    1452 0.176 
+ 5 ALCALA DE EBRO  Female   161 0.0745
+ 6 ALCALA DE EBRO  Male     174 0.241 
+ 7 ALFAJARIN       Female   492 0.0772
+ 8 ALFAJARIN       Male     558 0.289 
+ 9 ALFAMEN         Female   273 0.0330
+10 ALFAMEN         Male     330 0.155 
+# ℹ 146 more rows
+```
+
+
+:::
+:::
+
+
+Although we could continue based on the population of each sex, we could can create an additional column showing the total population of both sexes before running the analysis. Notice that doing this involves using the function `group_by()` but relying on `mutate()` instead of `summarise()`. As shown below, this procedure creates a new column that sums up the values in a particular column (*pop* here) within each category for the variable in `group_by()`(*settlement* here).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+munic <- munic |>
+  group_by(settlement) |>
+  mutate(tot_pop = sum(pop))
+munic
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 156 × 5
+# Groups:   settlement [78]
+   settlement      sex      pop    lit tot_pop
+   <chr>           <chr>  <int>  <dbl>   <int>
+ 1 AGUILAR DE EBRO Female    32 0           61
+ 2 AGUILAR DE EBRO Male      29 0.0345      61
+ 3 ALAGON          Female  1438 0.0605    2890
+ 4 ALAGON          Male    1452 0.176     2890
+ 5 ALCALA DE EBRO  Female   161 0.0745     335
+ 6 ALCALA DE EBRO  Male     174 0.241      335
+ 7 ALFAJARIN       Female   492 0.0772    1050
+ 8 ALFAJARIN       Male     558 0.289     1050
+ 9 ALFAMEN         Female   273 0.0330     603
+10 ALFAMEN         Male     330 0.155      603
+# ℹ 146 more rows
+```
+
+
+:::
+:::
+
+
+We are now in the position of comparing rural and urban locations. We can for instance compare literacy rates in the city of Zaragoza against all the other locations. Let's go a little beyond that a classify each locations according to different sizes, so we can compute literacy rates for different groups. Within `mutate()` we use `case_when()` here but we could have also used `cut()`.^[Using the following: `mutate(size = cut(pop, breaks = c(0, 250, 1000, 5000, Inf)))`.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+munic |>
+  mutate(size = case_when(
+      pop < 250 ~ "Very small (<250)",
+      pop < 1000 ~ "Small (250-1,000)",
+      pop < 5000 ~ "Medium (1,000-5,000)",
+      pop >= 5000 ~ "Large (>5,000)")) |>
+  group_by(size) |>
+  summarise(lit = mean(lit, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 4 × 2
+  size                   lit
+  <chr>                <dbl>
+1 Large (>5,000)       0.326
+2 Medium (1,000-5,000) 0.162
+3 Small (250-1,000)    0.147
+4 Very small (<250)    0.117
+```
+
+
+:::
+:::
+
+
+Zaragoza, the only location above 5,000 inhabitants, enjoyed significantly higher literacy rates. The differences between the other locations are much smaller but it seems that small villages still suffered a penalty. Two considerations though. On the one hand, we did not distinguish by sex above. Including *sex* in the *group_by()* function would make the trick and provide and more granular result. On the other hand, this type of locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogenous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogenous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(settlement) |>
+  mutate(pop = n()) |>
+  mutate(size = case_when(
+      pop < 250 ~ "Very small (<250)",
+      pop < 1000 ~ "Small (250-1,000)",
+      pop < 5000 ~ "Medium (1,000-5,000)",
+      pop >= 5000 ~ "Large (>5,000)")) |>
+  filter(age>=16 & age<=50 & ses=="Farmer") |>  
+  group_by(size, sex) |>
+  summarise(lit = mean(d_write, na.rm = TRUE)) |>
+  mutate(size = reorder(size, desc(lit))) |>
+  ggplot(aes(x = size, y = lit, fill = sex)) +
+  geom_col(position = "dodge2") +
+  coord_flip() + 
+  labs(x = "Settlement size", y = "Literacy rate")
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-17-1.png){width=672}
+:::
+:::
+
+ 
+The results show that, even when we focus on a relatively homogenous group (individuals aged 16-50 classified as belonging to the "Farmer" socio-economic group), the disparities in literacy rates persist. However, they are not as striking for men as for women. Rural areas appear to be specially detrimental to female education.
+
+3. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
+
+The name of each individual in the data set is reported in the filed *name*. The code below reports the 10 most common names for males and females separately. As shown above, we create two different plots and depict them side by side using the package `patchwork` (we don't need to load it because we already did above). When constructing individual plots, R automatically adjust the $y$ and $x$ axes to the existing variation. Here we want to compare two plots that are measuring the same thing, so it is advisable to have the same range in both. We therefore use `expand_limits()` to expand the $y$-axis artificially to `y = 14`, which (roughly) corresponds to the percentage of women sharing the most common name. This allows making the contrast between the two distributions (male and female) clearer, especially the widespread use of the name *Maria*.  
+
+
+::: {.cell}
+
+```{.r .cell-code}
+p1 <- data |> 
+  filter(sex=="Male" & !is.na(name)) |>
+  count(name, sort = TRUE) |> 
+  mutate(perc = 100*n/sum(n)) |>
+  slice_head(n = 10) |>                        # selecting to show only top 10 words
+  mutate(name = reorder(name, -desc(n))) |>    # ensuring descending order
+  ggplot(mapping = aes(x = name, y = perc)) + 
+    geom_col(width = 0.7, col = "blue", fill = "blue", alpha = .5) + 
+    ggtitle("Males") + xlab("") +
+    expand_limits(y = 14) +
+    scale_y_continuous("Relative frequency (%)", breaks = seq(0, 14, by = 2)) +
+    theme(axis.text.y = element_text(size = 7),
+          plot.title = element_text(hjust = 0.5)) +
+    coord_flip() + theme_minimal()
+
+p2 <- data |> 
+  filter(sex=="Female" & !is.na(name)) |>
+  count(name, sort = TRUE) |>
+  mutate(perc = 100*n/sum(n)) |>
+  slice_head(n = 10) |>                        # selecting to show only top 25 words
+  mutate(name = reorder(name, -desc(n))) |>    # ensuring descending order
+  ggplot(mapping = aes(x = name, y = perc)) + 
+    geom_col(width = 0.7, col = "blue", fill = "blue", alpha = .5) + 
+    ggtitle("Females") + xlab("") +
+    expand_limits(y = 14) +
+    scale_y_continuous("Relative frequency (%)", breaks = seq(0, 14, by = 2)) +
+    theme(axis.text.y = element_text(size = 7),
+          plot.title = element_text(hjust = 0.5)) +
+    coord_flip() + theme_minimal()
+
+p1 + p2
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-18-1.png){width=672}
+:::
+:::
+
+
+In order to compare whether naming practices have changed over time we could compare the list of most common names in two periods (i.e. born in the 1800s and the 1850s). Alternatively, we can compute the percentage of the population sharing the most common 5 or 10 names in different periods. This can be understood as a measure of tradition: parents sticking to the common norm. 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |> 
+  filter(!is.na(name) & age<=70) |>
+  mutate(birth_year = 1860-age) |>
+  group_by(sex, birth_year) |>
+  count(name, sort = TRUE) |> 
+  mutate(perc = 100*n/sum(n)) |>
+  slice_head(n = 10) |>
+  summarise(total = sum(perc)) |>
+  ggplot(aes(x = birth_year, y = total, col = sex)) +
+  geom_point() + geom_smooth(se = FALSE) +
+  scale_y_continuous("Perc. sharing the most common names", breaks = seq(30, 65, by = 5)) +
+  scale_x_continuous("Year of birth", breaks = seq(1790, 1860, by = 10)) 
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-19-1.png){width=672}
+:::
+:::
+
+
+The results show that the importance of sticking to tradition, in terms of naming practices, have changed over time. In the late 18^th^- and early 19^th^-century, more than 50 per cent of the population shared the 10 most common names. This percentage declined over time to reach around 35 per cent of the population by 1860. The percentage is always higher for males, suggesting that tradition played a slightly more important role when naming boys than girls.
+
+4. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother).
+
+Following with our previous example, we can classify children depending on whether they bear a common name or not and then compute their respective literacy rates.^[Alternatively you can assign to each children, the fraction (or the percentage) bearing the same name.] Given how different Zaragoza is from the rest of the sample, we can also run the analysis separately for these two subsamples. We first create two objects with the most common names for boys and girls, bind them together and create an additional column identifying them as a dummy variable would (0/1)
+
+
+::: {.cell}
+
+```{.r .cell-code}
+boys <- data |> 
+  filter(!is.na(name) & age>=6 & age<=10 & sex=="Male") |>
+  count(name, sort = TRUE) |>
+  slice_head(n = 10)
+girls <- data |> 
+  filter(!is.na(name) & age>=6 & age<=10 & sex=="Female") |>
+  count(name, sort = TRUE) |>
+  slice_head(n = 10) 
+common <- bind_rows(boys, girls) |> 
+  mutate(common = 1) |>
+  select(name, common)
+```
+:::
+
+
+We can now take the original data set with all the children aged 6-10 and identify which one are bearing the most common names by matching them to this object using the column *name*, which is present in both objects `data` and `common`, as the matching field. The code below does that and checks the results by selecting only the fields *name* and *common*.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |> 
+  filter(!is.na(name) & age>=6 & age<=10) |>
+  full_join(common, by = "name") |>
+  select(name, common)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 10,886 × 2
+   name       common
+   <chr>       <dbl>
+ 1 FELIPE         NA
+ 2 ANGELA         NA
+ 3 VICENTE        NA
+ 4 VALERO         NA
+ 5 BIENVENIDO     NA
+ 6 BENITO         NA
+ 7 MARIANO         1
+ 8 ANGEL          NA
+ 9 SEBASTIAN      NA
+10 MANUELA         1
+# ℹ 10,876 more rows
+```
+
+
+:::
+:::
+
+
+As you can see above, we have 10,886 rows, that is, children aged 6-10. Their names are classified as `1` in the column *common* if they corresponded to the names we stored in the object `common`. When they do not, they are assigned the value `NA`, meaning that the "join" did not find a corresponding match. The results are what we were looking for: the most common names, such as "MARIANO" or "MANUELA" have been assigned a "1". We can therefore continue with the analysis. To have a proper dummy variable, the other children not bearing a common name should be classified as "0" before computing the corresponding literacy rates. We therefore recycle part of the code above:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children <- data |> 
+  filter(!is.na(name) & age>=6 & age<=10) |>
+  full_join(common, by = "name") |>
+  mutate(group = if_else(is.na(common), "No", "Yes")) 
+
+children |> select(name, common, group)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 10,886 × 3
+   name       common group
+   <chr>       <dbl> <chr>
+ 1 FELIPE         NA No   
+ 2 ANGELA         NA No   
+ 3 VICENTE        NA No   
+ 4 VALERO         NA No   
+ 5 BIENVENIDO     NA No   
+ 6 BENITO         NA No   
+ 7 MARIANO         1 Yes  
+ 8 ANGEL          NA No   
+ 9 SEBASTIAN      NA No   
+10 MANUELA         1 Yes  
+# ℹ 10,876 more rows
+```
+
+
+:::
+:::
+
+
+We can now create two plots comparing the ability to read and write of children depending on whether they bear common names or not for those living in urban and rural areas.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+urban <- children |>
+  filter(settlement=="ZARAGOZA") |>
+  group_by(group, sex) |>
+  summarise(lit = mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = group, y = lit, fill = sex)) +
+  geom_col(position = "dodge2") +
+  labs(x = "Common name", y = "Literacy rate") +
+  ggtitle("Zaragoza city") 
+
+rural <- children |>
+  filter(settlement!="ZARAGOZA") |>
+  group_by(group, sex) |>
+  summarise(lit = mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = group, y = lit, fill = sex)) +
+  geom_col(position = "dodge2") +
+  labs(x = "Common name", y = "Literacy rate") +
+  ggtitle("Villages") 
+
+urban + rural
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-23-1.png){width=672}
+:::
+:::
+
+
+The results show that bearing a common name is related to lower literacy rates, especially in urban areas and specially for girls. These results are however tentative and may be influenced by other factors, such as birth order, social class, and so on, so the analysis should be more nuanced.
+
+Another factor that might be influencing the results is the fact that having a common name may reflect two different things. These names were common because families were sticking to shared norms. Religion was an important factor and many families chose religious names (i.e. Mary). Naming after family members was also very common and this tendency reinforces the importance of particular names because they are transmitted across generations. Having a common name may therefore reflect different things about the importance that the family may have attached to education depending whether the name is common because it is religious or because it is a family name. It is very difficult to identify religious names in Catholic countries because the Church prescribed that all names should be religious (after saints). We can however identify which children were named after their parents using the info in *fam_id*, *father* and *mother*. While the former is a family id, the other two identify who in that family is the father and the mother (if any; they could be dead or absent). 
+
+The code below creates two objects with the names of the parents (mother and father) in each family.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+fathers <- data |>
+  filter(father==1) |>
+  select(fam_id, name) |>
+  rename(fath_name = name)
+
+mothers <- data |>
+  filter(mother==1) |>
+  select(fam_id, name) |>
+  rename(moth_name = name)
+
+fathers
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 26,650 × 2
+   fam_id           fath_name
+   <chr>            <chr>    
+ 1 00800000001ZFAM1 HIPOLITO 
+ 2 00800000002ZFAM1 MATEO    
+ 3 00800000003ZFAM1 MANUEL   
+ 4 00800000004ZFAM1 MARIANO  
+ 5 00800000005ZFAM1 LORENZO  
+ 6 00800000006ZFAM1 TOMAS    
+ 7 00800000007ZFAM1 ANTONIO  
+ 8 00800000009ZFAM1 EUGENIO  
+ 9 00800000010ZFAM1 GREGORIO 
+10 00800000011ZFAM1 GREGORIO 
+# ℹ 26,640 more rows
+```
+
+
+:::
+:::
+
+
+As you can see from the checking the results above, we have an object with the family identifies (*fam_id*) and the name of the father (or the mother). We can now join these objects to our original data set or that with the children (and all the info), so we can have that additional column with the parents name. Note that we have changed the name of the field from *name* to *fath_name* (or *moth_name*) to distinguish it from the field *name* itself that is in the original data set. As always, we check our results.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children <- children |>
+  left_join(fathers, by = "fam_id") |> # <1>
+  left_join(mothers, by = "fam_id") 
+
+children |>
+  select(name, fath_name, moth_name)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 10,886 × 3
+   name       fath_name moth_name
+   <chr>      <chr>     <chr>    
+ 1 FELIPE     <NA>      <NA>     
+ 2 ANGELA     TOMAS     MICAELA  
+ 3 VICENTE    GREGORIO  GREGORIA 
+ 4 VALERO     FRANCISCO MARIA    
+ 5 BIENVENIDO MARIANO   TERESA   
+ 6 BENITO     <NA>      <NA>     
+ 7 MARIANO    JULIAN    MARIA    
+ 8 ANGEL      MANUEL    FRANCISCA
+ 9 SEBASTIAN  MANUEL    FRANCISCA
+10 MANUELA    FRANCISCO ESTEFANIA
+# ℹ 10,876 more rows
+```
+
+
+:::
+:::
+
+
+1. We employ `left_join()`, instead of `full_join()`, because we are only interested in joining the children with their parents.
+
+As evident above, we now have the child's name together with his/her parents in the same data set (*NA* meaning that the census did not report a father or a mother in that family). We can now create a variable identifying which children are named after their parents.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children <- children |> 
+  mutate(aft_par = if_else(name==fath_name | name==moth_name, 1, 0)) 
+
+children |>
+  count(aft_par)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 3 × 2
+  aft_par     n
+    <dbl> <int>
+1       0  7961
+2       1   623
+3      NA  2302
+```
+
+
+:::
+:::
+
+
+As expected, we could not identify the name of the parents of an important fraction of children because they were not present in the census (either absent or dead). As shown above, some children were named after their parents. Let's break this out by sex (excluding those we could not identify). Interestingly, this naming practice differed quite significantly by sex: while almost 10 per cent of boys were named after their fathers, only 5 per cent of girls bore the names of their mothers (despite the ubiquity of *María*). It seems that parents attached more importance to continue the family name for males than for females.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children |>
+  filter(!is.na(aft_par)) |>
+  group_by(sex) |>
+  summarise(aft_par = 100*mean(aft_par, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 2 × 2
+  sex    aft_par
+  <chr>    <dbl>
+1 Female    4.57
+2 Male      9.81
+```
+
+
+:::
+:::
+
+
+Let's now revisit our topic here and check whether having a common name and being named after your parents shaped the likelihood of being literate. Remember that we had recoded the info on having a common name in a field called *group*. In order to compare more homogenous groups, we are going to exclude the city of Zaragoza, so as to study only rural areas. We therefore recycle part of the code above.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children |>
+  filter(settlement!="ZARAGOZA") |>
+  filter(!is.na(aft_par)) |> 
+  mutate(aft_par = factor(aft_par)) |> # <1>
+  group_by(group, aft_par, sex) |>
+  summarise(lit = mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = group, y = lit, fill = aft_par)) +
+  geom_col(position = "dodge2") +
+  facet_wrap(~ sex) +
+  labs(x = "Common name", y = "Literacy rate")
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-28-1.png){width=672}
+:::
+:::
+
+
+1. The variable *aft_par* (0/1) needs to be transformed into a factor variable. Otherwise it is considered a numerical continuous variable (check what happens if you remove this step).
+
+The results show that this variable in quite important and its effects also differ by sex. Being named after the father is associated with higher literacy rates for boys and especially so in those who were not carrying a common name. Girls' literacy rates were very low in general but those who were named after their mothers suffered even lower literacy rates. Again, these results are tentative and may be affected for other factors. The elites, for instance, tended to bestow less common names and also had higher literacy rates. The link we see here can therefore be affected by this. Let's therefore replicate this exercise but focusing on particular segments of the population (i.e. farmers, labourers, etc.). As shown below, the same results still hold for boys (although the scale is different). Which other variables should we perhaps take into account?
+
+
+::: {.cell}
+
+```{.r .cell-code}
+children |>
+  filter(settlement!="ZARAGOZA") |>
+  filter(ses=="Farmer" | ses=="Labourer") |>
+  filter(!is.na(aft_par)) |> 
+  mutate(aft_par = factor(aft_par)) |> # <1>
+  group_by(group, aft_par, sex) |>
+  summarise(lit = mean(d_write, na.rm = TRUE)) |>
+  ggplot(aes(x = group, y = lit, fill = aft_par)) +
+  geom_col(position = "dodge2") +
+  facet_wrap(~ sex) +
+  labs(x = "Common name", y = "Literacy rate")
+```
+
+::: {.cell-output-display}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-29-1.png){width=672}
+:::
+:::
+
+
+-->
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>There are 78 locations because a few municipalities are composed of different settlements.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

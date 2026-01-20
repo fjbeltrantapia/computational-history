@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tpop_data_v1_documentation – Computational History - HIST2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7880cef56e955c5515e49ec1267627d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Computational History - HIST2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../instructions.html"> <i class="bi bi-fa-list-ul" role="img">
+</i> 
+<span class="menu-text">Instructions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../get-r.html"> <i class="bi bi-fa-book" role="img">
+</i> 
+<span class="menu-text">Intro to R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../quarto.html"> <i class="bi bi-fa-book" role="img">
+</i> 
+<span class="menu-text">Intro to Quarto</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-fa-book" role="img">
+</i> 
+ <span class="menu-text">Case-studies</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
+        <li>
+    <a class="dropdown-item" href="../../../backg-paisley.html">
+ <span class="dropdown-text">The Paisley Prisoners</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../backg-speeches.html">
+ <span class="dropdown-text">The State of the Union Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../backg-tnp.html">
+ <span class="dropdown-text">The Tudor Network of Letters</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../coursework.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Coursework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../other-data.html"> 
+<span class="menu-text">Other sources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../further-readings.html"> 
+<span class="menu-text">Further readings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-power-of-petitioning-project" id="toc-the-power-of-petitioning-project" class="nav-link" data-scroll-target="#the-power-of-petitioning-project">The Power of Petitioning project</a></li>
+  <li><a href="#data-creation" id="toc-data-creation" class="nav-link" data-scroll-target="#data-creation">Data creation</a>
+  <ul class="collapse">
+  <li><a href="#source-choices-and-sampling" id="toc-source-choices-and-sampling" class="nav-link" data-scroll-target="#source-choices-and-sampling">Source choices and sampling</a></li>
+  <li><a href="#transcriptions" id="toc-transcriptions" class="nav-link" data-scroll-target="#transcriptions">Transcriptions</a></li>
+  <li><a href="#post-transcription-processing" id="toc-post-transcription-processing" class="nav-link" data-scroll-target="#post-transcription-processing">Post-transcription processing</a></li>
+  </ul></li>
+  <li><a href="#the-collections" id="toc-the-collections" class="nav-link" data-scroll-target="#the-collections">The collections</a>
+  <ul class="collapse">
+  <li><a href="#quarter-sessions-qs" id="toc-quarter-sessions-qs" class="nav-link" data-scroll-target="#quarter-sessions-qs">Quarter Sessions (QS)</a>
+  <ul class="collapse">
+  <li><a href="#cheshire" id="toc-cheshire" class="nav-link" data-scroll-target="#cheshire">Cheshire</a></li>
+  <li><a href="#derbyshire" id="toc-derbyshire" class="nav-link" data-scroll-target="#derbyshire">Derbyshire</a></li>
+  <li><a href="#staffordshire" id="toc-staffordshire" class="nav-link" data-scroll-target="#staffordshire">Staffordshire</a></li>
+  <li><a href="#westminster" id="toc-westminster" class="nav-link" data-scroll-target="#westminster">Westminster</a></li>
+  <li><a href="#worcestershire" id="toc-worcestershire" class="nav-link" data-scroll-target="#worcestershire">Worcestershire</a></li>
+  </ul></li>
+  <li><a href="#house-of-lords-hol" id="toc-house-of-lords-hol" class="nav-link" data-scroll-target="#house-of-lords-hol">House of Lords (HOL)</a></li>
+  <li><a href="#state-papers-sp" id="toc-state-papers-sp" class="nav-link" data-scroll-target="#state-papers-sp">State Papers (SP)</a></li>
+  </ul></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a>
+  <ul class="collapse">
+  <li><a href="#collection-prefixes" id="toc-collection-prefixes" class="nav-link" data-scroll-target="#collection-prefixes">Collection prefixes</a></li>
+  <li><a href="#data-tables" id="toc-data-tables" class="nav-link" data-scroll-target="#data-tables">Data tables</a></li>
+  <li><a href="#formats" id="toc-formats" class="nav-link" data-scroll-target="#formats">Formats</a></li>
+  <li><a href="#petitions" id="toc-petitions" class="nav-link" data-scroll-target="#petitions">Petitions</a>
+  <ul class="collapse">
+  <li><a href="#topicsthemes" id="toc-topicsthemes" class="nav-link" data-scroll-target="#topicsthemes">Topics/themes</a></li>
+  <li><a href="#responses" id="toc-responses" class="nav-link" data-scroll-target="#responses">Responses</a></li>
+  </ul></li>
+  <li><a href="#petitioners" id="toc-petitioners" class="nav-link" data-scroll-target="#petitioners">Petitioners</a>
+  <ul class="collapse">
+  <li><a href="#notes-and-caveats" id="toc-notes-and-caveats" class="nav-link" data-scroll-target="#notes-and-caveats">Notes and caveats</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#data-version" id="toc-data-version" class="nav-link" data-scroll-target="#data-version">Data version</a></li>
+  <li><a href="#licence" id="toc-licence" class="nav-link" data-scroll-target="#licence">Licence</a></li>
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
+  <li><a href="#credits-and-acknowledgments" id="toc-credits-and-acknowledgments" class="nav-link" data-scroll-target="#credits-and-acknowledgments">Credits and acknowledgments</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This dataset is derived from 2847 early modern English petitions from selected local and central institutions, transcribed and published by <strong>The Power of Petitioning in Seventeenth-Century England</strong> (TPOP) project. It includes information about archival sources, dates, petition topics, petitioners and administrative responses.</p>
+<p>The full edition of the transcribed petitions is available at British History Online, where each volume of petitions also has an editorial introduction with further background and source information. The dataset may be used independently of the BHO transcribed petitions or as a supplementary resource and finding aid. Please note that the dataset does not include the transcriptions.</p>
+</section>
+<section id="the-power-of-petitioning-project" class="level1">
+<h1>The Power of Petitioning project</h1>
+<p>The Power of Petitioning project research team consisted of:</p>
+<ul>
+<li>Dr Brodie Waddell (Birkbeck, University of London) - Principal Investigator</li>
+<li>Professor Jason Peacey (University College London) - Co-investigator</li>
+<li>Sharon Howard (Birkbeck) - Research Associate</li>
+</ul>
+<p>Further information:</p>
+<ul>
+<li>Project website: <a href="https://petitioning.history.ac.uk/" class="uri">https://petitioning.history.ac.uk/</a></li>
+<li>BHO edition: <a href="https://www.british-history.ac.uk/search/series/petitions" class="uri">https://www.british-history.ac.uk/search/series/petitions</a></li>
+</ul>
+<p>Contacts:</p>
+<ul>
+<li>general questions related to the project: <a href="mailto:b.waddell@bbk.ac.uk" class="email">b.waddell@bbk.ac.uk</a></li>
+<li>specific questions about the dataset: <a href="mailto:sharon.howard@sheffield.ac.uk" class="email">sharon.howard@sheffield.ac.uk</a></li>
+</ul>
+</section>
+<section id="data-creation" class="level1">
+<h1>Data creation</h1>
+<p>The bulk of data collection and processing took place during 2019-2020, with some supplementary data work in 2021.</p>
+<section id="source-choices-and-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="source-choices-and-sampling">Source choices and sampling</h2>
+<p>Wherever available, the project used existing catalogues and resources to determine selection of records. The archival collections were selected to represent three institutions (Parliament, Crown, county) and four regions (London, south-east, midlands, north-west), with a particular focus on series that contained surviving late 16th-century petitions.</p>
+<p>A number of the collections were too large for the project to be able to transcribe every surviving petition and these were sampled; sampling strategies were pragmatic and depended on the size and distribution of each archive.</p>
+</section>
+<section id="transcriptions" class="level2">
+<h2 class="anchored" data-anchor-id="transcriptions">Transcriptions</h2>
+<p>Gavin Robinson and Tim Wales transcribed the petitions from photographs of the archival documents. As the transcriptions are not included in this dataset, the transcription conventions are not documented in detail, but key features for subsequent data processing are noted below.</p>
+<p>Basic metadata was recorded at the transcription stage for every petition, including:</p>
+<ul>
+<li>full archival reference, repository and collection</li>
+<li>document year (derived from archival context if the petition itself was undated)</li>
+<li>document date if the petition itself contained a date (many do not)</li>
+</ul>
+<p>The transcriptions were made in plain text with some XML-style tagging used to mark up key features that the project wanted to record.</p>
+<p>Most original spelling, punctuation, etc was retained, but the transcriptions were not diplomatic and no attempt was made to represent the materiality of the documents. For example, abbreviations were silently expanded, proper names were always capitalised and capitalisation in general was modernised. Line breaks and paragraph breaks were retained.</p>
+<p>Paratext (anything added in a different hand from the main body of the petition) was tagged as such. Subscribed names were also tagged.</p>
+</section>
+<section id="post-transcription-processing" class="level2">
+<h2 class="anchored" data-anchor-id="post-transcription-processing">Post-transcription processing</h2>
+<p>The key elements of manual work undertaken to enhance basic archival metadata consisted of:</p>
+<ul>
+<li>collation of available catalogue metadata (Brodie Waddell)</li>
+<li>assignment of topics and subtopics (Brodie Waddell, Jason Peacey, Sharon Howard, Anna Cusack)</li>
+<li>writing abstracts for petitions where these weren’t available from catalogues (Brodie Waddell, Sharon Howard)</li>
+<li>assignment of response categories (QS petitions only) (Sharon Howard)</li>
+</ul>
+<p>Sharon Howard wrote R scripts to add further information to the data, including:</p>
+<ul>
+<li>extracting metadata and tagged content from the transcriptions</li>
+<li>extraction of data from catalogues (particularly for the House of Lords petitions) and other resources</li>
+<li>identifying petitioner names, assigning gender, and associating them with locations and statuses</li>
+</ul>
+<p>Sharon Howard was also responsible for the final compilation and documentation of the public release of the data.</p>
+</section>
+</section>
+<section id="the-collections" class="level1">
+<h1>The collections</h1>
+<p>The petitions are organised in seven volumes on British History Online (<a href="https://www.british-history.ac.uk/search/series/petitions" class="uri">https://www.british-history.ac.uk/search/series/petitions</a>).</p>
+<section id="quarter-sessions-qs" class="level2">
+<h2 class="anchored" data-anchor-id="quarter-sessions-qs">Quarter Sessions (QS)</h2>
+<p>The five separate county volumes of Quarter Sessions petitions have been collated into a single QS collection (1728 petitions).</p>
+<section id="cheshire" class="level3">
+<h3 class="anchored" data-anchor-id="cheshire">Cheshire</h3>
+<p>Dates covered: 1573-1798</p>
+<p>Sampling: one year in ten</p>
+<p>Number of petitions: 613</p>
+<p>Number of petitioners: 644</p>
+<p>Number of subscribers: 1352</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed all surviving 16th-century petitions and 17th/18th-century petitions from 1 year in 20 (years ending in -8) (292 petitions)</li>
+<li>added extensive metadata for petitions from the intervening years ending in -8 (321 petitions)</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/cheshire/introduction" class="uri">https://www.british-history.ac.uk/petitions/cheshire/introduction</a></p>
+</section>
+<section id="derbyshire" class="level3">
+<h3 class="anchored" data-anchor-id="derbyshire">Derbyshire</h3>
+<p>Dates covered: 1632-1770</p>
+<p>Sampling: all surviving petitions that could be dated</p>
+<p>Number of petitions: 94</p>
+<p>Number of petitioners: 94</p>
+<p>Number of subscribers: 151</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed every surviving petition that could be dated to within a decade</li>
+<li>121 petitions which couldn’t be dated were excluded</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/derbyshire/introduction" class="uri">https://www.british-history.ac.uk/petitions/derbyshire/introduction</a></p>
+</section>
+<section id="staffordshire" class="level3">
+<h3 class="anchored" data-anchor-id="staffordshire">Staffordshire</h3>
+<p>Dates covered: 1589-1799</p>
+<p>Sampling: one year in ten</p>
+<p>Number of petitions: 239</p>
+<p>Number of petitioners: 288</p>
+<p>Number of subscribers: 632</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed all surviving petitions from 1 year per decade (years ending in -9)</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/staffordshire/introduction" class="uri">https://www.british-history.ac.uk/petitions/staffordshire/introduction</a></p>
+</section>
+<section id="westminster" class="level3">
+<h3 class="anchored" data-anchor-id="westminster">Westminster</h3>
+<p>Dates covered: 1620-1799</p>
+<p>Sampling: all surviving usable petitions</p>
+<p>Number of petitions: 424</p>
+<p>Number of petitioners: 435</p>
+<p>Number of subscribers: 349</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed all surviving petitions except a few early illegible/damaged ones</li>
+<li>44 petitions can only be dated to within 20 years (1620-40) and some others to a decade</li>
+<li>there is a large gap in the archive between 1646 and 1688</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/westminster/introduction" class="uri">https://www.british-history.ac.uk/petitions/westminster/introduction</a></p>
+</section>
+<section id="worcestershire" class="level3">
+<h3 class="anchored" data-anchor-id="worcestershire">Worcestershire</h3>
+<p>Dates covered: 1592-1797</p>
+<p>Sampling: all surviving usable petitions</p>
+<p>Number of petitions: 360</p>
+<p>Number of petitioners: 346</p>
+<p>Number of subscribers: 1047</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed all surviving petitions except a few early illegible/damaged ones</li>
+<li>there are large gaps in the middle of the 17th century</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/worcs-quarter-sessions/introduction" class="uri">https://www.british-history.ac.uk/petitions/worcs-quarter-sessions/introduction</a></p>
+</section>
+</section>
+<section id="house-of-lords-hol" class="level2">
+<h2 class="anchored" data-anchor-id="house-of-lords-hol">House of Lords (HOL)</h2>
+<p>Dates covered: 1597-1696</p>
+<p>Sampling: selected years</p>
+<p>Number of petitions: 732</p>
+<p>Number of petitioners: 844</p>
+<p>Number of subscribers: 2367</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed every surviving petition 1597-1620 and then selected years across the 17th century:</li>
+<li>1597-1620 (13), 1621 (65), 1624 (78), 1640 (80), 1648 (80), 1661 (104), 1671 (71), 1679 (88), 1689 (80), 1696 (73)</li>
+<li>the selection aimed to produce as even a survey as possible, given that Parliament did not meet every year</li>
+<li>1640 and 1689 are exceptionally voluminous years and so collection was limited to the first 80 petitions (as filed)</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/house-of-lords/introduction" class="uri">https://www.british-history.ac.uk/petitions/house-of-lords/introduction</a></p>
+</section>
+<section id="state-papers-sp" class="level2">
+<h2 class="anchored" data-anchor-id="state-papers-sp">State Papers (SP)</h2>
+<p>Dates covered: 1600-1699</p>
+<p>Sampling: up to 4 petitions per year</p>
+<p>Number of petitions: 387</p>
+<p>Number of petitioners: 433</p>
+<p>Number of subscribers: 602</p>
+<p>Notes on data collection:</p>
+<ul>
+<li>transcribed the first four surviving petitions for each year from 1600 to 1699 (based on the Calendar of State Papers Domestic)</li>
+<li>less than four petitions survived in some years, especially towards the end of the period</li>
+</ul>
+<p>Further information: <a href="https://www.british-history.ac.uk/petitions/state-papers/introduction" class="uri">https://www.british-history.ac.uk/petitions/state-papers/introduction</a></p>
+</section>
+</section>
+<section id="the-data" class="level1">
+<h1>The data</h1>
+<section id="collection-prefixes" class="level2">
+<h2 class="anchored" data-anchor-id="collection-prefixes">Collection prefixes</h2>
+<ul>
+<li>QS: Quarter Sessions</li>
+<li>HOL: House of Lords</li>
+<li>SP: State Papers</li>
+</ul>
+</section>
+<section id="data-tables" class="level2">
+<h2 class="anchored" data-anchor-id="data-tables">Data tables</h2>
+<p>For each collection there are two tables:</p>
+<ul>
+<li>petitions</li>
+<li>petitioners</li>
+</ul>
+</section>
+<section id="formats" class="level2">
+<h2 class="anchored" data-anchor-id="formats">Formats</h2>
+<p>The dataset is provided in three formats to cater for varying levels of technical expertise and preferred workflows:</p>
+<ul>
+<li>Excel spreadsheet, containing all six data tables</li>
+<li>CSVs (one file per table, as a zip archive)</li>
+<li>SQLite database, containing six tables</li>
+</ul>
+</section>
+<section id="petitions" class="level2">
+<h2 class="anchored" data-anchor-id="petitions">Petitions</h2>
+<p>The main petition-level metadata. With the exception of the 321 supplementary Cheshire petitions, the full text of the petitions is available on British History Online and can be located there using the collection name (and county for QS), date and archival reference.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">column</th>
+<th style="text-align: left;">collections</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">petition_id</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">a unique identifier for the petition within the dataset (added because not all archival references are unique; <em>not</em> part of the BHO edition)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">year of petition; often assumed from archival context, eg the date of a session file, as many petitions are not dated. A few are approximate, but most to within a decade.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">date of petition (a date written on the petition itself; many are undated)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">county, for QS petitions: Cheshire, Derbyshire, Staffordshire, Westminster, Worcestershire</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">topic</td>
+<td style="text-align: left;">QS SP</td>
+<td style="text-align: left;">one of a number of broad topics assigned by TPOP; see below for details of the topics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">subtopic</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">adds further detail to the topic; looser and less comprehensive than topics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">topic_detail</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: left;">a slightly more detailed version of the broad topic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">themes</td>
+<td style="text-align: left;">HOL</td>
+<td style="text-align: left;">up to three topics or themes have been assigned to each HOL petition. Where more than one, a list of items separated by a pipe “|” symbol.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">named_petrs</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">count of named petitioners</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">subscribers</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">count of named subscribers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">petition_type</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">based on the number/type of petitioner. Values: single, multiple, collective (not individually named) + “behalf” for petitions made on behalf of someone other than the named petitioner</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">petition_gender</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">a summary of the gender of the petitioners. Values: f, m, fm (mixed), u (unknown); left blank for collective petitions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sub_gender</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">similar summary of the gender of subscribers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">response_cat</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">some petitions have responses annotated on the petition; see below for list of possible values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">petitioner</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">the individual petitioner(s) name or collective title</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">addressee</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: left;">person or institution to whom petition was addressed (in SP this can be quite varied)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abstract</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">short summary of the contents of the petition; some have been written by TPOP and others sourced from archives catalogues and they vary in level of detail</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">description</td>
+<td style="text-align: left;">HOL</td>
+<td style="text-align: left;">description of the petition taken from the Parliamentary Archives catalogue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">request</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: left;">a very short summary of the nature of the request</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">repository</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">the archival institution that currently holds the records</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">collection</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">the archival series or collection in which the petitions are located</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reference</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">the archival reference of the document. In HOL and Westminster QS these are not all unique identifiers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ll_img</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">some Westminster QS petitions are online at London Lives (www.londonlives.org). This identifier can be used in LL’s reference search to find the document.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bho_transcribed</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">was the petition transcribed for the BHO online edition? “y” (yes) or “n” (no). Most are “y”, but some Cheshire QS petitions have abstracts only.</td>
+</tr>
+</tbody>
+</table>
+<section id="topicsthemes" class="level3">
+<h3 class="anchored" data-anchor-id="topicsthemes">Topics/themes</h3>
+<p><em>QS</em></p>
+<p>Each QS petition was assigned a single topic from the following list, designed to cover the most common and significant broad categories of concern to QS petitioners. The project aimed to be as consistent as possible to enable comparative analysis. Nonetheless, the topics are a limited tool; some petitions might have fallen into more than one category, in which case an editorial decision was made as to which was the primary concern of the petitioner. Many petitions also have subtopics, but these were assigned rather less systematically and are not documented here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 87%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">topic</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">alehouse</td>
+<td style="text-align: left;">petitions to do with licences for alehouses, inns, taverns, victualling houses</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">charitable brief</td>
+<td style="text-align: left;">petitions for certificates to allow the petitioners to collect charity in response to personal calamities such as house fires</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cottage</td>
+<td style="text-align: left;">petitions concerning licences to build cottages on ‘waste’ lands</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dissenting worship</td>
+<td style="text-align: left;">appllications for licences to establish nonconformist places of worship (following the Toleration Act of 1689)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">employment</td>
+<td style="text-align: left;">petitions to do with service, apprenticeship, wages and other disputes between employers and employees</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">imprisoned debtors</td>
+<td style="text-align: left;">applications for release from imprisoned debtors (18th century)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">litigation</td>
+<td style="text-align: left;">broad category for uses of and encounters with the legal/criminal justice system (eg request for prosecution, request for mercy or discharge)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">military relief</td>
+<td style="text-align: left;">petitions from wounded soldiers/sailors or their widows/wives for military pensions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">officeholding</td>
+<td style="text-align: left;">petitions concerning local officials, mainly constables, eg trying to get out of serving, or seeking compensation for expenses</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">other</td>
+<td style="text-align: left;">miscellaneous petitions that didn’t fit into the other topics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">paternity</td>
+<td style="text-align: left;">petitions concerning financial support for children, mainly bastardy cases</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">poor relief</td>
+<td style="text-align: left;">petitions concerning relief or removal under the poor law system</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rates</td>
+<td style="text-align: left;">petitions (mainly) attempting to impose or avoid payment of various communal rates, levies or taxes</td>
+</tr>
+</tbody>
+</table>
+<p><em>SP</em></p>
+<p>Each SP topic was assigned a single topic from the following list, which again was designed to reflect the distinct concerns of petitioners to the Crown.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">topic</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">charity</td>
+<td style="text-align: left;">almshouse, hospital, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">church</td>
+<td style="text-align: left;">ecclesiastical office or jurisdiction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">crime</td>
+<td style="text-align: left;">mercy, pardon or, conversely, punishment for alleged illegality, including homicide, libel, treason, theft, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">diplomacy/travel</td>
+<td style="text-align: left;">diplomatic aid, passports, ambassadorial office, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">infrastructure</td>
+<td style="text-align: left;">harbours, bridges, sewers, bridges</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">land</td>
+<td style="text-align: left;">property inheritances, natural resources, tenancies, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lawsuit</td>
+<td style="text-align: left;">ongoing litigation, arbitration, legal offices, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">military</td>
+<td style="text-align: left;">army and navy, including wages, pensions, supplies, quarterage, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">monetary grant</td>
+<td style="text-align: left;">financial allowance or pension</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">other</td>
+<td style="text-align: left;">miscellaneous</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other royal office</td>
+<td style="text-align: left;">park-keeper, household service, Cinque Ports, Exchequer, sheriff, Jewel House, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">school/university</td>
+<td style="text-align: left;">scholarships, educational licences, appointments, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tax</td>
+<td style="text-align: left;">customs, poll tax, ship money, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">trade</td>
+<td style="text-align: left;">commercial privileges, privateering, piracy, etc.</td>
+</tr>
+</tbody>
+</table>
+<p><em>HOL</em></p>
+<p>A much larger and looser set of themes was used for the House of Lords petitions, up to three per petition. They are listed here for information, but it is not possible to document them in any detail.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">themes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">advowson; algerian slaves; alimony; arbitration; army; arrears; arrest; assault</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">baptists; bishops wars</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">charitable uses; charter; church government; church lands; church politics; church repairs; clemency; clerical living; clerical livings; coat and conduct; college of physicians; colonies; compounding; concealed lands; conspiracy; contempt; conventicle; corruption; courts of justice; customs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">danby; debt; debts; defamation; delay; delay hearing; diplomacy; divorce</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">elections; employment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fees; fen drainage; fishing; forests; forgery; fraud</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hackney carriages</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">impeachment; imprisonment; indemnity; industry; irish rebellion</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">jacobite; judgment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">land; leg; legislation; libel; license to stay in london; licenses; litigation; livery companies</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">matthew parker tomb; monopolies</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">naturalisation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oates; office; office / official duties; official duties; other; overseas trade</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pardon; patent; patents; pay; peerage; pension; petitioning; plantations; plot; plunder; poor; popery; popish priest; prerogative courts; priests; printing; prisons; priv; privilege; prizes; process; property; protection</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">records; recusancy; recusants; regicide; relief; religion; river navigation; romish priest; royalist soldiers; rye house plot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">salary; scotland; seditious words; sequestration; service; ship money; slander</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">testamentary; tobacco; toleration; trade; trade regulation; trading companies; treason; trusts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">war; words</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="responses" class="level3">
+<h3 class="anchored" data-anchor-id="responses">Responses</h3>
+<p>Responses have been categorised for the QS collection only (so far).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 89%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">category</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">granted</td>
+<td style="text-align: left;">request granted in full</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grant_part</td>
+<td style="text-align: left;">request partially granted</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">grant_cond</td>
+<td style="text-align: left;">request granted on condition of doing something</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">referred</td>
+<td style="text-align: left;">request referred for further investigation or mediation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nothing</td>
+<td style="text-align: left;">“nil”, “nothing”, or similar wording, with no further reason given for rejection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rejected</td>
+<td style="text-align: left;">request rejected, usually with some kind of reason</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">absent</td>
+<td style="text-align: left;">request rejected because the petitioner was absent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">uncertain</td>
+<td style="text-align: left;">there is an annotation which may be a response, but its meaing is unclear (due to damage, illegible writing, etc)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">no_response</td>
+<td style="text-align: left;">no response of any kind is recorded on the petition</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="petitioners" class="level2">
+<h2 class="anchored" data-anchor-id="petitioners">Petitioners</h2>
+<p>Supplementary data about petitioners and subscribers named in petitions: the names of petitioners (including those petitioned “on behalf of”) and subscribers have been identified and further information about them has been added.</p>
+<p>Some petition-level data has been added to the petitioner tables in the Excel spreadsheet version of the dataset for users’ convenience; documentation of those columns is not repeated here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 90%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">column</th>
+<th style="text-align: left;">collections</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">petitioner_id</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">a unique identifier for the petitioner within the dataset</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">petition_id</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">the dataset ID for the petition (see the petitions table documentation); shared key for the CSV/SQL versions of the data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">petitioner’s name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name_type</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">type of individual within the context of the petition. Values: “petr”=identified as petitioner at the beginning of the petition; “behalf”=a person on whose behalf the petition is submitted; “sub”=subscriber (names at the foot of the petition or a separate sheet)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sig_type</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">signature “types”. Values: “sig”=autograph signature; “in”=initials; “m”=signed with a mark; “ss”=petitioner’s name but in the same hand as the petition text (so probably written by a scribe); “[s]”=there is a signature but type not recorded (untranscribed Cheshire petitions)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">HOL QS SP</td>
+<td style="text-align: left;">gender of petitioner. Values: male/female/unknown.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">residence</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">petitioner’s residence, where identifiable within the petition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">QS</td>
+<td style="text-align: left;">petitioner occupation/social status, where identifiable within the petition</td>
+</tr>
+</tbody>
+</table>
+<section id="notes-and-caveats" class="level3">
+<h3 class="anchored" data-anchor-id="notes-and-caveats">Notes and caveats</h3>
+<p>Signatures were encoded at the time of transcription, making it relatively easy to extract subscriber names (apart from a few that were illegible or lost to damage).</p>
+<p>All other petitioner data, including names, has been extracted from the texts, largely relying on semi-automated procedures.</p>
+<p>Although the process was accompanied by extensive manual checks, corrections and additions, especially for petitioner names, none of this additional data has been <em>comprehensively</em> checked for errors or omissions.</p>
+<ul>
+<li>Petitioner names were usually identified from the first line of the petition.</li>
+<li>Gender was assigned primarily on the basis of extensive name lists drawn from English sources covering the 17th to 19th centuries.</li>
+<li>Residence and occupation/status have been (so far) extracted for QS petitioners only, using a combination of context (eg, keywords such as “of” or “near” immediately following a name), place name gazetteers and fuzzy matching, followed by manual cleanup and removal of obvious errors. The quality/detail of available geo data varied between counties and was best for Cheshire.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="data-version" class="level1">
+<h1>Data version</h1>
+<p>1.0, August 2022.</p>
+</section>
+<section id="licence" class="level1">
+<h1>Licence</h1>
+<p>This dataset is shared under a Creative Commons Attribution (CC-BY-SA) licence (<a href="https://creativecommons.org/licenses/by/4.0/" class="uri">https://creativecommons.org/licenses/by/4.0/</a>)</p>
+</section>
+<section id="citation" class="level1">
+<h1>Citation</h1>
+<p>Suggested format: Brodie Waddell and Sharon Howard. (2022). <em>The Power of Petitioning in Early Modern England, 1573-1799, version 1.0</em> [dataset].</p>
+</section>
+<section id="credits-and-acknowledgments" class="level1">
+<h1>Credits and acknowledgments</h1>
+<p>An Arts and Humanities Research Council Research Grant (AH/S001654/1) provided the primary funding for the project from January 2019 to December 2020.</p>
+<p>Two Economic History Society Carnevali Small Research Grants:</p>
+<ol type="1">
+<li>funding for a pilot project in 2014-15</li>
+<li>funding to enable the addition of 18th-century QS petitions (2019-20)</li>
+</ol>
+<p>IHR Digital undertook the technical work to publish the edition and provided extensive valuable advice to the project (<a href="https://www.history.ac.uk/research/digital-history" class="uri">https://www.history.ac.uk/research/digital-history</a>)</p>
+<p>Gavin Robinson (<a href="https://www.drgavinrobinson.uk" class="uri">https://www.drgavinrobinson.uk</a>) and Tim Wales transcribed the petitions.</p>
+<p>The repositories, without whom a project of this nature would be impossible:</p>
+<ul>
+<li>Cheshire Archives and Local Studies (<a href="https://www.cheshirearchives.org.uk/" class="uri">https://www.cheshirearchives.org.uk/</a>)</li>
+<li>Derbyshire Record Office (<a href="https://calmview.derbyshire.gov.uk/calmview/" class="uri">https://calmview.derbyshire.gov.uk/calmview/</a>)</li>
+<li>London Metropolitan Archives (<a href="https://search.lma.gov.uk" class="uri">https://search.lma.gov.uk</a>)</li>
+<li>Staffordshire Archives (<a href="http://www.archives.staffordshire.gov.uk/CalmView/Default.aspx" class="uri">http://www.archives.staffordshire.gov.uk/CalmView/Default.aspx</a>)</li>
+<li>Worcestershire Archive and Archaeology Service (<a href="http://e-services.worcestershire.gov.uk/CalmView/" class="uri">http://e-services.worcestershire.gov.uk/CalmView/</a>)</li>
+<li>Parliamentary Archives (<a href="https://archives.parliament.uk/" class="uri">https://archives.parliament.uk/</a>)</li>
+<li>The National Archives (<a href="https://discovery.nationalarchives.gov.uk/" class="uri">https://discovery.nationalarchives.gov.uk/</a>)</li>
+</ul>
+<p>Significant additional online resources:</p>
+<ul>
+<li>London Lives 1690-1800 (18th c Westminster petitions) (<a href="https://www.londonlives.org/" class="uri">https://www.londonlives.org/</a>)</li>
+<li>State Papers Online [subscription] (<a href="https://www.gale.com/intl/primary-sources/state-papers-online" class="uri">https://www.gale.com/intl/primary-sources/state-papers-online</a>)</li>
+<li>FamilySearch (images of Cheshire QS records) (<a href="https://www.familysearch.org/en/" class="uri">https://www.familysearch.org/en/</a>)</li>
+<li>Internet Archive (collection of <em>Calendar of State Papers Domestic</em>) (<a href="https://archive.org/details/texts" class="uri">https://archive.org/details/texts</a>)</li>
+<li>Record Society of Lancashire and Cheshire (online publications) (<a href="http://rslc.org.uk/out-of-print-publications/" class="uri">http://rslc.org.uk/out-of-print-publications/</a>)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

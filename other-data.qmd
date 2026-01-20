@@ -38,6 +38,8 @@ Below you can find a curated set of varied historical datasets that you can use 
 
 - The [American Stories](https://huggingface.co/datasets/dell-research-harvard/AmericanStories) dataset is a collection of full article texts extracted from historical U.S. newspaper images [@dell2023]. It includes nearly 20 million scans from the public domain [Chronicling America](https://www.loc.gov/collections/chronicling-america/titles/?searchType=advanced&st=table&sb=title_s_asc) collection maintained by the Library of Congress.
 
+- The [Perseus Digital Library](https://www.perseus.tufts.edu/hopper/), [The digital library of Latin texts](https://www.brepols.net/series/LLT-O) and the [Text Creation Partnership](https://textcreationpartnership.org/tcp-texts/eebo-tcp-early-english-books-online/) have gathered Ancient texts: nearly the entire corpus of ancient Greek, almost every important work written in Latin since 240 BCE and the first two centuries of English print culture, respectively.
+
 ## Norwegian data
 
 The [National Biblioteket](https://www.nb.no/search) has million of digitised resources (books, manuscripts, newspapers, letters, etc.). As well as hosting an online [norsk n-gram](https://www.nb.no/ngram/#1_1_1__1_1_3_1810%2C2022_2_2_2_12_2) for quering the corpus, the [DH-LAB](https://www.nb.no/dh-lab/digital-tekstanalyse/) is also creating its own tools for accessing and analysing their collections (including R packages). In any case, if you are interested in a particular period, you can directly contact them and request a particular set of texts. 

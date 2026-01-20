@@ -30,13 +30,13 @@ website:
         href: backg-speeches.qmd
       - text: "The Tudor Network of Letters"
         href: backg-tnp.qmd  
+    - text: "Coursework"
+      icon: fa-home
+      href: coursework.qmd 
     - text: "Other sources"
       href: other-data.qmd
     - text: "Further readings"
       href: further-readings.qmd  
-    - text: "Coursework"
-      icon: fa-home
-      href: coursework.qmd    
   
   sidebar:
     title: "Contents"

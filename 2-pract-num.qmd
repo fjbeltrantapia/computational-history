@@ -1,0 +1,133 @@
+---
+title: "2. In-class coursework: Numerical fields"
+execute: 
+  warning: false
+  message: false
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"  
+    code-copy: true # adds a copy button to code blocks    
+---
+
+This practice session is based on the summaries of the Spanish 1860 Population Census. This source reports information at the district level for the whole of Spain and is especially suited to study the educational levels of the population. As well as the name of each administrative unit (*district) and the *province* it belonged to, the data set contains the number of males and females living in those districts who were illiterate (*illit_m* and *illit_f*), able to read (*read_m* and *read_f*) and able to write (*write_m* and *write_f*). Excluding the Canary Island, the data set contains information on 464 districts. You can find the data [here]() [@beltran2018].
+
+::: {.column-margin}
+![](images/censo-1860-dist.png){width=100% height=100%} 
+
+Sample image of the Statistical report based on the 1860 Spanish Census and male literacy rates by *partido judicial* (district). Source: [INE Historia](https://www.ine.es/inebaseweb/treeNavigation.do?tn=192209).
+:::
+
+::: {.column-margin} 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(sf)
+library(tmap)
+read_sf("data/mapping/dist-1860/dist_1860.shp") |>
+  tm_shape() + tm_polygons(fill = "literacy_m",
+                           fill.legend = tm_legend(
+                           title = "Male literacy (%)"))
+```
+
+Male literacy rates by *partido judicial* (district), 1860.
+:::
+
+- Download the data set into a folder of your choice and read it into R. Remember to set the working directory and load the necessary packages. Note also that this is a .csv file, so you will need the function `read_csv()`.
+
+- Explore how the data set looks like. How many observations does it contain? What each observations refers to (unit of analysis)? What kind of information does it report about each observation?
+
+- Compute literacy rates, that is, the percentage of the population who were able to read and write, for both males and females for each district. What is the average male literacy? And the minimun and maximum values? Construct a histogram showing the distribution of both male and female literacy rates.
+
+- Compute average male literacy rates at the province level. Do the same but weighting this measure by the existing male population. Which province ranked highest and lowest in terms of male literacy.
+
+
+<!--
+
+# Solution 
+
+The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use `list.files()` to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory.] 
+
+```{r}
+#| message: false
+#| warning: false
+setwd("~/Library/CloudStorage/OneDrive-NTNU/course-websites/computational-history")
+list.files("data/")
+```
+
+In my case, I put the files in the folder `data-assign`, so I can read in using `read_excel()` (remember to load the package `readxl`).
+
+```{r}
+#| warning: false
+#| message: false
+rm(list=ls())
+library(tidyverse)
+library(readxl)
+data <- read_excel("data-assign/petitions/data/tpop_petitions_petitioners_v1_202208.xlsx")
+```
+
+Let's explore how the data set looks like.
+
+```{r}
+data
+```
+
+As indicated above, this data frame contains 1,728 rows, that is observations. Each row refers to petitions filed in England during the period of study. The unit of analysis is therefore these petitions. There are 19 columns, meaning that there 19 pieces of information about these petitions. Given that we are focusing on qualitative dimensions, we will explore things like the locations where these petitions were filed (*county*), what they refer to (*topic* and *subtopic*), the type of petition (*petition_type*), the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*).
+
+Regarding the particular questions indicated above, you can list the places or origin of these petitions by using `count()` on the variable *county*.
+
+```{r}
+data |> 
+  count(county)
+```
+
+Doing the same by *topic* and sorting the results in descending order gives you the most important topics behind the petitions. You could also do it by *subtopic* but the results are not that clearcut.
+
+```{r}
+data |>
+  count(topic, sort = TRUE)
+```
+
+We can have a look at the distribution of petitions by displaying it into a graph.
+
+```{r}
+data |>
+  ggplot(aes(x = topic)) +
+  geom_bar() +
+  coord_flip()
+```
+
+Let's now compute the fraction that the two most common categories represent (ouf all the petitions). As we know, `count()` generates a data frame with two columns, one listing the categories present in the field we are exploring and the other, named *n*, indicating the number of observations belonging to each category. Building on that, we can create another field that computes that fraction by dividing the number of cases (`n`) by the total number of observations (`sum(n)`). Instead of summing up the values of the most common categories ourselfs, we utilise the function `cumsum()` to do it for us and report the **cumulative frequency**. Lastly, the last line ask R to round the fields *fraction* and *cum_sum* up to 2 decimal places.^[`across()` within `mutate()` is a very useful short cut for implementing the same operation to a set of different columns.]
+
+```{r}
+data |>
+  count(topic, sort = TRUE) |>
+  mutate(fraction = n/sum(n),
+         cum_sum = cumsum(fraction)) |>
+  mutate(across(c(fraction, cum_sum), round, 2))
+```
+  
+The topics "litigation" and "poor relief" therefore constitute 44 per cent of the total number of petitions.
+
+To know more about what is behind these topics, you can use *subtopic* but focusing only on particular "topics" (categories within *topic*). The following for instance reports what are the most common subtopics for "poor relief" (you can explore this further focusing on other topics).
+
+```{r}
+data |>
+  filter(topic=="poor relief") |>
+  count(subtopic, sort = TRUE)
+```
+
+It seems a significant majority of petitions under this topic were in favour of "poor relief" (174 + 2). Only 12 petitions seem to be anti-"poor relief". 
+
+Regarding who was filing these petitions, the field *petition_type* shows that they could be filed individually (the majority), by multiple persons or collectively. I am not expert on these sources, so we should make sure that we understand what these categories actually mean.
+
+```{r}
+data |>
+  filter(topic=="poor relief") |>
+  count(petition_type)
+```
+
+We could continue this exploration focusing perhaps on "single" petitions and exploring the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). I leave that to you.
+-->
