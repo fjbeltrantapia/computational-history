@@ -10,9 +10,9 @@ Students are expected to participate actively in each session and go through wee
 
 1. [Qualitative variables](1-pract-qual.qmd)
 
-<!--
 2. [Numerical fields](2-pract-num.qmd)
 
+<!--
 3. [Comparing dimensions](3-pract-comp-dim.qmd)
 -->
 

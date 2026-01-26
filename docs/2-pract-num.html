@@ -202,7 +202,7 @@ div.csl-indent {
 </header>
 
 
-<p>This practice session is based on the summaries of the Spanish 1860 Population Census. This source reports information at the district level for the whole of Spain and is especially suited to study the educational levels of the population. As well as the name of each administrative unit (<em>district) and the </em>province* it belonged to, the data set contains the number of males and females living in those districts who were illiterate (<em>illit_m</em> and <em>illit_f</em>), able to read (<em>read_m</em> and <em>read_f</em>) and able to write (<em>write_m</em> and <em>write_f</em>). Excluding the Canary Island, the data set contains information on 464 districts. You can find the data <a href="">here</a> <span class="citation" data-cites="beltran2018">(<a href="#ref-beltran2018" role="doc-biblioref">Beltrán Tapia and Martínez-Galarraga 2018</a>)</span>.</p>
+<p>This practice session is based on the summaries of the <strong>Spanish 1860 Population Census</strong>. This source reports information at the <strong>district level</strong> for the whole of Spain and is especially suited to study the educational levels of the population. As well as the name of each administrative unit (<em>district</em>) and the <em>province</em> it belonged to, the data set contains the number of males and females living in those districts who were illiterate (<em>illit_m</em> and <em>illit_f</em>), able to read (<em>read_m</em> and <em>read_f</em>) and able to write (<em>write_m</em> and <em>write_f</em>). You can find the data <a href="data-assign/educ-1860/dist-1860.csv">here</a> <span class="citation" data-cites="beltran2018">(<a href="#ref-beltran2018" role="doc-biblioref">Beltrán Tapia and Martínez-Galarraga 2018</a>)</span> (the Canary Islands are not included).</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><img src="images/censo-1860-dist.png" style="width:100.0%;height:100.0%"></p>
@@ -220,48 +220,26 @@ div.csl-indent {
 <p>Male literacy rates by <em>partido judicial</em> (district), 1860.</p>
 </div></div>
 <ul>
-<li><p>Download the data set into a folder of your choice and read it into R. Remember to set the working directory and load the necessary packages. Note also that this is a .csv file, so you will need the function <code>read_csv()</code>.</p></li>
+<li><p>Download the data set into a folder of your choice and read it into R. Remember to set the working directory and load the necessary packages. Note also that this is a .csv file, so you will need the function <code>read_csv()</code>, which is part of the <code>tidyverse</code>.</p></li>
 <li><p>Explore how the data set looks like. How many observations does it contain? What each observations refers to (unit of analysis)? What kind of information does it report about each observation?</p></li>
-<li><p>Compute literacy rates, that is, the percentage of the population who were able to read and write, for both males and females for each district. What is the average male literacy? And the minimun and maximum values? Construct a histogram showing the distribution of both male and female literacy rates.</p></li>
+<li><p>Compute literacy rates, that is, the percentage of the population who were able to read and write, for both males and females for each district. What are the minimum and maximum values of literacy? Identify the districts that perform best and worst in terms of literacy.</p></li>
+<li><p>What is the average literacy rate?</p></li>
+<li><p>Construct a histogram showing the full distribution of both male and female literacy rates.</p></li>
 <li><p>Compute average male literacy rates at the province level. Do the same but weighting this measure by the existing male population. Which province ranked highest and lowest in terms of male literacy.</p></li>
 </ul>
 <!--
-
 # Solution 
 
-The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use `list.files()` to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory.] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-setwd("~/Library/CloudStorage/OneDrive-NTNU/course-websites/computational-history")
-list.files("data/")
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] "mapping"                      "NobelPeace.csv"              
-[3] "paisley-data.xlsx"            "state-of-the-union-texts.csv"
-[5] "tnp-letters-locations.csv"    "tnp-letters.csv"             
-```
-
-
-:::
-:::
-
-
-In my case, I put the files in the folder `data-assign`, so I can read in using `read_excel()` (remember to load the package `readxl`).
+In my case, I downloaded the associated file, `dist-1860.csv`, in the folder `data-assing`, so after setting the working directory in the course folder, the code below imports it into the R environment. As mentioned above, the raw data is in a .csv file, so we use `read_csv()` to read it into R. Note that this function is already loaded when you load the `tidyverse`, so no further packages are needed (at least for now). 
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
 rm(list=ls())
+setwd("~/Library/CloudStorage/OneDrive-NTNU/course-websites/computational-history")
 library(tidyverse)
-library(readxl)
-data <- read_excel("data-assign/petitions/data/tpop_petitions_petitioners_v1_202208.xlsx")
+data <- read_csv("data-assign/educ-1860/dist-1860.csv")
 ```
 :::
 
@@ -278,24 +256,20 @@ data
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# A tibble: 1,728 × 19
-   petition_id county     year  date      topic subtopic named_petrs subscribers
-         <dbl> <chr>      <chr> <chr>     <chr> <chr>          <dbl>       <dbl>
- 1           1 Derbyshire 1632  after 25… pate… anti               1           7
- 2           2 Derbyshire 1639  20 April… cott… pro                1           3
- 3           3 Derbyshire 1649  13 March… poor… reimbur…           1           0
- 4           4 Derbyshire 1652  1652      rates pro                1           0
- 5           5 Derbyshire 1655  24 April… liti… pro                1           0
- 6           6 Derbyshire 1655  24 April… liti… pro                1          17
- 7           7 Derbyshire 1665  4 April … offi… neglect            0          20
- 8           8 Derbyshire 1680  5 Octobe… other prison …           0           6
- 9           9 Derbyshire 1680  5 Octobe… poor… pro                1           0
-10          10 Derbyshire 1680  5 Octobe… liti… anti               1           0
-# ℹ 1,718 more rows
-# ℹ 11 more variables: petition_type <chr>, petition_gender <chr>,
-#   sub_gender <chr>, response_cat <chr>, petitioner <chr>, abstract <chr>,
-#   repository <chr>, collection <chr>, reference <chr>, ll_img <chr>,
-#   bho_transcribed <chr>
+# A tibble: 464 × 8
+   district           province  illit_m read_m write_m illit_f read_f write_f
+   <chr>              <chr>       <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl>
+ 1 Aguilar            Córdoba      9614    264    2081   10593    412     957
+ 2 Alba de Tormes     Salamanca    5359    734    4240    8489    854     817
+ 3 Albacete           Albacete     9031    362    2881   11196    372    1130
+ 4 Albaida            Valencia    11562    390    2378   13202    624     580
+ 5 Albarracín         Teruel       6743    391    3837   11757    292     449
+ 6 Alberique          Valencia     6125    163    1158    6835    189     269
+ 7 Albocázer          Castellón    9729    254    1400   10843    137     129
+ 8 Alburquerque       Badajoz      7774    202    1820    8592    270     585
+ 9 Albuñol            Granada     11268    323    2454   13942    348     624
+10 Alcalá de Guadaira Sevilla      9107    464    2060    9540    508     863
+# ℹ 454 more rows
 ```
 
 
@@ -303,29 +277,50 @@ data
 :::
 
 
-As indicated above, this data frame contains 1,728 rows, that is observations. Each row refers to petitions filed in England during the period of study. The unit of analysis is therefore these petitions. There are 19 columns, meaning that there 19 pieces of information about these petitions. Given that we are focusing on qualitative dimensions, we will explore things like the locations where these petitions were filed (*county*), what they refer to (*topic* and *subtopic*), the type of petition (*petition_type*), the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*).
+As indicated at the top of the R output, this data frame contains 464 rows and 8 columns. This means that we have 8 pieces of information about the 464 districts existing in Spain in 1860 (these districts are administrative units similar to counties). We therefore have 464 observations and the associated information about them in terms of the province they belong to and the number of males and females that are illiterate, able to read and able to both read and write. 
 
-Regarding the particular questions indicated above, you can list the places or origin of these petitions by using `count()` on the variable *county*.
+Let's now **compute literacy rates**, that is, the percentage of the population who were able to read and write, for both males and females for each district. The source itself gives us the number of individuals of each sex in each group. For instance, for males, we have *illit_m*, *read_m* and *write_m*. Summing up the three groups would give us the total male population. We can therefore rely on this information to compute literacy rates. We can create new columns using *mutate()* and indicate how to calculate them. We do it below first for males and then for female:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |> 
+  mutate(pop_m = illit_m+read_m+write_m,
+         lit_m = 100*write_m/pop_m,
+         pop_f = illit_f+read_f+write_f,
+         lit_f = 100*write_f/pop_f)
+```
+:::
+
+
+Running the previous command does not yield any results because we are using the symbol `<-` to modify the existing object `data`. You could now use `view(data)` and scroll to the right to see the new columns that we have created. Alternatively, we are asking R to show one of them to us (*lit_m*), as well as the variables we use to calculation (at least the first 10 cases).
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
 data |> 
-  count(county)
+  select(district, illit_m, read_m, write_m, pop_m, lit_m)
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# A tibble: 5 × 2
-  county             n
-  <chr>          <int>
-1 Cheshire         613
-2 Derbyshire        94
-3 Staffordshire    239
-4 Westminster      422
-5 Worcestershire   360
+# A tibble: 464 × 6
+   district           illit_m read_m write_m pop_m lit_m
+   <chr>                <dbl>  <dbl>   <dbl> <dbl> <dbl>
+ 1 Aguilar               9614    264    2081 11959  17.4
+ 2 Alba de Tormes        5359    734    4240 10333  41.0
+ 3 Albacete              9031    362    2881 12274  23.5
+ 4 Albaida              11562    390    2378 14330  16.6
+ 5 Albarracín            6743    391    3837 10971  35.0
+ 6 Alberique             6125    163    1158  7446  15.6
+ 7 Albocázer             9729    254    1400 11383  12.3
+ 8 Alburquerque          7774    202    1820  9796  18.6
+ 9 Albuñol              11268    323    2454 14045  17.5
+10 Alcalá de Guadaira    9107    464    2060 11631  17.7
+# ℹ 454 more rows
 ```
 
 
@@ -333,35 +328,68 @@ data |>
 :::
 
 
-Doing the same by *topic* and sorting the results in descending order gives you the most important topics behind the petitions. You could also do it by *subtopic* but the results are not that clearcut.
+We now know what the literacy rate in each district was. What about the average literacy? And the minimum and maximum values? As you will have probably guessed, we will need the functions `summarize()` plus the particular one depending on what we want to compute: `sum()`, `mean()`, `sd()`, `min()`, `max()`, etc. Let's start with the **minimum** and **maximum** values
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |> 
+  summarize(min = min(lit_m, na.rm = TRUE),
+            max = max(lit_m, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 × 2
+    min   max
+  <dbl> <dbl>
+1  8.01  64.0
+```
+
+
+:::
+:::
+
+
+The minimum and the maximum values indicate that there are two districts performing specially bad and especially well in terms of literacy: while in one, only 8 per cent of males are able to read and write, in another one more than 64 per cent of them are literate. You could easily identify the name of these districts by using `filter()`.^[Alternatively, you could use `arrange()` and sort in ascending or descending order in terms of *lit_m*.]
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
 data |>
-  count(topic, sort = TRUE)
+  filter(lit_m<8.1)
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# A tibble: 13 × 2
-   topic                  n
-   <chr>              <int>
- 1 litigation           474
- 2 poor relief          290
- 3 rates                174
- 4 paternity            133
- 5 cottage              129
- 6 employment           121
- 7 officeholding         93
- 8 other                 85
- 9 military relief       58
-10 alehouse              53
-11 imprisoned debtors    44
-12 charitable brief      37
-13 dissenting worship    37
+# A tibble: 2 × 12
+  district province illit_m read_m write_m illit_f read_f write_f pop_m lit_m
+  <chr>    <chr>      <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl> <dbl> <dbl>
+1 Coín     Málaga     11208    211     994   11998    319     523 12413  8.01
+2 Pego     Alicante    7873    308     721    8314    213     151  8902  8.10
+# ℹ 2 more variables: pop_f <dbl>, lit_f <dbl>
+```
+
+
+:::
+
+```{.r .cell-code}
+data |>
+  filter(lit_m>64)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 × 12
+  district province illit_m read_m write_m illit_f read_f write_f pop_m lit_m
+  <chr>    <chr>      <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl> <dbl> <dbl>
+1 Riaño    León        2530    677    5710    7519   2021    1014  8917  64.0
+# ℹ 2 more variables: pop_f <dbl>, lit_f <dbl>
 ```
 
 
@@ -369,97 +397,91 @@ data |>
 :::
 
 
-We can have a look at the distribution of petitions by displaying it into a graph.
+Let's now compute the average literacy rate for all districts (464 in total). We are going to compute both the **mean** and the **weighted mean**. The first one considers all districts equally, so it adds up their literacy rates and divides that value for the number of observations. This yiels an average literacy of 30.3 per cent. The second one weights each observation according to another dimension. Here we are using population, meaning that the literacy rate of larger districts will weight more when making the computations. The weighted mean is now 31.3, a bit higher than before. This is because bigger districts (i.e. Madrid, Barcelona, etc.) tend to have higher literacy rates, so given them a bit more weight implies obtaining a slightly higher mean literacy.
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
-data |>
-  ggplot(aes(x = topic)) +
-  geom_bar() +
-  coord_flip()
+data |> 
+  summarize(mean = mean(lit_m, na.rm = TRUE),
+            w_mean = weighted.mean(lit_m, pop_m, na.rm = TRUE))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 × 2
+   mean w_mean
+  <dbl>  <dbl>
+1  30.3   31.3
+```
+
+
+:::
+:::
+
+
+We now have a sense of the average literacy, as well as the minimum and the maximum values. Let's construct a **histogram** to the full distribution of values. We are going to do it for both male and female literacy rates and then put the two histograms together using the package `patchwork` (you have to install it first if you haven't done so before). Given that the range of values that the two variables (*lit_m* and *lit_f*) cover is quite different (female literacy is significantly lower everywhere), we are forcing the two graphs to show the same range of values, so the comparison is more homogenous.^[Drop that option if you want to see the difference.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+hist_m <- data |>
+  ggplot(aes(x = lit_m)) + 
+  geom_histogram(binwidth = 1) +
+  coord_cartesian(xlim = c(0, 70)) +
+  scale_x_continuous("Male literacy (%)", breaks = seq(0, 70, 10))
+
+hist_f <- data |>
+  ggplot(aes(x = lit_f)) + 
+  geom_histogram(binwidth = 1) +
+  coord_cartesian(xlim = c(0, 70)) +
+  scale_x_continuous("Female literacy (%)", breaks = seq(0, 70, 10))
+
+# install.packages("patchword")
+library(patchwork)
+hist_m + hist_f
 ```
 
 ::: {.cell-output-display}
-![](2-pract-num_files/figure-html/unnamed-chunk-7-1.png){width=672}
+![](2-pract-num_files/figure-html/unnamed-chunk-9-1.png){width=672}
 :::
 :::
 
 
-Let's now compute the fraction that the two most common categories represent (ouf all the petitions). As we know, `count()` generates a data frame with two columns, one listing the categories present in the field we are exploring and the other, named *n*, indicating the number of observations belonging to each category. Building on that, we can create another field that computes that fraction by dividing the number of cases (`n`) by the total number of observations (`sum(n)`). Instead of summing up the values of the most common categories ourselfs, we utilise the function `cumsum()` to do it for us and report the **cumulative frequency**. Lastly, the last line ask R to round the fields *fraction* and *cum_sum* up to 2 decimal places.^[`across()` within `mutate()` is a very useful short cut for implementing the same operation to a set of different columns.]
+Histograms depict how many observations (districts here) fall within different parts of the distribution of potential values. A significant number of districts exhibit low male literacy rates (<20-25 per cent). There are however many districts showing higher values and a non-negligible fraction have literacy rates over 50 per cent. By contrast, most districts have very low female literacy rates (<10 per cent). Only a few (three) have literacy rates over 30 per cent. These two plots help having a sense of what literacy rates looked like for males and females in mid-19^th^-century Spain.
+
+Lastly, imagine that, instead of districts, you are interested in knowing what the province literacy rates are. Recall that one of the columns (*province*) in the data indicates to which province each district belongs to. This allows us to introduce a super useful command that we will employ quite often during the course: `group_by()`, which allows making computations separately within groups delimited by the categories included in this other variable. The code below *groups* district by province and then computes the average literacy for each group.^[We could have computed the weighted mean (by population) if we wanted to take into account that, within each province, some districts are bigger than others, so they are *weighted* more in the calculations.]
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
 data |>
-  count(topic, sort = TRUE) |>
-  mutate(fraction = n/sum(n),
-         cum_sum = cumsum(fraction)) |>
-  mutate(across(c(fraction, cum_sum), round, 2))
+  group_by(province) |>
+  summarise(lit_m = mean(lit_m, na.rm = TRUE),
+            lit_f = mean(lit_f, na.rm = TRUE))
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# A tibble: 13 × 4
-   topic                  n fraction cum_sum
-   <chr>              <int>    <dbl>   <dbl>
- 1 litigation           474     0.27    0.27
- 2 poor relief          290     0.17    0.44
- 3 rates                174     0.1     0.54
- 4 paternity            133     0.08    0.62
- 5 cottage              129     0.07    0.69
- 6 employment           121     0.07    0.76
- 7 officeholding         93     0.05    0.82
- 8 other                 85     0.05    0.87
- 9 military relief       58     0.03    0.9 
-10 alehouse              53     0.03    0.93
-11 imprisoned debtors    44     0.03    0.96
-12 charitable brief      37     0.02    0.98
-13 dissenting worship    37     0.02    1   
-```
-
-
-:::
-:::
-
-  
-The topics "litigation" and "poor relief" therefore constitute 44 per cent of the total number of petitions.
-
-To know more about what is behind these topics, you can use *subtopic* but focusing only on particular "topics" (categories within *topic*). The following for instance reports what are the most common subtopics for "poor relief" (you can explore this further focusing on other topics).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(topic=="poor relief") |>
-  count(subtopic, sort = TRUE)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 15 × 2
-   subtopic                             n
-   <chr>                            <int>
- 1 pro                                174
- 2 <NA>                                65
- 3 removal                             23
- 4 anti                                10
- 5 pauper apprenticeship                4
- 6 reimbursement                        4
- 7 pro: housing                         2
- 8 anti: for kin support                1
- 9 anti: pauper apprenticeship          1
-10 pauper apprenticeship: exception     1
-11 pro: county                          1
-12 pro: pauper apprenticeship           1
-13 pro: rentable housing                1
-14 pro: settlement                      1
-15 settlement certificate               1
+# A tibble: 48 × 3
+   province    lit_m lit_f
+   <chr>       <dbl> <dbl>
+ 1 Albacete     20.2  6.24
+ 2 Alicante     15.2  5.13
+ 3 Almería      15.5  4.17
+ 4 Badajoz      22.2  8.60
+ 5 Baleares     18.4  5.88
+ 6 Barcelona    31.3  8.87
+ 7 Burgos       55.2 10.2 
+ 8 Castellón    16.2  3.36
+ 9 Ciudad Real  24.0  6.69
+10 Coruña       30.0  4.71
+# ℹ 38 more rows
 ```
 
 
@@ -467,38 +489,7 @@ data |>
 :::
 
 
-It seems a significant majority of petitions under this topic were in favour of "poor relief" (174 + 2). Only 12 petitions seem to be anti-"poor relief". 
-
-Regarding who was filing these petitions, the field *petition_type* shows that they could be filed individually (the majority), by multiple persons or collectively. I am not expert on these sources, so we should make sure that we understand what these categories actually mean.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(topic=="poor relief") |>
-  count(petition_type)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 5 × 2
-  petition_type            n
-  <chr>                <int>
-1 collective              45
-2 collective on behalf     6
-3 multiple                13
-4 multiple on behalf       2
-5 single                 224
-```
-
-
-:::
-:::
-
-
-We could continue this exploration focusing perhaps on "single" petitions and exploring the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). I leave that to you.
+Note that the resulting dataframe no longer have 464 rows (districts) but 48, which is the number of Spanish provinces (excluding the Canary Islands).
 -->
 
 
