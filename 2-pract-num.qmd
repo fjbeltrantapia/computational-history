@@ -48,7 +48,7 @@ Male literacy rates by *partido judicial* (district), 1860.
 
 - Compute average male literacy rates at the province level. Do the same but weighting this measure by the existing male population. Which province ranked highest and lowest in terms of male literacy.
 
-<!--
+
 # Solution 
 
 In my case, I downloaded the associated file, `dist-1860.csv`, in the folder `data-assing`, so after setting the working directory in the course folder, the code below imports it into the R environment. As mentioned above, the raw data is in a .csv file, so we use `read_csv()` to read it into R. Note that this function is already loaded when you load the `tidyverse`, so no further packages are needed (at least for now). 
@@ -105,7 +105,7 @@ data |>
   filter(lit_m>64)
 ```
 
-Let's now compute the average literacy rate for all districts (464 in total). We are going to compute both the **mean** and the **weighted mean**. The first one considers all districts equally, so it adds up their literacy rates and divides that value for the number of observations. This yiels an average literacy of 30.3 per cent. The second one weights each observation according to another dimension. Here we are using population, meaning that the literacy rate of larger districts will weight more when making the computations. The weighted mean is now 31.3, a bit higher than before. This is because bigger districts (i.e. Madrid, Barcelona, etc.) tend to have higher literacy rates, so given them a bit more weight implies obtaining a slightly higher mean literacy.
+Let's now compute the average literacy rate for all districts (464 in total). We are going to compute both the **mean** and the **weighted mean**. The first one considers all districts equally, so it adds up their literacy rates and divides that value for the number of observations. This yiels an average literacy of 30.3 per cent. The second one weights each observation according to another dimension. Here we are using population, meaning that the literacy rate of larger districts will weight more when making the computations.^[Note that the function `weighted.mean()` requires two arguments. The first one, `lit_m`, is the field we want to compute the average from. The second one, `pop_m`, defines the weights: here the size of each district in terms of the number of males.] The weighted mean is now 31.3, a bit higher than before. This is because bigger districts (i.e. Madrid, Barcelona, etc.) tend to have higher literacy rates, so given them a bit more weight implies obtaining a slightly higher mean literacy.
 
 ```{r}
 data |> 
@@ -113,7 +113,7 @@ data |>
             w_mean = weighted.mean(lit_m, pop_m, na.rm = TRUE))
 ```
 
-We now have a sense of the average literacy, as well as the minimum and the maximum values. Let's construct a **histogram** to the full distribution of values. We are going to do it for both male and female literacy rates and then put the two histograms together using the package `patchwork` (you have to install it first if you haven't done so before). Given that the range of values that the two variables (*lit_m* and *lit_f*) cover is quite different (female literacy is significantly lower everywhere), we are forcing the two graphs to show the same range of values, so the comparison is more homogenous.^[Drop that option if you want to see the difference.]
+We now have a sense of the average literacy, as well as the minimum and the maximum values. Let's construct a **histogram** to see the full distribution of values. We are going to do it for both male and female literacy rates and then put the two histograms together using the package `patchwork` (you have to install it first if you haven't done so before). Given that the range of values that the two variables (*lit_m* and *lit_f*) cover is quite different (female literacy is significantly lower everywhere), we are forcing the two graphs to show the same range of values in the x-axis, so the comparison is more homogenous.^[Drop that option if you want to see the difference.]
 
 ```{r}
 hist_m <- data |>
@@ -128,14 +128,14 @@ hist_f <- data |>
   coord_cartesian(xlim = c(0, 70)) +
   scale_x_continuous("Female literacy (%)", breaks = seq(0, 70, 10))
 
-# install.packages("patchword")
+# install.packages("patchwork")
 library(patchwork)
 hist_m + hist_f
 ```
 
-Histograms depict how many observations (districts here) fall within different parts of the distribution of potential values. A significant number of districts exhibit low male literacy rates (<20-25 per cent). There are however many districts showing higher values and a non-negligible fraction have literacy rates over 50 per cent. By contrast, most districts have very low female literacy rates (<10 per cent). Only a few (three) have literacy rates over 30 per cent. These two plots help having a sense of what literacy rates looked like for males and females in mid-19^th^-century Spain.
+Histograms depict how many observations (districts here) fall within different parts of the distribution of potential values.^[I chose `binwidth = 1` but it is ok if you have chosen a different value and the bars are wider (not defining this option implies that R decides for you). Feel free to try other values and choose the plot that, in your judgement, is more informative without being too noisy (spiky).] A significant number of districts exhibit low male literacy rates (<20-25 per cent). There are however many districts showing higher values and a non-negligible fraction have literacy rates over 50 per cent. By contrast, most districts have very low female literacy rates (<10 per cent). Only a few (three) have literacy rates over 30 per cent. These two plots help having a sense of what literacy rates looked like for males and females in mid-19^th^-century Spain. 
 
-Lastly, imagine that, instead of districts, you are interested in knowing what the province literacy rates are. Recall that one of the columns (*province*) in the data indicates to which province each district belongs to. This allows us to introduce a super useful command that we will employ quite often during the course: `group_by()`, which allows making computations separately within groups delimited by the categories included in this other variable. The code below *groups* district by province and then computes the average literacy for each group.^[We could have computed the weighted mean (by population) if we wanted to take into account that, within each province, some districts are bigger than others, so they are *weighted* more in the calculations.]
+Lastly, imagine that, instead of districts, you are interested in knowing what the province literacy rates are. Recall that one of the columns (*province*) in the data indicates to which province each district belongs to. This enables introducing a super useful command that we will employ quite often during the course: `group_by()`, which allows making computations separately within groups delimited by the categories included in this other variable. The code below *groups* district by province and then computes the average literacy for each group.^[We could have computed the weighted mean (by population) if we wanted to take into account that, within each province, some districts are bigger than others, so they are *weighted* more in the calculations.]
 
 ```{r}
 data |>
@@ -145,4 +145,5 @@ data |>
 ```
 
 Note that the resulting dataframe no longer have 464 rows (districts) but 48, which is the number of Spanish provinces (excluding the Canary Islands).
--->
+
+This is just one way of looking into the topics presented above. There are different ways of extracting information from the source. You need to find your own in the sense of feeling comfortable with what you are doing and confident about understanding what the different commands are doing and the results themselves. Feel free to play around with the code. For instance, you can remove options to see what they do.

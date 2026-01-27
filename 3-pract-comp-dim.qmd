@@ -7,10 +7,8 @@ format:
   html:
     code-fold: true
     code-summary: "Show code"  
-    code-copy: true # adds a copy button to code blocks  
-    page-layout: full
-    grid:
-      margin-width: 420px   
+    code-copy: true # adds a copy button to code blocks   
+    reference-location: margin  
 ---
 
 ```{r}
@@ -21,7 +19,7 @@ library(tidyverse)
 data <- read_csv("data-assign/zgz-1860/sample-zgz-1860.csv")
 ```
 
-We will rely on census data for the province of Zaragoza (Spain) in 1860. The available data contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).^[There are 78 locations because a few municipalities are composed of different settlements.] 
+We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).^[There are 78 locations because a few municipalities are composed of different settlements.] You can download it [here](data-assign/zgz-1860/sample-zgz-1860.csv)
 
 ::: {.column-margin}  
 ![Household register card, 1860 Spanish population census.](images/censo-1860-cropped.jpg){width=100% height=100%} 
@@ -78,23 +76,27 @@ Distribution of the population in the locations studied here.
 
 In total, this data set contains information on 132,500 individuals: name and surname, place of residence, sex, age, marital status, household size, occupation, and so on. Note also that there is a field identifying each family and also who in that family is the father and the mother. We are mostly interested in learning more about the factors that help explaining the educational level of the population. In this regard, the source reports whether these individuals were able to read and/or write. For children, it also reports whether they are attending school or not but the coverage of this information is less consistent. Extract the information requested below and interpret your results as a html file using Quarto. 
 
-1. What fraction of the population is able to read and write. This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. Likewise, it would also be interesting to know whether the literacy rate changed over time. Focusing only on children, report also how literacy rates evolved as children grew older. Lastly, explore now whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.
+1. What fraction of the population is able to read and write? This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). 
 
-2. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
+2. Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* (socio-economic status) which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. 
 
-3. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
+3. It would also be interesting to know whether the literacy rate changed over time. 
 
-4. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother).
+4. Focusing now only on children (i.e. below 14 years old), plot how literacy rates evolved as children grew older. Likewise, explore whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.
+
+5. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
+
+6. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
+
+7. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother).
 
 You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf) (especially pages 1-10).
 
-<!--
+
 
 # Results
 
-1. What fraction of the population is able to read and write. This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. Likewise, it would also be interesting to know whether the literacy rate changed over time. Focusing only on children, report also how literacy rates evolved as children grew older. Lastly, explore now whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.
-
-We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing a fraction based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `frac = round(n/sum(n), 3)`.]{.margin} 
+1. We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing a fraction based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `frac = round(n/sum(n), 3)`.]
 
 ```{r}
 data |>
@@ -103,7 +105,7 @@ data |>
   mutate(frac = round(frac, 3))
 ```
 
-We are now going to compute it for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writting the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
+2. We are now going to compute literacy rates for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writing the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
 
 ```{r}
 data <- data |>
@@ -114,7 +116,7 @@ data |>
   select(name, sex, write, d_write)
 ```
 
-It seems the dummy variable *d_write* does what we wanted. We then have many 0s and 1s. Computing the average literacy by sex therefore implies computing the mean of this variable, using `group_by()` to do it for each sex separately.
+It seems the dummy variable *d_write* does what we wanted. We then have 0s and 1s to denote "No" and "Yes". Computing the average literacy by sex therefore implies computing the mean of this variable, using `group_by()` to do it for each sex separately.
 
 ```{r}
 data |>
@@ -122,7 +124,7 @@ data |>
   summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
 ```
 
-Literacy rates are generally low but we can see that most women were illiterate. Let's now explore how these values may differ by socio-economic status. The variable *ses* relies on the occupation held by the head of the family and classifies each individual according this information into groups (you can use `count()` to explore this field on your own). To make things easier, we are just going to focus on males and compute their literacy rates by *ses*:
+Literacy rates are low in general but the situation was especially dire for women: most women were illiterate. Let's now explore how these values may differ by socio-economic status. The variable *ses* relies on the occupation held by the head of the family and classifies each individual according to this information into groups (you can use `count()` to explore this field on your own). To make things easier, we are just going to focus on males and compute their literacy rates by *ses*:^[Alternatively, you could do it simultaneously for mean and women by grouping by two fields: `group_by(sex, ses)`. See also next example.]
 
 ```{r}
 data |>
@@ -131,7 +133,7 @@ data |>
   summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
 ```
 
-The results clearly show how class shaped educational achievements: while more than 70 per cent of the individuals in the upper socio-economic strata (i.e. elites, merchants) were able to read and write, only 12 per cent of those classified as labourers did (this category includes those who did not have access to land or other property and therefore had to sell their work for a living). Note that here we are considering all males, regardless of age. You could explore how these results would change if you narrow the analysis to particular age-groups. Here, we are now going to do it for children aged 6-10, compute it separately for boys and girls and plot the results. The coding is a bit more involved mainly because the graph looks better if we re-order the categories in *ses*, so they are depicted from highest to lowest literacy rate. The socio-economic disparities are also clear here. Girls from the lowest backgrounds were especially disadvantaged in terms of literacy.
+The results clearly show how class shaped educational achievements: while more than 70 per cent of individuals in the upper socio-economic strata (i.e. elites, merchants) were able to read and write, only 12 per cent of those classified as labourers did (this category includes those who did not have access to land or other property and therefore had to sell their work for a living). Note that here we are considering all males, regardless of age. You could explore how these results would change if you narrow the analysis to particular age-groups. Here, we are now going to do it for children aged 6-10, compute it separately for boys and girls and plot the results. The coding is a bit more involved mainly because the graph looks better if we re-order the categories in *ses*, so they are depicted from highest to lowest literacy rate. The socio-economic disparities are also clear here. Girls from the lowest backgrounds were especially disadvantaged in terms of literacy.
 
 ```{r}
 data |>
@@ -149,7 +151,7 @@ data |>
 
 1. The function `fct_reorder()` re-orders the categories in *ses* according to the values computed in *lit_rate*. Note that we are also reporting results by sex, so the ordering happens within the first category in *sex*, which is "Female". Ordering by "Male" literacy rates would bit a little bit more coding.
 
-We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias: those who are older have more chances of not being observed in the 1860 census due to survival or out-migration (older people also have more time to become literate). Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
+3. We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias.^[Those who are older may constitute a more selected group of individuals due to survival or out-migration (were those individuals surviving and not migrating different from those who died or left?). Also, older people have more time to become literate, an issue that may also bias the analysis.] Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
 
 ```{r}
 data |>
@@ -165,9 +167,9 @@ data |>
 
 The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstanced that plagued the late 18^th^ century and the first half of the 19^th^ century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that (note also that while Zaragoza tend to receive migrants, the villages around tend to send them). Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance. 
 
-The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e. before 1775) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smooting trend using `geom_smooth()` to better grasp the underlying long-term trends. Try it yourself. 
+The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e. before 1775) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smoothing trend using `geom_smooth()` to better grasp the underlying long-term trends. Try it yourself. 
 
-As shown above, exploring literacy children literacy rates would just imply filtering by age; you can perform other types of analysis as those above yourself. Here we show how literacy rates evolved as boys and girls grew up (from 4 to 14), something that is also somewhat visible in the right-hand side of the previous graph: 
+4. As shown above, exploring literacy children literacy rates would just imply filtering by age; you can perform other types of analysis as those above yourself. Here we show how literacy rates evolved as boys and girls grew up (from 4 to 14), something that is also somewhat visible in the right-hand side of the graph I was mentioning above: 
 
 ```{r}
 data |>
@@ -194,16 +196,14 @@ data |>
 
 The schooling enrolment that arises from this source is really low. The problem with this variable though is that this information was contained in the field *occ* (occupation) but was not reported systematically. There are locations that, from other sources, we know had a school (and children attending it) but the census does not report any children (or very few) doing so. This obviously infra-estimates the real schooling enrolment rate. A potential solution would be to identify those locations which recorded this information consistently (that is, checking whether the numbers arising from the census are similar to those reported from other sources) and restrict the analysis only to those municipalities. It is possible though that the locations that recorded schooling systematically are different from those who did not, so the results from analysing this sample may not be representative of all the locations in the full original sample. You could however test whether these two groups of villages are similar based on other features (i.e. size, occupational structure, literacy rates, etc.). If they are, you could argue that the results from analysing that subsample are representative of the whole area. We are not following this path here but you can check the [article]((https://fjbeltrantapia.github.io/papers/names-education-2024.pdf)) referenced above to learn more about this procedure and the actual enrolment rates (pages 9-10).
 
-2. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
-
-The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):
+5. Let's now explore whether we should characterize this region as rural in terms of the size of those settlements (range, average, median). The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):`[A municipality could include several dispersed settlements. Most of the population lived in concentrated but a few municipalities had several.]
 
 ```{r}
 data |>
   count(settlement, sort = TRUE)
 ```
 
-The largest location, Zaragoza, has almost 70,000 inhabitants. The other ones are however quite small. The following computes the mean and median size, as well as the smallest and the largerst settlement (we already know the latter figure).
+The largest location, Zaragoza, has almost 70,000 inhabitants. The other ones are however quite small. The following computes the mean and median size, as well as the smallest and the largest settlement (we already know the latter figure).
 
 ```{r}
 data |>
@@ -235,17 +235,17 @@ library(patchwork)
 p1 + p2
 ```
 
-Coming back to our original question about education, how do we assess whether there were differences in literacy rates between rural and urban areas? There are different ways of doing this. One possibility is to compute both population size and literacy rates for each settlement. We can do this for all the population of distinguishing by sex. Let's do the latter, so it enables a more refined analysis. As you can see, the code below computes the number of men and women living in each municipality and their literacy rate, which is basically the average of the dummy variable *d_write*. An alternative would have been to also compute the number of literate individuals, so we could divide that number by the total population to obtain the literacy rate. We store the results in a new object called `munic`.
+Coming back to our original question about education, how do we assess whether there were differences in literacy rates between rural and urban areas? There are different ways of doing this. One possibility is to compute both population size and literacy rates for each settlement. We can do this for all the population of distinguishing by sex. Let's do the latter, so it enables a more refined analysis. As you can see, the code below computes the number of men and women living in each municipality and their literacy rate, which is basically the average of the dummy variable *d_write*.^[An alternative would have been to compute the number of literate individuals, so we could divide that number by the total population to obtain the literacy rate.] We store the results in a new object called `munic`.
 
 ```{r}
 munic <- data |>
   group_by(settlement, sex) |> 
   summarise(pop = n(),
-            lit = mean(d_write, na.rm = TRUE))
+            lit = 100*mean(d_write, na.rm = TRUE))
 munic
 ```
 
-Although we could continue based on the population of each sex, we could can create an additional column showing the total population of both sexes before running the analysis. Notice that doing this involves using the function `group_by()` but relying on `mutate()` instead of `summarise()`. As shown below, this procedure creates a new column that sums up the values in a particular column (*pop* here) within each category for the variable in `group_by()`(*settlement* here).
+Next step is to show how literacy rates vary by population. We have the male and female population. We could use one of them as a measure of size but to be more precise we can actually create a new variable summing up those two values, so we have the total population of both sexes. Notice that doing this involves using the function `group_by()` but relying on `mutate()` instead of `summarise()`. As shown below, this procedure creates a new column that sums up the values in a particular column (*pop* here) within each category for the variable in `group_by()`(*settlement* here).
 
 ```{r}
 munic <- munic |>
@@ -254,7 +254,7 @@ munic <- munic |>
 munic
 ```
 
-We are now in the position of comparing rural and urban locations. We can for instance compare literacy rates in the city of Zaragoza against all the other locations. Let's go a little beyond that a classify each locations according to different sizes, so we can compute literacy rates for different groups. Within `mutate()` we use `case_when()` here but we could have also used `cut()`.^[Using the following: `mutate(size = cut(pop, breaks = c(0, 250, 1000, 5000, Inf)))`.]
+We are now in the position of comparing rural and urban locations. There are many ways of framing this. We can for instance compare literacy rates in the city of Zaragoza against all the other locations. Let's go a little beyond that a classify each locations according to different sizes, so we can compute literacy rates for different groups. Within `mutate()` we use `case_when()` here but we could have also used `cut()`.^[Using the following: `mutate(size = cut(pop, breaks = c(0, 250, 1000, 5000, Inf)))`.]
 
 ```{r}
 munic |>
@@ -267,7 +267,30 @@ munic |>
   summarise(lit = mean(lit, na.rm = TRUE))
 ```
 
-Zaragoza, the only location above 5,000 inhabitants, enjoyed significantly higher literacy rates. The differences between the other locations are much smaller but it seems that small villages still suffered a penalty. Two considerations though. On the one hand, we did not distinguish by sex above. Including *sex* in the *group_by()* function would make the trick and provide and more granular result. On the other hand, this type of locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogenous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogenous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
+Zaragoza, the only location above 5,000 inhabitants, enjoyed significantly higher literacy rates. The differences between the other locations are much smaller but it seems that small villages still suffered a penalty.^[Note though that we did not distinguish by sex above. Including *sex* in the *group_by()* function would make the trick and provide and more granular result.]
+
+Another way of looking into this is to plot all available information using a **scatter plot**. This involves taking the object `munic` containing the information on population and literacy and defines those two fields as those depicted in the x- and y- axes. Indicating also to represent the different categories in the field sex with different colours (`col = sex`) allows depicting male and female literacy rates simultaneously. Given that the capital is so much bigger than the rest, having it in the visualisation prevents having a better sense of the variation in the other locations. I am therefore creating two graphs, including and excluding the capital city, to account for this.^[As indicated above, the package `patchwork` allows plotting the two objects (or more) together. Note that, in the first plot, we have removed the title of the legend and situated it within the graph. Given that having the same legend in the second might be redundant and take up space, we have removed it altogether.] 
+
+```{r}
+g1 <- munic |>
+  ggplot(aes(x = pop, y = lit, col = sex)) +
+  geom_point() +
+  labs(col = NULL) + 
+  theme(legend.position = c(0.6, 0.8)) 
+
+g2 <- munic |>
+  filter(settlement!="ZARAGOZA") |>
+  ggplot(aes(x = pop, y = lit, col = sex)) +
+  geom_point() +
+  theme(legend.position = "none")
+
+g1 + g2
+```
+
+
+
+
+On the other hand, this type of locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogenous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogenous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
 
 ```{r}
 data |>
