@@ -1,5 +1,5 @@
 ---
-title: "In-class: Comparing dimensions"
+title: "Assignment: Comparing dimensions"
 execute: 
   warning: false
   message: false
@@ -19,7 +19,7 @@ library(tidyverse)
 data <- read_csv("data-assign/zgz-1860/sample-zgz-1860.csv")
 ```
 
-We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).^[There are 78 locations because a few municipalities are composed of different settlements.] You can download it [here](data-assign/zgz-1860/sample-zgz-1860.csv)
+We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).^[There are 78 locations because a few municipalities are composed of different settlements.] You can download the data <a href="data-assign/zgz-1860/sample-zgz-1860.csv" download>here</a> [@beltran2024].
 
 ::: {.column-margin}  
 ![Household register card, 1860 Spanish population census.](images/censo-1860-cropped.jpg){width=100% height=100%} 
@@ -47,6 +47,8 @@ spain <- read_sf("data-assign/zgz-1860/gis/spain.shp")
 zgz <- read_sf("data-assign/zgz-1860/gis/zgz_prov.shp")
 zgz_cap <- read_sf("data-assign/zgz-1860/gis/zgz_cap.shp") |>
   mutate(settlement = if_else(settlement=="ZARAGOZA", "Zaragoza", "Zaragoza"))
+rivers_main <- read_sf("data/mapping/rivers/A3_main.shp")
+rivers_sec <- read_sf("data/mapping/rivers/A3_secondary.shp")
 
 m1 <- tm_shape(spain) + tm_borders("grey90") +
   tm_shape(zgz) + tm_borders("grey70") +
@@ -64,6 +66,8 @@ m2 <- tm_shape(settlements) +
   tm_shape(zgz_cap) + 
     tm_text(text = "settlement",
             size = 0.8, xmod = -1, ymod = -1.2) +
+  tm_shape(rivers_main) + tm_lines(col = "blue", lwd = 1) +
+  tm_shape(rivers_sec) + tm_lines(col = "blue", lwd = .6) +
   tmap_options(legend.text.fontfamily = "Times")
 
 library(grid)
@@ -74,38 +78,94 @@ print(m1, vp = grid::viewport(0.15, 0.19, width = 0.25, height = 0.25))
 Distribution of the population in the locations studied here.
 :::
 
-In total, this data set contains information on 132,500 individuals: name and surname, place of residence, sex, age, marital status, household size, occupation, and so on. Note also that there is a field identifying each family and also who in that family is the father and the mother. We are mostly interested in learning more about the factors that help explaining the educational level of the population. In this regard, the source reports whether these individuals were able to read and/or write. For children, it also reports whether they are attending school or not but the coverage of this information is less consistent. Extract the information requested below and interpret your results as a html file using Quarto. 
+In total, this data set contains information on 132,500 individuals: name and surname, place of residence, sex, age, marital status, household size, occupation, and so on. Note also that there is a field identifying each family and also who in that family is the father and the mother.
 
-1. What fraction of the population is able to read and write? This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). 
+**Extract the information** requested below and **interpret your results**. Present your analysis as a PDF file using Quarto and submit it via Blackboard before February 17. 
 
-2. Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* (socio-economic status) which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (column) plot to display these differences. 
+1. Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. For instance, report how many men and women lived in this area in 1860 and visualise the number of individuals by age. Have a close look at the latter plot: what can you infer from this visualisation about the historical population living in the area under study? 
 
-3. It would also be interesting to know whether the literacy rate changed over time. 
+2. Imagine that we are interested in learning more about the educational level of the population. What fraction of the population is able to read and write? This information is contained in the variable *write* which has two categories: "NO" and "SI" (yes). Distinguish also by *sex* and socio-economic status. The latter is reported in the field *ses* (socio-economic status) which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (or column) plot to display these differences. 
+3. Let's continue examining literacy rates but let's now examine (1) how the literacy rate changed over time, and (2) how literacy rates evolved as children grew older (up to 14 years old). Notice that the source also reports whether children were attending school (*school*) or not but the coverage of this information is less consistent. Explore also this variable.
 
-4. Focusing now only on children (i.e. below 14 years old), plot how literacy rates evolved as children grew older. Likewise, explore whether some of the dimensions mentioned above also influence the likelihood that these children attended school or not.
+4. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
 
-5. Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?
+5. The first question asked about the number of individuals reporting different ages. The phenomenon of *age-heaping* refers to the tendency of some individuals to round their ages due to their inability to remember their exact age or to *count* properly.^[Age-heaping can also arise from *digit preference*, that is, the preference for specific numbers in particular cultures.] Which age-groups tend to age-heap more? Are these individuals also less likely to be literate (able to read and write)?^[Tip: to identify those individuals who age-heap, you can rely on the operator `%%`, which returns the remainder after division. Imagine, for instance, two individuals aged 37 and 40. Dividing their ages by 10 yields $3 \cdot 10 + 7$ and $4 \cdot 10 + 0$, respectively. By returning the remainder, the operator `%%` provides the last digit of their age (7 and 0 in this example).]
 
-6. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
+<!--
+5. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
 
-7. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother).
+8. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother). You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf) (especially pages 1-10).
+-->
 
-You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf) (especially pages 1-10).
+<!--
+----
 
+# Solution
 
+As always you need to open a new script and set the necessary steps to clear the environment, set the working directory and import the data. I have the  file, named `sample-zgz-1860.csv`, in the folder `data-assing`, so the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] 
 
-# Results
+```{r}
+#| eval: false
+rm(list=ls())
+library(tidyverse)
+data <- read_csv("data-assign/zgz-1860/sample-zgz-1860.csv") 
+```
 
-1. We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing a fraction based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `frac = round(n/sum(n), 3)`.]
+The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case). You can then type the name of the object and have a sense of how the data looks like:
+
+```{r}
+data
+```
+
+This corresponds to what we were expecting. We can then start considering the questions above.  
+
+The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.^[Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.] The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type `view(data)` to explore the full object at ease. You can also use `print(n)` to get info on more rows or `tbl_vars()` to get the names of all the variables.
+
+----
+
+Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
+
+```{r}
+data |> 
+  filter(age>=18) |>
+  count(sex)
+```
+
+Given that *sex* is a qualitative variable, you could present this information visually using `ggplot()` and `geom_bar()`. Given that now want to visualise the number of individuals by *age*, which is a numerical variable, we can construct a histogram.[It is also possible to construct a bar graph using `geom_col()` but you need to first count the number of individuals in each category (either *age* or a variable that groups the observations into different age-groups.]. Notice that, the same way that `geom_bar()`, `geom_histogram()` only requires defining which variable is going to be in the x-axis: the function will automatically count how many observations (rows) belong to each group. The argument `binwidth` sets up how wide these intervals will be. Here we set it to 1 to get the distribution of ages for every year of age.^[Setting it to 5 would group individuals into 5-year age-groups.]
+
+```{r}
+#| warning: false 
+data |>
+  ggplot(aes(x = age)) +
+  geom_histogram(binwidth = 1)
+```
+
+This graph is superinterestig in many ways. The first column reflects the number of individuals in the first age category, 0 here. We can see how the next columns are shorter, meaning that there are a decreasing number of children aged 1, 2, 3 and so on. This is expected since, given the high infant and chil mortality rates these societies suffered, many children did not survive to their next birthday. It is strange though that at around age 10 or so the number of individuals start increasing instead of continuing declining. Why this might be? One potential explanation is migration. The area covered here includes the capital city of Zaragoza and its surrounding (the villages withing 40 kilometers). The capital city especially attracted workers, so that increase in the number of individuals probably reflects the inflow of migrants into the city.[Running the analysis excluding the city of Zaragoza could give more insights into this issue.] 
+
+The other interesting feature of the graph above in the extremely high bars that show up for individuals adults. Why are there many more individuals in particular age-groups? What is going on here? Let's explore this more in detail by having a closer look at adults aged 25-45:
+
+```{r}
+data |>
+  filter(age>=25 & age<=45) |>
+  ggplot(aes(x = age)) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(breaks = seq(25, 45, 1))
+```
+
+There are way more observations aged 30 and 40 than the surrounding ages. Is it possible that mortality shocks (epidemics, famines, wars) affected those age 28 or 33 more than those aged 30? Possible but unlikely. The explanation here is what is knows as **age-heaping**: the tendency of those reporting their age to the census takers to disproportionately report ages ending particular digits, which creates artificial peaks in the age distribution. Age-heaping usually implies rounding ages, so reporting ages ending in 0 (or sometimes 5), due to lower literacy/numeracy or memory problems in old age. As mentioned above, age-heaping can also arise from *digit preference*, that is, the preference for specific numbers ("lucky numbers") in particular cultures. The graphs above seems to suggest a preference for ages ending in 0 or even numbers (multiples of 2) but the latter phenomenon requires further investigation. Age-heaping was a common phenomenon in historical data (and developing countries today) and can be used to study numeracy or educational levels. We will come back to this later.
+
+----
+
+Let's now move on to the second question above: learning more about literacy rates in mid-19th-century Spain.^[The range of questions that could be asked to this data is enormous. You could for instance look into fertility (i.e. number of children), marriage patterns (i.e. percentage of men and women married at an early age or those who remained single all their lives), presence of extended family members (i.e. grandparents, etc.), dominant occupations (i.e. agriculture vs manufacturing or services, landowners vs landless labourers), household structure (i.e. who tends to be the head of the household), migratory patterns, numeracy captured by age-heaping, etc.] We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing the percentage based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `perc = round(100*n/sum(n), 1)`.]
 
 ```{r}
 data |>
   count(write) |>
-  mutate(frac = n/sum(n)) |>
-  mutate(frac = round(frac, 3))
+  mutate(perc = 100*n/sum(n)) |>
+  mutate(perc = round(perc, 1))
 ```
 
-2. We are now going to compute literacy rates for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writing the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
+The results show that 24.1 per cent of the population was able to read and write.^[Doing the same with the variable *read* would compute the numbers of those who were able to read but not write.] We are now going to compute literacy rates for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writing the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
 
 ```{r}
 data <- data |>
@@ -151,7 +211,9 @@ data |>
 
 1. The function `fct_reorder()` re-orders the categories in *ses* according to the values computed in *lit_rate*. Note that we are also reporting results by sex, so the ordering happens within the first category in *sex*, which is "Female". Ordering by "Male" literacy rates would bit a little bit more coding.
 
-3. We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias.^[Those who are older may constitute a more selected group of individuals due to survival or out-migration (were those individuals surviving and not migrating different from those who died or left?). Also, older people have more time to become literate, an issue that may also bias the analysis.] Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
+----
+
+We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias.^[Those who are older may constitute a more selected group of individuals due to survival or out-migration (were those individuals surviving and not migrating different from those who died or left?). Also, older people have more time to become literate, an issue that may also bias the analysis.] Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
 
 ```{r}
 data |>
@@ -165,11 +227,11 @@ data |>
   scale_y_continuous("Literacy rate", breaks = seq(0, 100, 10))
 ```
 
-The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstanced that plagued the late 18^th^ century and the first half of the 19^th^ century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that (note also that while Zaragoza tend to receive migrants, the villages around tend to send them). Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance. 
+The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstanced that plagued the late 18^th^ century and the first half of the 19^th^ century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that.^[Note that while the capital city tended to receive migrants, the villages around tend to send them. Running the analysis separately for urban / rural areas might therefore be very informative.] Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance. 
 
 The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e. before 1775) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smoothing trend using `geom_smooth()` to better grasp the underlying long-term trends. Try it yourself. 
 
-4. As shown above, exploring literacy children literacy rates would just imply filtering by age; you can perform other types of analysis as those above yourself. Here we show how literacy rates evolved as boys and girls grew up (from 4 to 14), something that is also somewhat visible in the right-hand side of the graph I was mentioning above: 
+The patterns in the graph above also changed around 1845 and literacy rates declined significantly until reaching 0 in 1860. This basically reflects the fact those born in those years are children and therefore have not started or concluded their education. To better see how literacy rates change as boys and girls grew up we now plot literacy by age and restrict the analysis to those aged 4-14: 
 
 ```{r}
 data |>
@@ -196,7 +258,9 @@ data |>
 
 The schooling enrolment that arises from this source is really low. The problem with this variable though is that this information was contained in the field *occ* (occupation) but was not reported systematically. There are locations that, from other sources, we know had a school (and children attending it) but the census does not report any children (or very few) doing so. This obviously infra-estimates the real schooling enrolment rate. A potential solution would be to identify those locations which recorded this information consistently (that is, checking whether the numbers arising from the census are similar to those reported from other sources) and restrict the analysis only to those municipalities. It is possible though that the locations that recorded schooling systematically are different from those who did not, so the results from analysing this sample may not be representative of all the locations in the full original sample. You could however test whether these two groups of villages are similar based on other features (i.e. size, occupational structure, literacy rates, etc.). If they are, you could argue that the results from analysing that subsample are representative of the whole area. We are not following this path here but you can check the [article]((https://fjbeltrantapia.github.io/papers/names-education-2024.pdf)) referenced above to learn more about this procedure and the actual enrolment rates (pages 9-10).
 
-5. Let's now explore whether we should characterize this region as rural in terms of the size of those settlements (range, average, median). The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):`[A municipality could include several dispersed settlements. Most of the population lived in concentrated but a few municipalities had several.]
+----
+
+Let's now explore whether we should characterize this region as rural in terms of the size of those settlements (range, average, median). The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):`[A municipality could include several dispersed settlements. Most of the population lived in concentrated but a few municipalities had several.]
 
 ```{r}
 data |>
@@ -287,10 +351,7 @@ g2 <- munic |>
 g1 + g2
 ```
 
-
-
-
-On the other hand, this type of locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogenous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogenous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
+It is clear that the city of Zaragoza enjoyed higher literacy rates for both males and females. It also seems larger villages also tend to have higher literacy than smaller ones but this is less clear.[We don't cover it here but we could be much more precise about this if we measured the correlation between these two variables: population and literacy.] We should also bear in mind that rural and urban locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogeneous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogeneous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
 
 ```{r}
 data |>
@@ -313,7 +374,66 @@ data |>
  
 The results show that, even when we focus on a relatively homogenous group (individuals aged 16-50 classified as belonging to the "Farmer" socio-economic group), the disparities in literacy rates persist. However, they are not as striking for men as for women. Rural areas appear to be specially detrimental to female education.
 
-3. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
+----
+
+The last exercise comes back to the pattern observed above regarding the distribution of ages in the population. The number of people reporting ages ending in 0 and even numbers (0, 2, 4, 6, 8) seemed higher than it should be expected. In order to be more accurate, we can test this more explicitly and classify individuals into groups depending on the last digit of their (reported) age. We can take advantage of the operator `%%`, which returns the remainder after division, to compute the last digit.^[For instance, $37/10 = 3 \cdot 10 + 7$, $23/10 = 2 \cdot 10 + 3$ and $30/10 = 3 \cdot 10 + 0$.] The code below classifies each individuals into the last digit of their age and check what we have done:
+
+```{r}
+data <- data |>
+  mutate(age_last = age %% 10)
+
+data |>
+  select(age, age_last)
+```
+
+Theoretically, we should expect the distribution of ending digits to be relatively balance: around 10 per cent of the population should report an age ending in each digit. We can now check whether this is the case and, otherwise, which digit(s) is the most common one. Instead of reporting a table, we plot the percentage of the population in each group (adding a dashed red line at 10 per cent to act as reference benchmark). The choice of the population under study using `filter()` is important: consider full decade cohorts, so all the digits are equally present, and make sure that particular cohorts are not naturally larger.^[The number of younger individuals tends to be larger than older ones because those who die are no longer present. There will be more 16-year old than 17-year old. These differences can bias the results because the digit 6 will tend to be more prevalent not due to age-heaping but due to being more 16-year old. Feel free to plot a histogram with the distribution of ages to see this more clearly.] We choose to focus on the two decades going from aged 23 to 42.
+
+```{r}
+data |> filter(age>=23 & age<=42) |>
+  count(age_last) |> mutate(perc = 100*n/sum(n)) |>
+  ggplot(aes(x = age_last, y = perc)) + geom_col(alpha = 0.6) +
+  scale_x_continuous("Age last digit", breaks = seq(0, 9, 1)) + 
+  scale_y_continuous("Population (%)", limits = c(0, 20), breaks = seq(0, 20, 5)) +
+  geom_hline(yintercept = 10, col = "red", linetype = "dashed")
+```
+
+It is clear that reporting ages ending in 0 (i.e. 30, 40, etc.) is much more prevalent than any other digit. Surprisingly, rounding in 5 is not that common. The other digits that are relatively frequent are 3, 4 and 6, which is quite unexpected and may reflect some kind of "lucky numbers". Let's focus on those reporting an age ending in 0 and create a dummy variable identifying them. We can the explore whether age-heaping differs by sex and increases with age (given that we cannot explore each age separately, we will need to group individuals into decade cohorts). The graph above shows that age-heaping increases with age, a trend that is more pronounced in women.^[Note that we are only classifying those individuals between 16 and 96. There are very few individuals who are older than that, so their results are quite random. The same also applies to the decade 86-96, so they could also be removed.] 
+
+```{r}
+data |>
+  filter(!is.na(sex)) |>
+  mutate(heap_0 = if_else(age_last==0, 1, 0)) |>
+  mutate(age_10 = cut(age, breaks = seq(16, 96, by = 10))) |>   
+  filter(!is.na(age_10)) |>
+  group_by(age_10, sex) |>
+  summarise(heap_0 = mean(heap_0, na.rm = TRUE)) |>
+  ggplot(aes(x = age_10, y = heap_0, col = sex, group = sex)) +
+  geom_point() + geom_line() +
+  geom_hline(yintercept = 0.1, col = "red", linetype = "dashed") +
+  scale_y_continuous("Population (fraction)", 
+                     limits = c(0.05, 0.4), breaks = seq(0.05, .4, 0.05))
+```
+
+Another potential explanation is that less literate people are also less numerate and therefore have more difficulty remembering their actual age. It is possible to test whether this is actually the case. We replicate part of the code above to classify individuals into groups depending on whether they age-heap (*heap_0*). It is now straightforward to compute the average literacy rate for the individuals in each of those categories using `group_by()` and `summarise()`. We focus on individuals aged 25-45 to have a more homogeneous sample and make the computations for men and women separately.^[Feel free to choose a different age-group but make sure that you at least have 10 age categories, so all last digits (0-9) are possible.] 
+
+```{r}
+data |> 
+  mutate(heap_0 = if_else(age_last==0, 1, 0)) |>  
+  filter(age>=23 & age<=42 & !is.na(sex)) |>
+  group_by(heap_0, sex) |>
+  summarise(d_write = mean(d_write, na.rm = TRUE))
+```
+
+On average, both men and women reporting ages ending in 0 are less likely to be literate. While 35 per cent of men reporting ages ending in 0 are literate, this figure increases to 43.1 per cent to those who report any other age. The difference for women is less pronounced (14.6 vs 16.9 per cent) but we should bear in mind that their literacy rates are much lower in general, so the difference is non-negligible in relative terms. This supports the argument posed above: literacy and numeracy are somewhat related. We could also check whether these result also hold depending on marital status or when we restrict the analysis to rural areas (excluding the capital city), among many other possibilities. All these additional exercises would contribute to portray a richer picture of the topic under study.
+
+Let's finish here but, as mentioned above, the topics of study that these sources allow studying are quite varied. Let me also stressed that this exercise was intended not only as a way of solidifying what you have learned so far but also to show that, when explored creatively, the sources contain way more information than it looks like at first sight. If you want more examples you can check the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf), which, relying on an extended version of the same dataset we have explored here, shows that girls bearing more common names had lower literacy rates. The article argues that first names provide historians with information about the cultural values of the parents bestowing those names. As well as enabling classifying individuals according to their names (after religious figures, after family members, after kings or other political figures, etc.), this approach allows testing whether those values translated into the way that parents raised their children (i.e. the value they attach to education, etc.).  
+-->
+
+
+<!--
+----
+
+What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
 
 The name of each individual in the data set is reported in the filed *name*. The code below reports the 10 most common names for males and females separately. As shown above, we create two different plots and depict them side by side using the package `patchwork` (we don't need to load it because we already did above). When constructing individual plots, R automatically adjust the $y$ and $x$ axes to the existing variation. Here we want to compare two plots that are measuring the same thing, so it is advisable to have the same range in both. We therefore use `expand_limits()` to expand the $y$-axis artificially to `y = 14`, which (roughly) corresponds to the percentage of women sharing the most common name. This allows making the contrast between the two distributions (male and female) clearer, especially the widespread use of the name *Maria*.  
 
@@ -322,13 +442,14 @@ p1 <- data |>
   filter(sex=="Male" & !is.na(name)) |>
   count(name, sort = TRUE) |> 
   mutate(perc = 100*n/sum(n)) |>
-  slice_head(n = 10) |>                        # selecting to show only top 10 words
-  mutate(name = reorder(name, -desc(n))) |>    # ensuring descending order
+  slice_head(n = 10) |>             # selecting to show only top 10 words
+  mutate(name = reorder(name, -desc(n))) |> # ensuring descending order
   ggplot(mapping = aes(x = name, y = perc)) + 
     geom_col(width = 0.7, col = "blue", fill = "blue", alpha = .5) + 
     ggtitle("Males") + xlab("") +
     expand_limits(y = 14) +
-    scale_y_continuous("Relative frequency (%)", breaks = seq(0, 14, by = 2)) +
+    scale_y_continuous("Relative frequency (%)", 
+                       breaks = seq(0, 14, by = 2)) +
     theme(axis.text.y = element_text(size = 7),
           plot.title = element_text(hjust = 0.5)) +
     coord_flip() + theme_minimal()
@@ -337,13 +458,14 @@ p2 <- data |>
   filter(sex=="Female" & !is.na(name)) |>
   count(name, sort = TRUE) |>
   mutate(perc = 100*n/sum(n)) |>
-  slice_head(n = 10) |>                        # selecting to show only top 25 words
-  mutate(name = reorder(name, -desc(n))) |>    # ensuring descending order
+  slice_head(n = 10) |>         # selecting to show only top 25 words
+  mutate(name = reorder(name, -desc(n))) |> # ensuring descending order
   ggplot(mapping = aes(x = name, y = perc)) + 
     geom_col(width = 0.7, col = "blue", fill = "blue", alpha = .5) + 
     ggtitle("Females") + xlab("") +
     expand_limits(y = 14) +
-    scale_y_continuous("Relative frequency (%)", breaks = seq(0, 14, by = 2)) +
+    scale_y_continuous("Relative frequency (%)", 
+                       breaks = seq(0, 14, by = 2)) +
     theme(axis.text.y = element_text(size = 7),
           plot.title = element_text(hjust = 0.5)) +
     coord_flip() + theme_minimal()
