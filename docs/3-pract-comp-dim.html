@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -206,8 +241,14 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">Solution</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full column-page-left" id="quarto-document-content">
@@ -231,8 +272,9 @@ window.Quarto = {
 </header>
 
 
-<p>We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You can download the data <a href="data-assign/zgz-1860/sample-zgz-1860.csv" download="">here</a> <span class="citation" data-cites="beltran2024">(<a href="#ref-beltran2024" role="doc-biblioref">Beltrán Tapia and Marco-Gracia 2024</a>)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;There are 78 locations because a few municipalities are composed of different settlements.</p></div><div class="">
+<p>We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below). You can download the data <a href="data-assign/zgz-1860/sample-zgz-1860.csv" download="">here</a> <span class="citation" data-cites="beltran2024">(<a href="#ref-beltran2024" role="doc-biblioref">Beltrán Tapia and Marco-Gracia 2024</a>)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/censo-1860-cropped.jpg" style="width:100.0%;height:100.0%" class="figure-img"></p>
@@ -251,54 +293,43 @@ window.Quarto = {
 </div>
 <p>Distribution of the population in the locations studied here.</p>
 </div></div>
-
 <p>In total, this data set contains information on 132,500 individuals: name and surname, place of residence, sex, age, marital status, household size, occupation, and so on. Note also that there is a field identifying each family and also who in that family is the father and the mother.</p>
-<p><strong>Extract the information</strong> requested below and <strong>interpret your results</strong>. Present your analysis as a PDF file using Quarto and submit it via Blackboard before February 17.</p>
+<p><strong>Extract the information</strong> requested below and <strong>interpret your results</strong>. Present your analysis as a <strong>PDF file</strong> using <strong>Quarto</strong> and submit it via Blackboard before <strong>February 17</strong>.</p>
 <ol type="1">
 <li><p>Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? Get familiar with the data set by using <code>count()</code> or its visual equivalents: <code>ggplot()</code> plus <code>geom_bar()</code> for qualitative dimensions or <code>geom_histogram()</code> for numerical variables. For instance, report how many men and women lived in this area in 1860 and visualise the number of individuals by age. Have a close look at the latter plot: what can you infer from this visualisation about the historical population living in the area under study?</p></li>
 <li><p>Imagine that we are interested in learning more about the educational level of the population. What fraction of the population is able to read and write? This information is contained in the variable <em>write</em> which has two categories: “NO” and “SI” (yes). Distinguish also by <em>sex</em> and socio-economic status. The latter is reported in the field <em>ses</em> (socio-economic status) which classifies each individual into wide occupational categories (their own or that of their parents or closer family members). Use a bar (or column) plot to display these differences.</p></li>
 <li><p>Let’s continue examining literacy rates but let’s now examine (1) how the literacy rate changed over time, and (2) how literacy rates evolved as children grew older (up to 14 years old). Notice that the source also reports whether children were attending school (<em>school</em>) or not but the coverage of this information is less consistent. Explore also this variable.</p></li>
 <li><p>Would you characterize this region as rural? How large is the biggest city and the smallest? What is the average settlement size? What about median size? Can you display the distribution of locations by size? Coming back to our original question about education, are there differences in literacy rates between rural and urban areas?</p></li>
-<li><p>The first question asked about the number of individuals reporting different ages. The phenomenon of <em>age-heaping</em> refers to the tendency of some individuals to round their ages due to their inability to remember their exact age or to <em>count</em> properly.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Which age-groups tend to age-heap more? Are these individuals also less likely to be literate (able to read and write)?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+<li><p>The first question asked about the number of individuals reporting different ages. The phenomenon of <em>age-heaping</em> refers to the tendency of some individuals to round their ages due to their inability to remember their exact age or to <em>count</em> properly.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Which age-groups tend to age-heap more? Are these individuals also less likely to be literate (able to read and write)?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
 </ol>
 <!--
 5. What is the most common name in our case study? List the 10 most common names for both men and women. Have naming practices changed over time? You can, for instance, check whether these names the same in the early 1800s and in the 1850s or whether the percentage of people bearing the most common names changed over time.
 
 8. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother). You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf) (especially pages 1-10).
 -->
-<!--
-----
-
-# Solution
-
-As always you need to open a new script and set the necessary steps to clear the environment, set the working directory and import the data. I have the  file, named `sample-zgz-1860.csv`, in the folder `data-assing`, so the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-rm(list=ls())
-library(tidyverse)
-data <- read_csv("data-assign/zgz-1860/sample-zgz-1860.csv") 
-```
-:::
-
-
-The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case). You can then type the name of the object and have a sense of how the data looks like:
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 132,500 × 25
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Age-heaping can also arise from <em>digit preference</em>, that is, the preference for specific numbers in particular cultures.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Tip: to identify those individuals who age-heap, you can rely on the operator <code>%%</code>, which returns the remainder after division. Imagine, for instance, two individuals aged 37 and 40. Dividing their ages by 10 yields <span class="math inline">\(3 \cdot 10 + 7\)</span> and <span class="math inline">\(4 \cdot 10 + 0\)</span>, respectively. By returning the remainder, the operator <code>%%</code> provides the last digit of their age (7 and 0 in this example).</p></div></div><hr>
+<section id="solution" class="level1 page-columns page-full">
+<h1>Solution</h1>
+<p>This is the third assignment for HIST2025. Here, we are going to explore the information contained in the household registers from the 1860 Population Census of the province of Zaragoza (Spain). Just let me stress that the proposed solution below is only one way of addressing the questions above. You could have approached them differently.</p>
+<p>As always you need to open a new script and set the necessary steps to clear the environment, load the necessary packages and import the data.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Note that Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). I have the file, named <code>sample-zgz-1860.csv</code>, in the folder <code>data-assign/zgz-1860</code>, so the code below reads it into R.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> If you have placed the file with the data set in the same folder as the quarto file, the following will work just fine: <code>read_csv("sample-zgz-1860.csv")</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Although not visible, the code chuck below includes the option <code>#| message: false</code> at the top, so the message that shows up when loading the <code>tidyverse</code> is not printed here.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;The function <code>read_csv()</code> forms part of the tidyverse, so it becomes available when you load the <code>tidyverse</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-assign/zgz-1860/sample-zgz-1860.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The symbol <code>&lt;-</code> (called assignment operator) takes the object that <code>read_csv()</code> imports and stores it in the environment with the name you indicate (<code>data</code> in this case). You can then type the name of the object and have a sense of how the data looks like and how it is structured:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 132,500 × 25
    settlement munic  household hous_size indiv name     surname1  surname2 sex  
-   <chr>      <chr>  <chr>         <dbl> <dbl> <chr>    <chr>     <chr>    <chr>
+   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;
  1 ALAGON     ALAGON 1                 5     5 FELIPE   ARNAL     PUERTOL… Male 
  2 ALAGON     ALAGON 1                 5     4 MARIA    DUESA     ROMAN    Fema…
  3 ALAGON     ALAGON 1                 5     3 HIPOLITO ROMAN     PUERTOL… Male 
@@ -310,139 +341,137 @@ data
  9 ALAGON     ALAGON 2                 4     2 MANUELA  VILLANUE… PARDO    Fema…
 10 ALAGON     ALAGON 3                 3     3 LUISA    BARBO     BENITO   Fema…
 # ℹ 132,490 more rows
-# ℹ 16 more variables: age <dbl>, marst <chr>, ses <chr>, POS <chr>,
-#   RELACION <chr>, occ <chr>, write <chr>, read <chr>, school <dbl>,
-#   fam_id <chr>, parity <dbl>, father <dbl>, mother <dbl>, munic_gis <chr>,
-#   geometry <chr>, d_zgz <dbl>
-```
-
-
-:::
-:::
-
-
-This corresponds to what we were expecting. We can then start considering the questions above.  
-
-The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.^[Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.] The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type `view(data)` to explore the full object at ease. You can also use `print(n)` to get info on more rows or `tbl_vars()` to get the names of all the variables.
-
-----
-
-Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |> 
-  filter(age>=18) |>
-  count(sex)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 2 × 2
+# ℹ 16 more variables: age &lt;dbl&gt;, marst &lt;chr&gt;, ses &lt;chr&gt;, POS &lt;chr&gt;,
+#   RELACION &lt;chr&gt;, occ &lt;chr&gt;, write &lt;chr&gt;, read &lt;chr&gt;, school &lt;dbl&gt;,
+#   fam_id &lt;chr&gt;, parity &lt;dbl&gt;, father &lt;dbl&gt;, mother &lt;dbl&gt;, munic_gis &lt;chr&gt;,
+#   geometry &lt;chr&gt;, d_zgz &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>This corresponds to what we were expecting. We can then start considering the questions above.</p>
+<p>The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type <code>view(data)</code> to explore the full object at ease. You can also use <code>print(n)</code> to get info on more rows. <code>glimpse()</code> is also a super useful function because it gives the names of all the variables and a peak on their content:</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 132,500
+Columns: 25
+$ settlement &lt;chr&gt; "ALAGON", "ALAGON", "ALAGON", "ALAGON", "ALAGON", "ALAGON",…
+$ munic      &lt;chr&gt; "ALAGON", "ALAGON", "ALAGON", "ALAGON", "ALAGON", "ALAGON",…
+$ household  &lt;chr&gt; "1", "1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3",…
+$ hous_size  &lt;dbl&gt; 5, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 6, 6, 6, 6, 6, 6, 3, 3,…
+$ indiv      &lt;dbl&gt; 5, 4, 3, 1, 2, 3, 4, 1, 2, 3, 2, 1, 5, 6, 3, 2, 1, 4, 3, 2,…
+$ name       &lt;chr&gt; "FELIPE", "MARIA", "HIPOLITO", "HIPOLITO", "ANTONIA", "MATE…
+$ surname1   &lt;chr&gt; "ARNAL", "DUESA", "ROMAN", "ROMAN", "PUERTOLAS", "GONZALEZ"…
+$ surname2   &lt;chr&gt; "PUERTOLAS", "ROMAN", "PUERTOLAS", "-", "-", "VILLANUEVA", …
+$ sex        &lt;chr&gt; "Male", "Female", "Male", "Male", "Female", "Male", "Female…
+$ age        &lt;dbl&gt; 9, 26, 19, 46, 46, 4, 1, 33, 37, 1, 29, 32, 25, 13, 0, 32, …
+$ marst      &lt;chr&gt; "Single", "Single", "Single", "Married", "Married", "Single…
+$ ses        &lt;chr&gt; "Missing", "Missing", "Artisan", "Artisan", "Artisan", "Lab…
+$ POS        &lt;chr&gt; "FAM", "FAM", "H1", "P1", "P1", "H1", "H2", "P1", "P1", "H1…
+$ RELACION   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "HERMANO DE…
+$ occ        &lt;chr&gt; NA, NA, NA, NA, "BAGILLERO", NA, NA, "JORNALERO DEL CAMPO",…
+$ write      &lt;chr&gt; "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",…
+$ read       &lt;chr&gt; "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",…
+$ school     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ fam_id     &lt;chr&gt; "00800000001Z", "00800000001Z", "00800000001ZFAM1", "008000…
+$ parity     &lt;dbl&gt; NA, NA, 1, NA, NA, 1, 2, NA, NA, 1, NA, NA, NA, NA, 1, NA, …
+$ father     &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0,…
+$ mother     &lt;dbl&gt; 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1,…
+$ munic_gis  &lt;chr&gt; "Alagón", "Alagón", "Alagón", "Alagón", "Alagón", "Alagón",…
+$ geometry   &lt;chr&gt; "c(656083.362067613, 4626002.74937064)", "c(656083.36206761…
+$ d_zgz      &lt;dbl&gt; 23.23714, 23.23714, 23.23714, 23.23714, 23.23714, 23.23714,…</code></pre>
+</div>
+</div>
+<p><code>glimpse()</code> provides the name of the columns, their type (qualitative, &lt;chr&gt;, or numerical, &lt;dbl&gt;, here) and the values for each category of the first observations. The latter comes in handy because we can see the type of information they contain. The variable <em>marst</em>, for instance, gives values such as “Single” or “Married”, which helps figuring out that <em>marst</em> captures <em>marital status</em>.</p>
+<hr>
+<p>Let’s now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using <code>count()</code> and the name of the variable we are interested in. If you don’t use <code>filter()</code> to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
   sex        n
-  <chr>  <int>
+  &lt;chr&gt;  &lt;int&gt;
 1 Female 42142
-2 Male   45298
-```
-
-
-:::
-:::
-
-
-Given that *sex* is a qualitative variable, you could present this information visually using `ggplot()` and `geom_bar()`. Given that now want to visualise the number of individuals by *age*, which is a numerical variable, we can construct a histogram.[It is also possible to construct a bar graph using `geom_col()` but you need to first count the number of individuals in each category (either *age* or a variable that groups the observations into different age-groups.]. Notice that, the same way that `geom_bar()`, `geom_histogram()` only requires defining which variable is going to be in the x-axis: the function will automatically count how many observations (rows) belong to each group. The argument `binwidth` sets up how wide these intervals will be. Here we set it to 1 to get the distribution of ages for every year of age.^[Setting it to 5 would group individuals into 5-year age-groups.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  ggplot(aes(x = age)) +
-  geom_histogram(binwidth = 1)
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-6-1.png){width=672}
-:::
-:::
-
-
-This graph is superinterestig in many ways. The first column reflects the number of individuals in the first age category, 0 here. We can see how the next columns are shorter, meaning that there are a decreasing number of children aged 1, 2, 3 and so on. This is expected since, given the high infant and chil mortality rates these societies suffered, many children did not survive to their next birthday. It is strange though that at around age 10 or so the number of individuals start increasing instead of continuing declining. Why this might be? One potential explanation is migration. The area covered here includes the capital city of Zaragoza and its surrounding (the villages withing 40 kilometers). The capital city especially attracted workers, so that increase in the number of individuals probably reflects the inflow of migrants into the city.[Running the analysis excluding the city of Zaragoza could give more insights into this issue.] 
-
-The other interesting feature of the graph above in the extremely high bars that show up for individuals adults. Why are there many more individuals in particular age-groups? What is going on here? Let's explore this more in detail by having a closer look at adults aged 25-45:
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(age>=25 & age<=45) |>
-  ggplot(aes(x = age)) +
-  geom_histogram(binwidth = 1) +
-  scale_x_continuous(breaks = seq(25, 45, 1))
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-7-1.png){width=672}
-:::
-:::
-
-
-There are way more observations aged 30 and 40 than the surrounding ages. Is it possible that mortality shocks (epidemics, famines, wars) affected those age 28 or 33 more than those aged 30? Possible but unlikely. The explanation here is what is knows as **age-heaping**: the tendency of those reporting their age to the census takers to disproportionately report ages ending particular digits, which creates artificial peaks in the age distribution. Age-heaping usually implies rounding ages, so reporting ages ending in 0 (or sometimes 5), due to lower literacy/numeracy or memory problems in old age. As mentioned above, age-heaping can also arise from *digit preference*, that is, the preference for specific numbers ("lucky numbers") in particular cultures. The graphs above seems to suggest a preference for ages ending in 0 or even numbers (multiples of 2) but the latter phenomenon requires further investigation. Age-heaping was a common phenomenon in historical data (and developing countries today) and can be used to study numeracy or educational levels. We will come back to this later.
-
-----
-
-Let's now move on to the second question above: learning more about literacy rates in mid-19th-century Spain.^[The range of questions that could be asked to this data is enormous. You could for instance look into fertility (i.e. number of children), marriage patterns (i.e. percentage of men and women married at an early age or those who remained single all their lives), presence of extended family members (i.e. grandparents, etc.), dominant occupations (i.e. agriculture vs manufacturing or services, landowners vs landless labourers), household structure (i.e. who tends to be the head of the household), migratory patterns, numeracy captured by age-heaping, etc.] We can start by reporting the number of people who were able to read and write, information stored in the field *write*, simply using `count()` and then computing the percentage based on that number and the total number of observations. The latter can be retrieved using the function `sum()` and indicating to sum the values in the field *n* (which has in turn been computed using `count()`. We then round the resulting value up to 3 decimal places.^[We could also do it directly in the same command line by nesting it: `perc = round(100*n/sum(n), 1)`.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  count(write) |>
-  mutate(perc = 100*n/sum(n)) |>
-  mutate(perc = round(perc, 1))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 3 × 3
+2 Male   45298</code></pre>
+</div>
+</div>
+<p>Given that <em>sex</em> is a qualitative variable, you could present this information visually using <code>ggplot()</code> and <code>geom_bar()</code>. Given that now want to visualise the number of individuals by <em>age</em>, which is a numerical variable, we can construct a histogram.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Notice that, the same way that <code>geom_bar()</code>, <code>geom_histogram()</code> only requires defining which variable is going to be in the x-axis: the function will automatically count how many observations (rows) belong to each group. The argument <code>binwidth</code> sets up how wide these intervals will be. Here we set it to 1 to get the distribution of ages for every year of age.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;It is also possible to construct a bar graph using <code>geom_col()</code> but you need to first count the number of individuals in each category (either <em>age</em> or a variable that groups the observations into different age-groups.</p></div><div id="fn7"><p><sup>7</sup>&nbsp;Setting it to 5 would group individuals into 5-year age-groups.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This graph is superinterestig in many ways. The first column reflects the number of individuals in the first age category, 0 here. We can see how the next columns are shorter, meaning that there are a decreasing number of children aged 1, 2, 3 and so on. This is expected since, given the high infant and chil mortality rates these societies suffered, many children did not survive to their next birthday. It is strange though that at around age 10 or so the number of individuals start increasing instead of continuing declining. Why this might be? One potential explanation is migration. The area covered here includes the capital city of Zaragoza and its surrounding (the villages withing 40 kilometers). The capital city especially attracted workers, so that increase in the number of individuals probably reflects the inflow of migrants into the city.[Running the analysis excluding the city of Zaragoza could give more insights into this issue.]</p>
+<p>The other interesting feature of the graph above in the extremely high bars that show up for individuals adults. Why are there many more individuals in particular age-groups? What is going on here? Let’s explore this more in detail by having a closer look at adults aged 25-45:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">25</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">45</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are way more observations aged 30 and 40 than the surrounding ages. Is it possible that mortality shocks (epidemics, famines, wars) affected those age 28 or 33 more than those aged 30? Possible but unlikely. The explanation here is what is knows as <strong>age-heaping</strong>: the tendency of those reporting their age to the census takers to disproportionately report ages ending particular digits, which creates artificial peaks in the age distribution. Age-heaping usually implies rounding ages, so reporting ages ending in 0 (or sometimes 5), due to lower literacy/numeracy or memory problems in old age. As mentioned above, age-heaping can also arise from <em>digit preference</em>, that is, the preference for specific numbers (“lucky numbers”) in particular cultures. The graphs above seems to suggest a preference for ages ending in 0 or even numbers (multiples of 2) but the latter phenomenon requires further investigation. Age-heaping was a common phenomenon in historical data (and developing countries today) and can be used to study numeracy or educational levels. We will come back to this later.</p>
+<hr>
+<p>Let’s now move on to the second question above: learning more about literacy rates in mid-19th-century Spain. We can start by reporting the number of people who were able to read and write, information stored in the field <em>write</em>, simply using <code>count()</code> and then computing the percentage based on that number and the total number of observations. The latter can be retrieved using the function <code>sum()</code> and indicating to sum the values in the field <em>n</em> (which has in turn been computed using <code>count()</code>. We then round the resulting value up to 1 decimal place.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;We could also do it directly in the same command line by nesting it: <code>perc = round(100*n/sum(n), 1)</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(write) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">round</span>(perc, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
   write      n  perc
-  <chr>  <int> <dbl>
+  &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;
 1 NO    100373  75.8
 2 SI     31960  24.1
-3 <NA>     167   0.1
-```
-
-
-:::
-:::
-
-
-The results show that 24.1 per cent of the population was able to read and write.^[Doing the same with the variable *read* would compute the numbers of those who were able to read but not write.] We are now going to compute literacy rates for males and females separately. We could do it using `count()` but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable *write* equals "SI" (yes) or not. We do that and store the results by over-writing the object `data`. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also *name* and *sex* to provide a bit of context).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data <- data |>
-  filter(!is.na(sex)) |>
-  mutate(d_write = if_else(write=="SI", 1, 0)) 
-
-data |>
-  select(name, sex, write, d_write)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 132,499 × 4
+3 &lt;NA&gt;     167   0.1</code></pre>
+</div>
+</div>
+<p>The results show that 24.1 per cent of the population was able to read and write.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> Notice that a small number of observations do not record information on literacy. They comprise a tiny fraction of the full data, so their presence won’t affect the results of the analysis.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> We are now going to compute literacy rates for males and females separately. We could do it using <code>count()</code> but we can also explore how to do it creating a dummy variable that assigns the values 1 or 0 depending on whether the variable <em>write</em> equals “SI” (yes) or not. We do that and store the results by over-writing the object <code>data</code>. It is always advisable to check what we have done. To do so, we select the columns containing the info we are interested in (we add also <em>name</em> and <em>sex</em> to provide a bit of context).</p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;Doing the same with the variable <em>read</em> would compute the numbers of those who were able to read but not write.</p></div><div id="fn10"><p><sup>10</sup>&nbsp;When the number of missing values is high, it is however important to explore why they might be missing. Imagine that those who do not report literacy did so because they were illiterate. The <em>true</em> literacy rate would be lower that the one we woul be computing with the available information.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d_write =</span> <span class="fu">if_else</span>(write<span class="sc">==</span><span class="st">"SI"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, sex, write, d_write)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 132,499 × 4
    name     sex    write d_write
-   <chr>    <chr>  <chr>   <dbl>
+   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;
  1 FELIPE   Male   NO          0
  2 MARIA    Female NO          0
  3 HIPOLITO Male   NO          0
@@ -453,207 +482,190 @@ data |>
  8 MATEO    Male   NO          0
  9 MANUELA  Female NO          0
 10 LUISA    Female NO          0
-# ℹ 132,489 more rows
-```
-
-
-:::
-:::
-
-
-It seems the dummy variable *d_write* does what we wanted. We then have 0s and 1s to denote "No" and "Yes". Computing the average literacy by sex therefore implies computing the mean of this variable, using `group_by()` to do it for each sex separately.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  group_by(sex) |>
-  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 2 × 2
+# ℹ 132,489 more rows</code></pre>
+</div>
+</div>
+<p>It seems the dummy variable <em>d_write</em> does what we wanted. We then have 0s and 1s to denote “No” and “Yes”. Computing the average literacy by sex therefore implies computing the mean of this variable, using <code>group_by()</code> to do it for each sex separately.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
   sex    lit_rate
-  <chr>     <dbl>
+  &lt;chr&gt;     &lt;dbl&gt;
 1 Female     12.7
-2 Male       34.9
-```
-
-
-:::
-:::
-
-
-Literacy rates are low in general but the situation was especially dire for women: most women were illiterate. Let's now explore how these values may differ by socio-economic status. The variable *ses* relies on the occupation held by the head of the family and classifies each individual according to this information into groups (you can use `count()` to explore this field on your own). To make things easier, we are just going to focus on males and compute their literacy rates by *ses*:^[Alternatively, you could do it simultaneously for mean and women by grouping by two fields: `group_by(sex, ses)`. See also next example.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(sex=="Male") |>
-  group_by(ses) |>
-  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 11 × 2
+2 Male       34.9</code></pre>
+</div>
+</div>
+<p>Literacy rates are low in general but the situation was especially dire for women: most women were illiterate (only 12.7 per cent were able to read and write). The previous analysis applies to all the population, which also includes children. It would perhaps more adequate to focus on a more homogeneous group, such as the adult population or a particular age-group. Feel free to do it yourself using <code>filter()</code>.</p>
+<p>Let’s now explore how these values may differ by socio-economic status. The variable <em>ses</em> relies on the occupation held by the head of the family and classifies each individual according to this information into groups (you can use <code>count()</code> to explore this field on your own). To make things easier, we are just going to focus on adult males and compute their literacy rates by <em>ses</em>:<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Alternatively, you could do it simultaneously for mean and women by grouping by two fields: <code>group_by(sex, ses)</code>. See also next example.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"Male"</span> <span class="sc">&amp;</span> age<span class="sc">&gt;=</span><span class="dv">16</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ses) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
    ses                         lit_rate
-   <chr>                          <dbl>
- 1 Artisan                         52.6
- 2 Elite                           70.6
- 3 Farmer                          35.8
- 4 Labourer                        12.1
- 5 Merchant                        77.6
- 6 Militar                         54.7
- 7 Missing                         31.7
- 8 Otros                           53.0
- 9 Semi-skilled                    31.7
-10 Tenant                          21.0
-11 Unknown/No occ. (unskilled)     20.2
-```
-
-
-:::
-:::
-
-
-The results clearly show how class shaped educational achievements: while more than 70 per cent of individuals in the upper socio-economic strata (i.e. elites, merchants) were able to read and write, only 12 per cent of those classified as labourers did (this category includes those who did not have access to land or other property and therefore had to sell their work for a living). Note that here we are considering all males, regardless of age. You could explore how these results would change if you narrow the analysis to particular age-groups. Here, we are now going to do it for children aged 6-10, compute it separately for boys and girls and plot the results. The coding is a bit more involved mainly because the graph looks better if we re-order the categories in *ses*, so they are depicted from highest to lowest literacy rate. The socio-economic disparities are also clear here. Girls from the lowest backgrounds were especially disadvantaged in terms of literacy.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(age>=6 & age<=10) |>
-  group_by(sex, ses) |>
-  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
-  mutate(ses = fct_reorder( # <1>
-    ses,
-    lit_rate)) |> 
-  ggplot(aes(x = ses, y = lit_rate, fill = sex)) +
-  geom_col(position = "dodge2") +
-  coord_flip() +  
-  labs(x = "Socio-economic status", y = "Literacy rate")
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-12-1.png){width=672}
-:::
-:::
-
-
-1. The function `fct_reorder()` re-orders the categories in *ses* according to the values computed in *lit_rate*. Note that we are also reporting results by sex, so the ordering happens within the first category in *sex*, which is "Female". Ordering by "Male" literacy rates would bit a little bit more coding.
-
-----
-
-We now have a better idea of how literacy rates looked like in mid-19^th^-century Spain. Let's now see whether literacy rates were improving or not. We don't have several censuses conducted a different periods to compare literacy rates but we have the *age* of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias.^[Those who are older may constitute a more selected group of individuals due to survival or out-migration (were those individuals surviving and not migrating different from those who died or left?). Also, older people have more time to become literate, an issue that may also bias the analysis.] Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex). 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  mutate(birth_year = 1860-age) |>
-  group_by(birth_year, sex) |>
-  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
-  ggplot(aes(x = birth_year, y = lit_rate, col = sex)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous("Year of birth", breaks = seq(1760, 1860, 10)) +
-  scale_y_continuous("Literacy rate", breaks = seq(0, 100, 10))
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-13-1.png){width=672}
-:::
-:::
-
-
-The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstanced that plagued the late 18^th^ century and the first half of the 19^th^ century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that.^[Note that while the capital city tended to receive migrants, the villages around tend to send them. Running the analysis separately for urban / rural areas might therefore be very informative.] Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance. 
-
-The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e. before 1775) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smoothing trend using `geom_smooth()` to better grasp the underlying long-term trends. Try it yourself. 
-
-The patterns in the graph above also changed around 1845 and literacy rates declined significantly until reaching 0 in 1860. This basically reflects the fact those born in those years are children and therefore have not started or concluded their education. To better see how literacy rates change as boys and girls grew up we now plot literacy by age and restrict the analysis to those aged 4-14: 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(age>=4 & age<=14) |>
-  group_by(age, sex) |>
-  summarise(lit_rate = 100*mean(d_write, na.rm = TRUE)) |>
-  ggplot(aes(x = age, y = lit_rate, col = sex)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous("Age", breaks = seq(4, 14, 1)) +
-  scale_y_continuous("Literacy", breaks = seq(0, 45, 5)) +
-  theme_minimal()
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-14-1.png){width=672}
-:::
-:::
-
-
-The results illustrate how the learning process is faster for boys. By age 10, however, very few extra boys and girls got literate. This may reflect the time when they dropped out of school due to their working responsibilities in the field or at home. The disparities between boys and girls are probably explained by the different value that parents (and society in general) put into educating their sons and daughters. The curriculum at school itself reflected these values: while boys were expected to learn to read and write, arithmetic and other subjects (i.e. geography and history), girls were only expected to learn how to read (so they could read the Bible) and devoted a lot of time to learn houseskills (i.e. sewing, embroidery, etc.). Female schoolteachers were also significantly less educated than their male counterparts. Exploring what shaped the fraction of children attending school helps shedding more light on these issues. This information is contained in the variable *school*, which is a dummy variable with the value 1 or 0 depending whether the child was attending school or not. The code below computes the percentage of boys and girls aged 6-10 that were attending school.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |> 
-  filter(age<=6 & age<=10) |>
-  group_by(sex) |>
-  count(school) |>
-  mutate(perc = 100*n/sum(n))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 4 × 4
+   &lt;chr&gt;                          &lt;dbl&gt;
+ 1 Artisan                         63.6
+ 2 Elite                           77.1
+ 3 Farmer                          41.7
+ 4 Labourer                        14.5
+ 5 Merchant                        87.0
+ 6 Militar                         55.6
+ 7 Missing                         38.4
+ 8 Otros                           67.0
+ 9 Semi-skilled                    36.5
+10 Tenant                          26.9
+11 Unknown/No occ. (unskilled)     20.2</code></pre>
+</div>
+</div>
+<p>The results clearly show how class shaped educational achievements: while more than 75 per cent of individuals in the upper socio-economic strata (i.e.&nbsp;elites, merchants) were able to read and write, only 14.5 per cent of those classified as labourers did (this category includes those who did not have access to land or other property and therefore had to sell their work for a living). The other occupational categories sit in between these two. The literacy gap is huge, which speaks volumes of the social inequalities existing in this historical context. Note that here we are considering all adult males, regardless of age. You could explore how these results would change if you narrow the analysis to particular age-groups. Here, we are now going to do it for children aged 6-10, compute it separately for boys and girls and plot the results. The coding is a bit more involved mainly to make the graph looks better: if we re-order the categories in <em>ses</em>, so they are depicted from highest to lowest literacy rate. The socio-economic disparities are also clear here. Girls from the lowest backgrounds were especially disadvantaged in terms of literacy.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">6</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, ses) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ses =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>    ses,</span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>    lit_rate)) <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ses, <span class="at">y =</span> lit_rate, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge2"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  </span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Socio-economic status"</span>, <span class="at">y =</span> <span class="st">"Literacy rate"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="1">The function <code>fct_reorder()</code> re-orders the categories in <em>ses</em> according to the values computed in <em>lit_rate</em>. Note that we are also reporting results by sex, so the ordering happens within the first category in <em>sex</em>, which is “Female”. Ordering by “Male” literacy rates would bit a little bit more coding.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>We now have a better idea of how literacy rates looked like in mid-19<sup>th</sup>-century Spain. Let’s now see whether literacy rates were improving or not. We don’t have several censuses conducted a different periods to compare literacy rates but we have the <em>age</em> of these individuals. We can actually easily infer their year of birth by substracting it from the census year (1860). This procedure is not perfect for assessing change over time because of selection bias.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Implementing this exercise will however give us useful information: better than doing nothing providing we are cautious when interpreting the results. The code below first creates a field with the estimated birth year and then computes the average literacy rates of all individuals born each year (distinguishing also by sex).<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Those who are older may constitute a more selected group of individuals due to survival or out-migration (were those individuals surviving and not migrating different from those who died or left?). Also, older people have more time to become literate, an issue that may also bias the analysis.</p></div><div id="fn13"><p><sup>13</sup>&nbsp;Note how having <code>geom_point()</code> and <code>geom_line()</code> in the same <code>ggplot()</code> command depicts both the dots and the lines connecting them. The last two lines of code edit how the axes look like.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">birth_year =</span> <span class="dv">1860</span><span class="sc">-</span>age) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(birth_year, sex) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> birth_year, <span class="at">y =</span> lit_rate, <span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Year of birth"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1760</span>, <span class="dv">1860</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Literacy rate"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results are very interesting: literacy rates appear to show some improvements in some periods followed by stagnation (or even decline) in others. This may reflect the circumstances that plagued the late 18<sup>th</sup> century and the first half of the 19<sup>th</sup> century (economic crises, wars, revolutions, etc.). We should nonetheless be aware of the limitations mentioned above. Migrants, on average, tend to be more literate than those who stayed behind, so these trends might be contaminated by that.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Notice also the spikes in the earlier periods. This is mostly noise because we have very few observations who are very old, so the fact that they are literate or not changes year-to-year due to chance.</p>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;Note that while the capital city tended to receive migrants, the villages around tend to send them. Running the analysis separately for urban / rural areas might therefore be very informative.</p></div><div id="fn15"><p><sup>15</sup>&nbsp;In <code>geom_smooth()</code>, the argument <code>span</code> controls the amount of smoothing: while larger values produce smoother lines, lower values produce wigglier ones (try changing the parameter yourself). Likewise, we set <code>se = FALSE</code> to hide the confidence intervals, something we have not covered.</p></div></div><p>The graph can nonetheless be improved. On the one hand, we can exclude the observations in the earliest periods because we have very few (i.e.&nbsp;before 1785) and those from the 1850s (or even a bit ealier) because they are still children and did not have enough time to become literate (the comparison is therefore unfair). On the other hand, we can overlap a smoothing trend using <code>geom_smooth()</code> to better grasp the underlying long-term trends.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Something like this helps capturing the underlying trends more clearly:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">birth_year =</span> <span class="dv">1860</span><span class="sc">-</span>age) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(birth_year<span class="sc">&gt;=</span><span class="dv">1785</span> <span class="sc">&amp;</span> birth_year<span class="sc">&lt;=</span><span class="dv">1845</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(birth_year, sex) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> birth_year, <span class="at">y =</span> lit_rate, <span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.25</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Year of birth"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1785</span>, <span class="dv">1845</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Literacy rate"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It seems that male literacy declined significantly during the end of the 18<sup>th</sup> century and increased sharply in the first decade of the 19<sup>th</sup> century. These were turbulent years, so it is unclear whether these patterns reflect changes in literacy or other factors that selectively affected the population (i.e.&nbsp;famines and wars, and associated migratory flows, etc.). While he period 1805-1830 witnessed relative stagnation or even decline, literacy rates seemed to increase slightly in the 1830s and early 1840s.</p>
+<p>If we come back to the previous graph extending up to 1860, it showed literacy rates declining significantly from 1845 onwards until reaching 0 in 1860. This basically reflects the fact that those born in those years are children and therefore have not started or concluded their education. To better see how literacy rates change as boys and girls grew up we now plot literacy by age and restrict the analysis to those aged 4-14:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">4</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">14</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age, sex) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit_rate =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> lit_rate, <span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Age"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">14</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Literacy"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">45</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results illustrate how the learning process is faster for boys. By age 10, however, very few extra boys and girls got literate. This may reflect the time when they dropped out of school due to their working responsibilities in the field or at home. The disparities between boys and girls are probably explained by the different value that parents (and society in general) put into educating their sons and daughters. The curriculum at school itself reflected these values: while boys were expected to learn to read and write, arithmetic and other subjects (i.e.&nbsp;geography and history), girls were only expected to learn how to read (so they could read the Bible) and devoted a lot of time to learn houseskills (i.e.&nbsp;sewing, embroidery, etc.). Female schoolteachers were also significantly less educated than their male counterparts. Exploring what shaped the fraction of children attending school helps shedding more light on these issues. This information is contained in the variable <em>school</em>, which is a dummy variable with the value 1 or 0 depending whether the child was attending school or not. The code below computes the percentage of boys and girls aged 6-10 that were attending school.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&lt;=</span><span class="dv">6</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(school) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
 # Groups:   sex [2]
   sex    school     n  perc
-  <chr>   <dbl> <int> <dbl>
+  &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
 1 Female      0  9002 94.7 
 2 Female      1   505  5.31
 3 Male        0  9099 91.6 
-4 Male        1   836  8.41
-```
-
-
-:::
-:::
-
-
-The schooling enrolment that arises from this source is really low. The problem with this variable though is that this information was contained in the field *occ* (occupation) but was not reported systematically. There are locations that, from other sources, we know had a school (and children attending it) but the census does not report any children (or very few) doing so. This obviously infra-estimates the real schooling enrolment rate. A potential solution would be to identify those locations which recorded this information consistently (that is, checking whether the numbers arising from the census are similar to those reported from other sources) and restrict the analysis only to those municipalities. It is possible though that the locations that recorded schooling systematically are different from those who did not, so the results from analysing this sample may not be representative of all the locations in the full original sample. You could however test whether these two groups of villages are similar based on other features (i.e. size, occupational structure, literacy rates, etc.). If they are, you could argue that the results from analysing that subsample are representative of the whole area. We are not following this path here but you can check the [article]((https://fjbeltrantapia.github.io/papers/names-education-2024.pdf)) referenced above to learn more about this procedure and the actual enrolment rates (pages 9-10).
-
-----
-
-Let's now explore whether we should characterize this region as rural in terms of the size of those settlements (range, average, median). The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (*munic*) or settlement (*settlement*):`[A municipality could include several dispersed settlements. Most of the population lived in concentrated but a few municipalities had several.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  count(settlement, sort = TRUE)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 78 × 2
+4 Male        1   836  8.41</code></pre>
+</div>
+</div>
+<p>The schooling enrolment that arises from this source is really low. The problem with this variable though is that this information was contained in the field <em>occ</em> (occupation) but was not reported systematically. There are locations that, from other sources, we know had a school (and children attending it) but the census does not report any children (or very few) doing so. This obviously infra-estimates the real schooling enrolment rate. A potential solution would be to identify those locations which recorded this information consistently (that is, checking whether the numbers arising from the census are similar to those reported from other sources) and restrict the analysis only to those municipalities. It is possible though that the locations that recorded schooling systematically are different from those who did not, so the results from analysing this sample may not be representative of all the locations in the full original sample. You could however test whether these two groups of villages are similar based on other features (i.e.&nbsp;size, occupational structure, literacy rates, etc.). If they are, you could argue that the results from analysing that subsample are representative of the whole area. We are not following this path here but you can check the <a href="(https://fjbeltrantapia.github.io/papers/names-education-2024.pdf)">article</a> referenced above to learn more about this procedure and the actual enrolment rates (pages 9-10).</p>
+<hr>
+<p>Let’s now explore whether we should characterize this region as rural in terms of the size of those settlements (range, average, median). The map above already suggests that this region is dominated by a medium-size city (at least by mid-19th-century standards) which is surrounded by small villages. We can be more precise by just counting the number of observations living in each municipality (<em>munic</em>) or settlement (<em>settlement</em>):<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn16"><p><sup>16</sup>&nbsp;A municipality could include several dispersed settlements. Most of the population lived concentrated in one location but the population in some municipalities lived in a few dispersed settlements. In total, there are 70 municipalities containing 78 settlements.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(settlement, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 78 × 2
    settlement                n
-   <chr>                 <int>
+   &lt;chr&gt;                 &lt;int&gt;
  1 ZARAGOZA              67400
  2 EPILA                  3926
  3 BELCHITE               3296
@@ -664,92 +676,72 @@ data |>
  8 PEDROLA                2053
  9 VILLAMAYOR DE GALLEGO  1922
 10 CALATORAO              1909
-# ℹ 68 more rows
-```
-
-
-:::
-:::
-
-
-The largest location, Zaragoza, has almost 70,000 inhabitants. The other ones are however quite small. The following computes the mean and median size, as well as the smallest and the largest settlement (we already know the latter figure).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  group_by(settlement) |>
-  summarise(pop = n()) |>
-  summarise(mean = mean(pop, na.rm = TRUE),
-            median = median(pop, na.rm = TRUE),
-            min = min(pop, na.rm = TRUE),
-            max = max(pop, na.rm = TRUE))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 1 × 4
+# ℹ 68 more rows</code></pre>
+</div>
+</div>
+<p>The largest location, Zaragoza, has almost 70,000 inhabitants. The other ones are however quite small. The following computes the mean and median size, as well as the smallest and the largest settlement (we already know the latter figure).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(pop, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
    mean median   min   max
-  <dbl>  <dbl> <int> <int>
-1 1699.   684.    17 67400
-```
-
-
-:::
-:::
-
-
-It is noteworthy how the mean is much higher than the median. This is because this distribution is quite skewed: most location are relatively small but Zaragoza, the capital city, is way bigger. The average reflects this extreme value. The median, however, is not affected by this type of outlier since it splits the distribution into two and takes the value of the observation that sits in the middle (regardless the values at the top or the bottom). We can have a sense of the full distribution by plotting a histogram or a kernel density graph. Given how different the city of Zaragoza is from the rest of locations, the following creates two histogram: one with all the locations and another one excluding Zaragoza. We are using the package `patchwork` to depict these two plots side by side. Note that adjusting the `bin` argument changes the way the plots look like (there is no perfect solution here but it is up to the researcher to balance between precision and noise).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-p1 <- data |>
-  group_by(settlement) |>
-  summarise(pop = n()) |>
-  ggplot(aes(x = pop)) +
-  geom_histogram(bin = 50)
-
-p2 <- data |>
-  group_by(settlement) |>
-  summarise(pop = n()) |>
-  filter(pop<20000) |>
-  ggplot(aes(x = pop)) +
-  geom_histogram(bin = 50)
-
-library(patchwork)
-p1 + p2
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-18-1.png){width=672}
-:::
-:::
-
-
-Coming back to our original question about education, how do we assess whether there were differences in literacy rates between rural and urban areas? There are different ways of doing this. One possibility is to compute both population size and literacy rates for each settlement. We can do this for all the population of distinguishing by sex. Let's do the latter, so it enables a more refined analysis. As you can see, the code below computes the number of men and women living in each municipality and their literacy rate, which is basically the average of the dummy variable *d_write*.^[An alternative would have been to compute the number of literate individuals, so we could divide that number by the total population to obtain the literacy rate.] We store the results in a new object called `munic`.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-munic <- data |>
-  group_by(settlement, sex) |> 
-  summarise(pop = n(),
-            lit = 100*mean(d_write, na.rm = TRUE))
-munic
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 156 × 4
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+1 1699.   684.    17 67400</code></pre>
+</div>
+</div>
+<p>It is noteworthy how the mean is much higher than the median. This is because this distribution is quite skewed: most location are relatively small but Zaragoza, the capital city, is way bigger. The average reflects this extreme value. The median, however, is not affected by this type of outlier since it splits the distribution into two and takes the value of the observation that sits in the middle (regardless the values at the top or the bottom). We can have a sense of the full distribution by plotting a histogram or a kernel density graph. Given how different the city of Zaragoza is from the rest of locations, the following creates two histogram: one with all the locations and another one excluding Zaragoza. We are using the package <code>patchwork</code> to depict these two plots side by side. Note that adjusting the <code>bin</code> argument changes the way the plots look like (there is no perfect solution here but it is up to the researcher to balance between precision and noise).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bin =</span> <span class="dv">50</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement) <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pop<span class="sc">&lt;</span><span class="dv">20000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop)) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bin =</span> <span class="dv">50</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The graphs above show that most locations are pretty small (below 500 or 1,000 inhabitants). Some of them are even smaller but we also have a few that are somewhat bigger (a few rought between 2,000 and 5,000 inhabitants). The outlier is the capital city with almost 70,000 people living there.</p>
+<p>Coming back to our original question about education, how do we assess whether there were differences in literacy rates between rural and urban areas? There are different ways of doing this. One possibility is to compute both population size and literacy rates for each settlement. We can do this for all the population or distinguishing by sex. Let’s do the latter, so it enables a more refined analysis. As you can see, the code below computes the number of men and women living in each municipality plus their literacy rate, which is basically the average of the dummy variable <em>d_write</em>.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> We store the results in a new object called <code>munic</code> and check that the results are what we expect.</p>
+<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;An alternative would have been to compute the number of literate individuals, so we could divide that number by the total population to obtain the literacy rate. Note that the function <code>n()</code> counts the number of rows, that is, the number of individuals (in each group in this case).</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>munic <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement, sex) <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">n</span>(),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lit =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>munic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 156 × 4
 # Groups:   settlement [78]
    settlement      sex      pop   lit
-   <chr>           <chr>  <int> <dbl>
+   &lt;chr&gt;           &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;
  1 AGUILAR DE EBRO Female    32  0   
  2 AGUILAR DE EBRO Male      29  3.45
  3 ALAGON          Female  1438  6.05
@@ -760,33 +752,23 @@ munic
  8 ALFAJARIN       Male     558 28.9 
  9 ALFAMEN         Female   273  3.30
 10 ALFAMEN         Male     330 15.5 
-# ℹ 146 more rows
-```
-
-
-:::
-:::
-
-
-Next step is to show how literacy rates vary by population. We have the male and female population. We could use one of them as a measure of size but to be more precise we can actually create a new variable summing up those two values, so we have the total population of both sexes. Notice that doing this involves using the function `group_by()` but relying on `mutate()` instead of `summarise()`. As shown below, this procedure creates a new column that sums up the values in a particular column (*pop* here) within each category for the variable in `group_by()`(*settlement* here).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-munic <- munic |>
-  group_by(settlement) |>
-  mutate(tot_pop = sum(pop))
-munic
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 156 × 5
+# ℹ 146 more rows</code></pre>
+</div>
+</div>
+<p>Next step is to show how literacy rates vary by population. We have the male and female population. We could use one of them as a measure of size but to be more precise we can actually create a new variable summing up those two values, so we have the total population of both sexes. Notice that doing this involves using the function <code>group_by()</code> but relying on <code>mutate()</code> instead of <code>summarise()</code>.^ [While <code>summarise()</code> aggregates transforms the data frame and therefore changes the unit of observation, <code>mutate()</code> makes the computations without changing the structure of the data frame, so the unit of observation remains the same.] As shown below, this procedure creates a new column that sums up the values in a particular column (<em>pop</em> here) within each category for the variable in <code>group_by()</code>(<em>settlement</em> here).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>munic <span class="ot">&lt;-</span> munic <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tot_pop =</span> <span class="fu">sum</span>(pop))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>munic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 156 × 5
 # Groups:   settlement [78]
    settlement      sex      pop   lit tot_pop
-   <chr>           <chr>  <int> <dbl>   <int>
+   &lt;chr&gt;           &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;int&gt;
  1 AGUILAR DE EBRO Female    32  0         61
  2 AGUILAR DE EBRO Male      29  3.45      61
  3 ALAGON          Female  1438  6.05    2890
@@ -797,129 +779,105 @@ munic
  8 ALFAJARIN       Male     558 28.9     1050
  9 ALFAMEN         Female   273  3.30     603
 10 ALFAMEN         Male     330 15.5      603
-# ℹ 146 more rows
-```
-
-
-:::
-:::
-
-
-We are now in the position of comparing rural and urban locations. There are many ways of framing this. We can for instance compare literacy rates in the city of Zaragoza against all the other locations. Let's go a little beyond that a classify each locations according to different sizes, so we can compute literacy rates for different groups. Within `mutate()` we use `case_when()` here but we could have also used `cut()`.^[Using the following: `mutate(size = cut(pop, breaks = c(0, 250, 1000, 5000, Inf)))`.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-munic |>
-  mutate(size = case_when(
-      pop < 250 ~ "Very small (<250)",
-      pop < 1000 ~ "Small (250-1,000)",
-      pop < 5000 ~ "Medium (1,000-5,000)",
-      pop >= 5000 ~ "Large (>5,000)")) |>
-  group_by(size) |>
-  summarise(lit = mean(lit, na.rm = TRUE))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 4 × 2
+# ℹ 146 more rows</code></pre>
+</div>
+</div>
+<p>We are now in the position of comparing rural and urban locations. There are many ways of framing this. We can for instance compare literacy rates in the city of Zaragoza against all the other locations. Let’s go a little beyond that a classify each locations according to different sizes, so we can compute literacy rates for different groups. Within <code>mutate()</code> we use <code>case_when()</code> here but we could have also used <code>cut()</code>.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn18"><p><sup>18</sup>&nbsp;Using the following: <code>mutate(size = cut(pop, breaks = c(0, 250, 1000, 5000, Inf)))</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>munic <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">case_when</span>(</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">250</span> <span class="sc">~</span> <span class="st">"Very small (&lt;250)"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"Small (250-1,000)"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"Medium (1,000-5,000)"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&gt;=</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"Large (&gt;5,000)"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(size) <span class="sc">|&gt;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit =</span> <span class="fu">mean</span>(lit, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
   size                   lit
-  <chr>                <dbl>
-1 Large (>5,000)        32.6
+  &lt;chr&gt;                &lt;dbl&gt;
+1 Large (&gt;5,000)        32.6
 2 Medium (1,000-5,000)  16.2
 3 Small (250-1,000)     14.7
-4 Very small (<250)     11.7
-```
-
-
-:::
-:::
-
-
-Zaragoza, the only location above 5,000 inhabitants, enjoyed significantly higher literacy rates. The differences between the other locations are much smaller but it seems that small villages still suffered a penalty.^[Note though that we did not distinguish by sex above. Including *sex* in the *group_by()* function would make the trick and provide and more granular result.]
-
-Another way of looking into this is to plot all available information using a **scatter plot**. This involves taking the object `munic` containing the information on population and literacy and defines those two fields as those depicted in the x- and y- axes. Indicating also to represent the different categories in the field sex with different colours (`col = sex`) allows depicting male and female literacy rates simultaneously. Given that the capital is so much bigger than the rest, having it in the visualisation prevents having a better sense of the variation in the other locations. I am therefore creating two graphs, including and excluding the capital city, to account for this.^[As indicated above, the package `patchwork` allows plotting the two objects (or more) together. Note that, in the first plot, we have removed the title of the legend and situated it within the graph. Given that having the same legend in the second might be redundant and take up space, we have removed it altogether.] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-g1 <- munic |>
-  ggplot(aes(x = pop, y = lit, col = sex)) +
-  geom_point() +
-  labs(col = NULL) + 
-  theme(legend.position = c(0.6, 0.8)) 
-
-g2 <- munic |>
-  filter(settlement!="ZARAGOZA") |>
-  ggplot(aes(x = pop, y = lit, col = sex)) +
-  geom_point() +
-  theme(legend.position = "none")
-
-g1 + g2
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-22-1.png){width=672}
-:::
-:::
-
-
-It is clear that the city of Zaragoza enjoyed higher literacy rates for both males and females. It also seems larger villages also tend to have higher literacy than smaller ones but this is less clear.[We don't cover it here but we could be much more precise about this if we measured the correlation between these two variables: population and literacy.] We should also bear in mind that rural and urban locations may differ in their socio-economic structures, so literacy rates may not only reflect the "rural" dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogeneous groups and therefore shed more light on the "rural" factor. We therefore replicate the above but focusing only on a relatively homogeneous group: individuals aged 16-50 classified as belonging to the "Farmer" socio-economic status (we could obviously try to narrow this down even further but this suffice as an illustration). Instead of a table, the results are now presented as a bar plot. Note that we compute the total population before filtering (otherwise, the number of observations in each location will be much smaller).
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  group_by(settlement) |>
-  mutate(pop = n()) |>
-  mutate(size = case_when(
-      pop < 250 ~ "Very small (<250)",
-      pop < 1000 ~ "Small (250-1,000)",
-      pop < 5000 ~ "Medium (1,000-5,000)",
-      pop >= 5000 ~ "Large (>5,000)")) |>
-  filter(age>=16 & age<=50 & ses=="Farmer") |>  
-  group_by(size, sex) |>
-  summarise(lit = mean(d_write, na.rm = TRUE)) |>
-  mutate(size = reorder(size, desc(lit))) |>
-  ggplot(aes(x = size, y = lit, fill = sex)) +
-  geom_col(position = "dodge2") +
-  coord_flip() + 
-  labs(x = "Settlement size", y = "Literacy rate")
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-23-1.png){width=672}
-:::
-:::
-
- 
-The results show that, even when we focus on a relatively homogenous group (individuals aged 16-50 classified as belonging to the "Farmer" socio-economic group), the disparities in literacy rates persist. However, they are not as striking for men as for women. Rural areas appear to be specially detrimental to female education.
-
-----
-
-The last exercise comes back to the pattern observed above regarding the distribution of ages in the population. The number of people reporting ages ending in 0 and even numbers (0, 2, 4, 6, 8) seemed higher than it should be expected. In order to be more accurate, we can test this more explicitly and classify individuals into groups depending on the last digit of their (reported) age. We can take advantage of the operator `%%`, which returns the remainder after division, to compute the last digit.^[For instance, $37/10 = 3 \cdot 10 + 7$, $23/10 = 2 \cdot 10 + 3$ and $30/10 = 3 \cdot 10 + 0$.] The code below classifies each individuals into the last digit of their age and check what we have done:
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data <- data |>
-  mutate(age_last = age %% 10)
-
-data |>
-  select(age, age_last)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 132,499 × 2
+4 Very small (&lt;250)     11.7</code></pre>
+</div>
+</div>
+<p>Zaragoza, the only location above 5,000 inhabitants, enjoyed significantly higher literacy rates. The differences between the other locations are much smaller but it seems that the smallest villages suffered an additional penalty.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn19"><p><sup>19</sup>&nbsp;Note though that we did not distinguish by sex above. Including <em>sex</em> in the <em>group_by()</em> function would make the trick and provide and more granular result.</p></div><div id="fn20"><p><sup>20</sup>&nbsp;As indicated above, the package <code>patchwork</code> allows plotting the two objects (or more) together. Note that, in the first plot, we have removed the title of the legend and situated it within the graph. Given that having the same legend in the second might be redundant and take up space, we have removed it altogether.</p></div></div><p>Another way of looking into this is to plot all available information using a <strong>scatter plot</strong>. This involves taking the object <code>munic</code> containing the information on population and literacy and defines those two fields as those depicted in the x- and y- axes. Indicating also to represent the different categories in the field sex with different colours (<code>col = sex</code>) allows depicting male and female literacy rates simultaneously. Given that the capital is so much bigger than the rest, having it in the visualisation prevents having a better sense of the variation in the other locations. I am therefore creating two graphs, including and excluding the capital city, to account for this.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> munic <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop, <span class="at">y =</span> lit, <span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="cn">NULL</span>) <span class="sc">+</span> </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.8</span>)) </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> munic <span class="sc">|&gt;</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(settlement<span class="sc">!=</span><span class="st">"ZARAGOZA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop, <span class="at">y =</span> lit, <span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It is clear that the city of Zaragoza enjoyed higher literacy rates for both males and females. It also seems larger villages also tend to have higher literacy than smaller ones but this is less clear from the graph above.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn21"><p><sup>21</sup>&nbsp;We don’t cover it here but we could be much more precise about this if we measured the correlation between these two variables: population and literacy.</p></div><div id="fn22"><p><sup>22</sup>&nbsp;Note that we compute the total population before filtering. Otherwise, the number of observations in each location will be much smaller: it would be just those aged 16-50 and classified as “Farmer”</p></div></div><p>We should also bear in mind that rural and urban locations may differ in their socio-economic structures, so literacy rates may not only reflect a “rural” dimension but the fact that these locations are different in terms of the relative number of children and elderly population, the type of occupations, and so on. We could try to narrow down the analysis to compare more homogeneous groups and therefore shed more light on the “rural” factor. We therefore replicate the above but focusing only on a relatively homogeneous group: individuals aged 16-50 classified as belonging to the “Farmer” socio-economic status (we could obviously try to narrow this down even further but this suffices as an illustration). Instead of a table, the results are now presented as a bar plot.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(settlement) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">case_when</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">250</span> <span class="sc">~</span> <span class="st">"Very small (&lt;250)"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"Small (250-1,000)"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&lt;</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"Medium (1,000-5,000)"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&gt;=</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"Large (&gt;5,000)"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">16</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">50</span> <span class="sc">&amp;</span> ses<span class="sc">==</span><span class="st">"Farmer"</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(size, sex) <span class="sc">|&gt;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lit =</span> <span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">reorder</span>(size, <span class="fu">desc</span>(lit))) <span class="sc">|&gt;</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> size, <span class="at">y =</span> lit, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge2"</span>) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Settlement size"</span>, <span class="at">y =</span> <span class="st">"Literacy rate"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results show that, even when we focus on a relatively homogenous group (individuals aged 16-50 classified as belonging to the “Farmer” socio-economic group), the disparities in literacy rates persist. However, they are not as striking for men as for women. Rural areas appear to be specially detrimental to female education.</p>
+<hr>
+<p>The last exercise comes back to the pattern observed above regarding the distribution of ages in the population. The number of people reporting ages ending in 0 and even numbers (0, 2, 4, 6, 8) seemed higher than it should be expected. In order to be more accurate, we can test this more explicitly and classify individuals into groups depending on the last digit of their (reported) age. We can take advantage of the operator <code>%%</code>, which returns the remainder after division, to compute the last digit.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> The code below classifies each individuals into the last digit of their age and check what we have done:</p>
+<div class="no-row-height column-margin column-container"><div id="fn23"><p><sup>23</sup>&nbsp;For instance, <span class="math inline">\(37/10 = 3 \cdot 10 + 7\)</span>, <span class="math inline">\(23/10 = 2 \cdot 10 + 3\)</span> and <span class="math inline">\(30/10 = 3 \cdot 10 + 0\)</span>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_last =</span> age <span class="sc">%%</span> <span class="dv">10</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, age_last)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 132,499 × 2
      age age_last
-   <dbl>    <dbl>
+   &lt;dbl&gt;    &lt;dbl&gt;
  1     9        9
  2    26        6
  3    19        9
@@ -930,95 +888,77 @@ data |>
  8    33        3
  9    37        7
 10     1        1
-# ℹ 132,489 more rows
-```
-
-
-:::
-:::
-
-
-Theoretically, we should expect the distribution of ending digits to be relatively balance: around 10 per cent of the population should report an age ending in each digit. We can now check whether this is the case and, otherwise, which digit(s) is the most common one. Instead of reporting a table, we plot the percentage of the population in each group (adding a dashed red line at 10 per cent to act as reference benchmark). The choice of the population under study using `filter()` is important: consider full decade cohorts, so all the digits are equally present, and make sure that particular cohorts are not naturally larger.^[The number of younger individuals tends to be larger than older ones because those who die are no longer present. There will be more 16-year old than 17-year old. These differences can bias the results because the digit 6 will tend to be more prevalent not due to age-heaping but due to being more 16-year old. Feel free to plot a histogram with the distribution of ages to see this more clearly.] We choose to focus on the two decades going from aged 23 to 42.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |> filter(age>=23 & age<=42) |>
-  count(age_last) |> mutate(perc = 100*n/sum(n)) |>
-  ggplot(aes(x = age_last, y = perc)) + geom_col(alpha = 0.6) +
-  scale_x_continuous("Age last digit", breaks = seq(0, 9, 1)) + 
-  scale_y_continuous("Population (%)", limits = c(0, 20), breaks = seq(0, 20, 5)) +
-  geom_hline(yintercept = 10, col = "red", linetype = "dashed")
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-25-1.png){width=672}
-:::
-:::
-
-
-It is clear that reporting ages ending in 0 (i.e. 30, 40, etc.) is much more prevalent than any other digit. Surprisingly, rounding in 5 is not that common. The other digits that are relatively frequent are 3, 4 and 6, which is quite unexpected and may reflect some kind of "lucky numbers". Let's focus on those reporting an age ending in 0 and create a dummy variable identifying them. We can the explore whether age-heaping differs by sex and increases with age (given that we cannot explore each age separately, we will need to group individuals into decade cohorts). The graph above shows that age-heaping increases with age, a trend that is more pronounced in women.^[Note that we are only classifying those individuals between 16 and 96. There are very few individuals who are older than that, so their results are quite random. The same also applies to the decade 86-96, so they could also be removed.] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  filter(!is.na(sex)) |>
-  mutate(heap_0 = if_else(age_last==0, 1, 0)) |>
-  mutate(age_10 = cut(age, breaks = seq(16, 96, by = 10))) |>   
-  filter(!is.na(age_10)) |>
-  group_by(age_10, sex) |>
-  summarise(heap_0 = mean(heap_0, na.rm = TRUE)) |>
-  ggplot(aes(x = age_10, y = heap_0, col = sex, group = sex)) +
-  geom_point() + geom_line() +
-  geom_hline(yintercept = 0.1, col = "red", linetype = "dashed") +
-  scale_y_continuous("Population (fraction)", 
-                     limits = c(0.05, 0.4), breaks = seq(0.05, .4, 0.05))
-```
-
-::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-26-1.png){width=672}
-:::
-:::
-
-
-Another potential explanation is that less literate people are also less numerate and therefore have more difficulty remembering their actual age. It is possible to test whether this is actually the case. We replicate part of the code above to classify individuals into groups depending on whether they age-heap (*heap_0*). It is now straightforward to compute the average literacy rate for the individuals in each of those categories using `group_by()` and `summarise()`. We focus on individuals aged 25-45 to have a more homogeneous sample and make the computations for men and women separately.^[Feel free to choose a different age-group but make sure that you at least have 10 age categories, so all last digits (0-9) are possible.] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |> 
-  mutate(heap_0 = if_else(age_last==0, 1, 0)) |>  
-  filter(age>=23 & age<=42 & !is.na(sex)) |>
-  group_by(heap_0, sex) |>
-  summarise(d_write = mean(d_write, na.rm = TRUE))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 4 × 3
+# ℹ 132,489 more rows</code></pre>
+</div>
+</div>
+<p>Theoretically, we should expect the distribution of ending digits to be relatively balanced: around 10 per cent of the population should report an age ending in each digit. We can now check whether this is the case and, otherwise, which digit(s) is the most common one. Instead of reporting a table, we plot the percentage of the population in each group (adding a dashed red line at 10 per cent to act as reference benchmark). The choice of the population under study using <code>filter()</code> is important: consider full decade cohorts, so all the digits are equally present, and make sure that particular cohorts are not naturally larger.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> We choose to focus on the two decades going from aged 23 to 42.</p>
+<div class="no-row-height column-margin column-container"><div id="fn24"><p><sup>24</sup>&nbsp;The number of younger individuals tends to be larger than older ones because those who die are no longer present. There will be more 16-year old than 17-year old. These differences can bias the results because the digit 6 will tend to be more prevalent not due to age-heaping but due to being more 16-year old. Feel free to plot a histogram with the distribution of ages to see this more clearly.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">23</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">42</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age_last) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age_last, <span class="at">y =</span> perc)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Age last digit"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Population (%)"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">10</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It is clear that reporting ages ending in 0 (i.e.&nbsp;30, 40, etc.) is much more prevalent than any other digit. Surprisingly, rounding in 5 is not that common. The other digits that are relatively frequent are 3, 4 and 6, which is quite unexpected and may reflect some kind of “lucky numbers”. Let’s focus on those reporting an age ending in 0 and create a dummy variable identifying them. We can the explore whether age-heaping differs by sex and increases with age (given that we cannot explore each age separately, we will need to group individuals into decade cohorts). The graph above shows that age-heaping increases with age, a trend that is more pronounced in women: roughly around 35 per cent of women over 56 were reporting age ending in 0.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn25"><p><sup>25</sup>&nbsp;Note that we are only classifying those individuals between 16 and 96. There are very few individuals who are older than that, so their results are quite random. The same also applies to the decade 86-96, so they could also be removed.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heap_0 =</span> <span class="fu">if_else</span>(age_last<span class="sc">==</span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_10 =</span> <span class="fu">cut</span>(age, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">16</span>, <span class="dv">96</span>, <span class="at">by =</span> <span class="dv">10</span>))) <span class="sc">|&gt;</span>   </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age_10)) <span class="sc">|&gt;</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age_10, sex) <span class="sc">|&gt;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">heap_0 =</span> <span class="fu">mean</span>(heap_0, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age_10, <span class="at">y =</span> heap_0, <span class="at">col =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.1</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Population (fraction)"</span>, </span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.4</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, .<span class="dv">4</span>, <span class="fl">0.05</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-pract-comp-dim_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another potential explanation for age-heaping is that less literate people are also less numerate and therefore have more difficulty calculating or remembering their actual age. It is possible to test whether this is actually the case. We replicate part of the code above to classify individuals into groups depending on whether they age-heap (<em>heap_0</em>). It is now straightforward to compute the average literacy rate for the individuals in each of those categories using <code>group_by()</code> and <code>summarise()</code>. We focus on individuals aged 23-42 to have a more homogeneous sample and make the computations for men and women separately.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn26"><p><sup>26</sup>&nbsp;Feel free to choose a different age-group but make sure that you at least have 10 age categories, so all last digits (0-9) are possible.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heap_0 =</span> <span class="fu">if_else</span>(age_last<span class="sc">==</span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">23</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">42</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(heap_0, sex) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">d_write =</span> <span class="fu">mean</span>(d_write, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
 # Groups:   heap_0 [2]
   heap_0 sex    d_write
-   <dbl> <chr>    <dbl>
+   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
 1      0 Female   0.169
 2      0 Male     0.432
 3      1 Female   0.146
-4      1 Male     0.350
-```
-
-
-:::
-:::
-
-
-On average, both men and women reporting ages ending in 0 are less likely to be literate. While 35 per cent of men reporting ages ending in 0 are literate, this figure increases to 43.1 per cent to those who report any other age. The difference for women is less pronounced (14.6 vs 16.9 per cent) but we should bear in mind that their literacy rates are much lower in general, so the difference is non-negligible in relative terms. This supports the argument posed above: literacy and numeracy are somewhat related. We could also check whether these result also hold depending on marital status or when we restrict the analysis to rural areas (excluding the capital city), among many other possibilities. All these additional exercises would contribute to portray a richer picture of the topic under study.
-
-Let's finish here but, as mentioned above, the topics of study that these sources allow studying are quite varied. Let me also stressed that this exercise was intended not only as a way of solidifying what you have learned so far but also to show that, when explored creatively, the sources contain way more information than it looks like at first sight. If you want more examples you can check the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf), which, relying on an extended version of the same dataset we have explored here, shows that girls bearing more common names had lower literacy rates. The article argues that first names provide historians with information about the cultural values of the parents bestowing those names. As well as enabling classifying individuals according to their names (after religious figures, after family members, after kings or other political figures, etc.), this approach allows testing whether those values translated into the way that parents raised their children (i.e. the value they attach to education, etc.).  
--->
+4      1 Male     0.350</code></pre>
+</div>
+</div>
+<p>On average, both men and women reporting ages ending in 0 are less likely to be literate. While 35 per cent of men reporting ages ending in 0 are literate, this figure increases to 43.1 per cent to those who report any other age. The difference for women is less pronounced (14.6 vs 16.9 per cent) but we should bear in mind that their literacy rates are much lower in general, so the difference is non-negligible in relative terms. This supports the argument posed above: literacy and numeracy are somewhat related. We could also check whether these result also hold depending on marital status or when we restrict the analysis to rural areas (excluding the capital city), among many other possibilities. All these additional exercises would contribute to portray a richer picture of the topic under study.</p>
+<p>Let’s finish here but the range of topics that could be explored using this source is quite varied. You could for instance look into fertility (i.e.&nbsp;number of children), marriage patterns (i.e.&nbsp;percentage of men and women married at an early age or those who remained single all their lives), presence of extended family members (i.e.&nbsp;grandparents, etc.), dominant occupations (i.e.&nbsp;agriculture vs manufacturing or services, landowners vs landless labourers), household structure (i.e.&nbsp;who tends to be the head of the household), migratory patterns, numeracy captured by age-heaping, etc.</p>
+<p>Let me also stressed that this exercise was intended not only as a way of solidifying what you have learned so far but also to show that, when explored creatively, the sources contain way more information than it looks like at first sight. If you want more examples you can check the article <a href="https://fjbeltrantapia.github.io/papers/names-education-2024.pdf">What was in a name? Culture, naming practices and education in the past</a>. Relying on an extended version of the same dataset we have explored here, this article shows that girls bearing more common names (i.e.&nbsp;<em>Maria</em>) had lower literacy rates and argues that first names provide historians with information about the cultural values of the parents bestowing those names. As well as enabling classifying individuals according to their names (after religious figures, after family members, after kings or other political figures, etc.), this approach also allows testing whether those values translated into the way that parents raised their children (i.e.&nbsp;the value they attach to education, etc.) and their subsequent life trajectories (i.e.&nbsp;attending school, being literate, etc.)</p>
 <!--
 ----
 
@@ -1066,7 +1006,7 @@ p1 + p2
 ```
 
 ::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-28-1.png){width=672}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-30-1.png){width=672}
 :::
 :::
 
@@ -1092,7 +1032,7 @@ data |>
 ```
 
 ::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-29-1.png){width=672}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-31-1.png){width=672}
 :::
 :::
 
@@ -1224,7 +1164,7 @@ urban + rural
 ```
 
 ::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-33-1.png){width=672}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-35-1.png){width=672}
 :::
 :::
 
@@ -1391,7 +1331,7 @@ children |>
 ```
 
 ::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-38-1.png){width=672}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-40-1.png){width=672}
 :::
 :::
 
@@ -1418,7 +1358,7 @@ children |>
 ```
 
 ::: {.cell-output-display}
-![](3-pract-comp-dim_files/figure-html/unnamed-chunk-39-1.png){width=672}
+![](3-pract-comp-dim_files/figure-html/unnamed-chunk-41-1.png){width=672}
 :::
 :::
 
@@ -1427,7 +1367,8 @@ children |>
 
 
 
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Age-heaping can also arise from <em>digit preference</em>, that is, the preference for specific numbers in particular cultures.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;Tip: to identify those individuals who age-heap, you can rely on the operator <code>%%</code>, which returns the remainder after division. Imagine, for instance, two individuals aged 37 and 40. Dividing their ages by 10 yields <span class="math inline">\(3 \cdot 10 + 7\)</span> and <span class="math inline">\(4 \cdot 10 + 0\)</span>, respectively. By returning the remainder, the operator <code>%%</code> provides the last digit of their age (7 and 0 in this example).</p></div></div>
+</section>
+
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-beltran2024" class="csl-entry" role="listitem">

@@ -66,9 +66,11 @@ Rather than using menus as in Word documents, Quarto relies on plain text source
 
 5. Footnotes are added by opening it with a `^` and enclosing the text between square brackets: `blablabla.^[Text of the footnote.]` The footnote will be automatically numbered accordingly.
 
-6. Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: `...check the [course website](https://fjbeltrantapia.github.io/computational-history/)`
+6. Include links to other websites by enclosing between square brackets and including the link immediately after between parentheses: `...check the [course website](https://fjbeltrantapia.github.io/computational-history/)`.
 
 7.  Check [here](https://quarto.org/docs/authoring/markdown-basics.html#lists) to see how to create list with unordered or ordered items.
+
+8. Introduce comments that are ignored when rendering. The following, for instance, would show up in your quarto document but not printed in the rendered PDF: <!-- Remember to check the original source --> Remember to both open (`<!--`) and close the comment (`-->`).
 
 You can also check the Quarto guide for [Markdown style](https://quarto.org/docs/authoring/markdown-basics.html), the following guide created by Sarah Simpkin for the [Programming Historian](https://programminghistorian.org/en/lessons/getting-started-with-markdown) or Jesse Sadler's [course notes](https://jessesadler.github.io/vt5454-s24/guides/markdown-syntax.html).
 

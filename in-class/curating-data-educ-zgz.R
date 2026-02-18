@@ -7,7 +7,9 @@ library(tidyverse)
 
 setwd("~/Library/CloudStorage/OneDrive-NTNU/course-websites/computational-history")
 
-data <- read_csv("~/Library/CloudStorage/OneDrive-NTNU/papers-quarto/names-censo-1860/demography/data/censo_zgz_1860_clean.csv")
+# data <- read_csv("~/Library/CloudStorage/OneDrive-NTNU/papers-quarto/names-censo-1860/demography/data/censo_zgz_1860_clean.csv")
+data <- read_csv("~/Library/CloudStorage/OneDrive-NTNU/papers-quarto/names-censo-1860/names-zgz-1860/data/censo_zgz_1860_clean.csv")
+
 
 data <- data %>% 
   mutate(settlement = recode(settlement, 
@@ -142,7 +144,7 @@ pop <- data %>%
   summarise(pop = n())
 
   # settlements shapefile
-settl_pt_shp <- read_sf("~/Library/CloudStorage/OneDrive-NTNU/papers-quarto/names-censo-1860/demography/data/gis_settlements/Nucleos_Zgz_pt.shp") %>%
+settl_pt_shp <- read_sf("~/Library/CloudStorage/OneDrive-NTNU/papers-quarto/names-censo-1860/names-zgz-1860/data/gis_settlements/Nucleos_Zgz_pt.shp") %>%
   mutate(d_nucleo_i = str_to_upper(d_nucleo_i)) %>%
   right_join(pop, by = join_by(d_nucleo_i == settlement)) %>%
   rename(settlement = d_nucleo_i) %>%
@@ -176,10 +178,15 @@ data_40 |> count(settlement) |> print(n = Inf)
   # 132,500 obs.
   # 70 munic. (78 settlements)
 
+data_40 <- data_40 |>
+  mutate(settlement = str_replace_all(settlement, "Ñ", "N"),
+         munic = str_replace_all(munic, "Ñ", "N"))
 
 
 # Store the data set (sample) 
-write_csv(data_40, "data/zgz-1860/sample-zgz-1860.csv")
+write_csv(data_40, "data-assign/zgz-1860/sample-zgz-1860.csv")
+
+
 
 # Store the shapefiles
 munic_sample <- data_40 |> count(munic_gis)
