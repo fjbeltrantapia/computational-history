@@ -1,0 +1,81 @@
+---
+title: "Assignment: Counting words"
+execute: 
+  warning: false
+  message: false
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"  
+    code-copy: true # adds a copy button to code blocks   
+    reference-location: margin  
+---
+
+This assignment explores the **State of the Union Addresses** that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them. 
+
+As an illustration, please read the text included in the link below that records the address that Woodrow Wilson gave in December of 1913:
+
+[State of the Union Presidential Address - Woodrow Wilson - December 2, 1913](https://www.presidency.ucsb.edu/documents/first-annual-message-18) 
+
+![](images/wilson.jpg){width=100% height=100% fig-align="center"}
+
+The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-text.csv" download>here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (*president*), the year the speech was delivered (*year*) and the (whole) text of the speech itself (*text*). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.
+
+We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents. 
+
+**Extract the information** requested below and **interpret your results**. Present your analysis as a **PDF file** using **Quarto** and submit it via Blackboard (deadline: **March 12**). 
+
+1. Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
+
+2. Let's imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time. 
+
+3. Do the same with "education" as a topic. In order to do so, construct a dictionary of words related to education such as "education", "school", "student", "teacher", etc. 
+
+3. Let's now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our dataset does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. Tip: ask an AI tool for a list of presidents / party and merge it with our data set using `full_join()`.
+
+4. Going back to the topic of the presence (or absence) of women in the speeches, what is the context in which terms referring to women appear. 
+
+5. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
+
+
+<!--
+
+----
+
+# Solution
+
+In this assignment, we are going to explore the information contained in the household registers from the 1860 Population Census of the province of Zaragoza (Spain). Just let me stress that the proposed solution below is only one way of addressing the questions above. You could have approached them differently.
+
+As always you need to open a new script and set the necessary steps to clear the environment, load the necessary packages and import the data.^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Note that Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). I have the  file, named `sample-zgz-1860.csv`, in the folder `data-assign/zgz-1860`, so the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] If you have placed the file with the data set in the same folder as the quarto file, the following will work just fine: `read_csv("sample-zgz-1860.csv")`.
+
+```{r}
+#| message: false
+rm(list=ls())
+library(tidyverse)
+data <- read_csv("data-assign/sotu/sotu-texts.csv")
+```
+
+
+The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case). You can then type the name of the object and have a sense of how the data looks like and how it is structured:
+
+```{r}
+data
+```
+
+This corresponds to what we were expecting. We can then start considering the questions above.  
+
+The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.^[Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.] The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type `view(data)` to explore the full object at ease. You can also use `print(n)` to get info on more rows. `glimpse()` is also a super useful function because it gives the names of all the variables and a peak on their content: 
+
+```{r}
+data |> glimpse()
+```
+
+`glimpse()` provides the name of the columns, their type (qualitative, \<chr\>, or numerical, \<dbl\>, here) and the values for each category of the first observations. The latter comes in handy because we can see the type of information they contain. The variable *marst*, for instance, gives values such as "Single" or "Married", which helps figuring out that *marst* captures *marital status*. 
+
+----
+
+Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
+
+-->
+
+

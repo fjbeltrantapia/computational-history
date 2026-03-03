@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Francisco Beltran">
 
-<title>Assignment 3 – Computational History - HIST2025</title>
+<title>Assignment: Counting words – Computational History - HIST2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,7 +40,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7880cef56e955c5515e49ec1267627d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6f26f2b31957413ebcc7940b6bc95bf4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -193,33 +157,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="trying-quarto.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 3</h1>
+<h1 class="title">Assignment: Counting words</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Francisco Beltran </p>
-          </div>
-  </div>
     
   
     
@@ -230,63 +182,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="intro" class="level1">
-<h1>Intro</h1>
-<p>This is the third assignment for HIST2025. Here, we are going to explore information from the 1860 Population Census of the province of Zaragoza (Spain).</p>
-<!-- Oh, remember to clean this variable. -->
-<p>We first load the necessary packages and import the data.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-assign/zgz-1860/sample-zgz-1860.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This assignment explores the <strong>State of the Union Addresses</strong> that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them.</p>
+<p>As an illustration, please read the text included in the link below that records the address that Woodrow Wilson gave in December of 1913:</p>
+<p><a href="https://www.presidency.ucsb.edu/documents/first-annual-message-18">State of the Union Presidential Address - Woodrow Wilson - December 2, 1913</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wilson.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
+</figure>
 </div>
-<p>We can now start exploring the source Let’s see how it is structured.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 132,500 × 25
-   settlement munic  household hous_size indiv name     surname1  surname2 sex  
-   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;
- 1 ALAGON     ALAGON 1                 5     5 FELIPE   ARNAL     PUERTOL… Male 
- 2 ALAGON     ALAGON 1                 5     4 MARIA    DUESA     ROMAN    Fema…
- 3 ALAGON     ALAGON 1                 5     3 HIPOLITO ROMAN     PUERTOL… Male 
- 4 ALAGON     ALAGON 1                 5     1 HIPOLITO ROMAN     -        Male 
- 5 ALAGON     ALAGON 1                 5     2 ANTONIA  PUERTOLAS -        Fema…
- 6 ALAGON     ALAGON 2                 4     3 MATEO    GONZALEZ  VILLANU… Male 
- 7 ALAGON     ALAGON 2                 4     4 FERNANDA GONZALEZ  VILLANU… Fema…
- 8 ALAGON     ALAGON 2                 4     1 MATEO    GONZALEZ  TIZNA    Male 
- 9 ALAGON     ALAGON 2                 4     2 MANUELA  VILLANUE… PARDO    Fema…
-10 ALAGON     ALAGON 3                 3     3 LUISA    BARBO     BENITO   Fema…
-# ℹ 132,490 more rows
-# ℹ 16 more variables: age &lt;dbl&gt;, marst &lt;chr&gt;, ses &lt;chr&gt;, POS &lt;chr&gt;,
-#   RELACION &lt;chr&gt;, occ &lt;chr&gt;, write &lt;chr&gt;, read &lt;chr&gt;, school &lt;dbl&gt;,
-#   fam_id &lt;chr&gt;, parity &lt;dbl&gt;, father &lt;dbl&gt;, mother &lt;dbl&gt;, munic_gis &lt;chr&gt;,
-#   geometry &lt;chr&gt;, d_zgz &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>Now, I am interested in knowing how many men and women we have in the source.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  sex        n
-  &lt;chr&gt;  &lt;int&gt;
-1 Female 64050
-2 Male   68449
-3 &lt;NA&gt;       1</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-text.csv" download="">here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (<em>president</em>), the year the speech was delivered (<em>year</em>) and the (whole) text of the speech itself (<em>text</em>). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.</p>
+<p>We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents.</p>
+<p><strong>Extract the information</strong> requested below and <strong>interpret your results</strong>. Present your analysis as a <strong>PDF file</strong> using <strong>Quarto</strong> and submit it via Blackboard (deadline: <strong>March 12</strong>).</p>
+<ol type="1">
+<li><p>Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using <code>count()</code> or its visual equivalents: <code>ggplot()</code> plus <code>geom_bar()</code> for qualitative dimensions or <code>geom_histogram()</code> for numerical variables.</p></li>
+<li><p>Let’s imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time.</p></li>
+<li><p>Do the same with “education” as a topic. In order to do so, construct a dictionary of words related to education such as “education”, “school”, “student”, “teacher”, etc.</p></li>
+<li><p>Let’s now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our dataset does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. Tip: ask an AI tool for a list of presidents / party and merge it with our data set using <code>full_join()</code>.</p></li>
+<li><p>Going back to the topic of the presence (or absence) of women in the speeches, what is the context in which terms referring to women appear.</p></li>
+<li><p>Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?</p></li>
+</ol>
+<!--
+
+----
+
+# Solution
+
+In this assignment, we are going to explore the information contained in the household registers from the 1860 Population Census of the province of Zaragoza (Spain). Just let me stress that the proposed solution below is only one way of addressing the questions above. You could have approached them differently.
+
+As always you need to open a new script and set the necessary steps to clear the environment, load the necessary packages and import the data.^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Note that Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). I have the  file, named `sample-zgz-1860.csv`, in the folder `data-assign/zgz-1860`, so the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] If you have placed the file with the data set in the same folder as the quarto file, the following will work just fine: `read_csv("sample-zgz-1860.csv")`.
 
 
-</section>
+::: {.cell}
+
+```{.r .cell-code}
+rm(list=ls())
+library(tidyverse)
+data <- read_csv("data-assign/sotu/sotu-texts.csv")
+```
+:::
+
+
+
+The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case). You can then type the name of the object and have a sense of how the data looks like and how it is structured:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 43 × 1
+   president            
+   <chr>                
+ 1 Abraham Lincoln      
+ 2 Andrew Jackson       
+ 3 Andrew Johnson       
+ 4 Barack Obama         
+ 5 Benjamin Harrison    
+ 6 Calvin Coolidge      
+ 7 Chester A. Arthur    
+ 8 Donald J. Trump      
+ 9 Dwight D. Eisenhower 
+10 Franklin D. Roosevelt
+# ℹ 33 more rows
+```
+
+
+:::
+:::
+
+
+This corresponds to what we were expecting. We can then start considering the questions above.  
+
+The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.^[Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.] The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type `view(data)` to explore the full object at ease. You can also use `print(n)` to get info on more rows. `glimpse()` is also a super useful function because it gives the names of all the variables and a peak on their content: 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |> glimpse()
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Rows: 43
+Columns: 1
+$ president <chr> "Abraham Lincoln", "Andrew Jackson", "Andrew Johnson", "Bara…
+```
+
+
+:::
+:::
+
+
+`glimpse()` provides the name of the columns, their type (qualitative, \<chr\>, or numerical, \<dbl\>, here) and the values for each category of the first observations. The latter comes in handy because we can see the type of information they contain. The variable *marst*, for instance, gives values such as "Single" or "Married", which helps figuring out that *marst* captures *marital status*. 
+
+----
+
+Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
+
+-->
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

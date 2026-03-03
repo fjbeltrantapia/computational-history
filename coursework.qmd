@@ -14,6 +14,8 @@ Students are expected to participate actively in each session and go through wee
 
 3. [Comparing dimensions](3-pract-comp-dim.qmd) (due February 17 via Blackboard)
 
+4. [Countin words](4-pract-counting-words.qmd) (due March 12 via Blackboard)
+
 
 # Final assignment
 
