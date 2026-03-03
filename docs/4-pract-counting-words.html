@@ -235,20 +235,20 @@ data
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# A tibble: 43 × 1
-   president            
-   <chr>                
- 1 Abraham Lincoln      
- 2 Andrew Jackson       
- 3 Andrew Johnson       
- 4 Barack Obama         
- 5 Benjamin Harrison    
- 6 Calvin Coolidge      
- 7 Chester A. Arthur    
- 8 Donald J. Trump      
- 9 Dwight D. Eisenhower 
-10 Franklin D. Roosevelt
-# ℹ 33 more rows
+# A tibble: 235 × 3
+   president        year text                                                   
+   <chr>           <dbl> <chr>                                                  
+ 1 Joseph R. Biden  2024 "\n[Before speaking, the President presented his prepa…
+ 2 Joseph R. Biden  2023 "\nThe President. Mr. Speaker——\n[At this point, the P…
+ 3 Joseph R. Biden  2022 "\nThe President. Thank you all very, very much. Thank…
+ 4 Joseph R. Biden  2021 "\nThe President. Thank you. Thank you. Thank you. Goo…
+ 5 Donald J. Trump  2020 "\nThe President. Thank you very much. Thank you. Than…
+ 6 Donald J. Trump  2019 "\nThe President. Madam Speaker, Mr. Vice President, M…
+ 7 Donald J. Trump  2018 "\nThe President. Mr. Speaker, Mr. Vice President, Mem…
+ 8 Donald J. Trump  2017 "\nThank you very much. Mr. Speaker, Mr. Vice Presiden…
+ 9 Barack Obama     2016 "\nThank you. Mr. Speaker, Mr. Vice President, Members…
+10 Barack Obama     2015 "\nThe President. Mr. Speaker, Mr. Vice President, Mem…
+# ℹ 225 more rows
 ```
 
 
@@ -270,9 +270,11 @@ data |> glimpse()
 ::: {.cell-output .cell-output-stdout}
 
 ```
-Rows: 43
-Columns: 1
-$ president <chr> "Abraham Lincoln", "Andrew Jackson", "Andrew Johnson", "Bara…
+Rows: 235
+Columns: 3
+$ president <chr> "Joseph R. Biden", "Joseph R. Biden", "Joseph R. Biden", "Jo…
+$ year      <dbl> 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, …
+$ text      <chr> "\n[Before speaking, the President presented his prepared re…
 ```
 
 
