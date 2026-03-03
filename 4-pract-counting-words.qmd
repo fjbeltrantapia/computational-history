@@ -27,15 +27,15 @@ We will use computational text analysis to shed light on the contents of these s
 
 1. Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
 
-2. Let's imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time. 
+2. Let's imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time? Tip: Take into account that some year have 2 speeches, so you will need to make a decision of how to group them using `group_by()` and `summarise()`. 
 
-3. Do the same with "education" as a topic. In order to do so, construct a dictionary of words related to education such as "education", "school", "student", "teacher", etc. 
+3. Do the same with "education" as a topic. In order to do so, construct a dictionary of words related to education such as "education", "school", "student" and "teacher", plus any other word you think might be also important. 
 
-3. Let's now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our dataset does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. Tip: ask an AI tool for a list of presidents / party and merge it with our data set using `full_join()`.
+4. Let's now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our dataset does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. Tip: ask an AI tool for a list of presidents / party and merge it with our data set using `full_join()`.
 
-4. Going back to the topic of the presence (or absence) of women in the speeches, what is the context in which terms referring to women appear. 
+5. Going back to the topic of the presence (or absence) of women in the speeches, what is the context in which terms referring to women appear. 
 
-5. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
+6. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
 
 
 <!--
