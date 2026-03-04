@@ -19,7 +19,7 @@ As an illustration, please read the text included in the link below that records
 
 ![](images/wilson.jpg){width=100% height=100% fig-align="center"}
 
-The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-text.csv" download>here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (*president*), the year the speech was delivered (*year*) and the (whole) text of the speech itself (*text*). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.
+The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-texts.csv" download>here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (*president*), the year the speech was delivered (*year*) and the (whole) text of the speech itself (*text*). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.
 
 We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents. 
 
@@ -37,40 +37,76 @@ We will use computational text analysis to shed light on the contents of these s
 
 6. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
 
-
 <!--
 
 ----
 
 # Solution
 
-In this assignment, we are going to explore the information contained in the household registers from the 1860 Population Census of the province of Zaragoza (Spain). Just let me stress that the proposed solution below is only one way of addressing the questions above. You could have approached them differently.
-
-As always you need to open a new script and set the necessary steps to clear the environment, load the necessary packages and import the data.^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Note that Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). I have the  file, named `sample-zgz-1860.csv`, in the folder `data-assign/zgz-1860`, so the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] If you have placed the file with the data set in the same folder as the quarto file, the following will work just fine: `read_csv("sample-zgz-1860.csv")`.
+Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). ^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named `sotu-texts.csv` in the folder `data-assign/sotu`, the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] I also type the name of the newly created object `data` to inspect its contents.^[The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case).] 
 
 ```{r}
 #| message: false
 rm(list=ls())
 library(tidyverse)
 data <- read_csv("data-assign/sotu/sotu-texts.csv")
-```
-
-
-The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case). You can then type the name of the object and have a sense of how the data looks like and how it is structured:
-
-```{r}
 data
 ```
 
-This corresponds to what we were expecting. We can then start considering the questions above.  
-
-The data frame above already tells us that this dataset contains 132,500 observations (individuals). This is the unit of analysis, what we are studying.^[Notice that if we aggregate this information into households or municipalities, the unit of analysis would be different.] The top of the data frame also tells us that we there are 25 columns, that is, pieces of information about these individuals. The results above only give us a peak into the 10 first rows (individuals) and the variables that fit into the computer screen. Feel free to type `view(data)` to explore the full object at ease. You can also use `print(n)` to get info on more rows. `glimpse()` is also a super useful function because it gives the names of all the variables and a peak on their content: 
+This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (*year* and *president*) and the text of the speech itself (*text*). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the speech from 2014, a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.
 
 ```{r}
-data |> glimpse()
+speech_2014 <- data |> filter(year==2014)
+
+speech_2014$text
 ```
 
-`glimpse()` provides the name of the columns, their type (qualitative, \<chr\>, or numerical, \<dbl\>, here) and the values for each category of the first observations. The latter comes in handy because we can see the type of information they contain. The variable *marst*, for instance, gives values such as "Single" or "Married", which helps figuring out that *marst* captures *marital status*. 
+Note that the sequence "\\\n" is repeated though the text.
+
+Using `count()` on the field *president* gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of this analysis gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field *president*, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches). 
+
+```{r}
+data |>
+  count(president)
+```
+
+We could also inspect the variable *year*. Let's do it using a histogram. Note that `binwidth` is set to equal 1, so the width of the columns is exactly 1 year. Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.
+
+```{r}
+data |>
+  ggplot(aes(x = year)) + geom_histogram(binwidth = 1) +
+  scale_y_continuous(breaks = seq(0, 2, 1))
+```
+
+What's going on here. Let's look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. For completion, we could have one row and leave the other fields (*president* and *text* as missing values, NA). This is done with the function `complete()` indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using `filter()`: 1933, 1945 and 1973. 
+
+```{r}
+data <- data |>
+  complete(year = 1790:2024) 
+
+data |> filter(is.na(president))
+```
+
+Let's now identify those years having more than one speech
+
+```{r}
+
+```
+
+Some recent Presidents have also preferred not to deliver a State of the Union address
+immediately prior to their departure from office, although several have given farewell addresses.
+President Dwight Eisenhower’s farewell message, broadcast to the nation on January 17, 1961,
+became famous for its warnings against the “military-industrial complex.”7
+Nevertheless, occasionally outgoing and incoming Presidents have given successive State of the
+Union addresses within weeks of each other. President Harry Truman’s final message, delivered
+in printed form to Congress on January 7, 1953, was closely followed by President Eisenhower’s
+first message, delivered in person at the Capitol on February 2, 1953.8
+
+check also blank years: 
+
+Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
+
+
 
 ----
 
