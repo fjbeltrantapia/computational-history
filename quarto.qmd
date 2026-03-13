@@ -13,7 +13,7 @@ library(readxl)
 data <- read_excel("data/paisley-data.xlsx")
 ```
 
-Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using **Quarto**.[^1] Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications. 
+Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using **Quarto**.[^1] Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications. Given that Quarto documents also runs the code and prints the results in the RStudio console, they can also be used as a way of scripting your work.
 
 [^1]: Quarto is an open-source publishing system built on [Pandoc](https://pandoc.org) and authored using [Markdown](https://en.wikipedia.org/wiki/Markdown).]
 
@@ -52,7 +52,9 @@ You can create documents in other formats just by setting `format` to `pdf` (PDF
 quarto install tinytex
 ```
 
-Feel free now to change the `format` in the yaml to `pdf` and create one yourself.
+Feel free now to change the `format` in the yaml to `pdf` and create one yourself. 
+
+Notice that some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `str_sub(1,200)`. 
 
 # Authoring
 

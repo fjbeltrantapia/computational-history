@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -157,11 +192,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">Solution</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content page-columns page-full column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -170,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -195,36 +236,31 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Extract the information</strong> requested below and <strong>interpret your results</strong>. Present your analysis as a <strong>PDF file</strong> using <strong>Quarto</strong> and submit it via Blackboard (deadline: <strong>March 12</strong>).</p>
 <ol type="1">
 <li><p>Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using <code>count()</code> or its visual equivalents: <code>ggplot()</code> plus <code>geom_bar()</code> for qualitative dimensions or <code>geom_histogram()</code> for numerical variables.</p></li>
-<li><p>Let’s imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time? Tip: Take into account that some year have 2 speeches, so you will need to make a decision of how to group them using <code>group_by()</code> and <code>summarise()</code>.</p></li>
+<li><p>Let’s imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time? Tip: Take into account that some years have 2 speeches, so you will need to make a decision of how to group them using <code>group_by()</code> and <code>summarise()</code>.</p></li>
 <li><p>Do the same with “education” as a topic. In order to do so, construct a dictionary of words related to education such as “education”, “school”, “student” and “teacher”, plus any other word you think might be also important.</p></li>
 <li><p>Let’s now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our dataset does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. Tip: ask an AI tool for a list of presidents / party and merge it with our data set using <code>full_join()</code>.</p></li>
 <li><p>Going back to the topic of the presence (or absence) of women in the speeches, what is the context in which terms referring to women appear.</p></li>
 <li><p>Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?</p></li>
 </ol>
 <!--
-
-----
-
-# Solution
-
-Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). ^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named `sotu-texts.csv` in the folder `data-assign/sotu`, the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] I also type the name of the newly created object `data` to inspect its contents.^[The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case).] 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-rm(list=ls())
-library(tidyverse)
-data <- read_csv("data-assign/sotu/sotu-texts.csv")
-data
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 235 × 3
+**Warning**: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `spstr_sub(1,200)`.-->
+<hr>
+<section id="solution" class="level1 page-columns page-full">
+<h1>Solution</h1>
+<p>Let’s start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the <code>tidyverse</code> package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named <code>sotu-texts.csv</code> in the folder <code>data-assign/sotu</code>, the code below reads it into R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I also type the name of the newly created object <code>data</code> to inspect its contents.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The function <code>read_csv()</code> forms part of the tidyverse, so it becomes available when you load the <code>tidyverse</code>. Defining the <code>locale</code> helps making sure the characters are properly encoded and recognised.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;The symbol <code>&lt;-</code> (called assignment operator) takes the object that <code>read_csv()</code> imports and stores it in the environment with the name you indicate (<code>data</code> in this case).</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-assign/sotu/sotu-texts.csv"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 235 × 3
    president        year text                                                   
-   <chr>           <dbl> <chr>                                                  
+   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;                                                  
  1 Joseph R. Biden  2024 "\n[Before speaking, the President presented his prepa…
  2 Joseph R. Biden  2023 "\nThe President. Mr. Speaker——\n[At this point, the P…
  3 Joseph R. Biden  2022 "\nThe President. Thank you all very, very much. Thank…
@@ -235,54 +271,33 @@ data
  8 Donald J. Trump  2017 "\nThank you very much. Mr. Speaker, Mr. Vice Presiden…
  9 Barack Obama     2016 "\nThank you. Mr. Speaker, Mr. Vice President, Members…
 10 Barack Obama     2015 "\nThe President. Mr. Speaker, Mr. Vice President, Mem…
-# ℹ 225 more rows
-```
-
-
-:::
-:::
-
-
-This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (*year* and *president*) and the text of the speech itself (*text*). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the speech from 2014, a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-speech_2014 <- data |> filter(year==2014)
-
-speech_2014$text
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] "\nThe President. Mr. Speaker, Mr. Vice President, Members of Congress, my fellow Americans: Today in America, a teacher spent extra time with a student who needed it and did her part to lift America's graduation rate to its highest levels in more than three decades. An entrepreneur flipped on the lights in her tech startup and did her part to add to the more than 8 million new jobs our businesses have created over the past 4 years. An autoworker fine-tuned some of the best, most fuel-efficient cars in the world and did his part to help America wean itself off foreign oil.\nA farmer prepared for the spring after the strongest 5-year stretch of farm exports in our history. A rural doctor gave a young child the first prescription to treat asthma that his mother could afford. A man took the bus home from the graveyard shift, bone-tired, but dreaming big dreams for his son. And in tight-knit communities all across America, fathers and mothers will tuck in their kids, put an arm around their spouse, remember fallen comrades, and give thanks for being home from a war that after 12 long years is finally coming to an end.\nTonight this Chamber speaks with one voice to the people we represent: It is you, our citizens, who make the state of our Union strong.\nAnd here are the results of your efforts: the lowest unemployment rate in over 5 years; a rebounding housing market; a manufacturing sector that's adding jobs for the first time since the 1990s; more oil produced at home than we buy from the rest of the world, the first time that's happened in nearly 20 years; our deficits cut by more than half. And for the first time in over a decade, business leaders around the world have declared that China is no longer the world's number-one place to invest, America is.\nThat's why I believe this can be a breakthrough year for America. After 5 years of grit and determined effort, the United States is better positioned for the 21st century than any other nation on Earth.\nThe question for everyone in this Chamber, running through every decision we make this year, is whether we are going to help or hinder this progress. For several years now, this town has been consumed by a rancorous argument over the proper size of the Federal Government. It's an important debate, one that dates back to our very founding. But when that debate prevents us from carrying out even the most basic functions of our democracy—when our differences shut down Government or threaten the full faith and credit of the United States—then we are not doing right by the American people.\nNow, as President, I'm committed to making Washington work better and rebuilding the trust of the people who sent us here. And I believe most of you are too. Last month, thanks to the work of Democrats and Republicans, Congress finally produced a budget that undoes some of last year's severe cuts to priorities like education. Nobody got everything they wanted, and we can still do more to invest in this country's future while bringing down our deficit in a balanced way, but the budget compromise should leave us freer to focus on creating new jobs, not creating new crises.\nAnd in the coming months, let's see where else we can make progress together. Let's make this a year of action. That's what most Americans want: for all of us in this Chamber to focus on their lives, their hopes, their aspirations. And what I believe unites the people of this Nation—regardless of race or region or party, young or old, rich or poor—is the simple, profound belief in opportunity for all: the notion that if you work hard and take responsibility, you can get ahead in America.\nNow, let's face it, that belief has suffered some serious blows. Over more than three decades, even before the great recession hit, massive shifts in technology and global competition had eliminated a lot of good, middle class jobs and weakened the economic foundations that families depend on.\nToday, after 4 years of economic growth, corporate profits and stock prices have rarely been higher, and those at the top have never done better. But average wages have barely budged. Inequality has deepened. Upward mobility has stalled. The cold, hard fact is that even in the midst of recovery, too many Americans are working more than ever just to get by, let alone to get ahead. And too many still aren't working at all.\nSo our job is to reverse these trends. It won't happen right away, and we won't agree on everything. But what I offer tonight is a set of concrete, practical proposals to speed up growth, strengthen the middle class, and build new ladders of opportunity into the middle class. Some require congressional action, and I am eager to work with all of you. But America does not stand still, and neither will I. So wherever and whenever I can take steps without legislation to expand opportunity for more American families, that's what I'm going to do.\nAs usual, our First Lady sets a good example. [Applause] Well—[applause]. Michelle's \"Let's Move!\" partnership with schools, businesses, local leaders has helped bring down childhood obesity rates for the first time in 30 years. And that's an achievement that will improve lives and reduce health care costs for decades to come. The Joining Forces alliance that Michelle and Jill Biden launched has already encouraged employers to hire or train nearly 400,000 veterans and military spouses.\nTaking a page from that playbook, the White House just organized a College Opportunity Summit, where already, 150 universities, businesses, nonprofits have made concrete commitments to reduce inequality in access to higher education and to help every hard-working kid go to college and succeed when they get to campus. And across the country, we're partnering with mayors, Governors, and State legislatures on issues from homelessness to marriage equality.\nThe point is, there are millions of Americans outside of Washington who are tired of stale political arguments and are moving this country forward. They believe—and I believe—that here in America, our success should depend not on accident of birth, but the strength of our work ethic and the scope of our dreams. That's what drew our forebears here. That's how the daughter of a factory worker is CEO of America's largest automaker; how the son of a barkeep is Speaker of the House; how the son of a single mom can be President of the greatest nation on Earth.\nOpportunity is who we are. And the defining project of our generation must be to restore that promise. We know where to start: The best measure of opportunity is access to a good job. With the economy picking up speed, companies say they intend to hire more people this year. And over half of big manufacturers say they're thinking of insourcing jobs from abroad.\nSo let's make that decision easier for more companies. Both Democrats and Republicans have argued that our Tax Code is riddled with wasteful, complicated loopholes that punish businesses investing here and reward companies that keep profits abroad. Let's flip that equation. Let's work together to close those loopholes, end those incentives to ship jobs overseas, and lower tax rates for businesses that create jobs right here at home.\nMoreover, we can take the money we save from this transition to tax reform to create jobs rebuilding our roads, upgrading our ports, unclogging our commutes, because in today's global economy, first-class jobs gravitate to first-class infrastructure. We'll need Congress to protect more than 3 million jobs by finishing transportation and waterways bills this summer. That can happen. But I'll act on my own to slash bureaucracy and streamline the permitting process for key projects so we can get more construction workers on the job as fast as possible.\nWe also have the chance, right now, to beat other countries in the race for the next wave of high-tech manufacturing jobs. My administration has launched two hubs for high-tech manufacturing in Raleigh, North Carolina, and Youngstown, Ohio, where we've connected businesses to research universities that can help America lead the world in advanced technologies. Tonight I'm announcing, we'll launch six more this year. Bipartisan bills in both Houses could double the number of these hubs and the jobs they create. So get those bills to my desk. Put more Americans back to work.\nLet's do more to help the entrepreneurs and small-business owners who create most new jobs in America. Over the past 5 years, my administration has made more loans to small-business owners than any other. And when 98 percent of our exporters are small businesses, new trade partnerships with Europe and Asia—the Asia-Pacific will help them create more jobs. We need to work together on tools like bipartisan trade promotion authority to protect our workers, protect our environment, and open new markets to new goods stamped \"Made in the U.S.A.\"\nListen, China and Europe aren't standing on the sidelines, and neither should we. We know that the nation that goes all-in on innovation today will own the global economy tomorrow. This is an edge America cannot surrender. Federally funded research helped lead to the ideas and inventions behind Google and smartphones. And that's why Congress should undo the damage done by last year's cuts to basic research so we can unleash the next great American discovery. There are entire industries to be built based on vaccines that stay ahead of drug-resistant bacteria or paper-thin material that's stronger than steel. And let's pass a patent reform bill that allows our businesses to stay focused on innovation, not costly and needless litigation.\nNow, one of the biggest factors in bringing more jobs back is our commitment to American energy. The all-of-the-above energy strategy I announced a few years ago is working, and today, America is closer to energy independence than we have been in decades.\nOne of the reasons why is natural gas. If extracted safely, it's the bridge fuel that can power our economy with less of the carbon pollution that causes climate change. Businesses plan to invest almost $100 billion in new factories that use natural gas. I'll cut redtape to help States get those factories built and put folks to work, and this Congress can help by putting people to work building fueling stations that shift more cars and trucks from foreign oil to American natural gas.\nMeanwhile, my administration will keep working with the industry to sustain production and jobs growth while strengthening protection of our air, our water, our communities. And while we're at it, I'll use my authority to protect more of our pristine Federal lands for future generations.\nWell, it's not just oil and natural gas production that's booming, we're becoming a global leader in solar too. Every 4 minutes, another American home or business goes solar, every panel pounded into place by a worker whose job cannot be outsourced. Let's continue that progress with a smarter tax policy that stops giving $4 billion a year to fossil fuel industries that don't need it so we can invest more in fuels of the future that do.\nAnd even as we've increased energy production, we've partnered with businesses, builders, and local communities to reduce the energy we consume. When we rescued our automakers, for example, we worked with them to set higher fuel efficiency standards for our cars. In the coming months, I'll build on that success by setting new standards for our trucks so we can keep driving down oil imports and what we pay at the pump.\nAnd taken together, our energy policy is creating jobs and leading to a cleaner, safer planet. Over the past 8 years, the United States has reduced our total carbon pollution more than any other nation on Earth. But we have to act with more urgency, because a changing climate is already harming Western communities struggling with drought and coastal cities dealing with floods. That's why I directed my administration to work with States, utilities, and others to set new standards on the amount of carbon pollution our power plants are allowed to dump into the air.\nThe shift to a cleaner energy economy won't happen overnight, and it will require some tough choices along the way. But the debate is settled. Climate change is a fact. And when our children's children look us in the eye and ask if we did all we could to leave them a safer, more stable world, with new sources of energy, I want us to be able to say, yes, we did.\nFinally, if we're serious about economic growth, it is time to heed the call of business leaders, labor leaders, faith leaders, law enforcement and fix our broken immigration system. Republicans and Democrats in the Senate have acted, and I know that members of both parties in the House want to do the same. Independent economists say immigration reform will grow our economy and shrink our deficits by almost $1 trillion in the next two decades. And for good reason: When people come here to fulfill their dreams—to study, invent, contribute to our culture—they make our country a more attractive place for businesses to locate and create jobs for everybody. So let's get immigration reform done this year. [Applause] Let's get it done. It's time.\nThe ideas I've outlined so far can speed up growth and create more jobs. But in this rapidly changing economy, we have to make sure that every American has the skills to fill those jobs. The good news is, we know how to do it.\nTwo years ago, as the auto industry came roaring back, Andra Rush opened up a manufacturing firm in Detroit. She knew that Ford needed parts for the best selling truck in America, and she knew how to make those parts. She just needed the workforce. So she dialed up what we call an American Job Center, places where folks can walk in to get the help or training they need to find a new job or a better job. She was flooded with new workers. And today, Detroit Manufacturing Systems has more than 700 employees. And what Andra and her employees experienced is how it should be for every employer and every job seeker.\nSo tonight I've asked Vice President Biden to lead an across-the-board reform of America's training programs to make sure they have one mission: train Americans with the skills employers need and match them to good jobs that need to be filled right now. That means more on-the-job training and more apprenticeships that set a young worker on an upward trajectory for life. It means connecting companies to community colleges that can help design training to fill their specific needs. And if Congress wants to help, you can concentrate funding on proven programs that connect more ready-to-work Americans with ready-to-be-filled jobs.\nI'm also convinced we can help Americans return to the workforce faster by reforming unemployment insurance so that it's more effective in today's economy. But first, this Congress needs to restore the unemployment insurance you just let expire for 1.6 million people.\nLet me tell you why. Misty DeMars is a mother of two young boys. She'd been steadily employed since she was a teenager, put herself through college. She'd never collected unemployment benefits, but she'd been paying taxes. In May, she and her husband used their life savings to buy their first home. A week later, budget cuts claimed the job she loved. Last month, when their unemployment insurance was cut off, she sat down and wrote me a letter, the kind I get every day. \"We are the face of the unemployment crisis,\" she wrote. \"I'm not dependent on the government. Our country depends on people like us who build careers, contribute to society, care about our neighbors. I'm confident that in time, I will find a job, I will pay my taxes, and we will raise our children in their own home in the community we love. Please give us this chance.\"\nCongress, give these hard-working, responsible Americans that chance. Give them that chance. [Applause] Give them the chance. They need our help right now. But more important, this country needs them in the game. That's why I've been asking CEOs to give more long-term unemployed workers a fair shot at new jobs, a new chance to support their families. And in fact, this week, many will come to the White House to make that commitment real. Tonight I ask every business leader in America to join us and to do the same, because we are stronger when America fields a full team.\nOf course, it's not enough to train today's workforce. We also have to prepare tomorrow's workforce, by guaranteeing every child access to a world-class education. Estiven Rodriguez couldn't speak a word of English when he moved to New York City at age 9. But last month, thanks to the support of great teachers and an innovative tutoring program, he led a march of his classmates through a crowd of cheering parents and neighbors from their high school to the post office, where they mailed off their college applications. And this son of a factory worker just found out, he's going to college this fall.\nFive years ago, we set out to change the odds for all our kids. We worked with lenders to reform student loans, and today, more young people are earning college degrees than ever before. Race to the Top, with the help of Governors from both parties, has helped States raise expectations and performance. Teachers and principals in schools from Tennessee to Washington, DC, are making big strides in preparing students with the skills for the new economy: problem solving, critical thinking, science, technology, engineering, math.\nNow, some of this change is hard. It requires everything from more challenging curriculums and more demanding parents to better support for teachers and new ways to measure how well our kids think, not how well they can fill in a bubble on a test. But it is worth it, and it is working. The problem is, we're still not reaching enough kids, and we're not reaching them in time. And that has to change.\nResearch shows that one of the best investments we can make in a child's life is high-quality early education. Last year, I asked this Congress to help States make high-quality pre-K available to every 4-year-old. And as a parent as well as a President, I repeat that request tonight. But in the meantime, 30 States have raised pre-K funding on their own. They know we can't wait. So just as we worked with States to reform our schools, this year, we'll invest in new partnerships with States and communities across the country in a Race to the Top for our youngest children. And as Congress decides what it's going to do, I'm going to pull together a coalition of elected officials, business leaders, and philanthropists willing to help more kids access the high-quality pre-K that they need. It is right for America. We need to get this done.\nLast year, I also pledged to connect 99 percent of our students to high-speed broadband over the next 4 years. Tonight I can announce that with the support of the FCC and companies like Apple, Microsoft, Sprint, and Verizon, we've got a down payment to start connecting more than 15,000 schools and 20 million students over the next 2 years, without adding a dime to the deficit.\nWe're working to redesign high schools and partner them with colleges and employers that offer the real-world education and hands-on training that can lead directly to a job and career. We're shaking up our system of higher education to give parents more information and colleges more incentive to offer better value so that no middle class kid is priced out of a college education.\nWe're offering millions the opportunity to cap their monthly student loan payments to 10 percent of their income, and I want to work with Congress to see how we can help even more Americans who feel trapped by student loan debt. And I'm reaching out to some of America's leading foundations and corporations on a new initiative to help more young men of color facing especially tough odds to stay on track and reach their full potential.\nThe bottom line is, Michelle and I want every child to have the same chance this country gave us. But we know our opportunity agenda won't be complete, and too many young people entering the workforce today will see the American Dream as an empty promise, unless we also do more to make sure our economy honors the dignity of work and hard work pays off for every single American.\nToday, women make up about half our workforce, but they still make 77 cents for every dollar a man earns. That is wrong, and in 2014, it's an embarrassment. Women deserve equal pay for equal work. She deserves to have a baby without sacrificing her job. A mother deserves a day off to care for a sick child or a sick parent without running into hardship. And you know what, a father does too. It is time to do away with workplace policies that belong in a \"Mad Men\" episode. [Laughter] This year, let's all come together—Congress, the White House, businesses from Wall Street to Main Street—to give every woman the opportunity she deserves. Because I believe when women succeed, America succeeds.\nNow, women hold a majority of lower wage jobs, but they're not the only ones stifled by stagnant wages. Americans understand that some people will earn more money than others, and we don't resent those who, by virtue of their efforts, achieve incredible success. That's what America is all about. But Americans overwhelmingly agree that no one who works full-time should ever have to raise a family in poverty.\nIn the year since I asked this Congress to raise the minimum wage, five States have passed laws to raise theirs. Many businesses have done it on their own. Nick Chute is here today with his boss, John Soranno. John's an owner of Punch Pizza in Minneapolis, and Nick helps make the dough. [Laughter] Only now he makes more of it. [Laughter] John just gave his employees a raise to 10 bucks an hour, and that's a decision that has eased their financial stress and boosted their morale.\nTonight I ask more of America's business leaders to follow John's lead: Do what you can to raise your employees' wages. It's good for the economy. It's good for America. To every mayor, Governor, State legislator in America, I say: You don't have to wait for Congress to act; Americans will support you if you take this on.\nAnd as a chief executive, I intend to lead by example. Profitable corporations like Costco see higher wages as the smart way to boost productivity and reduce turnover. We should too. In the coming weeks, I will issue an Executive order requiring Federal contractors to pay their federally funded employees a fair wage of at least 10 dollars and 10 cents an hour. Because if you cook our troops' meals or wash their dishes, you should not have to live in poverty.\nOf course, to reach millions more, Congress does need to get on board. Today, the Federal minimum wage is worth about 20 percent less than it was when Ronald Reagan first stood here. And Tom Harkin and George Miller have a bill to fix that by lifting the minimum wage to 10 dollars and 10 cents. It's easy to remember: 10-10. This will help families. It will give businesses customers with more money to spend. It does not involve any new bureaucratic program. So join the rest of the country. Say yes. Give America a raise. Give them a raise.\nThere are other steps we can take to help families make ends meet, and few are more effective at reducing inequality and helping families pull themselves up through hard work than the earned-income tax credit. Right now it helps about half of all parents at some point. Think about that: It helps about half of all parents in America at some point in their lives. But I agree with Republicans like Senator Rubio that it doesn't do enough for single workers who don't have kids. So let's work together to strengthen the credit, reward work, help more Americans get ahead.\nLet's do more to help Americans save for retirement. Today, most workers don't have a pension. A Social Security check often isn't enough on its own. And while the stock market has doubled over the last 5 years, that doesn't help folks who don't have 401(k)s. That's why, tomorrow, I will direct the Treasury to create a new way for working Americans to start their own retirement savings: MyI—MyRA.\nIt's a new savings bond that encourages folks to build a nest egg. MyRA guarantees a decent return with no risk of losing what you put in. And if this Congress wants to help, work with me to fix an upside-down Tax Code that gives big tax breaks to help the wealthy save, but does little or nothing for middle class Americans. Offer every American access to an automatic IRA on the job so they can save at work just like everybody in this Chamber can.\nAnd since the most important investment many families make is their home, send me legislation that protects taxpayers from footing the bill for a housing crisis ever again and keeps the dream of homeownership alive for future generations.\nOne last point on financial security: For decades, few things exposed hard-working families to economic hardship more than a broken health care system. And in case you haven't heard, we're in the process of fixing that. Now, a preexisting condition used to mean that someone like Amanda Shelley, a physician's assistant and single mom from Arizona, couldn't get health insurance. But on January 1, she got covered. On January 3, she felt a sharp pain. On January 6, she had emergency surgery. Just one week earlier, Amanda said, and that surgery would have meant bankruptcy.\nThat's what health insurance reform is all about: the peace of mind that if misfortune strikes, you don't have to lose everything. Already, because of the Affordable Care Act, more than 3 million Americans under age 26 have gained coverage under their parent's plan. More than 9 million Americans have signed up for private health insurance or Medicaid coverage. Nine million.\nAnd here's another number: zero. Because of this law, no American—none, zero—can ever again be dropped or denied coverage for a preexisting condition like asthma or back pain or cancer. No woman can ever be charged more just because she's a woman. And we did all this while adding years to Medicare's finances, keeping Medicare premiums flat, and lowering prescription costs for millions of seniors.\nNow, I do not expect to convince my Republican friends on the merits of this law. [Laughter] But I know that the American people are not interested in refighting old battles. So again, if you have specific plans to cut costs, cover more people, increase choice, tell America what you'd do differently. Let's see if the numbers add up. But let's not have another 40-something votes to repeal a law that's already helping millions of Americans like Amanda. The first 40 were plenty. [Laughter]\nWe all owe it to the American people to say what we're for, not just what we're against. And if you want to know the real impact this law is having, just talk to Governor Steve Beshear of Kentucky, who's here tonight. Now, Kentucky is not the most liberal part of the country. That's not where I got my highest vote totals. [Laughter] But he's like a man possessed when it comes to covering his Commonwealth's families. They're our neighbors and our friends, he said: \"They're people we shop and go to church with, farmers out on the tractor, grocery clerks. They're people who go to work every morning praying they don't get sick. No one deserves to live that way.\"\nSteve's right. That's why tonight I ask every American who knows someone without health insurance to help them get covered by March 31. [Applause] Help them get covered. Moms, get on your kids to sign up. Kids, call your mom and walk her through the application. It will give her some peace of mind, and plus, she'll appreciate hearing from you. [Laughter]\nAfter all, that's the spirit that has always moved this Nation forward. It's the spirit of citizenship, the recognition that through hard work and responsibility, we can pursue our individual dreams, but still come together as one American family to make sure the next generation can pursue its dreams as well.\nCitizenship means standing up for everyone's right to vote. Last year, part of the Voting Rights Act was weakened, but conservative Republicans and liberal Democrats are working together to strengthen it. And the bipartisan Commission I appointed, chaired by my campaign lawyer and Governor Romney's campaign lawyer, came together and have offered reforms so that no one has to wait more than a half hour to vote. Let's support these efforts. It should be the power of our vote, not the size of our bank accounts, that drives our democracy.\nCitizenship means standing up for the lives that gun violence steals from us each day. I've seen the courage of parents, students, pastors, police officers all over this country who say, \"We are not afraid.\" And I intend to keep trying, with or without Congress, to help stop more tragedies from visiting innocent Americans in our movie theaters, in our shopping malls, or schools like Sandy Hook.\nCitizenship demands a sense of common purpose, participation in the hard work of self-government, an obligation to serve our communities. And I know this Chamber agrees that few Americans give more to their country than our diplomats and the men and women of the United States Armed Forces. Thank you. Tonight, because of the extraordinary troops and civilians who risk and lay down their lives to keep us free, the United States is more secure. When I took office, nearly 180,000 Americans were serving in Iraq and Afghanistan. Today, all our troops are out of Iraq. More than 60,000 of our troops have already come home from Afghanistan. With Afghan forces now in the lead for their own security, our troops have moved to a support role. Together with our allies, we will complete our mission there by the end of this year, and America's longest war will finally be over.\nAfter 2014, we will support a unified Afghanistan as it takes responsibility for its own future. If the Afghan Government signs a security agreement that we have negotiated, a small force of Americans could remain in Afghanistan with NATO allies to carry out two narrow missions: training and assisting Afghan forces and counterterrorism operations to pursue any remnants of Al Qaida. For while our relationship with Afghanistan will change, one thing will not: our resolve that terrorists do not launch attacks against our country.\nThe fact is, that danger remains. While we've put Al Qaida's core leadership on a path to defeat, the threat has evolved as Al Qaida affiliates and other extremists take root in different parts of the world. In Yemen, Somalia, Iraq, Mali, we have to keep working with partners to disrupt and disable those networks. In Syria, we'll support the opposition that rejects the agenda of terrorist networks. Here at home, we'll keep strengthening our defenses and combat new threats like cyber attacks. And as we reform our defense budget, we will have to keep faith with our men and women in uniform and invest in the capabilities they need to succeed in future missions.\nWe have to remain vigilant. But I strongly believe our leadership and our security cannot depend on our outstanding military alone. As Commander in Chief, I have used force when needed to protect the American people, and I will never hesitate to do so as long as I hold this office. But I will not send our troops into harm's way unless it is truly necessary, nor will I allow our sons and daughters to be mired in open-ended conflicts. We must fight the battles that need to be fought, not those that terrorists prefer from us: large-scale deployments that drain our strength and may ultimately feed extremism.\nSo even as we actively and aggressively pursue terrorist networks through more targeted efforts and by building the capacity of our foreign partners, America must move off a permanent war footing. That's why I've imposed prudent limits on the use of drones. For we will not be safer if people abroad believe we strike within their countries without regard for the consequence.\nThat's why, working with this Congress, I will reform our surveillance programs, because the vital work of our intelligence community depends on public confidence, here and abroad, that privacy of ordinary people is not being violated.\nAnd with the Afghan war ending, this needs to be the year Congress lifts the remaining restrictions on detainee transfers and we close the prison at Guantanamo Bay. Because we counter terrorism not just through intelligence and military actions, but by remaining true to our constitutional ideals and setting an example for the rest of the world.\nYou see, in a world of complex threats, our security, our leadership, depends on all elements of our power, including strong and principled diplomacy. American diplomacy has rallied more than 50 countries to prevent nuclear materials from falling into the wrong hands and allowed us to reduce our own reliance on cold war stockpiles. American diplomacy, backed by the threat of force, is why Syria's chemical weapons are being eliminated.\nAnd we will continue to work with the international community to usher in the future the Syrian people deserve, a future free of dictatorship, terror, and fear. As we speak, American diplomacy is supporting Israelis and Palestinians as they engage in the difficult but necessary talks to end the conflict there, to achieve dignity and an independent state for Palestinians and lasting peace and security for the State of Israel, a Jewish state that knows America will always be at their side.\nAnd it is American diplomacy, backed by pressure, that has halted the progress of Iran's nuclear program and rolled back parts of that program for the very first time in a decade. As we gather here tonight, Iran has begun to eliminate its stockpile of higher levels of enriched uranium. It's not installing advanced centrifuges. Unprecedented inspections help the world verify every day that Iran is not building a bomb. And with our allies and partners, we're engaged in negotiations to see if we can peacefully achieve a goal we all share: preventing Iran from obtaining a nuclear weapon.\nThese negotiations will be difficult. They may not succeed. We are clear eyed about Iran's support for terrorist organizations like Hizballah, which threatens our allies. And we're clear about the mistrust between our nations, mistrust that cannot be wished away. But these negotiations don't rely on trust. Any long-term deal we agree to must be based on verifiable action that convinces us and the international community that Iran is not building a nuclear bomb. If John F. Kennedy and Ronald Reagan could negotiate with the Soviet Union, then surely a strong and confident America can negotiate with less powerful adversaries today.\nThe sanctions that we put in place helped make this opportunity possible. But let me be clear: If this Congress sends me a new sanctions bill now that threatens to derail these talks, I will veto it. For the sake of our national security, we must give diplomacy a chance to succeed. If Iran's leaders do not seize this opportunity, then I will be the first to call for more sanctions and stand ready to exercise all options to make sure Iran does not build a nuclear weapon. But if Iran's leaders do seize the chance—and we'll know soon enough—then Iran could take an important step to rejoin the community of nations, and we will have resolved one of the leading security challenges of our time without the risks of war.\nNow, finally, let's remember that our leadership is defined not just by our defense against threats, but by the enormous opportunities to do good and promote understanding around the globe: to forge greater cooperation, to expand new markets, to free people from fear and want. And no one is better positioned to take advantage of those opportunities than America.\nOur alliance with Europe remains the strongest the world has ever known. From Tunisia to Burma, we're supporting those who are willing to do the hard work of building democracy. In Ukraine, we stand for the principle that all people have the right to express themselves freely and peacefully and to have a say in their country's future. Across Africa, we're bringing together businesses and governments to double access to electricity and help end extreme poverty. In the Americas, we're building new ties of commerce, but we're also expanding cultural and educational exchanges among young people. And we will continue to focus on the Asia-Pacific, where we support our allies, shape a future of greater security and prosperity, and extend a hand to those devastated by disaster, as we did in the Philippines, when our Marines and civilians rushed to aid those battered by a typhoon, and who were greeted with words like, \"We will never forget your kindness\" and \"God bless America.\"\nWe do these things because they help promote our long-term security, and we do them because we believe in the inherent dignity and equality of every human being, regardless of race or religion, creed or sexual orientation. And next week, the world will see one expression of that commitment, when Team U.S.A. marches the red, white, and blue into the Olympic Stadium and brings home the gold. [Laughter]\nAudience members. U.S.A.! U.S.A.! U.S.A.!\nThe President. My fellow Americans, no other country in the world does what we do. On every issue, the world turns to us, not simply because of the size of our economy or our military might, but because of the ideals we stand for and the burdens we bear to advance them. No one knows this better than those who serve in uniform.\nAs this time of war draws to a close, a new generation of heroes returns to civilian life. We'll keep slashing that backlog so our veterans receive the benefits they've earned and our wounded warriors receive the health care—including the mental health care—that they need. We'll keep working to help all our veterans translate their skills and leadership into jobs here at home. And we will all continue to join forces to honor and support our remarkable military families.\nLet me tell you about one of those families I've come to know. I first met Cory Remsburg, a proud Army Ranger, at Omaha Beach on the 65th anniversary of D-day. Along with some of his fellow Rangers, he walked me through the program and the ceremony. He was a strong, impressive young man, had an easy manner, he was sharp as a tack. And we joked around and took pictures, and I told him to stay in touch.\nA few months later, on his 10th deployment, Cory was nearly killed by a massive roadside bomb in Afghanistan. His comrades found him in a canal, face down, underwater, shrapnel in his brain. For months, he lay in a coma. And the next time I met him, in the hospital, he couldn't speak, could barely move. Over the years, he's endured dozens of surgeries and procedures, hours of grueling rehab every day.\nEven now, Cory is still blind in one eye, still struggles on his left side. But slowly, steadily, with the support of caregivers like his dad Craig and the community around him, Cory has grown stronger. And day by day, he's learned to speak again and stand again and walk again. And he's working toward the day when he can serve his country again. \"My recovery has not been easy,\" he says. \"Nothing in life that's worth anything is easy.\" Cory is here tonight. And like the Army he loves, like the America he serves, Sergeant First Class Cory Remsburg never gives up, and he does not quit. Cory.\nMy fellow Americans, men and women like Cory remind us that America has never come easy. Our freedom, our democracy, has never been easy. Sometimes, we stumble, we make mistakes; we get frustrated or discouraged. But for more than 200 years, we have put those things aside and placed our collective shoulder to the wheel of progress: to create and build and expand the possibilities of individual achievement, to free other nations from tyranny and fear, to promote justice and fairness and equality under the law so that the words set to paper by our Founders are made real for every citizen. The America we want for our kids—a rising America where honest work is plentiful and communities are strong, where prosperity is widely shared and opportunity for all lets us go as far as our dreams and toil will take us—none of it is easy. But if we work together—if we summon what is best in us, the way Cory summoned what is best in him—with our feet planted firmly in today, but our eyes cast toward tomorrow, I know it is within our reach. Believe it.\nGod bless you, and God bless the United States of America.\n"
-```
-
-
-:::
-:::
-
-
-Note that the sequence "\\\n" is repeated though the text.
-
-Using `count()` on the field *president* gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of this analysis gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field *president*, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches). 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data |>
-  count(president)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 43 × 2
+# ℹ 225 more rows</code></pre>
+</div>
+</div>
+<p>This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (<em>year</em> and <em>president</em>) and the text of the speech itself (<em>text</em>). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the first 200 characters from the speech from 2014,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;To (called a substring), we pass to From the package <code>stringr</code>, the function <code>str_sub()</code> extracts a part of a string. The numbers in the arguments indicate to extract from the first to the 200 character.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Note that the sequence “\\” is repeated though the text. These characters are <em>newline</em> characters that mark line breaks in the text, something that is encoded this way when text is stored in some data formats such as .csv files.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>speech_2014 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2014</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>speech_2014<span class="sc">$</span>text <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_sub</span>(<span class="dv">1</span>,<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "\nThe President. Mr. Speaker, Mr. Vice President, Members of Congress, my fellow Americans: Today in America, a teacher spent extra time with a student who needed it and did her part to lift America's "</code></pre>
+</div>
+</div>
+<p>Using <code>count()</code> on the field <em>president</em> gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of implementing this function gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field <em>president</em>, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(president)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 43 × 2
    president                 n
-   <chr>                 <int>
+   &lt;chr&gt;                 &lt;int&gt;
  1 Abraham Lincoln           4
  2 Andrew Jackson            8
  3 Andrew Johnson            4
@@ -293,88 +308,722 @@ data |>
  8 Donald J. Trump           4
  9 Dwight D. Eisenhower      9
 10 Franklin D. Roosevelt    11
-# ℹ 33 more rows
-```
-
-
-:::
-:::
-
-
-We could also inspect the variable *year*. Let's do it using a histogram. Note that `binwidth` is set to equal 1, so the width of the columns is exactly 1 year. Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.
+# ℹ 33 more rows</code></pre>
+</div>
+</div>
+<p>We could also inspect the variable <em>year</em>. Let’s do it using a histogram. Note that <code>binwidth</code> is set to equal 1, so the width of the columns is exactly 1 year.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The function <code>scale_y_continuous()</code> formats the ticks in the y-axis, so they make more sense (we don’t have 0.5 or 1.5 speeches in a year).</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What’s going on here? Let’s look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. We could visually inspect a list of years to identify the missing ones (especially knowing that they are probably between 1930 and 1980). However, it might be useful to have one row for every possible year even if there is no speech that year, which it would imply leaving the other fields (<em>president</em> and <em>text</em> as missing values, NA). This is done with the function <code>complete()</code> indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using <code>filter()</code>: 1933, 1945 and 1973. This might be because there was no speech that year or because this particular data set missed it (or misclassified it) for whatever reason. A bit of further research would clarify this (if there were speeches those years, we should add them to the data set but let’s assume everything is fine).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">year =</span> <span class="dv">1790</span><span class="sc">:</span><span class="dv">2024</span>) </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(president))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+   year president text 
+  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;
+1  1933 &lt;NA&gt;      &lt;NA&gt; 
+2  1945 &lt;NA&gt;      &lt;NA&gt; 
+3  1973 &lt;NA&gt;      &lt;NA&gt; </code></pre>
+</div>
+</div>
+<p>Let’s now identify those years having more than one speech. We can do it by grouping speeches by year and then summing up how many we have each year. Identifying those years with 2 (or more) speeches would then be straightforward. It seems that occasionally outgoing and incoming Presidents have given successive State of the Union addresses within the same year, for instance Truman’s final message and Eisenhower’s first message in 1953.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">obs =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(obs<span class="sc">&gt;=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+   year   obs
+  &lt;dbl&gt; &lt;int&gt;
+1  1953     2
+2  1961     2
+3  1981     2</code></pre>
+</div>
+</div>
+<p>Having years with multiple speeches will force us to make decisions when conducting analyses looking at change over time. We will talk about that below.</p>
+<hr>
+<p>Let’s now explore the importance of terms referring to women in these speeches. The function <code>str_count()</code> computes the number of times that a particular pattern (sequence of characters) is found in the texts, so we can use it in combination to <code>mutate()</code> to create a column doing exactly that. The code below uses some basic regular expressions to detect both upper- and lower-case letters at the beginning of the term and an “a” or and “e” later on to capture both “woman” and “women”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Inspecting the revised data frame shows a column named <em>women</em> with these results.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;This analysis could be done tokenising the data first, lemmatising and then identifying those lemmas that refer to women.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ww]om[ae]n"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 238 × 4
+    year president         text                                            women
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;                                           &lt;int&gt;
+ 1  1790 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 2  1791 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 3  1792 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 4  1793 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 5  1794 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 6  1795 George Washington "\nFellow-Citizens of the Senate and House of …     1
+ 7  1796 George Washington "\nFellow-Citizens of the Senate and House of …     0
+ 8  1797 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
+ 9  1798 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
+10  1799 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
+# ℹ 228 more rows</code></pre>
+</div>
+</div>
+<p>Note that the pattern used above “[Ww]om[ae]n” also captures things like “womanhood” and the like, which is something that may align well with whath we are doing here. We could nonetheless expand this analysis to include other terms explicitly referring to women, such as female/females, lady/ladies or girl/girls, or to their family positions, such as mother/mothers, wife/wives or daughter/daughters. Another option is to focus on pronouns (she, her, hers, herself),<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> which would capture indirect references to women.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> You can either construct different columns and then sum the up or use the “or” operator (<code>|</code>) within <code>str_count()</code>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> We do the former because having different columns for each term may provide distinct information about the processes at play (it is not the same to refer to women as <em>women</em> than to refer to them as <em>girls</em> (or <em>mothers</em>). For simplicity, we only focus on three terms but the same pipeline could be easily extended and include other terms. Note we are also computing the total by just summing up those three columns.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Be careful though because the pattern “her” will capture many things, such such hereditary, herring, etc.</p></div><div id="fn8"><p><sup>8</sup>&nbsp;These references however could refer to particular women, not to <em>women</em> in general. In this regard, we could also look for female names using the function <code>name_entity()</code>.</p></div><div id="fn9"><p><sup>9</sup>&nbsp;Something like this <code>str_count(text, "[Ww]om[ae]|[Ff]emale|[Gg]irl")</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ww]om[ae]"</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">female =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ff]emale"</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">girl =</span> <span class="fu">str_count</span>(text, <span class="st">"[Gg]irl"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">total =</span> women <span class="sc">+</span> female <span class="sc">+</span> girl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We are now in a position to start tracing changes over time. In order not to over-complicate things, we are only going to plot the information contained in the column <em>women</em> depicting the other columns would be equivalent. Feel free to do it yourself.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> We should however take into account that some years have 2 speeches, so we need to make a decision of how to treat the information on those years, since we need to somewhat group them into just one single observation. We do using <code>group_by()</code> and <code>summarise()</code> to compute the average of the number of times women are mentioned in the speeches delivered that year,<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> but another solution would have been to add up the mentions in both speeches.[So, we would type <code>women = sum(women)</code> instead.]</p>
+<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;In fact, the lines for <em>women</em> and <em>total</em> track each other well, so it seems that the terms captured by “[Ww]om[ae]n” make up for most of the mentions to women.</p></div><div id="fn11"><p><sup>11</sup>&nbsp;That is, if one speech mentions women twice and the other mentions women four times, the average would be 3 times.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women)) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The pattern observed above broadly corresponds to what the evolution of women’s status in society may look like: there are hardly any mention of women in the speeches during most of the 19<sup>th</sup> century. Although the term becomes a bit more visible during the 20<sup>th</sup> century, it is only during the last 20/25 years when we can see a clear incresing trend. There are a few outliers, for instance in the early 20<sup>th</sup>, the 1940s and the early 1980s, when particular speeches seem to have mentioned women more often than usual. It would be interesting to identify them and explore in which ways they were different.</p>
+<p>Importantly, the number of times a particular term shows up in a speech might be related with the length of the text itself: longer speeches allow more opportunities to refer to women. It is therefore important to <em>relativise</em> the frequency measure by the length of the speech. The code below creates a new columns that counts the number of terms in a speech using a particular regular expression.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> We also plot the results to have a better idea of what is going on with this dimension: speeches grew in fact longer during throughout 19<sup>th</sup> century. Their length however was dramatically reduced (roughly) after WWI, with some remarkable exceptions, something which again would probably deserve further attention.</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;The pattern there searches for groups of alphanumeric characters without a space, punctuation or line break in between. An alternative would be “[\w]+”, which searches for a sequence of one or more word characters.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word_count =</span> <span class="fu">str_count</span>(text, <span class="st">"[:alpha:]+"</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> word_count)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can now construct a relativised measure of the frequency of women in these speeches. Do not forget to take into account that we have 2 speeches in some years first. Notice that our relative frequency is computed by dividing the absolute frequency (mentions of women) by the length of the speech (in words) and multiplied it 1,000 times, which means that our indicator measures the number of times women are mentioned per 1,000 words. It is useful to include this information in the graph itself. As well as dots and lines, we are also depicting the underlying trend behind the data using <code>geom_smooth()</code>.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> The general pattern have not changed that much but the relative importance of particular years has sometimes.</p>
+<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;We set the standard errors, <code>se</code> to <code>FALSE</code> to avoid plotting the confidence intervals, something we haven’t covered yet. Notice that the degree of smoothing can be adjusted with the argument <code>span</code> and assigning values between 0 and 1: lower values produce wigglier lines, thus better capturing short-term, instead of smoother, long-term, patterns. Set it, for instance, to <code>span = 0.25</code> to see what happens.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">word_count =</span> <span class="fu">mean</span>(word_count)) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women_rel =</span> <span class="dv">1000</span><span class="sc">*</span>women<span class="sc">/</span>word_count) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women_rel)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency (per 1,000 words)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>We are now going to conduct a similar analysis and trace the temporal evolution of the importance of “education” as a topic. Given that there are many terms that can refer to education, we construct a dictionary of words, such as “school”, “student” or “teacher”, as well as “education” itself (feel free to add others you think might be also important). In order to do so, we create a data frame, a tibble, using the function <code>tibble()</code>. This data frame will have two columns, one named <em>word</em> and another one named <em>dictionary</em>. While the values of the first column are the words we are interested in (given in the form of a list),<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> the values of the second columns are all the same (“educ”), meaning that these words refer to the topic education. We could have compared this to a different topic, such as health, so we could have created a dictionary with terms relating to health: doctor, nurse, medicine, etc. Always, make sure to check whether what you have done looks as it should be.</p>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;A list is a vector of values contained within <code>c()</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>educ_dict <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">word =</span> <span class="fu">c</span>(<span class="st">"education"</span>, <span class="st">"school"</span>, <span class="st">"student"</span>, <span class="st">"teacher"</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dictionary =</span> <span class="st">"educ"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>educ_dict</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  word      dictionary
+  &lt;chr&gt;     &lt;chr&gt;     
+1 education educ      
+2 school    educ      
+3 student   educ      
+4 teacher   educ      </code></pre>
+</div>
+</div>
+<p>We could now try to find the number of times these terms should up in the speeches. Doing it directly however would miss terms like “teachers” or “schooling” or those starting with capital letters (“Education”). We could expand the list to cover all these possibilities but an easier solution is to tokenise the speeches first using <code>unnest_tokens()</code> from the <code>tidytext</code> package. As well as removing all punctuation and splitting the text into individual words, this function converts everything into lowercase characters, thus helping with one of the issues above. In addition, having the terms structured this way allows to easily <em>lemmatise</em> them (from the package <code>textstem</code>), so the others issues are also mitigated (“schooling” becomes “school”). The resulting data frame contains almost 1,9 million rows, that is, all the tokens that make up the corpus. Crucially, the meta data about the original speeches (<em>year</em> and <em>president</em>) is preserved, so we know which year and president delivered each of those words.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textstem)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data_token <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, text) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We can now join the two objects together, the tokenised version of the speeches and the dictionary with the words referring to the topic <em>education</em>, using <code>full_join()</code>.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>. Note that the columns that we want to join in both objects have the same name, which facilitates the matching because R recognises that is the only column with the same name in both objects.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Using <code>inner_join()</code> instead removes any terms not present in the dictionary, which prevents computing relative frequencies (based on the total number of tokens in each speech) unless you compute that beforehand.</p></div><div id="fn16"><p><sup>16</sup>&nbsp;When the names are different, you could indicate the matching columns manually using the <code>by</code> argument: <code>by = c("col1"="col2"))</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data_token <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,899,259 × 5
+    year president         word            lemma          dictionary
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;     
+ 1  1790 George Washington fellow          fellow         &lt;NA&gt;      
+ 2  1790 George Washington citizens        citizen        &lt;NA&gt;      
+ 3  1790 George Washington of              of             &lt;NA&gt;      
+ 4  1790 George Washington the             the            &lt;NA&gt;      
+ 5  1790 George Washington senate          senate         &lt;NA&gt;      
+ 6  1790 George Washington and             and            &lt;NA&gt;      
+ 7  1790 George Washington house           house          &lt;NA&gt;      
+ 8  1790 George Washington of              of             &lt;NA&gt;      
+ 9  1790 George Washington representatives representative &lt;NA&gt;      
+10  1790 George Washington i               i              &lt;NA&gt;      
+# ℹ 1,899,249 more rows</code></pre>
+</div>
+</div>
+<p>As evident above, this procedures adds the other columns of the object we are trying to merge to the original data frame. In this case, the other column in the object <code>dict_educ</code> was <em>dictionary</em>. R goes though all the terms in the tokenised version of the speeches and assign the value “educ” if the terms match and NA (missing) otherwise. In order to better work with this, it is better to create a dummy variable assigning 0s or 1s depending on whether the term was in the dictionary or not. Once that’s done, computing relative frequencies basically implies relying on what we already know to compute the number of occurrences per thousand words.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> We implement the full process below. Feel free to check what the code is doing sequentially:</p>
+<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;We compute the number of tokens (rows) per year and the number of terms referring to education, so we can put these two pieces of information together. Note that, given that the columns <em>educ</em> is composed of 0s and 1s, this is equivalent to compute the average times 1,000: <code>educ = mean(educ)*1000</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_token <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">educ =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(dictionary), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">educ =</span> <span class="fu">sum</span>(educ),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">educ_rel =</span> <span class="dv">1000</span><span class="sc">*</span>educ<span class="sc">/</span>total) <span class="sc">|&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> educ_rel)) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">span =</span> <span class="fl">0.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results are interesting and correspond to the idea that the importance that governments placed on educating the population has increased over time, although the last years show a declining trend. We should also bear in mind that schooling was funded at the local and state level during a long time and it is only throughout the 20<sup>th</sup> century that the federal government started to intervene in education. Also, bear in mind that we have used only a few words as a dictionary of the topic education. This could be expanded to cover this topic more thoroughly. We should be careful when working with historical texts, since other terms might have been used in the past to refer to education (“pupil” instead of “student”, for instance) or we may have missed others that are used more often in recent times (such as “university”, “college”, “human capital”, “kindergarten”, etc. Integrating these terms probably makes the increasing trend even more pronounced. Likewise, you might be wondering whether the words in the object <code>dict_educ</code> should also be lemmatised: in our case they don’t need to be because they already constitute basic lemmas (check it yourself by applying the function <code>lemmatize_words()</code> to the words in the dictionary) but it might be necessary in other setting.</p>
+<hr>
+<p>Let’s now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our data set does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. The idea is to have a data frame containing the names of the presidents we have and then attach information on their political affiliation. We could do the research and fill in the gaps ourselves. To gain time, we can outsource this task to a research assistant or now to an AI tool. Let’s first create a list with the presidents:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>presidents <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(president) <span class="sc">|&gt;</span> <span class="fu">select</span>(president)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>presidents</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 1
+   president            
+   &lt;chr&gt;                
+ 1 Abraham Lincoln      
+ 2 Andrew Jackson       
+ 3 Andrew Johnson       
+ 4 Barack Obama         
+ 5 Benjamin Harrison    
+ 6 Calvin Coolidge      
+ 7 Chester A. Arthur    
+ 8 Donald J. Trump      
+ 9 Dwight D. Eisenhower 
+10 Franklin D. Roosevelt
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>We can either export this object to a .csv file (that we will stored in the folder <code>data</code>) that we can feed into the AI or copy and paste the names directly into the AI agent.</p>
+<div class="cell" data-evaluate="false">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(presidents, <span class="st">"data/presidents.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The AI has done its part. We now have a revised file containing two columns: <em>president</em> and <em>party</em> (so we need to read it into R) or we have the information so we can create the object ourselves, copying and pasting the necessary information, as we have done below using the input from the AI. The agent also explained that it has included the following party labels: Federalist, Democratic-Republican, Democratic, Republican, Whig and None (for George Washington, who was not formally affiliated with a party). We should double-check that this classification is historically appropriate (and correct if necessary).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>presidents <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">president =</span> <span class="fu">c</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Abraham Lincoln"</span>,<span class="st">"Andrew Jackson"</span>,<span class="st">"Andrew Johnson"</span>,<span class="st">"Barack Obama"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Benjamin Harrison"</span>,<span class="st">"Calvin Coolidge"</span>,<span class="st">"Chester A. Arthur"</span>,<span class="st">"Donald J. Trump"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dwight D. Eisenhower"</span>,<span class="st">"Franklin D. Roosevelt"</span>,<span class="st">"Franklin Pierce"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"George Bush"</span>,<span class="st">"George W. Bush"</span>,<span class="st">"George Washington"</span>,<span class="st">"Gerald R. Ford"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grover Cleveland"</span>,<span class="st">"Harry S Truman"</span>,<span class="st">"Herbert Hoover"</span>,<span class="st">"James Buchanan"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"James K. Polk"</span>,<span class="st">"James Madison"</span>,<span class="st">"James Monroe"</span>,<span class="st">"Jimmy Carter"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"John Adams"</span>,<span class="st">"John F. Kennedy"</span>,<span class="st">"John Quincy Adams"</span>,<span class="st">"John Tyler"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Joseph R. Biden"</span>,<span class="st">"Lyndon B. Johnson"</span>,<span class="st">"Martin Van Buren"</span>,<span class="st">"Millard Fillmore"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Richard M. Nixon"</span>,<span class="st">"Ronald Reagan"</span>,<span class="st">"Rutherford B. Hayes"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Theodore Roosevelt"</span>,<span class="st">"Thomas Jefferson"</span>,<span class="st">"Ulysses S. Grant"</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Warren G. Harding"</span>,<span class="st">"William Howard Taft"</span>,<span class="st">"William J. Clinton"</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"William McKinley"</span>,<span class="st">"Woodrow Wilson"</span>,<span class="st">"Zachary Taylor"</span>),</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">party =</span> <span class="fu">c</span>(</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"None"</span>,<span class="st">"Republican"</span>,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Democratic"</span>,</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Federalist"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Whig"</span>,</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Whig"</span>,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Republican"</span>,</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Whig"</span>))</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>presidents</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 43 × 2
+   president             party     
+   &lt;chr&gt;                 &lt;chr&gt;     
+ 1 Abraham Lincoln       Republican
+ 2 Andrew Jackson        Democratic
+ 3 Andrew Johnson        Democratic
+ 4 Barack Obama          Democratic
+ 5 Benjamin Harrison     Republican
+ 6 Calvin Coolidge       Republican
+ 7 Chester A. Arthur     Republican
+ 8 Donald J. Trump       Republican
+ 9 Dwight D. Eisenhower  Republican
+10 Franklin D. Roosevelt Democratic
+# ℹ 33 more rows</code></pre>
+</div>
+</div>
+<p>I am going to assume that the list above is accurate. The next step is then to join this object to the original data using <code>full_join()</code>. The objects <code>data</code> and <code>presidents</code> both have a column named <em>president</em>, so the matching is straightforward:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(presidents)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">select</span>(year, president, party, text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 238 × 4
+    year president         party      text                                      
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;                                     
+ 1  1790 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 2  1791 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 3  1792 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 4  1793 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 5  1794 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 6  1795 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 7  1796 George Washington None       "\nFellow-Citizens of the Senate and Hous…
+ 8  1797 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
+ 9  1798 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
+10  1799 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
+# ℹ 228 more rows</code></pre>
+</div>
+</div>
+<p>We can now proceed and implement the analysis recycling some of the code above. We can for instance re-do the process about the importance of topics related to education. Instead of grouping by <em>year</em>, we do it by <em>party</em> now. To make things simpler, we also restrict the analysis to president from the Republican or the Democratic parties.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word)) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">educ =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(dictionary), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Republican"</span>, <span class="st">"Democratic"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party) <span class="sc">|&gt;</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">educ =</span> <span class="fu">mean</span>(educ)<span class="sc">*</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  party       educ
+  &lt;chr&gt;      &lt;dbl&gt;
+1 Democratic 0.629
+2 Republican 0.590</code></pre>
+</div>
+</div>
+<p>Based on the terms chosen above, it seems that the presidents belonging to the Democratic party talk more about education than their peers in the Republican party but the difference is not very large. We could refine our analysis by checking whether these differences have always been there or are a relatively recent phenomenon (replicating the analysis but focusing, for instance, in the post-1945 period or even in more recent periods).</p>
+<p>We could something similar for the term woman/women. The lemma for these two terms is women, so the code below captures both cases and plots the results.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word)) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">if_else</span>(lemma<span class="sc">==</span><span class="st">"woman"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Republican"</span>, <span class="st">"Democratic"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party, year) <span class="sc">|&gt;</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women)<span class="sc">*</span><span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women, <span class="at">col =</span> party)) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.5</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The most striking result is the increase in the number of times that Republicans have used the term “woman/en” from the 1950s onwards and clearly overcome the Democrats. Why? What is behind these trends?</p>
+<hr>
+<p>The next question goes back to the topic of the presence (or absence) of women in the speeches and asks about the context surrounding the terms referring to women. This is a very interesting issue because it allows getting to know more about how these speeches are using these terms and therefore qualify the previous analysis based purely on term frequencies. The graphs above, for instance, show that Republican presidents are (increasingly) mentioning women more often than Democrats. But knowing the context in which they use those terms is crucial, right?</p>
+<p>Instead of tokenising based on individual tokens (grams), this procedure implies tokenising but using (multiple) n-grams.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> In the example below, we are using a window of 5 tokens/grams, defined by the argument <code>n = 5</code> (we have chosen the name <em>window</em> to the new column containing the 5-gram chunk). A wider window could obviously be more informative but bear in mind that the further away from the term of interest, the less likely to be informative about that particular term. In any case, you as a researchers is the one to make these decisions.</p>
+<div class="no-row-height column-margin column-container"><div id="fn18"><p><sup>18</sup>&nbsp;This could also be done using the package <code>quanteda</code> as explained in the keywords-in-contec (kwic) section in the “counting words” pdf.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data_5grams <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, party, text) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(window, text, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>data_5grams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,898,319 × 4
+    year president         party window                              
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;                               
+ 1  1790 George Washington None  fellow citizens of the senate       
+ 2  1790 George Washington None  citizens of the senate and          
+ 3  1790 George Washington None  of the senate and house             
+ 4  1790 George Washington None  the senate and house of             
+ 5  1790 George Washington None  senate and house of representatives 
+ 6  1790 George Washington None  and house of representatives i      
+ 7  1790 George Washington None  house of representatives i embrace  
+ 8  1790 George Washington None  of representatives i embrace with   
+ 9  1790 George Washington None  representatives i embrace with great
+10  1790 George Washington None  i embrace with great satisfaction   
+# ℹ 1,898,309 more rows</code></pre>
+</div>
+</div>
+<p>Once this is in place, we can identify whether those windows contain the term “[Ww]om[ae]n” (or any other pattern) or not. If they do, we can then easily list the accompanying terms. In order to do so, it is useful to first put the terms into separate columns using the function <code>separate_wider_delim()</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_5grams <span class="ot">&lt;-</span> data_5grams <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(window, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"g1"</span>, <span class="st">"g2"</span>, <span class="st">"g3"</span>, <span class="st">"g4"</span>, <span class="st">"g5"</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>data_5grams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,898,319 × 8
+    year president         party g1              g2            g3    g4    g5   
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1  1790 George Washington None  fellow          citizens      of    the   sena…
+ 2  1790 George Washington None  citizens        of            the   sena… and  
+ 3  1790 George Washington None  of              the           sena… and   house
+ 4  1790 George Washington None  the             senate        and   house of   
+ 5  1790 George Washington None  senate          and           house of    repr…
+ 6  1790 George Washington None  and             house         of    repr… i    
+ 7  1790 George Washington None  house           of            repr… i     embr…
+ 8  1790 George Washington None  of              representati… i     embr… with 
+ 9  1790 George Washington None  representatives i             embr… with  great
+10  1790 George Washington None  i               embrace       with  great sati…
+# ℹ 1,898,309 more rows</code></pre>
+</div>
+</div>
+<p>Given that the 5-gram is a moving window, we can just focus on whether the term in question shows up in the middle gram (<em>g3</em>) to avoid duplicates. This gives us the chance to read the context in which the term women shows up, which is extremely informative. Note that the data frame is reduced to 391 rows, the number of times the terms “women” or “woman” are mentioned (out of almost 1,9 million tokens originally).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> data_5grams <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(g3<span class="sc">==</span><span class="st">"women"</span> <span class="sc">|</span> g3 <span class="sc">==</span><span class="st">"woman"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>women</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 391 × 8
+    year president         party      g1               g2      g3    g4    g5   
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1  1795 George Washington None       of               innoce… women and   chil…
+ 2  1862 Abraham Lincoln   Republican indiscriminately men     women and   chil…
+ 3  1871 Ulysses S. Grant  Republican of               men     women and   chil…
+ 4  1873 Ulysses S. Grant  Republican of               americ… women marr… fore…
+ 5  1874 Ulysses S. Grant  Republican to               chinese women hard… a    
+ 6  1874 Ulysses S. Grant  Republican of               americ… women who   have 
+ 7  1875 Ulysses S. Grant  Republican of               americ… women who   may  
+ 8  1875 Ulysses S. Grant  Republican of               chinese women but   few  
+ 9  1875 Ulysses S. Grant  Republican importation      of      women for   ille…
+10  1876 Ulysses S. Grant  Republican of               americ… women who   may  
+# ℹ 381 more rows</code></pre>
+</div>
+</div>
+<p>We can now transform the data into a long form to facilitate the analysis. The column <em>g3</em> is actually redundant because its value is always “women” (see code above), so we can drop it. We then put the values in the fields <em>g1</em>, <em>g2</em>, <em>g4</em> and <em>g5</em> (the terms placed next to the term women/woman) into a single column named <em>order</em> (or whatever you want) that will distinguish whether those terms come from <em>g1</em>, <em>g2</em>, <em>g4</em> or <em>g5</em>, something that can be useful for the analysis if we want to differentiate regarding how close to <em>g3</em> the terms are. The terms themselves and placed in a column automatically named <em>value</em>, which for convenience we rename to <em>word</em>. Lastly, we remove stop words that are not very informative.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> women <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>g3) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"g1"</span>, <span class="st">"g2"</span>, <span class="st">"g4"</span>, <span class="st">"g5"</span>), </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"order"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">word =</span> value) <span class="sc">|&gt;</span> </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>women</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 419 × 5
+    year president         party      order word            
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           
+ 1  1795 George Washington None       g2    innocent        
+ 2  1795 George Washington None       g5    children        
+ 3  1862 Abraham Lincoln   Republican g1    indiscriminately
+ 4  1862 Abraham Lincoln   Republican g5    children        
+ 5  1871 Ulysses S. Grant  Republican g5    children        
+ 6  1873 Ulysses S. Grant  Republican g2    american        
+ 7  1873 Ulysses S. Grant  Republican g4    marrying        
+ 8  1873 Ulysses S. Grant  Republican g5    foreigners      
+ 9  1874 Ulysses S. Grant  Republican g2    chinese         
+10  1874 Ulysses S. Grant  Republican g2    american        
+# ℹ 409 more rows</code></pre>
+</div>
+</div>
+<p>We can now find out which words are the most common ones when talking about women, by simply counting them. The list is very informative. Most of the times women are mentioned in the presidential speeches are in relation to terms denoting their role as mothers: children, pregnant, child, infants, etc. (you can use <code>print(n = Inf)</code> to see the whole list). As well as to the nation itself (american, america, america’s), there are also terms referring to work (employment, industry) and other topics/issues.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>women <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 283 × 2
+   word         n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 children    25
+ 2 uniform     17
+ 3 american     8
+ 4 pregnant     7
+ 5 child        6
+ 6 act          5
+ 7 america      5
+ 8 law          5
+ 9 serving      5
+10 violence     5
+# ℹ 273 more rows</code></pre>
+</div>
+</div>
+<p>You can also refine the analysis and perhaps focus only on the terms that are right next to women and see whether the same pattern shows up or not (having a wider window of terms would allow further analyses along these lines). Doing so, for instance, also highlights that women were often mentioned in the context of minorities (a word that also appeared relatively high in the previous list), such as “chinese” or “indian” women.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>women <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(order<span class="sc">==</span><span class="st">"g2"</span> <span class="sc">|</span> order<span class="sc">==</span><span class="st">"g4"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 96 × 2
+   word         n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 american     7
+ 2 pregnant     6
+ 3 act          5
+ 4 named        4
+ 5 serving      4
+ 6 chinese      2
+ 7 elderly      2
+ 8 filled       2
+ 9 indian       2
+10 infants      2
+# ℹ 86 more rows</code></pre>
+</div>
+</div>
+<p>Further analyses would look into how these patterns may have changed over time and whether these patterns are characteristic of particular presidents or political parties. Obviously, this is only a complementary tool to close-reading. Directly reading the context in which these terms were employed in the speeches would allow qualifying these analyses but just counting helps revealing patterns regarding the evolution of the perceived view of women in the mainstream political agenda and society more broadly, as well as the potential influence of particular historical processes (e.g.&nbsp;the suffrage movement, equal rights movements from the 1960s, etc.).</p>
+<p>Note also that this assignment has so far focused on exploring particular topics (e.g.&nbsp;women, education). A more agnostic approach would search for the most common words in particular periods using top frequencies to discover other (perhaps) unnoticed patterns. This would involve unnesting tokens, removing stop words, lemmatizing and counting which tokens are most common.</p>
+<hr>
+<p>Let’s finish this assignment by studying the locations that are mentioned in the speeches. Part of more general <em>tagging</em> tools, the package <code>entity</code> includes function for <em>named entity recognition</em>. One of them is <code>location_entity()</code> which identifies locations in a particular textual field (in our case the column <em>text</em>).<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> Unfortunately, these tools do not work well with very long texts unless you change their default options. The code below fixes that by forcing the argument <code>element.chunks</code> to be at least equal to 1. Excluding those years without a speech also assures that missing values are not an issue. These functions are computationally intensive, so the code takes a while to run (be patient and I hope the computer does not crash).<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn19"><p><sup>19</sup>&nbsp;Other functions allow identifying persons (<code>person_entity()</code>) or organisations (<code>organization_entity()</code>).</p></div><div id="fn20"><p><sup>20</sup>&nbsp;If it crashes, you can always perform the analysis on a smaller subset of the corpus, filtering for instance to the last 25 years or something like that: <code>filter(year&gt;2000)</code>.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(entity)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, party, text) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(text)) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">locations =</span> <span class="fu">location_entity</span>(text, <span class="at">element.chunks =</span> <span class="dv">1</span>))</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>locations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 235 × 5
+    year president         party      text                             locations
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;                            &lt;entity&gt; 
+ 1  1790 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr [7]&gt;
+ 2  1791 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 3  1792 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 4  1793 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 5  1794 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 6  1795 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 7  1796 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
+ 8  1797 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
+ 9  1798 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
+10  1799 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
+# ℹ 225 more rows</code></pre>
+</div>
+</div>
+<p>As you can see, the column <em>locations</em> is a vector listing whatever locations the algorithm has recognised. These vectors look something like this: <code>c("Washington", "Ukraine")</code>. You can for instance extract that information using <code>pull()</code> and <code>pluck()</code>.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> The code below does it for the year 1805:</p>
+<div class="no-row-height column-margin column-container"><div id="fn21"><p><sup>21</sup>&nbsp;<code>pull()</code> extracts the list and <code>pluck(1)</code> extracts the vector inside the list.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1805</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(locations) <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "United States" "Europe"        "His"           "New"          
+ [5] "Spain"         "Louisiana"     "Mississippi"   "Spain"        
+ [9] "Tripoli"       "Mediterranean" "Connecticut"   "Tennessee"    
+[13] "Georgia"       "Missouri"      "Mississippi"   "France"       </code></pre>
+</div>
+</div>
+<p>In order to work with the full corpus, we can use the function <code>unnest()</code> to structure that information as a regular tibble. This function expands a list-column (<em>locations</em> in our case), so that each element of the vectors inside it (each location) becomes its own row and preserved the associated metadata (<em>year</em>, <em>president</em>, <em>party</em>, etc.).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>locations_long <span class="ot">&lt;-</span> locations <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(locations)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span> <span class="fu">select</span>(year, president, party, locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18,698 × 4
+    year president         party locations     
+   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;         
+ 1  1790 George Washington None  North Carolina
+ 2  1790 George Washington None  United States 
+ 3  1790 George Washington None  Providence    
+ 4  1790 George Washington None  Virginia      
+ 5  1790 George Washington None  United States 
+ 6  1790 George Washington None  United States 
+ 7  1790 George Washington None  United States 
+ 8  1791 George Washington None  United States 
+ 9  1791 George Washington None  United States 
+10  1791 George Washington None  United States 
+# ℹ 18,688 more rows</code></pre>
+</div>
+</div>
+<p>We can now analyse this information. Let’s first explore how the the geographical scope of the speeches have changed over time. To make things simpler, we create four periods: 1790-1880, 1880-1914, 1915-1945 and 1946-2024. We can then count the number of times each location is mentioned within each period and select only the 15 most common using <code>slice_max()</code>. The code for the graph is a bit involved because we want to present the locations ordered in terms of popularity within each period. I would advise you to check what the code is doing sequentially. The results show how the geographical scope of the US political agenda has changed over time as the US themselves evolved from being especially focus on internal affairs to become a global power. A more fine-grain analysis (by decade for instance) would provide further insights.</p>
+<div class="cell" data-evaluate="false">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&lt;</span><span class="dv">1914</span> <span class="sc">~</span> <span class="st">"1790-1914"</span>, </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&gt;=</span><span class="dv">1914</span> <span class="sc">&amp;</span> year<span class="sc">&lt;</span><span class="dv">1945</span> <span class="sc">~</span> <span class="st">"1915-1944"</span>,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&gt;=</span><span class="dv">1945</span> <span class="sc">~</span> <span class="st">"1945-2024"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(locations, <span class="at">sort=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> n, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder_within</span>(locations, n, period), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>() <span class="sc">+</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> period, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Locations"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> </span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can do something similar with political affiliation. The logic is the same but instead of grouping by <em>year</em> (or <em>period</em>) we group by <em>party</em>. To narrow down the temporal scope, we focus on the period after 1945 and we present the results as a table. The results are very interesting. One of the most important is how “Europe” ranks much higher for the Democrats. The Republicans also seem to be more concerned about the Middle East (also including Iraq, Iran and Afghanistan).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">&gt;</span><span class="dv">1945</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(locations, <span class="at">sort=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> n, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(party, rank, locations, n) <span class="sc">|&gt;</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> party,</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="fu">c</span>(locations, n)) <span class="sc">|&gt;</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">|&gt;</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, locations_Democratic, n_Democratic, locations_Republican, n_Republican) <span class="sc">|&gt;</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 5
+    rank locations_Democratic     n_Democratic locations_Republican n_Republican
+   &lt;int&gt; &lt;chr&gt;                           &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
+ 1     1 America                           304 America                       288
+ 2     2 United States                     278 United States                 189
+ 3     3 Europe                            110 Iraq                           96
+ 4     4 Soviet Union                       89 Middle East                    54
+ 5     5 China                              76 Washington                     51
+ 6     6 Asia                               64 Afghanistan                    48
+ 7     7 Afghanistan                        57 Soviet Union                   36
+ 8     8 Vietnam                            57 Europe                         34
+ 9     9 Iran                               48 China                          28
+10    10 Middle East                        48 Iran                           27
+11    11 Washington                         46 United States of Am…           24
+12    12 Korea                              43 Earth                          21
+13    13 Africa                             42 Korea                          21
+14    14 United States of America           41 Asia                           19
+15    15 Israel                             40 Africa                         18</code></pre>
+</div>
+</div>
+<p>This is just a first taste of how to extract and analyse the importance of geographical locations from textual corpuses. Note though that we have not taken into account whether there are differences in how the length of the speeches, either by period or by political affiliation, something that should be done before attaching too much significance to these findings. Likewise, here we have reported the information about locations using graphs and tables. However, the best way to present spatial information is to draw maps. We will learn how to do it next session.</p>
+<hr>
+<p>Well, this was quite a journey. Many more things could be done to enhance the analyses above but this is more than enough. Congrats if you have managed to somewhat perform these different exercises. As mentioned above, this way of approaching texts does not replace close reading but helps presenting evidence on a different way and find patterns that are not always visible, as well as the possibility of dealing with huge corpuses. Using these methods, as well as being creative about the way you treat the data, can indeed be a big methodological advantage for computationally-oriented historians.</p>
+<!--
+We could easily use `ggplot()` and define that the x-axis will be *year* and add different `geom_line()` functions when the y-axis is defined separately for each of the columns (*women*, *female* and *girl*). Having the data structure in a long format (instead of a wide format) is however more flexible because we can then easily structure our analyses based on the different categories we are measuring. We therefore use `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *category* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. The resulting data frame will four rows for each speech. Feel free to run this first step separately from the graph to understand what is happening to the original data frame. We can now easily plot the information indicating that we want to have different colors according the the field *category* (whose categories are "women", "female", "girl" and "total").
 
 
 ::: {.cell}
 
 ```{.r .cell-code}
 data |>
-  ggplot(aes(x = year)) + geom_histogram(binwidth = 1) +
-  scale_y_continuous(breaks = seq(0, 2, 1))
+  pivot_longer(cols = c("women", "female", "girl", "total"), 
+               names_to = "category") |>
+  filter(category=="total") |>
+  ggplot(aes(x = year, y = value, col = category)) +
+  geom_point() + geom_line()
 ```
 
 ::: {.cell-output-display}
-![](4-pract-counting-words_files/figure-html/unnamed-chunk-4-1.png){width=672}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-33-1.png){width=672}
 :::
 :::
 
 
-What's going on here. Let's look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. For completion, we could have one row and leave the other fields (*president* and *text* as missing values, NA). This is done with the function `complete()` indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using `filter()`: 1933, 1945 and 1973. 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-data <- data |>
-  complete(year = 1790:2024) 
-
-data |> filter(is.na(president))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 3 × 3
-   year president text 
-  <dbl> <chr>     <chr>
-1  1933 <NA>      <NA> 
-2  1945 <NA>      <NA> 
-3  1973 <NA>      <NA> 
-```
-
-
-:::
-:::
-
-
-Let's now identify those years having more than one speech
-
-
-::: {.cell}
-
-:::
-
-
-Some recent Presidents have also preferred not to deliver a State of the Union address
-immediately prior to their departure from office, although several have given farewell addresses.
-President Dwight Eisenhower’s farewell message, broadcast to the nation on January 17, 1961,
-became famous for its warnings against the “military-industrial complex.”7
-Nevertheless, occasionally outgoing and incoming Presidents have given successive State of the
-Union addresses within weeks of each other. President Harry Truman’s final message, delivered
-in printed form to Congress on January 7, 1953, was closely followed by President Eisenhower’s
-first message, delivered in person at the Capitol on February 2, 1953.8
-
-check also blank years: 
-
-Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
-
-
-
-----
-
-Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
+We are using the argument `alpha` to facilitate visualisation by adding some transparency. The parameter can be set between 0 (total transparency) and 1 (total opacity).
 
 -->
 
+
+</section>
 
 
 </main> <!-- /main -->

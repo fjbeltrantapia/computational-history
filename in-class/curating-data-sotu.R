@@ -29,3 +29,5 @@ pres <- sotu |>
 write_csv(pres, "data-assign/sotu/presidents.csv")
 
 write_csv(sotu, "data-assign/sotu/sotu-texts.csv")
+
+presidents |> print(n = Inf)

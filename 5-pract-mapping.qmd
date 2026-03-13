@@ -1,0 +1,19 @@
+---
+title: "Assignment: Mapping"
+execute: 
+  warning: false
+  message: false
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"  
+    code-copy: true # adds a copy button to code blocks   
+    reference-location: margin  
+---
+
+This assignment explores both the 1910 Norwegian census and the newspapers published in Norway during that year. The aim is to be able to map the information contained in those sources. In the process, we will also practice the crucial skill of "cleaning" data, that is, making it ready for subsequent analyses.
+
+
+
+
+

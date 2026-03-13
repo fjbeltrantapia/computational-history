@@ -287,7 +287,7 @@ window.Quarto = {
 </header>
 
 
-<p>Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using <strong>Quarto</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications.</p>
+<p>Being familiar with R and RStudio makes it easy to integrate prose and the results of computational analyses (tables, visualisations, etc.) using <strong>Quarto</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Quarto allows creating fully reproducible documents that can then easily be exported into different formats (Word, PDF, etc.). As well as regular documents, Quarto can create presentations, books, websites, blogposts, interactive visualisations and web applications. Given that Quarto documents also runs the code and prints the results in the RStudio console, they can also be used as a way of scripting your work.</p>
 <p>The following seeks to provide a short introduction, especially aimed at historians, covering the basics.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <section id="getting-started" class="level1">
 <h1>Getting started</h1>
@@ -312,6 +312,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Feel free now to change the <code>format</code> in the yaml to <code>pdf</code> and create one yourself.</p>
+<p>Notice that some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command <code>View(data)</code> opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with <code>print()</code> and perhaps also <code>select()</code> to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, <code>str_sub(1,200)</code>.</p>
 </section>
 <section id="authoring" class="level1">
 <h1>Authoring</h1>

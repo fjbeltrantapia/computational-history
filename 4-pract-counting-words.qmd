@@ -27,7 +27,7 @@ We will use computational text analysis to shed light on the contents of these s
 
 1. Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
 
-2. Let's imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time? Tip: Take into account that some year have 2 speeches, so you will need to make a decision of how to group them using `group_by()` and `summarise()`. 
+2. Let's imagine that we are interested in exploring the importance of terms referring to women in these speeches. Has this changed over time? Does the pattern change if we take into account that the length of the speeches may have also changed over time? Tip: Take into account that some years have 2 speeches, so you will need to make a decision of how to group them using `group_by()` and `summarise()`. 
 
 3. Do the same with "education" as a topic. In order to do so, construct a dictionary of words related to education such as "education", "school", "student" and "teacher", plus any other word you think might be also important. 
 
@@ -38,39 +38,41 @@ We will use computational text analysis to shed light on the contents of these s
 6. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
 
 <!--
+**Warning**: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `spstr_sub(1,200)`.-->
 
 ----
 
 # Solution
 
-Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). ^[Although not visible, the code chuck below includes the option `#| message: false` at the top, so the message that shows up when loading the `tidyverse` is not printed here.] Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named `sotu-texts.csv` in the folder `data-assign/sotu`, the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`.] I also type the name of the newly created object `data` to inspect its contents.^[The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case).] 
+Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named `sotu-texts.csv` in the folder `data-assign/sotu`, the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`. Defining the `locale` helps making sure the characters are properly encoded and recognised.] I also type the name of the newly created object `data` to inspect its contents.^[The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case).] 
 
 ```{r}
 #| message: false
 rm(list=ls())
 library(tidyverse)
-data <- read_csv("data-assign/sotu/sotu-texts.csv")
+data <- read_csv("data-assign/sotu/sotu-texts.csv",
+                 locale = locale(encoding = "UTF-8"))
 data
 ```
 
-This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (*year* and *president*) and the text of the speech itself (*text*). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the speech from 2014, a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.
+This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (*year* and *president*) and the text of the speech itself (*text*). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the first 200 characters from the speech from 2014,^[To (called a substring),
+we pass to From the package `stringr`, the function `str_sub()` extracts a part of a string. The numbers in the arguments indicate to extract from the first to the 200 character.] a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.^[Note that the sequence "\\\\\n" is repeated though the text. These characters are *newline* characters that mark line breaks in the text, something that is encoded this way when text is stored in some data formats such as .csv files.]
 
 ```{r}
 speech_2014 <- data |> filter(year==2014)
 
-speech_2014$text
+speech_2014$text |>
+  str_sub(1,200)
 ```
 
-Note that the sequence "\\\n" is repeated though the text.
-
-Using `count()` on the field *president* gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of this analysis gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field *president*, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches). 
+Using `count()` on the field *president* gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of implementing this function gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field *president*, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches). 
 
 ```{r}
 data |>
   count(president)
 ```
 
-We could also inspect the variable *year*. Let's do it using a histogram. Note that `binwidth` is set to equal 1, so the width of the columns is exactly 1 year. Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.
+We could also inspect the variable *year*. Let's do it using a histogram. Note that `binwidth` is set to equal 1, so the width of the columns is exactly 1 year.^[The function `scale_y_continuous()` formats the ticks in the y-axis, so they make more sense (we don't have 0.5 or 1.5 speeches in a year).] Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.
 
 ```{r}
 data |>
@@ -78,7 +80,7 @@ data |>
   scale_y_continuous(breaks = seq(0, 2, 1))
 ```
 
-What's going on here. Let's look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. For completion, we could have one row and leave the other fields (*president* and *text* as missing values, NA). This is done with the function `complete()` indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using `filter()`: 1933, 1945 and 1973. 
+What's going on here? Let's look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. We could visually inspect a list of years to identify the missing ones (especially knowing that they are probably between 1930 and 1980). However, it might be useful to have one row for every possible year even if there is no speech that year, which it would imply leaving the other fields (*president* and *text* as missing values, NA). This is done with the function `complete()` indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using `filter()`: 1933, 1945 and 1973. This might be because there was no speech that year or because this particular data set missed it (or misclassified it) for whatever reason. A bit of further research would clarify this (if there were speeches those years, we should add them to the data set but let's assume everything is fine).  
 
 ```{r}
 data <- data |>
@@ -87,31 +89,366 @@ data <- data |>
 data |> filter(is.na(president))
 ```
 
-Let's now identify those years having more than one speech
+Let's now identify those years having more than one speech. We can do it by grouping speeches by year and then summing up how many we have each year. Identifying those years with 2 (or more) speeches would then be straightforward. It seems that occasionally outgoing and incoming Presidents have given successive State of the
+Union addresses within the same year, for instance Truman’s final message and Eisenhower’s
+first message in 1953. 
 
 ```{r}
-
+data |>
+  group_by(year) |>
+  summarise(obs = n()) |>
+  filter(obs>=2)
 ```
 
-Some recent Presidents have also preferred not to deliver a State of the Union address
-immediately prior to their departure from office, although several have given farewell addresses.
-President Dwight Eisenhower’s farewell message, broadcast to the nation on January 17, 1961,
-became famous for its warnings against the “military-industrial complex.”7
-Nevertheless, occasionally outgoing and incoming Presidents have given successive State of the
-Union addresses within weeks of each other. President Harry Truman’s final message, delivered
-in printed form to Congress on January 7, 1953, was closely followed by President Eisenhower’s
-first message, delivered in person at the Capitol on February 2, 1953.8
-
-check also blank years: 
-
-Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using `count()` or its visual equivalents: `ggplot()` plus `geom_bar()` for qualitative dimensions or `geom_histogram()` for numerical variables. 
-
-
+Having years with multiple speeches will force us to make decisions when conducting analyses looking at change over time. We will talk about that below.
 
 ----
 
-Let's now respond be more concrete and report what was requested in the first point above. The number of men and women can be retrieved by using `count()` and the name of the variable we are interested in. If you don't use `filter()` to narrow down the analysis, you will get the total number of males and females, regardless of age. Given that we are asking for men and women, we can be a bit more precise and restrict the analysis to those over 18 years (or whatever you think is appropriate). 
+Let's now explore the importance of terms referring to women in these speeches. The function `str_count()` computes the number of times that a particular pattern (sequence of characters) is found in the texts, so we can use it in combination to `mutate()` to create a column doing exactly that. The code below uses some basic regular expressions to detect both upper- and lower-case letters at the beginning of the term and an "a" or and "e" later on to capture both "woman" and "women".^[This analysis could be done tokenising the data first, lemmatising and then identifying those lemmas that refer to women.] Inspecting the revised data frame shows a column named *women* with these results.
+
+```{r}
+data <- data |>
+  mutate(women = str_count(text, "[Ww]om[ae]n"))
+data
+```
+
+Note that the pattern used above "[Ww]om[ae]n" also captures things like "womanhood" and the like, which is something that may align well with whath we are doing here. We could nonetheless expand this analysis to include other terms explicitly referring to women, such as female/females, lady/ladies or girl/girls, or to their family positions, such as mother/mothers, wife/wives or daughter/daughters. Another option is to focus on pronouns (she, her, hers, herself),^[Be careful though because the pattern "her" will capture many things, such such hereditary, herring, etc.] which would capture indirect references to women.^[These references however could refer to particular women, not to *women* in general. In this regard, we could also look for female names using the function `name_entity()`.] You can either construct different columns and then sum the up or use the "or" operator (`|`) within `str_count()`.^[Something like this `str_count(text, "[Ww]om[ae]|[Ff]emale|[Gg]irl")`.] We do the former because having different columns for each term may provide distinct information about the processes at play (it is not the same to refer to women as *women* than to refer to them as *girls* (or *mothers*). For simplicity, we only focus on three terms but the same pipeline could be easily extended and include other terms. Note we are also computing the total by just summing up those three columns.
+
+```{r}
+data <- data |>
+  mutate(women = str_count(text, "[Ww]om[ae]"),
+         female = str_count(text, "[Ff]emale"),
+         girl = str_count(text, "[Gg]irl"),
+         total = women + female + girl)
+```
+
+We are now in a position to start tracing changes over time. In order not to over-complicate things, we are only going to plot the information contained in the column *women* depicting the other columns would be equivalent. Feel free to do it yourself.^[In fact, the lines for *women* and *total* track each other well, so it seems that the terms captured by "[Ww]om[ae]n" make up for most of the mentions to women.] We should however take into account that some years have 2 speeches, so we need to make a decision of how to treat the information on those years, since we need to somewhat group them into just one single observation. We do using `group_by()` and `summarise()` to compute the average of the number of times women are mentioned in the speeches delivered that year,^[That is, if one speech mentions women twice and the other mentions women four times, the average would be 3 times.] but another solution would have been to add up the mentions in both speeches.[So, we would type `women = sum(women)` instead.]
+
+```{r}
+data |>
+  group_by(year) |>
+  summarise(women = mean(women)) |>
+  ggplot(aes(x = year, y = women)) +
+  geom_point() + geom_line()   
+```
+
+The pattern observed above broadly corresponds to what the evolution of women's status in society may look like: there are hardly any mention of women in the speeches during most of the 19^th^ century. Although the term becomes a bit more visible during the 20^th^ century, it is only during the last 20/25 years when we can see a clear incresing trend. There are a few outliers, for instance in the early 20^th^, the 1940s and the early 1980s, when particular speeches seem to have mentioned women more often than usual. It would be interesting to identify them and explore in which ways they were different. 
+
+Importantly, the number of times a particular term shows up in a speech might be related with the length of the text itself: longer speeches allow more opportunities to refer to women. It is therefore important to *relativise* the frequency measure by the length of the speech. The code below creates a new columns that counts the number of terms in a speech using a particular regular expression.^[The pattern there searches for groups of alphanumeric characters without a space, punctuation or line break in between. An alternative would be "[\\w]+", which searches for a sequence of one or more word characters.] We also plot the results to have a better idea of what is going on with this dimension: speeches grew in fact longer during throughout 19^th^ century. Their length however was dramatically reduced (roughly) after WWI, with some remarkable exceptions, something which again would probably deserve further attention.
+
+```{r}
+data <- data |>
+  mutate(word_count = str_count(text, "[:alpha:]+"))
+data |>
+  ggplot(aes(x = year, y = word_count)) + geom_line()
+```
+
+We can now construct a relativised measure of the frequency of women in these speeches. Do not forget to take into account that we have 2 speeches in some years first. Notice that our relative frequency is computed by dividing the absolute frequency (mentions of women) by the length of the speech (in words) and multiplied it 1,000 times, which means that our indicator measures the number of times women are mentioned per 1,000 words. It is useful to include this information in the graph itself. As well as dots and lines, we are also depicting the underlying trend behind the data using `geom_smooth()`.^[We set the standard errors, `se` to `FALSE` to avoid plotting the confidence intervals, something we haven't covered yet. Notice that the degree of smoothing can be adjusted with the argument `span` and assigning values between 0 and 1: lower values produce wigglier lines, thus better capturing short-term, instead of smoother, long-term, patterns. Set it, for instance, to `span = 0.25` to see what happens.] The general pattern have not changed that much but the relative importance of particular years has sometimes.
+
+```{r}
+data |>
+  group_by(year) |>
+  summarise(women = mean(women),
+            word_count = mean(word_count)) |>
+  mutate(women_rel = 1000*women/word_count) |>
+  ggplot(aes(x = year, y = women_rel)) +
+  geom_point() + geom_line() + geom_smooth(se = FALSE) +
+  ylab("Frequency (per 1,000 words)")
+```
+
+----
+
+We are now going to conduct a similar analysis and trace the temporal evolution of the importance of "education" as a topic. Given that there are many terms that can refer to education, we construct a dictionary of words, such as "school", "student" or "teacher", as well as "education" itself (feel free to add others you think might be also important). In order to do so, we create a data frame, a tibble, using the function `tibble()`. This data frame will have two columns, one named *word* and another one named *dictionary*. While the values of the first column are the words we are interested in (given in the form of a list),^[A list is a vector of values contained within `c()`.] the values of the second columns are all the same ("educ"), meaning that these words refer to the topic education. We could have compared this to a different topic, such as health, so we could have created a dictionary with terms relating to health: doctor, nurse, medicine, etc. Always, make sure to check whether what you have done looks as it should be.
+
+```{r}
+educ_dict <- tibble(
+  word = c("education", "school", "student", "teacher"),
+  dictionary = "educ")
+educ_dict
+```
+
+We could now try to find the number of times these terms should up in the speeches. Doing it directly however would miss terms like "teachers" or "schooling" or those starting with capital letters ("Education"). We could expand the list to cover all these possibilities but an easier solution is to tokenise the speeches first using `unnest_tokens()` from the `tidytext` package. As well as removing all punctuation and splitting the text into individual words, this function  converts everything into lowercase characters, thus helping with one of the issues above. In addition, having the terms structured this way allows to easily *lemmatise* them (from the package `textstem`), so the others issues are also mitigated ("schooling" becomes "school"). The resulting data frame contains almost 1,9 million rows, that is, all the tokens that make up the corpus. Crucially, the meta data about the original speeches (*year* and *president*) is preserved, so we know which year and president delivered each of those words.
+
+```{r}
+library(tidytext)
+library(textstem)
+
+data_token <- data |>
+  select(year, president, text) |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word))
+```
+
+We can now join the two objects together, the tokenised version of the speeches and the dictionary with the words referring to the topic *education*, using `full_join()`.^[Using `inner_join()` instead removes any terms not present in the dictionary, which prevents computing relative frequencies (based on the total number of tokens in each speech) unless you compute that beforehand.]. Note that the columns that we want to join in both objects have the same name, which facilitates the matching because R recognises that is the only column with the same name in both objects.^[When the names are different, you could indicate the matching columns manually using the `by` argument: `by = c("col1"="col2"))`.]
+
+```{r}
+data_token |>
+  full_join(educ_dict)
+```
+
+As evident above, this procedures adds the other columns of the object we are trying to merge to the original data frame. In this case, the other column in the object `dict_educ` was *dictionary*. R goes though all the terms in the tokenised version of the speeches and assign the value "educ" if the terms match and NA (missing) otherwise. In order to better work with this, it is better to create a dummy variable assigning 0s or 1s depending on whether the term was in the dictionary or not. Once that's done, computing relative frequencies basically implies relying on what we already know to compute the number of occurrences per thousand words.^[We compute the number of tokens (rows) per year and the number of terms referring to education, so we can put these two pieces of information together. Note that, given that the columns *educ* is composed of 0s and 1s, this is equivalent to compute the average times 1,000: `educ = mean(educ)*1000`.] We implement the full process below. Feel free to check what the code is doing sequentially:
+
+```{r}
+data_token |>
+  full_join(educ_dict) |>
+  mutate(educ = if_else(is.na(dictionary), 0, 1)) |>
+  group_by(year) |>
+  summarise(total = n(),
+            educ = sum(educ),
+            educ_rel = 1000*educ/total) |>
+  ggplot(aes(x = year, y = educ_rel)) +
+  geom_point() + geom_line() + 
+  geom_smooth(se = FALSE, span = 0.25)
+```
+
+The results are interesting and correspond to the idea that the importance that governments placed on educating the population has increased over time, although the last years show a declining trend. We should also bear in mind that schooling was funded at the local and state level during a long time and it is only throughout the 20^th^ century that the federal government started to intervene in education. Also, bear in mind that we have used only a few words as a dictionary of the topic education. This could be expanded to cover this topic more thoroughly. We should be careful when working with historical texts, since other terms might have been used in the past to refer to education ("pupil" instead of "student", for instance) or we may have missed others that are used more often in recent times (such as "university", "college", "human capital", "kindergarten", etc. Integrating these terms probably makes the increasing trend even more pronounced. Likewise, you might be wondering whether the words in the object `dict_educ` should also be lemmatised: in our case they don't need to be because they already constitute basic lemmas (check it yourself by applying the function `lemmatize_words()` to the words in the dictionary) but it might be necessary in other setting. 
+
+----
+
+Let's now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our data set does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. The idea is to have a data frame containing the names of the presidents we have and then attach information on their political affiliation. We could do the research and fill in the gaps ourselves. To gain time, we can outsource this task to a research assistant or now to an AI tool. Let's first create a list with the presidents:
+
+```{r}
+presidents <- data |>
+  count(president) |> select(president)
+presidents
+```
+
+We can either export this object to a .csv file (that we will stored in the folder `data`) that we can feed into the AI or copy and paste the names directly into the AI agent.
+
+```{r}
+#| evaluate: false 
+write_csv(presidents, "data/presidents.csv")
+```
+
+The AI has done its part. We now have a revised file containing two columns: *president* and *party* (so we need to read it into R) or we have the information so we can create the object ourselves, copying and pasting the necessary information, as we have done below using the input from the AI. The agent also explained that it has included the following party labels: Federalist, Democratic-Republican, Democratic, Republican, Whig and None (for George Washington, who was not formally affiliated with a party). We should double-check that this classification is historically appropriate (and correct if necessary).
+
+```{r}
+presidents <- tibble(
+  president = c(
+    "Abraham Lincoln","Andrew Jackson","Andrew Johnson","Barack Obama",
+    "Benjamin Harrison","Calvin Coolidge","Chester A. Arthur","Donald J. Trump",
+    "Dwight D. Eisenhower","Franklin D. Roosevelt","Franklin Pierce",
+    "George Bush","George W. Bush","George Washington","Gerald R. Ford",
+    "Grover Cleveland","Harry S Truman","Herbert Hoover","James Buchanan",
+    "James K. Polk","James Madison","James Monroe","Jimmy Carter",
+    "John Adams","John F. Kennedy","John Quincy Adams","John Tyler",
+    "Joseph R. Biden","Lyndon B. Johnson","Martin Van Buren","Millard Fillmore",
+    "Richard M. Nixon","Ronald Reagan","Rutherford B. Hayes",
+    "Theodore Roosevelt","Thomas Jefferson","Ulysses S. Grant",
+    "Warren G. Harding","William Howard Taft","William J. Clinton",
+    "William McKinley","Woodrow Wilson","Zachary Taylor"),
+  party = c(
+    "Republican","Democratic","Democratic","Democratic",
+    "Republican","Republican","Republican","Republican",
+    "Republican","Democratic","Democratic",
+    "Republican","Republican","None","Republican",
+    "Democratic","Democratic","Republican","Democratic",
+    "Democratic","Democratic-Republican","Democratic-Republican","Democratic",
+    "Federalist","Democratic","Democratic-Republican","Whig",
+    "Democratic","Democratic","Democratic","Whig",
+    "Republican","Republican","Republican",
+    "Republican","Democratic-Republican","Republican",
+    "Republican","Republican","Democratic",
+    "Republican","Democratic","Whig"))
+
+presidents
+```
+
+I am going to assume that the list above is accurate. The next step is then to join this object to the original data using `full_join()`. The objects `data` and `presidents` both have a column named *president*, so the matching is straightforward:
+
+```{r}
+data <- data |>
+  full_join(presidents)
+
+data |> select(year, president, party, text)
+```
+
+We can now proceed and implement the analysis recycling some of the code above. We can for instance re-do the process about the importance of topics related to education. Instead of grouping by *year*, we do it by *party* now. To make things simpler, we also restrict the analysis to president from the Republican or the Democratic parties.
+
+```{r}
+data |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word)) |>
+  full_join(educ_dict) |>
+  mutate(educ = if_else(is.na(dictionary), 0, 1)) |>
+  filter(party %in% c("Republican", "Democratic")) |>
+  group_by(party) |>
+  summarise(educ = mean(educ)*1000)
+```
+
+Based on the terms chosen above, it seems that the presidents belonging to the Democratic party talk more about education than their peers in the Republican party but the difference is not very large. We could refine our analysis by checking whether these differences have always been there or are a relatively recent phenomenon (replicating the analysis but focusing, for instance, in the post-1945 period or even in more recent periods).
+
+We could something similar for the term woman/women. The lemma for these two terms is women, so the code below captures both cases and plots the results.
+
+```{r}
+data |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word)) |>
+  mutate(women = if_else(lemma=="woman", 1, 0)) |>
+  filter(party %in% c("Republican", "Democratic")) |>
+  group_by(party, year) |>
+  summarise(women = mean(women)*1000) |>
+  ggplot(aes(x = year, y = women, col = party)) +
+  geom_point(alpha = 0.5) + geom_line(alpha = 0.5) +
+  geom_smooth(span = 0.5, se = FALSE)
+```
+
+The most striking result is the increase in the number of times that Republicans have used the term "woman/en" from the 1950s onwards and clearly overcome the Democrats. Why? What is behind these trends?
+
+----
+
+The next question goes back to the topic of the presence (or absence) of women in the speeches and asks about the context surrounding the terms referring to women. This is a very interesting issue because it allows getting to know more about how these speeches are using these terms and therefore qualify the previous analysis based purely on term frequencies. The graphs above, for instance, show that Republican presidents are (increasingly) mentioning women more often than Democrats. But knowing the context in which they use those terms is crucial, right? 
+
+Instead of tokenising based on individual tokens (grams), this procedure implies tokenising but using (multiple) n-grams.^[This could also be done using the package `quanteda` as explained in the keywords-in-contec (kwic) section in the "counting words" pdf.] In the example below, we are using a window of 5 tokens/grams, defined by the argument `n = 5` (we have chosen the name *window* to the new column containing the 5-gram chunk). A wider window could obviously be more informative but bear in mind that the further away from the term of interest, the less likely to be informative about that particular term. In any case, you as a researchers is the one to make these decisions.
+
+```{r}
+data_5grams <- data |>
+  select(year, president, party, text) |>
+  unnest_tokens(window, text, token = "ngrams", n = 5)
+data_5grams
+```
+
+Once this is in place, we can identify whether those windows contain the term "[Ww]om[ae]n" (or any other pattern) or not. If they do, we can then easily list the accompanying terms. In order to do so, it is useful to first put the terms into separate columns using the function `separate_wider_delim()`. 
+
+```{r}
+data_5grams <- data_5grams |>
+  separate_wider_delim(window, delim = " ", names = c("g1", "g2", "g3", "g4", "g5"))
+data_5grams
+```
+
+Given that the 5-gram is a moving window, we can just focus on whether the term in question shows up in the middle gram (*g3*) to avoid duplicates. This gives us the chance to read the context in which the term women shows up, which is extremely informative. Note that the data frame is reduced to 391 rows, the number of times the terms "women" or "woman" are mentioned (out of almost 1,9 million tokens originally).
+
+```{r}
+women <- data_5grams |>
+  filter(g3=="women" | g3 =="woman")
+women
+```
+
+We can now transform the data into a long form to facilitate the analysis. The column *g3* is actually redundant because its value is always "women" (see code above), so we can drop it. We then put the values in the fields *g1*, *g2*, *g4* and *g5* (the terms placed next to the term women/woman) into a single column named *order* (or whatever you want) that will distinguish whether those terms come from *g1*, *g2*, *g4* or *g5*, something that can be useful for the analysis if we want to differentiate regarding how close to *g3* the terms are. The terms themselves and placed in a column automatically named *value*, which for convenience we rename to *word*. Lastly, we remove stop words that are not very informative.
+
+```{r}
+women <- women |>
+  select(-g3) |>
+  pivot_longer(cols = c("g1", "g2", "g4", "g5"), 
+               names_to = "order") |>
+  rename(word = value) |> 
+  anti_join(stop_words) 
+women
+```
+
+We can now find out which words are the most common ones when talking about women, by simply counting them. The list is very informative. Most of the times women are mentioned in the presidential speeches are in relation to terms denoting their role as mothers: children, pregnant, child, infants, etc. (you can use `print(n = Inf)` to see the whole list). As well as to the nation itself (american, america, america's), there are also terms referring to work (employment, industry) and other topics/issues. 
+
+```{r}
+women |>
+  count(word, sort=TRUE)
+```
+
+You can also refine the analysis and perhaps focus only on the terms that are right next to women and see whether the same pattern shows up or not (having a wider window of terms would allow further analyses along these lines). Doing so, for instance, also highlights that women were often mentioned in the context of minorities (a word that also appeared relatively high in the previous list), such as "chinese" or "indian" women.
+
+```{r}
+women |>
+  filter(order=="g2" | order=="g4") |>
+  count(word, sort=TRUE)
+```
+
+Further analyses would look into how these patterns may have changed over time and whether these patterns are characteristic of particular presidents or political parties. Obviously, this is only a complementary tool to close-reading. Directly reading the context in which these terms were employed in the speeches would allow qualifying these analyses but just counting helps revealing patterns regarding the evolution of the perceived view of women in the mainstream political agenda and society more broadly, as well as the potential influence of particular historical processes (e.g. the suffrage movement, equal rights movements from the 1960s, etc.).
+
+Note also that this assignment has so far focused on exploring particular topics (e.g. women, education). A more agnostic approach would search for the most common words in particular periods using top frequencies to discover other (perhaps) unnoticed patterns. This would involve unnesting tokens, removing stop words, lemmatizing and counting which tokens are most common.  
+
+----
+
+Let's finish this assignment by studying the locations that are mentioned in the speeches. Part of more general *tagging* tools, the package `entity` includes function for *named entity recognition*. One of them is `location_entity()` which identifies locations in a particular textual field (in our case the column *text*).^[Other functions allow identifying persons (`person_entity()`) or organisations (`organization_entity()`).] Unfortunately, these tools do not work well with very long texts unless you change their default options. The code below fixes that by forcing the argument `element.chunks` to be at least equal to 1. Excluding those years without a speech also assures that missing values are not an issue. These functions are computationally intensive, so the code takes a while to run (be patient and I hope the computer does not crash).^[If it crashes, you can always perform the analysis on a smaller subset of the corpus, filtering for instance to the last 25 years or something like that: `filter(year>2000)`.]
+
+```{r}
+library(entity)
+locations <- data |>
+  select(year, president, party, text) |>
+  filter(!is.na(text)) |>
+  mutate(locations = location_entity(text, element.chunks = 1))
+
+locations
+```
+
+As you can see, the column *locations* is a vector listing whatever locations the algorithm has recognised. These vectors look something like this: `c("Washington", "Ukraine")`. You can for instance extract that information using `pull()` and `pluck()`.^[`pull()` extracts the list and `pluck(1)` extracts the vector inside the list.] The code below does it for the year 1805:
+
+```{r}
+locations |>
+  filter(year==1805) |>
+  pull(locations) |>
+  pluck(1)
+```
+
+In order to work with the full corpus, we can use the function `unnest()` to structure that information as a regular tibble. This function expands a list-column (*locations* in our case), so that each element of the vectors inside it (each location) becomes its own row and preserved the associated metadata (*year*, *president*, *party*, etc.).
+
+```{r}
+locations_long <- locations |>
+  unnest(locations)
+
+locations_long |> select(year, president, party, locations)
+```
+
+We can now analyse this information. Let's first explore how the the geographical scope of the speeches have changed over time. To make things simpler, we create four periods: 1790-1880, 1880-1914, 1915-1945 and 1946-2024. We can then count the number of times each location is mentioned within each period and select only the 15 most common using `slice_max()`. The code for the graph is a bit involved because we want to present the locations ordered in terms of popularity within each period. I would advise you to check what the code is doing sequentially. The results show how the geographical scope of the US political agenda has changed over time as the US themselves evolved from being especially focus on internal affairs to become a global power. A more fine-grain analysis (by decade for instance) would provide further insights.
+
+```{r}
+#| evaluate: false
+library(tidytext)
+
+locations_long |>
+  mutate(period = case_when(
+    year<1914 ~ "1790-1914", 
+    year>=1914 & year<1945 ~ "1915-1944",
+    year>=1945 ~ "1945-2024")) |>
+  group_by(period) |>
+  count(locations, sort=TRUE) |>
+  slice_max(order_by = n, n = 15) |>
+  ggplot(aes(x = reorder_within(locations, n, period), y = n)) +
+  geom_col() +
+  scale_x_reordered() +
+  coord_flip() +
+  facet_wrap(~ period, nrow = 1, scales = "free") +
+  labs(x = "Locations", y = "Frequency") + 
+  theme_bw()
+```
+
+We can do something similar with political affiliation. The logic is the same but instead of grouping by *year* (or *period*) we group by *party*. To narrow down the temporal scope, we focus on the period after 1945 and we present the results as a table. The results are very interesting. One of the most important is how "Europe" ranks much higher for the Democrats. The Republicans also seem to be more concerned about the Middle East (also including Iraq, Iran and Afghanistan). 
+
+```{r}
+locations_long |>
+  filter(year>1945) |>
+  group_by(party) |>
+  count(locations, sort=TRUE) |>
+  slice_max(order_by = n, n = 15) |>
+  mutate(rank = row_number()) |>
+  ungroup() |>
+  select(party, rank, locations, n) |>
+  pivot_wider(names_from = party,
+              values_from = c(locations, n)) |>
+  arrange(rank) |>
+  select(rank, locations_Democratic, n_Democratic, locations_Republican, n_Republican) |>
+  print(n = 15)
+```
+
+This is just a first taste of how to extract and analyse the importance of geographical locations from textual corpuses. Note though that we have not taken into account whether there are differences in how the length of the speeches, either by period or by political affiliation, something that should be done before attaching too much significance to these findings. Also, we have focused on the most common locations but it might be also interesting to have a look at which ones are less common or even at the variety of locations that are mention (the number of unique locations can be computed using `n_distinct()`). Crucially, here we have reported the information about locations using graphs and tables. However, the best way to present spatial information is to draw maps. We will learn how to do it next session.
+
+----
+
+Well, this was quite a journey. Many more things could be done to enhance the analyses above but this is more than enough. Congrats if you have managed to somewhat perform these different exercises. As mentioned above, this way of approaching texts does not replace close reading but helps presenting evidence on a different way and find patterns that are not always visible, as well as the possibility of dealing with huge corpuses. Using these methods, as well as being creative about the way you treat the data, can indeed be a big methodological advantage for computationally-oriented historians.
+
+<!--
+We could easily use `ggplot()` and define that the x-axis will be *year* and add different `geom_line()` functions when the y-axis is defined separately for each of the columns (*women*, *female* and *girl*). Having the data structure in a long format (instead of a wide format) is however more flexible because we can then easily structure our analyses based on the different categories we are measuring. We therefore use `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *category* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. The resulting data frame will four rows for each speech. Feel free to run this first step separately from the graph to understand what is happening to the original data frame. We can now easily plot the information indicating that we want to have different colors according the the field *category* (whose categories are "women", "female", "girl" and "total").
+
+```{r}
+data |>
+  pivot_longer(cols = c("women", "female", "girl", "total"), 
+               names_to = "category") |>
+  filter(category=="total") |>
+  ggplot(aes(x = year, y = value, col = category)) +
+  geom_point() + geom_line()
+```
+
+We are using the argument `alpha` to facilitate visualisation by adding some transparency. The parameter can be set between 0 (total transparency) and 1 (total opacity).
 
 -->
+
 
 
