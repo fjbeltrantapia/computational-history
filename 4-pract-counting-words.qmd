@@ -37,8 +37,8 @@ We will use computational text analysis to shed light on the contents of these s
 
 6. Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?
 
-<!--
-**Warning**: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `spstr_sub(1,200)`.-->
+
+**Warning**: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `spstr_sub(1,200)`.
 
 ----
 
@@ -324,7 +324,7 @@ women <- data_5grams |>
 women
 ```
 
-We can now transform the data into a long form to facilitate the analysis. The column *g3* is actually redundant because its value is always "women" (see code above), so we can drop it. We then put the values in the fields *g1*, *g2*, *g4* and *g5* (the terms placed next to the term women/woman) into a single column named *order* (or whatever you want) that will distinguish whether those terms come from *g1*, *g2*, *g4* or *g5*, something that can be useful for the analysis if we want to differentiate regarding how close to *g3* the terms are. The terms themselves and placed in a column automatically named *value*, which for convenience we rename to *word*. Lastly, we remove stop words that are not very informative.
+We can now transform the data into a long form to facilitate the analysis. The column *g3* is actually redundant because its value is always "women" (see code above), so we can drop it. We then put the values in the fields *g1*, *g2*, *g4* and *g5* (the terms placed next to the term women/woman) into a single column named *order* (or whatever you want) that will distinguish whether those terms come from *g1*, *g2*, *g4* or *g5*, something that can be useful for the analysis if we want to differentiate regarding how close to *g3* the terms are. The terms themselves and placed in a column automatically named *value*, which for convenience we rename to *word*.^[Having the data structure in a long format (instead of a wide format) is more flexible because we can then easily structure our analyses based on the different categories there. `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *order* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. Feel free to run this first step separately from the graph to understand what is happening to the original data frame.] Lastly, we remove stop words that are not very informative.
 
 ```{r}
 women <- women |>

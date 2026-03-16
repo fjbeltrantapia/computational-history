@@ -13,7 +13,257 @@ format:
 
 This assignment explores both the 1910 Norwegian census and the newspapers published in Norway during that year. The aim is to be able to map the information contained in those sources. In the process, we will also practice the crucial skill of "cleaning" data, that is, making it ready for subsequent analyses.
 
+### Question 1
+
+Census are a crucial source of information about the demographic and socio-economic characteristics of the society performing the enumeration. The image below provides a sample of the 1910 Norwegian census. Organised by households, it includes name and surname, sex, age, place of birth and residence, marital status, occupation and religion, among other information. Many other details can also be inferred, such as the position in the household or the number (and type) of people residing in each household. You can, for instance, count how many children were residing with the family. This information has been digitised in full by the [Norwegian Historical Data Center](https://rhd.uit.no) hosted at UiT. You can find the a curated version of this data set in Blackboard. Given that it is stored as a .txt file, you will need to import it into R using the function `read_delim()` and specifying the following argument `delim = "\t"`. In total in contains information on the almost 2.5 million people living in Norway at that time.
+
+![Sample of the 1910 Norwegian census. Source: Digital Arkivet.](images/norge-census-1910-cut.png){width=100% height=100% fig-align="center"}
+
+This exercise requires mapping the variation in early marriage in 1910 using municipalities as the unit of analysis. A way to look into early marriage using the census is to compute the percentage of the population aged 16-20 who was married (or widowed). Note that most variables are formated as "string" even when they are numerical, so they need to be formated properly first using `as.numeric()`. The shapefile containing the Norwegian municipalities at that time can be found in Blackboard.
+
+### Question 2
+
+The other source we will be using is the newspapers published in Norway in 1910. The [National Biblioteket](https://www.nb.no/search?mediatype=aviser) has gathered thousands of these records. Instead of searching online, we will use the R package [dhlabR](https://github.com/NationalLibraryOfNorway/dhlabR) to directly interact with the corpus.
+
+![Sample of a Norwegian newspaper: Afenposten (April 8, 1910). Source: National Biblioteket.](images/newspaper.png){width=100% height=100% fig-align="center"} 
+
+Here, you will map the number of newspapers published in Norway in 1910 according to their place of publication. The corpus of newspapers can be retrieved using the `dhlabR` package. As well as this source, you will need a spatial object to be able to do the mapping. You can either use an already existing shapefile containing Norwegian locations or use the `geocoder` package to extract the geographic coordinates that are needed to create such a (point) shapefile.
+
+----
+
+<!--
+
+# Solution
+
+Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that the file is named `census-1910.txt` and is in my folder `data/census-1910`, the code below reads it into R. This is a text file and most fields are recorded as string variables encoded with UTF-8 and using tab as the separator. We are therefore using `read_delim()`, part of the tidyverse, to import this file, including the argument `delim = "\t"` to indicate that each field is separated by a tab.^[Defining the `locale` helps making sure the characters are properly encoded and recognised.] Typing the name of the newly created object `census` allows inspecting its contents but you can also use `glimpse()` to check how all fields look like.
+
+```{r}
+library(tidyverse)
+census <- read_delim("data/census-1910/census-1910.txt",
+                     delim = "\t",
+                     locale = locale(encoding = "UTF-8"))
+census
+```
+
+As you can see, the first three columns help situating each observation: municipality of residence, followed by the household number and the individual number within that household. It then includes personal information (name, surname, sex and civil status), followed by occupation and other information such as birtdate (separated in three columns: day, month and year of birth) and place of birth, nationality and religion. Note that many of these fields record numbers (instead of the actual value). This is because this information has been encoded to homogenise it and facilitate its use. You can find what these numbers mean in the file named "codebook.pdf".
+
+We are interested in age at marriage. Although there is no field recording age, the variable *faar* reports year of birth. It is always advisable to inspect the data, so there are no surprises. Given that *faar* is formated as a character field (string), it needs to be transformed into numercial if we want to take advantage of its numerical properties. 
+
+```{r}
+census <- census |> 
+  mutate(faar = as.numeric(faar))
+
+census |> 
+  ggplot(aes(x = faar)) + geom_histogram(binwidth = 5)
+```
+
+As you can see below, there are a bunch of observations whose year of birth is 0. As the codebook makes clear, this is a code for not having information (a missing value). If you check, they comprise 10,194 rows (observations). We could convert it into NA or just restrict the analysis excluding those observations using `filter(faar!=0)`. However, if we plot *faar* again, the graph looks weird because it extends before 1700 and beyond 2000. 
+
+```{r}
+census |> 
+  filter(faar!=0) |>
+  ggplot(aes(x = faar)) + geom_histogram(binwidth = 1)
+```
+
+Although we don't see columns there, there are but they are minuscule because they refer to very few observations (whose numbers are negligible compared to the scale of the graph, in hundreds of thousands of observations). If you explored the data using `filter()`. you will see that there are observations with implausible birth years. In historical data sets, dirty data is all around. If we could, we would check the source and correct their values (if possible). Here we adopt a more lazy (call it practical) approach and simply disregard them. Given that the census is conducted in 1910, we only consider those with years of birth between 1800 and 1910.^[If you check, this involves disregarding only 79 observations, which is a minimal fraction of the full population.] Replicating the histogram above yields something more informative.^[Note that the amount of age-heaping is much smaller than what we observed in assignment 3. Norway in 1910 was a more numerically-skilled population than rural Spain in 1860.]
+
+```{r}
+census <- census |> 
+  filter(faar!=0) |>
+  filter(faar>=1800 & faar<=1910) 
+census |>
+  ggplot(aes(x = faar)) + geom_histogram(binwidth = 1)
+```
+
+This looks ok. Given that are interested in age of marriage, we can now derive their ages based their birth year and on knowing that the census was conducted in 1910.
+
+```{r}
+census <- census |>
+  mutate(age = 1910-faar)
+census |>
+  ggplot(aes(x = age)) + geom_histogram(binwidth = 1)  
+```
+
+The information on who is married or not, marital status, is contained in the field *sivilstatus*. As shown below, this field contains five different categories:
+
+```{r}
+census |>
+  count(sivilstatus)
+```
+
+We therefore need to compute a dummy variable classifying the individuals as married (1) or not (0) using `if_else()` or `case_when()`. Being separated or a widow also implies having been married, so they should be classified accordingly. Note also that the category "ukjent" is better if codified as missing (NA), so we do not treat them as not married.
+
+```{r}
+census <- census |> 
+  mutate(married = case_when(
+    sivilstatus %in% c("gift", "skilt", "enke") ~ 1,
+    sivilstatus=="ugift" ~ 0,
+    sivilstatus=="ukjent" ~ NA_integer_))
+census |>
+  count(married)
+```
+
+Let's now compute the percentage of the population age 16-20 who were already married. We restrict the analysis to that age-group and the calculate the average (the mean) of the variable *married*. Given that this is a variable that can be 0 or 1 at the individual level, the average of all those 0s and 1s in the fraction of the population classified as 1. If we want the percentage, we just multiply time 100.
+
+```{r}
+census |>
+  filter(age>=16 & age<=20) |>
+  summarise(married = 100*mean(married, na.rm = TRUE)) 
+```
+
+2.12 per cent of the Norwegian population aged 16-20 was married in 1910. This number however could be different in different regions or municipalities. Remember that the field *kommunern* classified each individual into the municipality they were residing. The variable *fsted* provides the municipality of birth. Instead of the actual names, this information is encoded into municipal codes. If you inspeac one of these fields, you will see all those codes. In total, there were 659 municipalities.
+
+```{r}
+census |>
+  count(kommunenr) 
+```
+
+Computing the percentage of the population who were married in each of these locations just involve replicating the code above but adding the `group_by()`, so the computations take place for each group (municipality here) separately. We store the results in a separate object.
+
+```{r}
+married_kom <- census |>
+  filter(age>=16 & age<=20) |>
+  group_by(kommunenr) |>
+  summarise(married = 100*mean(married, na.rm = TRUE))   
+married_kom
+```
+
+In the municipality with code "0101", 1.4 per cent of the population aged 16-20 was married. The other rows provide the same information for the remaining municipalities (up to 659). 
+
+This is the information we want to map. In order to do so, we need a spatial object with the municipal boundaries in 1910. We have that shapefile in the course materials ("kommuner_10.shp"),^[As discussed in class, it actually refers to a bunch of files with the same name but different extensions.] so let's now import it using `read_sf()`, which is part of the package `sf`. We use the argument `options = "ENCODING=LATIN1"` to make sure we are able to read the Norwegian characters it contains.
+
+```{r}
+library(sf)
+kommuner_gis <- read_sf("data/census-1910/kommuner-1910/kommuner_1910.shp",
+                        options = "ENCODING=LATIN1")
+kommuner_gis
+```
+
+This is a curated shapefile that reconstructs the municipal boundaries in 1910. It contains 659 features (polygons) that, conveniently, match the number of municipalities that are also present in the 1910 census. As we can see above, we have columns with municipal and regional codes, as well as the name of the municipality itself. The column *geometry* contains the spatial coordinates necessary to map their contours. Let's check it using the package `tmap`.
+
+```{r}
+library(tmap)
+kommuner_gis |>
+  tm_shape() + tm_polygons(lwd = 0.2, col_alpha = 0.5)
+```
+
+Matching municipalities. 659 features in each. Different names *KNR* in the GIS file and *kommunenr* in the census.
+
+We need to attach the information that we had stored regarding early marriage in each municipality to this shapefile, so we can map it. We do it using `full_join()`.
+
+
+```{r}
+kommuner_gis |>
+  full_join(married_kom, by = c("KNR" = "kommunenr")) |>
+  tm_shape() + 
+  tm_polygons(fill = "married", lwd = 0.2, col_alpha = 0.5)
+```
+
+Although, on avearge, the percentage of the population marrying early was very small (2.1 per cent), there is substantial variation across the country. In some inland municipalities and especially in the north, this figure could range between 8 and 12 per cent. Next step would be to know why.
+
+----
+
+Let's now move on to newspapers and explore the media landscape in Norway in 1910. We retrieve the corpus from the National Biblioteket using the function `get_document_corpus()` (from the package `dhlabR`). I am going to assume that either the digitised collection is complete or, at least, representative of the universe of newspapers published in Norway at that time. It is however part of the historian's toolkit to practice source criticism and assess the potential biases in the existing material.^[Computational and quantitative analyses also help assessing those biases (detecting, for instance, systematic gaps in the source).] 
+
+Indicating 1910 and 1911 as `from_year` and `to_year` will return the newspapers published in 1910.
+
+```{r}
+library(dhlabR)
+news <- get_document_corpus(
+  doctype = "digavis", 
+  from_year = 1910, to_year = 1911,
+  lang = NULL,
+  limit = 50000)
+news |> glimpse()
+```
+
+The function returns a data set of 42,966 rows, which means that there are this number of texts associated to newspapers published 1910. We now structure the data frame, so we can work with it more easily, and keep only the variables that might be more useful: *dhlabid*, *title*, *year* and *city*. 
+
+```{r}
+news <- news |>
+  as_tibble() |>
+  select(dhlabid, title, year, city) |>
+  mutate(dhlabid = map_int(dhlabid, 1),
+         title = map_chr(title, 1),
+         year = map_int(year, 1),
+         city = map_chr(city, 1))
+news
+```
+
+The corpus has 21,223 newspapers. Feel free to explore the content of the different fields. As we can see, there is missing information in the variable *city*. It might sometimes be possible to infer that information from the *title* but let's proceed as it is. The code below computes the number of newspapers published in each location (*city*) in 1910.
+
+```{r}
+news_city <- news |>
+  group_by(city) |>
+  summarise(obs = n())
+news_city |> filter(city!="")
+```
+
+We now have an object containing a list of locations and the number of newspapers published in each of them in 1910.
+
+In order to map this information, we need a spatial object with municipal boundaries (polygons) or simple points in space (dots). Given the type of information we have, dots might be better because we can visualise importance by increasing the size of the dot.
+
+It would be relatively easiy to find a shapefile with Norwegian locations online. This would be a reliable method because we would know that they spatial locations are correct. We could then joint the two pieces of information as we have done above. The names in the matching fields should correspond (unless you perform a fuzzy matching), so some cleaning would be perhaps required.
+
+Instead we are going to obtain the coordinates for those locations using the package `tidygeocoder`. In order to improve the chances that the geocoding tool finds the locations accurately, we are going to provide more information. Here, we are just adding that they are all in Norway but we could also indicate the region they belong to if we had that information.
+
+```{r}
+library(tidygeocoder)
+
+news_city <- news_city |> 
+  filter(city!="") |>
+  mutate(city = str_trim(city),
+         city = paste(city, ", Norway", sep = ""))
+news_city
+```
+
+Asking for `full_results` makes it easy to double-check what kind of locations we have got.
+
+```{r}
+news_city_geo <- news_city |>
+  geocode(city, method = "osm", full_results = TRUE)
+news_city_geo
+```
+
+We are going to assume that this is ok. You should check.
+
+crs for Norway (5973) - EUREF89 UTM sone 33
+transform it into a spatial object (including CRSs)
+
+```{r}
+news_city_geo <- news_city_geo |>
+  filter(!is.na(lat)) |>
+  st_as_sf(coords = c("lat", "long"), crs = 5973) 
+```
 
 
 
+```{r}
+news_city_geo |>
+  tm_shape() +
+  tm_bubbles(fill = "red",
+             size = "obs",
+             size.scale = tm_scale_continuous(
+               ticks = c(50, 250, 1000, 2000, 3000, 4000)))
+```
 
+We need a reference. We could use the Norwegian municipalities or get one from the package `geobounds`. Make sure they are in the same CRS.
+
+```{r}
+# install.packages("geobounds")
+library(geobounds)
+norway <- gb_get_adm0("Norway") 
+
+norway <- st_transform(norway, st_crs(news_city_geo)) 
+  
+news_city_geo |>
+  tm_shape() +
+  tm_bubbles(fill = "red",
+             size = "obs",
+             size.scale = tm_scale_continuous(
+               ticks = c(50, 250, 1000, 2000, 3000, 4000))) +
+  tm_shape(norway) + tm_polygons()
+
+```
+
+-->
