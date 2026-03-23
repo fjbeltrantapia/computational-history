@@ -23,29 +23,26 @@ Using this package usually entail two steps:
 
 2. Request derived text data: term frequencies, concordances, collocations, etc. Instead of extracting full texts directly, you obtain representations (term frequencies, terms around keywords, etc.) tied to those document IDs, usually as a data frame or list that you can use in R for analysis and visualisation. 
 
-Here I provide a basic overview of some of these functions. 
-
-First, you need to install the package. Given that it is a beta version, it is not available via the usual channel but with the following (make sure to also install `devtools` if you haven't used this package before).
-
-```{r}
-#| evaluate: false
-#| results: false
-# install.packages("devtools")
-devtools::install_github("NationalLibraryOfNorway/dhlabR")
-
-library(dhlabR)
-library(tidyverse)
-```
-
-Once the package is loaded, you get access to different functions.
-
 ```{r}
 #| echo: false
 rm(list=ls()) 
-library(dhlabR)
-library(tidyverse)
 ```
 
+Here I provide a basic overview of some of these functions. 
+
+First, you need to install and load the package `dhlabR`. Given that it is a beta version, it is not available via the usual channel but with the following commands (de-activated in my case). Make sure to also install `devtools` and `pak` if you haven't used these packages before.
+
+```{r}
+# install.packages("devtools")
+# install.packages("pak")
+# devtools::install_github("NationalLibraryOfNorway/dhlabR")
+# pak::pak("NationalLibraryOfNorway/dhlabR")
+
+library(tidyverse)
+library(dhlabR)
+```
+
+Once the package is loaded, you get access to different functions, such as `get_document_corpus()`, `get_document_frequencies()`, `get_concordance()`, or `get_collocations()`, among others. Let's go through them separately.^[The number of documents analysed here may be slightly different than what you get if you replicate the same commands if the *National Biblioteket* has modified the underlying corpus since I conducted this exercise (March 23, 2026).]
 
 # Retrieving the corpus metadata
 
@@ -92,7 +89,7 @@ newspapers |> glimpse()
 
 The function `get_document_frequencies()` search within the respective NB collections and computes *ngram* counts of the documents that are specified, an information that is contained in the corpus metadata retrieved in the previous step. The results can be plotted using regular R functions. 
 
-Let's start from afresh and define the corpus we want to explore. Imagine that we want to track the relative importance of the terms "dame" and "kvinne" to refer to women during the first half of the 20^th^ century. We will focus on books, the literary realm. We first extract the metadata behind the digitised collection. As mentioned earlier, it is important to define a limit that is larger than the collection itself, so we don't miss any text (this is basically done by trial and error). The resulting dataframe, containing information on 58,222 documents, is stored as an object named `books`. <!--It turns out that 6 documents were duplicated (`count(dhlabid) |> filter(n>1)`), so using the function `distinct(dhlabid, .keep_all = TRUE)` removes them by only keeping the first occurrence of each duplicated row, so we end up with 58,222 documents.-->
+Let's start from afresh and define the corpus we want to explore. Imagine that we want to track the relative importance of the terms "dame" and "kvinne" to refer to women during the first half of the 20^th^ century. We will focus on books, the literary realm. We first extract the metadata behind the digitised collection. As mentioned earlier, it is important to define a limit that is larger than the collection itself, so we don't miss any text (this is basically done by trial and error). The resulting dataframe, containing information on 58,228 documents, is stored as an object named `books`. <!--It turns out that 6 documents were duplicated (`count(dhlabid) |> filter(n>1)`), so using the function `distinct(dhlabid, .keep_all = TRUE)` removes them by only keeping the first occurrence of each duplicated row, so we end up with 58,222 documents.-->
 
 ```{r}
 books <- get_document_corpus(
@@ -130,14 +127,14 @@ wom_freq
 
 The resulting object now contains the information we were looking for and structured in a familiar way. Note that this object only contains the counts themselves. However, we have the document ids (*dhlabid*), so we could retrieve the metadata that was stored in the first object we retrieve (stored as *books* here), so we can make use of features such as "year" and "city" of publication, "author, "genres", etc.^[There are more fields but here we just focus on some of them.] We therefore prepare merge both objects together, the one with the metadata and the one with the term frequencies.
 
-It is important to realise that the data frame above is unbalanced because each row refers to a document where the particular term is mentioned at least once (but if it is not mentioned, there is no row). Counting the number of rows for each term makes this very clear. Recall that our corpus has 55,764 documents. The table below indicates the number of documents in which those terms are mentioned. The terms "er" and "og" show up in almost all of them (50,949 and 50,403, respectively) and we can perhaps safely argue that if those terms do not show up the document itself is probably unimportant or not very representative, so not having info on them (e.g. *doc_lenght*) is not going to affect our results. 
+It is important to realise that the data frame above is unbalanced because each row refers to a document where the particular term is mentioned at least once (but if it is not mentioned, there is no row). Counting the number of rows for each term makes this very clear. Recall that our corpus has 58,228 documents. The table below indicates the number of documents in which those terms are mentioned. The terms "er" and "og" show up in almost all of them (53,327 and 52,781, respectively) and we can perhaps safely argue that, if those terms do not show up, the document itself is probably unimportant or not very representative, so not having info on them (e.g. *doc_lenght*) is not going to affect our results. 
 
 ```{r}
 wom_freq |>
   count(word)
 ```
 
-In fact, however, the problem is less severe because there are documents which do not mention "og" but "er" (or the other terms) and vice versa, so the total number of documents is slightly higher (51,473; but not the full universe we started with). A potential solution is going back and add more terms to the search but we may not succeed in hitting all documents because a few of them might be very small documents anyway. 
+In fact, however, the problem is less severe because there are documents which do not mention "og" but "er" (or the other terms) and vice versa, so the total number of documents is slightly higher (53,877; but not the full universe we started with). A potential solution is going back and add more terms to the search but we may not succeed in hitting all documents because a few of them might be very small documents anyway. 
 
 ```{r}
 wom_freq |>
@@ -154,7 +151,7 @@ wom_freq <- wom_freq |>
 wom_freq
 ```
 
-The result is a data frame with 308,838 rows, which is the number of individual documents with at least 1 hit (51,473) times 6, the number of terms we searched for). We just need to fill in the gaps (NAs) with the adequate information, so we know not only the positive hits but also those with no hits (and the associated *doc_lenght*).
+The result is a data frame with 323,262 rows, which is the number of individual documents with at least 1 hit (53,877) times 6, the number of terms we searched for). We just need to fill in the gaps (NAs) with the adequate information, so we know not only the positive hits but also those with no hits (and the associated *doc_lenght*).
 
 ```{r}
 wom_freq <- wom_freq |>

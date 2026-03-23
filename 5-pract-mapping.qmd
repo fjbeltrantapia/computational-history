@@ -23,7 +23,7 @@ This exercise requires mapping the variation in early marriage in 1910 using mun
 
 ### Question 2
 
-The other source we will be using is the newspapers published in Norway in 1910. The [National Biblioteket](https://www.nb.no/search?mediatype=aviser) has gathered thousands of these records. Instead of searching online, we will use the R package [dhlabR](https://github.com/NationalLibraryOfNorway/dhlabR) to directly interact with the corpus.
+The other source we will be using is the newspapers published in Norway in 1910. The [National Biblioteket](https://www.nb.no/search?mediatype=aviser) has gathered thousands of these records. Instead of searching online, we will use the R package [dhlabR](https://github.com/NationalLibraryOfNorway/dhlabR) to directly interact with the corpus. If you have trouble downloading this packages (due to its dependencies), you can use the .csv file with the corpus of newspapers that is in Blackboard. 
 
 ![Sample of a Norwegian newspaper: Afenposten (April 8, 1910). Source: National Biblioteket.](images/newspaper.png){width=100% height=100% fig-align="center"} 
 
