@@ -1,5 +1,5 @@
 ---
-title: "dhlabR"
+title: "Exploring the NB corpus with dhlabR"
 execute: 
   warning: false
   message: false

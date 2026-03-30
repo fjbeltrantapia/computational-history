@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -164,11 +199,12 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content page-columns page-full column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -212,29 +248,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Here, you will map the number of newspapers published in Norway in 1910 according to their place of publication. The corpus of newspapers can be retrieved using the <code>dhlabR</code> package. As well as this source, you will need a spatial object to be able to do the mapping. You can either use an already existing shapefile containing Norwegian locations or use the <code>geocoder</code> package to extract the geographic coordinates that are needed to create such a (point) shapefile.</p>
 <hr>
-<!--
-
-# Solution
-
-Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that the file is named `census-1910.txt` and is in my folder `data/census-1910`, the code below reads it into R. This is a text file and most fields are recorded as string variables encoded with UTF-8 and using tab as the separator. We are therefore using `read_delim()`, part of the tidyverse, to import this file, including the argument `delim = "\t"` to indicate that each field is separated by a tab.^[Defining the `locale` helps making sure the characters are properly encoded and recognised.] Typing the name of the newly created object `census` allows inspecting its contents but you can also use `glimpse()` to check how all fields look like.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-library(tidyverse)
-census <- read_delim("data/census-1910/census-1910.txt",
-                     delim = "\t",
-                     locale = locale(encoding = "UTF-8"))
-census
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 2,473,292 × 14
+</section>
+<section id="solution" class="level1 page-columns page-full">
+<h1>Solution</h1>
+<p>Let’s start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the <code>tidyverse</code> package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that the file is named <code>census-1910.txt</code> and is in my folder <code>data/census-1910</code>, the code below reads it into R. This is a text file and most fields are recorded as string variables encoded with UTF-8 and using tab as the separator. We are therefore using <code>read_delim()</code>, part of the tidyverse, to import this file, including the argument <code>delim = "\t"</code> to indicate that each field is separated by a tab.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Typing the name of the newly created object <code>census</code> allows inspecting its contents but you can also use <code>glimpse()</code> to check how all fields look like.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Defining the <code>locale</code> helps making sure the characters are properly encoded and recognised.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/census-1910/census-1910.txt"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>census</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,473,292 × 14
    kommunenr husholdsnummer personnummer fornavn     etternavn kjonn sivilstatus
-   <chr>     <chr>          <chr>        <chr>       <chr>     <chr> <chr>      
+   &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;      
  1 0101      001            003          "georg mar… lauritsen mann  ukjent     
  2 0101      001            002          "johanne k… johannes… kvin… gift       
  3 0101      001            004          "artur ema… johannes… mann  ugift      
@@ -246,190 +276,145 @@ census
  9 0101      001            006          "noomy    … larsen    kvin… ugift      
 10 0101      001            004          "sigrid   … nilsen    kvin… ugift      
 # ℹ 2,473,282 more rows
-# ℹ 7 more variables: yrke <chr>, fdag <chr>, fmaaned <chr>, faar <chr>,
-#   fsted <chr>, statsborgerskap <dbl>, religion <chr>
-```
-
-
-:::
-:::
-
-
-As you can see, the first three columns help situating each observation: municipality of residence, followed by the household number and the individual number within that household. It then includes personal information (name, surname, sex and civil status), followed by occupation and other information such as birtdate (separated in three columns: day, month and year of birth) and place of birth, nationality and religion. Note that many of these fields record numbers (instead of the actual value). This is because this information has been encoded to homogenise it and facilitate its use. You can find what these numbers mean in the file named "codebook.pdf".
-
-We are interested in age at marriage. Although there is no field recording age, the variable *faar* reports year of birth. It is always advisable to inspect the data, so there are no surprises. Given that *faar* is formated as a character field (string), it needs to be transformed into numercial if we want to take advantage of its numerical properties. 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census <- census |> 
-  mutate(faar = as.numeric(faar))
-
-census |> 
-  ggplot(aes(x = faar)) + geom_histogram(binwidth = 5)
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-2-1.png){width=672}
-:::
-:::
-
-
-As you can see below, there are a bunch of observations whose year of birth is 0. As the codebook makes clear, this is a code for not having information (a missing value). If you check, they comprise 10,194 rows (observations). We could convert it into NA or just restrict the analysis excluding those observations using `filter(faar!=0)`. However, if we plot *faar* again, the graph looks weird because it extends before 1700 and beyond 2000. 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census |> 
-  filter(faar!=0) |>
-  ggplot(aes(x = faar)) + geom_histogram(binwidth = 1)
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-3-1.png){width=672}
-:::
-:::
-
-
-Although we don't see columns there, there are but they are minuscule because they refer to very few observations (whose numbers are negligible compared to the scale of the graph, in hundreds of thousands of observations). If you explored the data using `filter()`. you will see that there are observations with implausible birth years. In historical data sets, dirty data is all around. If we could, we would check the source and correct their values (if possible). Here we adopt a more lazy (call it practical) approach and simply disregard them. Given that the census is conducted in 1910, we only consider those with years of birth between 1800 and 1910.^[If you check, this involves disregarding only 79 observations, which is a minimal fraction of the full population.] Replicating the histogram above yields something more informative.^[Note that the amount of age-heaping is much smaller than what we observed in assignment 3. Norway in 1910 was a more numerically-skilled population than rural Spain in 1860.]
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census <- census |> 
-  filter(faar!=0) |>
-  filter(faar>=1800 & faar<=1910) 
-census |>
-  ggplot(aes(x = faar)) + geom_histogram(binwidth = 1)
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-4-1.png){width=672}
-:::
-:::
-
-
-This looks ok. Given that are interested in age of marriage, we can now derive their ages based their birth year and on knowing that the census was conducted in 1910.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census <- census |>
-  mutate(age = 1910-faar)
-census |>
-  ggplot(aes(x = age)) + geom_histogram(binwidth = 1)  
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-5-1.png){width=672}
-:::
-:::
-
-
-The information on who is married or not, marital status, is contained in the field *sivilstatus*. As shown below, this field contains five different categories:
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census |>
-  count(sivilstatus)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 5 × 2
+# ℹ 7 more variables: yrke &lt;chr&gt;, fdag &lt;chr&gt;, fmaaned &lt;chr&gt;, faar &lt;chr&gt;,
+#   fsted &lt;chr&gt;, statsborgerskap &lt;dbl&gt;, religion &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>As you can see, the first three columns help situating each observation: municipality of residence, followed by the household number and the individual number within that household. It then includes personal information (name, surname, sex and civil status), followed by occupation and other information such as birtdate (separated in three columns: day, month and year of birth) and place of birth, nationality and religion. Note that many of these fields record numbers (instead of the actual value). This is because this information has been encoded to homogenise it and facilitate its use. You can find what these numbers mean in the file named “codebook.pdf”.</p>
+<p>We are interested in age at marriage. Although there is no field recording age, the variable <em>faar</em> reports year of birth. It is always advisable to inspect the data, so there are no surprises. Given that <em>faar</em> is formated as a character field (string), it needs to be transformed into numerical if we want to take advantage of its numerical properties.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">faar =</span> <span class="fu">as.numeric</span>(faar))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faar)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see below, there are a bunch of observations whose year of birth is 0. As the codebook makes clear, this is a code for not having information (a missing value). If you check, they comprise 10,194 rows (observations). We could convert it into NA or just restrict the analysis excluding those observations using <code>filter(faar!=0)</code>. However, if we plot <em>faar</em> again, the graph looks weird because it extends before 1700 and beyond 2000.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(faar<span class="sc">!=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faar)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Although we don’t see columns there, they are there but they are minuscule because they refer to very few observations (whose numbers are negligible compared to the scale of the graph, in hundreds of thousands of observations). If you explored the data using <code>filter()</code>. you will see that there are observations with implausible birth years. In historical data sets, dirty data is all around. If we could, we would check the source and correct their values (if possible). Here we adopt a more lazy (call it practical) approach and simply disregard them. Given that the census is conducted in 1910, we only consider those with years of birth between 1800 and 1910.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Replicating the histogram above yields something more informative.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;If you check, this involves disregarding only 79 observations, which is a minimal fraction of the full population.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;Note that the amount of age-heaping is much smaller than what we observed in assignment 3. Norway in 1910 was a more numerically-skilled population than rural Spain in 1860.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(faar<span class="sc">!=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(faar<span class="sc">&gt;=</span><span class="dv">1800</span> <span class="sc">&amp;</span> faar<span class="sc">&lt;=</span><span class="dv">1910</span>) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faar)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks ok. Given that are interested in age of marriage, we can now derive their ages based their birth year and on knowing that the census was conducted in 1910.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="dv">1910</span><span class="sc">-</span>faar)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The information on who is married or not, marital status, is contained in the field <em>sivilstatus</em>. As shown below, this field contains five different categories:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sivilstatus)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
   sivilstatus       n
-  <chr>         <int>
+  &lt;chr&gt;         &lt;int&gt;
 1 enke         141120
 2 gift         782313
 3 skilt          1879
 4 ugift       1490838
-5 ukjent        46869
-```
-
-
-:::
-:::
-
-
-We therefore need to compute a dummy variable classifying the individuals as married (1) or not (0) using `if_else()` or `case_when()`. Being separated or a widow also implies having been married, so they should be classified accordingly. Note also that the category "ukjent" is better if codified as missing (NA), so we do not treat them as not married.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census <- census |> 
-  mutate(married = case_when(
-    sivilstatus %in% c("gift", "skilt", "enke") ~ 1,
-    sivilstatus=="ugift" ~ 0,
-    sivilstatus=="ukjent" ~ NA_integer_))
-census |>
-  count(married)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 3 × 2
+5 ukjent        46869</code></pre>
+</div>
+</div>
+<p>We therefore need to compute a dummy variable classifying the individuals as married (1) or not (0) using <code>if_else()</code> or <code>case_when()</code>. Being separated or a widow also implies having been married, so they should be classified accordingly. Note also that the category “ukjent” is better if codified as missing (NA), so we do not treat them as not married.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">case_when</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    sivilstatus <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"gift"</span>, <span class="st">"skilt"</span>, <span class="st">"enke"</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    sivilstatus<span class="sc">==</span><span class="st">"ugift"</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    sivilstatus<span class="sc">==</span><span class="st">"ukjent"</span> <span class="sc">~</span> <span class="cn">NA_integer_</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(married)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
   married       n
-    <dbl>   <int>
+    &lt;dbl&gt;   &lt;int&gt;
 1       0 1490838
 2       1  925312
-3      NA   46869
-```
-
-
-:::
-:::
-
-
-Let's now compute the percentage of the population age 16-20 who were already married. We restrict the analysis to that age-group and the calculate the average (the mean) of the variable *married*. Given that this is a variable that can be 0 or 1 at the individual level, the average of all those 0s and 1s in the fraction of the population classified as 1. If we want the percentage, we just multiply time 100.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census |>
-  filter(age>=16 & age<=20) |>
-  summarise(married = 100*mean(married, na.rm = TRUE)) 
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 1 × 1
+3      NA   46869</code></pre>
+</div>
+</div>
+<p>Let’s now compute the percentage of the population age 16-20 who were already married. We restrict the analysis to that age-group and the calculate the average (the mean) of the variable <em>married</em>. Given that this is a variable that can be 0 or 1 at the individual level, the average of all those 0s and 1s in the fraction of the population classified as 1. If we want the percentage, we just multiply time 100.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">16</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">married =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(married, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
   married
-    <dbl>
-1    2.12
-```
-
-
-:::
-:::
-
-
-2.12 per cent of the Norwegian population aged 16-20 was married in 1910. This number however could be different in different regions or municipalities. Remember that the field *kommunern* classified each individual into the municipality they were residing. The variable *fsted* provides the municipality of birth. Instead of the actual names, this information is encoded into municipal codes. If you inspeac one of these fields, you will see all those codes. In total, there were 659 municipalities.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-census |>
-  count(kommunenr) 
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 659 × 2
+    &lt;dbl&gt;
+1    2.12</code></pre>
+</div>
+</div>
+<p>So 2.12 per cent of the Norwegian population aged 16-20 was married in 1910. This number however could be different in different regions or municipalities. Remember that the field <em>kommunern</em> classified each individual into the municipality they were residing. The variable <em>fsted</em> provides the municipality of birth. Instead of the actual names, this information is encoded into municipal codes. If you inspeac one of these fields, you will see all those codes. In total, there were 659 municipalities.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>census <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(kommunenr) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 659 × 2
    kommunenr     n
-   <chr>     <int>
+   &lt;chr&gt;     &lt;int&gt;
  1 0101      12381
  2 0102      10097
  3 0103      15930
@@ -440,33 +425,23 @@ census |>
  8 0114       1177
  9 0115       6102
 10 0116       5744
-# ℹ 649 more rows
-```
-
-
-:::
-:::
-
-
-Computing the percentage of the population who were married in each of these locations just involve replicating the code above but adding the `group_by()`, so the computations take place for each group (municipality here) separately. We store the results in a separate object.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-married_kom <- census |>
-  filter(age>=16 & age<=20) |>
-  group_by(kommunenr) |>
-  summarise(married = 100*mean(married, na.rm = TRUE))   
-married_kom
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 659 × 2
+# ℹ 649 more rows</code></pre>
+</div>
+</div>
+<p>Computing the percentage of the population who were married in each of these locations just involve replicating the code above but adding the <code>group_by()</code>, so the computations take place for each group (municipality here) separately. We store the results in a separate object.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>married_kom <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age<span class="sc">&gt;=</span><span class="dv">16</span> <span class="sc">&amp;</span> age<span class="sc">&lt;=</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kommunenr) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">married =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(married, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))   </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>married_kom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 659 × 2
    kommunenr married
-   <chr>       <dbl>
+   &lt;chr&gt;       &lt;dbl&gt;
  1 0101         1.44
  2 0102         5.55
  3 0103         2.48
@@ -477,39 +452,28 @@ married_kom
  8 0114         1   
  9 0115         4.97
 10 0116         3.26
-# ℹ 649 more rows
-```
-
-
-:::
-:::
-
-
-In the municipality with code "0101", 1.4 per cent of the population aged 16-20 was married. The other rows provide the same information for the remaining municipalities (up to 659). 
-
-This is the information we want to map. In order to do so, we need a spatial object with the municipal boundaries in 1910. We have that shapefile in the course materials ("kommuner_10.shp"),^[As discussed in class, it actually refers to a bunch of files with the same name but different extensions.] so let's now import it using `read_sf()`, which is part of the package `sf`. We use the argument `options = "ENCODING=LATIN1"` to make sure we are able to read the Norwegian characters it contains.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-library(sf)
-kommuner_gis <- read_sf("data/census-1910/kommuner-1910/kommuner_1910.shp",
-                        options = "ENCODING=LATIN1")
-kommuner_gis
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-Simple feature collection with 659 features and 4 fields
+# ℹ 649 more rows</code></pre>
+</div>
+</div>
+<p>In the municipality with code “0101”, 1.4 per cent of the population aged 16-20 was married. The other rows provide the same information for the remaining municipalities (up to 659).</p>
+<p>This is the information we want to map. In order to do so, we need a spatial object with the municipal boundaries in 1910. We have that shapefile in the course materials (“kommuner_1910.shp”),<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> so let’s now import it using <code>read_sf()</code>, which is part of the package <code>sf</code>. We use the argument <code>options = "ENCODING=LATIN1"</code> to make sure we are able to read the Norwegian characters it contains.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;As discussed in class, it actually refers to a bunch of files with the same name but different extensions.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/census-1910/kommuner-1910/kommuner_1910.shp"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">options =</span> <span class="st">"ENCODING=LATIN1"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>kommuner_gis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 659 features and 4 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
 Bounding box:  xmin: -75755 ymin: 6450899 xmax: 1115157 ymax: 7940399
 CRS:           NA
 # A tibble: 659 × 5
    KNR   FNR   KOMMNR KNAVN                                             geometry
-   <chr> <chr>  <int> <chr>                                       <MULTIPOLYGON>
+   &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                                       &lt;MULTIPOLYGON&gt;
  1 2028  20      2028 Vardø Landdistrikt (((1062720 7868900, 1059000 7869900, 1…
  2 2018  20      2018 Måsøy              (((852699 7871200, 855099 7871799, 853…
  3 2002  20      2002 Vardø              (((1097099 7886499, 1095999 7887899, 1…
@@ -520,162 +484,171 @@ CRS:           NA
  8 2030  20      2030 Sør-Varanger       (((1104173 7821415, 1104175 7821409, 1…
  9 2014  20      2014 Loppa              (((751699 7809099, 751899 7809899, 750…
 10 2021  20      2021 Karasjok           (((924126 7709658, 924208 7709576, 924…
-# ℹ 649 more rows
-```
-
-
-:::
-:::
-
-
-This is a curated shapefile that reconstructs the municipal boundaries in 1910. It contains 659 features (polygons) that, conveniently, match the number of municipalities that are also present in the 1910 census. As we can see above, we have columns with municipal and regional codes, as well as the name of the municipality itself. The column *geometry* contains the spatial coordinates necessary to map their contours. Let's check it using the package `tmap`.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-library(tmap)
-kommuner_gis |>
-  tm_shape() + tm_polygons(lwd = 0.2, col_alpha = 0.5)
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-12-1.png){width=672}
-:::
-:::
-
-
-Matching municipalities. 659 features in each. Different names *KNR* in the GIS file and *kommunenr* in the census.
-
-We need to attach the information that we had stored regarding early marriage in each municipality to this shapefile, so we can map it. We do it using `full_join()`.
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-kommuner_gis |>
-  full_join(married_kom, by = c("KNR" = "kommunenr")) |>
-  tm_shape() + 
-  tm_polygons(fill = "married", lwd = 0.2, col_alpha = 0.5)
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-13-1.png){width=672}
-:::
-:::
-
-
-Although, on avearge, the percentage of the population marrying early was very small (2.1 per cent), there is substantial variation across the country. In some inland municipalities and especially in the north, this figure could range between 8 and 12 per cent. Next step would be to know why.
-
-----
-
-Let's now move on to newspapers and explore the media landscape in Norway in 1910. We retrieve the corpus from the National Biblioteket using the function `get_document_corpus()` (from the package `dhlabR`). I am going to assume that either the digitised collection is complete or, at least, representative of the universe of newspapers published in Norway at that time. It is however part of the historian's toolkit to practice source criticism and assess the potential biases in the existing material.^[Computational and quantitative analyses also help assessing those biases (detecting, for instance, systematic gaps in the source).] 
-
-Indicating 1910 and 1911 as `from_year` and `to_year` will return the newspapers published in 1910.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-library(dhlabR)
-news <- get_document_corpus(
-  doctype = "digavis", 
-  from_year = 1910, to_year = 1911,
-  lang = NULL,
-  limit = 50000)
-news |> glimpse()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-Rows: 21,223
+# ℹ 649 more rows</code></pre>
+</div>
+</div>
+<p>This is a curated shapefile that reconstructs the municipal boundaries in 1910. It contains 659 features (polygons) that, conveniently, match the number of municipalities that are also present in the 1910 census. As we can see above, we have columns with municipal and regional codes, as well as the name of the municipality itself. The column <em>geometry</em> contains the spatial coordinates necessary to map their contours. Let’s check it using the package <code>tmap</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>() <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">lwd =</span> <span class="fl">0.2</span>, <span class="at">col_alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Next step is to attach the information on municipal early marriage to this spatial object, so it can be mapped. Both objects have 659 features (rows) each. The fields containing the names of the municipalities are named differently: <em>KNR</em> in the GIS file and <em>kommunenr</em> in the census.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> We therefore merge the two objects using <code>full_join()</code> and those two fields as matching fields. Always check that the matching is what you expected. Not only the resulting object has the expected number of rows,<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, but the code below shows that all rows have info on the early marriage rate.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The shapefile has actually 3 fields identifying the municipalities: 2 municipal codes (in string and numerical format, respectively) and 1 with their names.</p></div><div id="fn6"><p><sup>6</sup>&nbsp;Non-matched features from both objects would also be listed, thus increasing the number of rows.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="ot">&lt;-</span> kommuner_gis <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(married_kom, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"KNR"</span> <span class="ot">=</span> <span class="st">"kommunenr"</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(married))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 0 features and 5 fields
+Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
+CRS:           NA
+# A tibble: 0 × 6
+# ℹ 6 variables: KNR &lt;chr&gt;, FNR &lt;chr&gt;, KOMMNR &lt;int&gt;, KNAVN &lt;chr&gt;,
+#   geometry &lt;GEOMETRY&gt;, married &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>We can now map the information.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>() <span class="sc">+</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"married"</span>, <span class="at">lwd =</span> <span class="fl">0.2</span>, <span class="at">col_alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In 1910, early marriage was generally low all over Norway. On average, the percentage of the population marrying early was very small (2.1 per cent). However, there is substantial variation across the country. There are a few areas were the number of young people marrying early was higher in some inland municipalities and especially in the north where it could reach up to 14 per cent of the population aged 16-20). The code below lists the municipalities with the highest rates.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kommuner_gis <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(KNAVN, married) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(married))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 659 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -75755 ymin: 6450899 xmax: 1115157 ymax: 7940399
+CRS:           NA
+# A tibble: 659 × 3
+   KNAVN              married                                           geometry
+   &lt;chr&gt;                &lt;dbl&gt;                                     &lt;MULTIPOLYGON&gt;
+ 1 Vardø Landdistrikt   13.4  (((1062720 7868900, 1059000 7869900, 1056600 7869…
+ 2 Hølen                10    (((258609.2 6608938, 259762.5 6608768, 259875.3 6…
+ 3 Nordreisa             9.59 (((723191.2 7762654, 724548.1 7763458, 725697.7 7…
+ 4 Eid                   7.32 (((111612.5 6963580, 112511.3 6964767, 113399.4 6…
+ 5 Nord-Varanger         6.98 (((1019300 7870100, 1019800 7870600, 1022500 7873…
+ 6 Klinga                6.86 (((320300 7141100, 321400 7142500, 321485.7 71428…
+ 7 Måsøy                 6.67 (((852699 7871200, 855099 7871799, 853199 7872499…
+ 8 Hof                   6.60 (((224100 6601900, 224100 6599900, 221800 6600200…
+ 9 Vegusdal              6.52 (((89000 6510100, 89400 6512800, 91000 6512500, 9…
+10 Skedsmo               6.51 (((272900 6654899, 274700 6655300, 275100 6656500…
+# ℹ 649 more rows</code></pre>
+</div>
+</div>
+<p>The next step would be to know why these municipalities had such a high rates. As we learnt last week, one possibility is just chance. In small municipalities (with only a few young people), the fact that many of them married could be just a result of chance.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> It would be therefore interesting to show confidence intervals to see whether those figures are “really” different from the other ones. Another possibility is selection bias. It is plausible that some single individuals had migrated, leaving more married ones, relatively speaking. In this case, what we are observing (higher marriage rates) are not the result of a particular cultural setting but of higher migration rates. Lastly, the observed patterns could reflect different behaviour: cultural values (shaped by tradition, religion, etc.) could influence the way people behaved in these areas and therefore explain their tendency to marry early.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;The same way that the fact that there are municipalities with 0 people getting married before age 20 could also result merely from chance.</p></div></div><hr>
+<p>Let’s now move on to newspapers and explore the media landscape in Norway in 1910. We retrieve the corpus from the National Biblioteket using the function <code>get_document_corpus()</code> (from the package <code>dhlabR</code>). I am going to assume that either the digitised collection is complete or, at least, representative of the universe of newspapers published in Norway at that time. It is however part of the historian’s toolkit to practice source criticism and assess the potential biases in the existing material.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;Computational and quantitative analyses also help assessing those biases (detecting, for instance, systematic gaps in the source).</p></div></div><p>Indicating 1910 and 1911 as <code>from_year</code> and <code>to_year</code> will return the newspapers published in 1910.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dhlabR)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>news <span class="ot">&lt;-</span> <span class="fu">get_document_corpus</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">doctype =</span> <span class="st">"digavis"</span>, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_year =</span> <span class="dv">1910</span>, <span class="at">to_year =</span> <span class="dv">1911</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lang =</span> <span class="cn">NULL</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">limit =</span> <span class="dv">50000</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>news <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 21,223
 Columns: 19
-$ dhlabid       <named list> 202505823, 203358819, 202756579, 202424204, 20429…
-$ urn           <named list> "URN:NBN:no-nb_digavis_listerogmandalsamtstidende…
-$ title         <named list> "listerogmandalsamtstidendeogadresseavis", "oevre…
-$ authors       <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ oaiid         <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ sesamid       <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ isbn10        <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ city          <named list> "Lindesnes", "Indre Østfold", "", "", "", "", "",…
-$ timestamp     <named list> 19101126, 19100629, 19100202, 19100202, 19100120,…
-$ year          <named list> 1910, 1910, 1910, 1910, 1910, 1910, 1910, 1910, 1…
-$ publisher     <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ langs         <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ subjects      <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ ddc           <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ genres        <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ literaryform  <named list> "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ doctype       <named list> "digavis", "digavis", "digavis", "digavis", "diga…
-$ ocr_creator   <named list> "nb", "nb", "nb", "nb", "", "nb", "", "nb", "nb",…
-$ ocr_timestamp <named list> 20060101, 20060101, 20060101, 20060101, "", 20060…
-```
-
-
-:::
-:::
-
-
-The function returns a data set of 42,966 rows, which means that there are this number of texts associated to newspapers published 1910. We now structure the data frame, so we can work with it more easily, and keep only the variables that might be more useful: *dhlabid*, *title*, *year* and *city*. 
-
-
-::: {.cell}
-
-```{.r .cell-code}
-news <- news |>
-  as_tibble() |>
-  select(dhlabid, title, year, city) |>
-  mutate(dhlabid = map_int(dhlabid, 1),
-         title = map_chr(title, 1),
-         year = map_int(year, 1),
-         city = map_chr(city, 1))
-news
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 21,223 × 4
-     dhlabid title                                    year city           
-       <int> <chr>                                   <int> <chr>          
- 1 202505823 listerogmandalsamtstidendeogadresseavis  1910 "Lindesnes"    
- 2 203358819 oevresmaalenene                          1910 "Indre Østfold"
- 3 202756579 romsdalstidende                          1910 ""             
- 4 202424204 indlandsposten                           1910 ""             
- 5 204293390 vestoplaendingen                         1910 ""             
- 6 202041021 bergensannoncetidende                    1910 ""             
- 7 204281949 saltensfremtid                           1910 ""             
- 8 200564571 foerstemai                               1910 "Stavanger"    
- 9 200694044 gudbrandsdoelen                          1910 "Lillehammer"  
-10 202302459 grimstadposten                           1910 ""             
-# ℹ 21,213 more rows
-```
-
-
-:::
-:::
-
-
-The corpus has 21,223 newspapers. Feel free to explore the content of the different fields. As we can see, there is missing information in the variable *city*. It might sometimes be possible to infer that information from the *title* but let's proceed as it is. The code below computes the number of newspapers published in each location (*city*) in 1910.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-news_city <- news |>
-  group_by(city) |>
-  summarise(obs = n())
-news_city |> filter(city!="")
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 54 × 2
+$ dhlabid       &lt;named list&gt; 201817077, 202505755, 202023433, 202222897, 20294…
+$ urn           &lt;named list&gt; "URN:NBN:no-nb_digavis_tvedestrandsposten_null_nu…
+$ title         &lt;named list&gt; "tvedestrandsposten", "listerogmandalsamtstidende…
+$ authors       &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ oaiid         &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ sesamid       &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ isbn10        &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ city          &lt;named list&gt; "Tvedestrand", "Lindesnes", "Bergen", "Trondheim"…
+$ timestamp     &lt;named list&gt; 19100427, 19100621, 19101001, 19100818, 19101118,…
+$ year          &lt;named list&gt; 1910, 1910, 1910, 1910, 1910, 1910, 1910, 1910, 1…
+$ publisher     &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ langs         &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ subjects      &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ ddc           &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ genres        &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ literaryform  &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
+$ doctype       &lt;named list&gt; "digavis", "digavis", "digavis", "digavis", "diga…
+$ ocr_creator   &lt;named list&gt; "nb", "nb", "nb", "nb", "nb", "nb", "nb", "nb", "…
+$ ocr_timestamp &lt;named list&gt; 20060101, 20060101, 20060101, 20060101, 20060101,…</code></pre>
+</div>
+</div>
+<p>The function returns a data set of 42,966 rows, which means that there are this number of texts associated to newspapers published 1910. We now structure the data frame, so we can work with it more easily, and keep only the variables that might be more useful: <em>dhlabid</em>, <em>title</em>, <em>year</em> and <em>city</em>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>news <span class="ot">&lt;-</span> news <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dhlabid, title, year, city) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dhlabid =</span> <span class="fu">map_int</span>(dhlabid, <span class="dv">1</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">map_chr</span>(title, <span class="dv">1</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">year =</span> <span class="fu">map_int</span>(year, <span class="dv">1</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">city =</span> <span class="fu">map_chr</span>(city, <span class="dv">1</span>))</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>news</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21,223 × 4
+     dhlabid title                                    year city          
+       &lt;int&gt; &lt;chr&gt;                                   &lt;int&gt; &lt;chr&gt;         
+ 1 201817077 tvedestrandsposten                       1910 "Tvedestrand" 
+ 2 202505755 listerogmandalsamtstidendeogadresseavis  1910 "Lindesnes"   
+ 3 202023433 bergensaftenbladbergenattenattini        1910 "Bergen"      
+ 4 202222897 folketidendetrondheimattennittien        1910 "Trondheim"   
+ 5 202944847 aftenposten                              1910 "Oslo"        
+ 6 201471450 romsdalsamtstidende                      1910 "Kristiansund"
+ 7 202474862 kristiansundspostenatten                 1910 ""            
+ 8 203738587 oerebladet                               1910 ""            
+ 9 200044473 agderposten                              1910 "Arendal"     
+10 202222873 folketidendetrondheimattennittien        1910 "Trondheim"   
+# ℹ 21,213 more rows</code></pre>
+</div>
+</div>
+<p>The corpus has 21,223 newspapers. Feel free to explore the content of the different fields. As we can see, there is missing information in the variable <em>city</em>. It might sometimes be possible to infer that information from the <em>title</em> but let’s proceed as it is. The code below computes the number of newspapers published in each location (<em>city</em>) in 1910. There are 54 <em>known</em> locations.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>news_city <span class="ot">&lt;-</span> news <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(city) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">obs =</span> <span class="fu">n</span>())</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>news_city <span class="sc">|&gt;</span> <span class="fu">filter</span>(city<span class="sc">!=</span><span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 54 × 2
    city          obs
-   <chr>       <int>
+   &lt;chr&gt;       &lt;int&gt;
  1 Arendal       300
  2 Bergen       1091
  3 Bodø          219
@@ -686,41 +659,28 @@ news_city |> filter(city!="")
  8 Fredrikstad   303
  9 Gjøvik        297
 10 Grimstad      151
-# ℹ 44 more rows
-```
-
-
-:::
-:::
-
-
-We now have an object containing a list of locations and the number of newspapers published in each of them in 1910.
-
-In order to map this information, we need a spatial object with municipal boundaries (polygons) or simple points in space (dots). Given the type of information we have, dots might be better because we can visualise importance by increasing the size of the dot.
-
-It would be relatively easiy to find a shapefile with Norwegian locations online. This would be a reliable method because we would know that they spatial locations are correct. We could then joint the two pieces of information as we have done above. The names in the matching fields should correspond (unless you perform a fuzzy matching), so some cleaning would be perhaps required.
-
-Instead we are going to obtain the coordinates for those locations using the package `tidygeocoder`. In order to improve the chances that the geocoding tool finds the locations accurately, we are going to provide more information. Here, we are just adding that they are all in Norway but we could also indicate the region they belong to if we had that information.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-library(tidygeocoder)
-
-news_city <- news_city |> 
-  filter(city!="") |>
-  mutate(city = str_trim(city),
-         city = paste(city, ", Norway", sep = ""))
-news_city
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 54 × 2
+# ℹ 44 more rows</code></pre>
+</div>
+</div>
+<p>We now have an object containing a list of locations and the number of newspapers published in each of them in 1910.</p>
+<p>In order to map this information, we need a spatial object with municipal boundaries (polygons) or simple points in space (dots). Given the type of information we have, dots might be better because we can visualise importance by increasing the size of the dot.</p>
+<p>It would be relatively easy to find a shapefile with Norwegian locations online. This would be a reliable method because we would know that they spatial locations are correct. We could then joint the two pieces of information as we have done above. The names in the matching fields should correspond (unless you perform a fuzzy matching), so some cleaning would be perhaps required.</p>
+<p>Instead we are going to obtain the coordinates for those locations using the package <code>tidygeocoder</code>. In order to improve the chances that the geocoding tool finds the locations accurately, we are going to provide more information. Here, we are just adding that they are all in Norway but we could also indicate the region they belong to if we had that information.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygeocoder)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>news_city <span class="ot">&lt;-</span> news_city <span class="sc">|&gt;</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(city<span class="sc">!=</span><span class="st">""</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="fu">str_trim</span>(city),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">city =</span> <span class="fu">paste</span>(city, <span class="st">", Norway"</span>, <span class="at">sep =</span> <span class="st">""</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>news_city</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 54 × 2
    city                  obs
-   <chr>               <int>
+   &lt;chr&gt;               &lt;int&gt;
  1 Arendal, Norway       300
  2 Bergen, Norway       1091
  3 Bodø, Norway          219
@@ -731,118 +691,110 @@ news_city
  8 Fredrikstad, Norway   303
  9 Gjøvik, Norway        297
 10 Grimstad, Norway      151
-# ℹ 44 more rows
-```
-
-
-:::
-:::
-
-
-Asking for `full_results` makes it easy to double-check what kind of locations we have got.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-news_city_geo <- news_city |>
-  geocode(city, method = "osm", full_results = TRUE)
-news_city_geo
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 54 × 16
-   city             obs   lat  long place_id licence osm_type osm_id class type 
-   <chr>          <int> <dbl> <dbl>    <int> <chr>   <chr>     <dbl> <chr> <chr>
- 1 Arendal, Norw…   300  58.4  8.95   1.50e8 Data ©… relation 4.06e5 boun… admi…
- 2 Bergen, Norway  1091  60.4  5.33   1.49e8 Data ©… relation 4.04e5 boun… admi…
- 3 Bodø, Norway     219  67.3 14.4    2.51e8 Data ©… relation 4.09e5 boun… admi…
- 4 Bærum, Norway    100  59.9 10.5    1.49e8 Data ©… relation 4.06e5 boun… admi…
- 5 Drammen, Norw…   197  59.7 10.2    1.49e8 Data ©… relation 1.05e7 boun… admi…
- 6 Eigersund, No…   102  58.4  5.93   1.45e8 Data ©… relation 4.06e5 boun… admi…
- 7 Farsund, Norw…   102  58.0  6.58   1.48e8 Data ©… relation 4.06e5 boun… admi…
- 8 Fredrikstad, …   303  59.2 10.9    1.51e8 Data ©… relation 4.06e5 boun… admi…
- 9 Gjøvik, Norway   297  60.9 10.5    1.50e8 Data ©… relation 4.12e5 boun… admi…
-10 Grimstad, Nor…   151  58.3  8.71   1.51e8 Data ©… relation 4.06e5 boun… admi…
-# ℹ 44 more rows
-# ℹ 6 more variables: place_rank <int>, importance <dbl>, addresstype <chr>,
-#   name <chr>, display_name <chr>, boundingbox <list>
-```
-
-
-:::
-:::
-
-
-We are going to assume that this is ok. You should check.
-
-crs for Norway (5973) - EUREF89 UTM sone 33
-transform it into a spatial object (including CRSs)
-
-
-::: {.cell}
-
-```{.r .cell-code}
-news_city_geo <- news_city_geo |>
-  filter(!is.na(lat)) |>
-  st_as_sf(coords = c("lat", "long"), crs = 5973) 
-```
-:::
-
-
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-news_city_geo |>
-  tm_shape() +
-  tm_bubbles(fill = "red",
-             size = "obs",
-             size.scale = tm_scale_continuous(
-               ticks = c(50, 250, 1000, 2000, 3000, 4000)))
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-20-1.png){width=672}
-:::
-:::
-
-
-We need a reference. We could use the Norwegian municipalities or get one from the package `geobounds`. Make sure they are in the same CRS.
-
-
-::: {.cell}
-
-```{.r .cell-code}
-# install.packages("geobounds")
-library(geobounds)
-norway <- gb_get_adm0("Norway") 
-
-norway <- st_transform(norway, st_crs(news_city_geo)) 
-  
-news_city_geo |>
-  tm_shape() +
-  tm_bubbles(fill = "red",
-             size = "obs",
-             size.scale = tm_scale_continuous(
-               ticks = c(50, 250, 1000, 2000, 3000, 4000))) +
-  tm_shape(norway) + tm_polygons()
-```
-
-::: {.cell-output-display}
-![](5-pract-mapping_files/figure-html/unnamed-chunk-21-1.png){width=672}
-:::
-:::
-
-
--->
+# ℹ 44 more rows</code></pre>
+</div>
+</div>
+<p>We are now ready to use <code>geocode()</code> to automatically retrieve the spatial coordinates of our list of locations. We are using the <code>osm</code> geocoding service and requesting <code>full_results</code> makes it easy to double-check what kind of locations we have got (more details in the course materials: mapping.pdf). <!-- To make sure I replicate the same results, I saved the results news_city_geo |> 
+  select(city, obs, lat, long, place_id) |>
+  write_csv("data-assign/newspapers-1910/city-locations.csv")
+  so I do not evaluate this--></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>news_city_geo <span class="ot">&lt;-</span> news_city <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geocode</span>(city, <span class="at">method =</span> <span class="st">"osm"</span>, <span class="at">full_results =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The results seem to be ok. We now have two columns, <em>lat</em> and <em>long</em> with the spatial coordinates we needed. We are going to assume that this is ok but you should check (one way of checking is by mapping them).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>news_city_geo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 54 × 5
+   city                  obs   lat  long  place_id
+   &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Arendal, Norway       300  58.4  8.95 150442117
+ 2 Bergen, Norway       1091  60.4  5.33 148836463
+ 3 Bodø, Norway          219  67.3 14.4  251103233
+ 4 Bærum, Norway         100  59.9 10.5  151036891
+ 5 Drammen, Norway       197  59.7 10.2  149111735
+ 6 Eigersund, Norway     102  58.4  5.93 147122324
+ 7 Farsund, Norway       102  58.0  6.58 147965570
+ 8 Fredrikstad, Norway   303  59.2 10.9  151251942
+ 9 Gjøvik, Norway        297  60.9 10.5  149509765
+10 Grimstad, Norway      151  58.3  8.71 151624528
+# ℹ 44 more rows</code></pre>
+</div>
+</div>
+<p>This is a regular object but it now contains two columns with the xy coordinates (longitude/latitude). We can now transform it into a spatial object using this information and assigning a Coordinate Reference System. Given that the spatial coordinates are obtained from a global repository, we are going to use the WGS84 geographic coordinate system (<code>EPSG:4326</code>).<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;This GCS is the standard for GPS and uses latitude and longitude in decimal degrees to define locations on Earth’s surface. We can always transform the crs to one more appropriate for continental Norway later: e.g.&nbsp;ETRS89 / UTM zone 33N (EPSG:25833).</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>news_city_geo <span class="ot">&lt;-</span> news_city_geo <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(lat)) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We can then map it, indicating that we want the size of the dots to change according to the number of newspapers published in 1910 (column <em>obs</em>). As mentioned above, mapping the locations also allow checking whether the map looks ok.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;You could for instance use <code>tm_text()</code> to add labels with the city names to the map.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>news_city_geo <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">fill_alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"obs"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">size.scale =</span> <span class="fu">tm_scale_continuous</span>(</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ticks =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">250</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">3000</span>, <span class="dv">4000</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks quite ok but we need a reference, so the reader can better situate these locations to the Norwegian context. We could use the Norwegian municipalities or get one from the package <code>geobounds</code>. We do the latter, so you can learn how to obtain any country (or several) in the world. The function <code>gb_get_adm0()</code> returns the national boundaries of the defined country.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> We include the argument <code>simplified = TRUE</code>: we sacrifice some precision in how the boundaries are draws, so the file is smaller and therefore easier to handle (this is advisable for Norway given all the fjords). Lastly, we also make sure they are in the same CRS.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Other functions, such as gb_get_adm1() or gb_get_adm2(), up to 5, provide lower level administrative boundaries (regions, districts, municipalities, etc. depending on the country).</p></div><div id="fn12"><p><sup>12</sup>&nbsp;Otherwise, use <code>st_transform()</code> to change one of them based on the other.</p></div></div><div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("geobounds")</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobounds)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>norway <span class="ot">&lt;-</span> <span class="fu">gb_get_adm0</span>(<span class="st">"Norway"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">simplified =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(norway)<span class="sc">==</span><span class="fu">st_crs</span>(news_city_geo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>We can now replicate the map adding the Norwegian boundaries. It is sometimes advisable to have polygons as the first layer and the points as the second one. Feel free also to play with the aesthetics of the map until you find one that satisfies you.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(norway) <span class="sc">+</span> <span class="fu">tm_borders</span>(<span class="at">lwd =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(news_city_geo) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">fill_alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">col_alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="st">"obs"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">size.scale =</span> <span class="fu">tm_scale_continuous</span>(</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">ticks =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">250</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">3000</span>, <span class="dv">4000</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5-pract-mapping_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And that’s it. Here you have a map with the intensity of newspaper publications in 1910. Recall that there were many documents that did not have information on the city of publication, so this is not a full picture of this phenomenon. More work could be done trying to assign a location to those newspapers (if possible). In any case, this is quite informative.</p>
 
 
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
