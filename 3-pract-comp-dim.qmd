@@ -1,5 +1,5 @@
 ---
-title: "Assignment: Comparing dimensions"
+title: "Reading and writing in the past"
 execute: 
   warning: false
   message: false
@@ -18,6 +18,8 @@ rm(list=ls())
 library(tidyverse)
 data <- read_csv("data-assign/zgz-1860/sample-zgz-1860.csv")
 ```
+
+**Case-study 4: Comparing dimensions**
 
 We will rely on census data for the province of Zaragoza (Spain) in 1860. The data set we will work with contains the individual records for all the population living in the 70 municipalities within 40 kilometers from the capital city of Zaragoza (see map below). You can download the data <a href="data-assign/zgz-1860/sample-zgz-1860.csv" download>here</a> [@beltran2024].
 
@@ -97,7 +99,7 @@ In total, this data set contains information on 132,500 individuals: name and su
 8. Focusing only on children aged 6-10, explore whether names can provide information about the cultural attitudes of the parents and the importance they attached to educating their children. The way you can extract information from names is quite varied. For instance, you can identify those individuals bearing very common names (or you can compute a continuous measure: what is the fraction of the population bearing that name). Alternatively, you can identify those names that signal particular attitudes, such as religious or political names (i.e. after saints, biblical figures, kings or other political or religious symbols). Likewise, if you focus on children, you can also identify who is named after their parents (note that we have fields identifying the family and who is the father and the mother). You can learn more about these issues and about how to present this type of analysis by checking the two first sections (pages 1-10) in the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf) (especially pages 1-10).
 -->
 
-
+<!--
 ----
 
 # Solution
@@ -460,7 +462,7 @@ Let's finish here but the range of topics that could be explored using this sour
 
 Let me also stressed that this exercise was intended not only as a way of solidifying what you have learned so far but also to show that, when explored creatively, the sources contain way more information than it looks like at first sight. If you want more examples you can check the article [What was in a name? Culture, naming practices and education in the past](https://fjbeltrantapia.github.io/papers/names-education-2024.pdf). Relying on an extended version of the same dataset we have explored here, this article shows that girls bearing more common names (i.e. *Maria*) had lower literacy rates and argues that first names provide historians with information about the cultural values of the parents bestowing those names. As well as enabling classifying individuals according to their names (after religious figures, after family members, after kings or other political figures, etc.), this approach also allows testing whether those values translated into the way that parents raised their children (i.e. the value they attach to education, etc.) and their subsequent life trajectories (i.e. attending school, being literate, etc.)
 
-
+-->
 
 <!--
 ----

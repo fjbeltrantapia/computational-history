@@ -2,11 +2,18 @@
 title: "Coursework"
 ---
 
-Student attendance is compulsory (80%). Grading will be based on active participation and weekly assignments (20%) and a final take-home exam in the form of an essay (80%).
+Student attendance is compulsory. Grading will be based on active participation and weekly assignments (20%) and a final take-home exam in the form of an essay (80%).
+
+::: {.callout-important}
+### Note on AI use
+
+Employing AI for coding assistance is allowed. You have nonetheless to explicitly indicate how you have used AI. Also, you should be able to explain your code when requested. Make sure therefore to understand the code and the results you obtain. AI can also be used for complementing datasets with additional information. If necessary, inform the reader about the prompt(s) you were using. Note also that AI results are often inaccurate. You have to either check the quality of the results (or a small sample of them). The same with using AI for coding assistance: the results might not be what you intend, so use it with caution. Lastly, AI is not allowed for writing.
+
+:::
 
 # In-class sessions and weekly assignments
 
-Students are expected to participate actively in each session and go through weekly assignments in order to prepare the in-person sessions in advance. The course sessions are mostly devoted to solidifying concepts, answering questions, students’ presentations and working on small tasks. Weekly assignments will be explained in class and circulated via Blackboard and email. Students will work on a longer assignment in February intended to solidify the contents learned during the first 4 sessions (notice that there are no sessions scheduled between Feb 3 and 24).
+Students are expected to participate actively in each session and go through weekly assignments based on case-studies in order to prepare the in-person sessions in advance. The course sessions are mostly devoted to solidifying concepts, answering questions, students’ presentations and working on small tasks. Weekly assignments will be explained in class and circulated via Blackboard and email. Students will work on a longer assignment in February intended to solidify the contents learned during the first 4 sessions (notice that there are no sessions scheduled between Feb 3 and 24).
 
 1. [Qualitative variables](1-pract-qual.qmd)
 

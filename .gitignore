@@ -10,3 +10,4 @@ data/large-datasets/
 data/census-1910/
 r-scripts/
 **/*.quarto_ipynb
+.positai

@@ -1,5 +1,5 @@
 ---
-title: "1. In-class coursework: Qualitative dimensions"
+title: "Petitioning in Ealy Modern England"
 execute: 
   warning: false
   message: false
@@ -13,6 +13,8 @@ format:
       margin-width: 420px    
     reference-location: margin
 ---
+
+**Case-study 2: Qualitative dimensions**
 
 Let's practice what we have learned during the first session on extracting information from qualitative dimensions. Let's focus on a completely different data set that the one we have used so far. The [Petitioning in Early Modern England](https://petitioning.history.ac.uk) data set consists of 2,847 petitions filed in England between 1573 and 1799 [@waddell2022]. As well as the text itself, it includes information on date, petitioners, topic, administrative responses, etc. Petitions were a crucial mode of communication between the ‘rulers’ and the ‘ruled’, so they provide a vital source for illuminating the concerns of the people, from noblemen to paupers. The data is hosted in this [repository](https://zenodo.org/records/7027693).
 
@@ -30,6 +32,7 @@ Let's practice what we have learned during the first session on extracting infor
 
 - Imagine that you are especially interested in "poor relief". Can you provide more information about who was filing these petitions and the type of response they got from the Royal authorities.
 
+<!--
 # Solution: 
 
 The downloaded files are contained in a folder with a very long name that you can perhaps simplify it. Once you have done so and set the working directory in R, you can use `list.files()` to tell you what folders and files are located in a given folder.^[Typing the command with nothing in parentheses R will show you the contents of the working directory. By contrast, `list.files("/data)"` will list the files in the folder named `data`. 
@@ -107,3 +110,4 @@ data |>
 ```
 
 We could continue this exploration focusing perhaps on "single" petitions and exploring the gender of the petitioner (*petition_gender*) or the response they received (*response_cat*). I leave that to you.
+-->

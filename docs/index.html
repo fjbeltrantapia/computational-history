@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Computational History - HIST2025</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,15 +35,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7880cef56e955c5515e49ec1267627d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-101e0f98b87bbe2e90e74b13a7dcdce5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,8 +82,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Computational History - HIST2025</span>
     </a>
@@ -107,11 +107,6 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text">Intro to R</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
-</i> 
-<span class="menu-text">Intro to Quarto</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-fa-book" role="img">
@@ -121,11 +116,27 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
         <li>
     <a class="dropdown-item" href="./backg-paisley.html">
- <span class="dropdown-text">The Paisley Prisoners</span></a>
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./backg-speeches.html">
- <span class="dropdown-text">The State of the Union Speeches</span></a>
+    <a class="dropdown-item" href="./1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./backg-tnp.html">
@@ -137,14 +148,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./coursework.html"> <i class="bi bi-fa-home" role="img">
 </i> 
 <span class="menu-text">Coursework</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./other-data.html"> 
-<span class="menu-text">Other sources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./further-readings.html"> 
-<span class="menu-text">Further readings</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -167,10 +170,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -227,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Writing history in Quarto</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -240,6 +239,30 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
  <span class="menu-text">4.2 Blogposts</span>
   </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Additional material</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./other-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./further-readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Further readings</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -278,21 +301,22 @@ ul.task-list li input[type="checkbox"] {
 <p>Instructor: <a href="https://fjbeltrantapia.github.io">Francisco J. Beltrán Tapia</a></p>
 
 <div class="no-row-height column-margin column-container"><div class="">
+<div style="font-size: 0.8em;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/censo-1860-cropped.jpg" style="width:100.0%;height:100.0%" class="figure-img"></p>
-<figcaption>Household register card, 1860 Spanish population census</figcaption>
+<p><img src="images/wilson.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
 </figure>
 </div>
-</div><div class="">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/map_lit_1860.jpg" style="width:100.0%;height:100.0%" class="figure-img"></p>
-<figcaption>Percentage of the male population who were able to read and write, 1860</figcaption>
-</figure>
+<p><img src="images/plot-speeches.png" style="width:100.0%;height:100.0%"></p>
+<p>State of the Union Presidential Address (Woodrow Wilson - December 2, 1913) and relative frequency of the terms “men” and “women” in the State of the Union Speeches, 1790-2019</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><img src="images/censo-1860-cropped.jpg" style="width:100.0%;height:100.0%"></p>
+<p><img src="images/map_lit_1860.jpg" style="width:100.0%;height:100.0%"> Household register card (Spanish population census) and percentage of the male population who were able to read and write, 1860</p>
 </div>
-</div></div>
-<p>This intermediate BA course (level 2), offered by the <a href="https://www.ntnu.edu/ims">Department of Historical Studies</a> at the <a href="https://www.ntnu.edu">Norwegian University of Science and Technology</a>, provides a practical introduction on how historians can use computational tools to learn about the past.</p>
+</div></div><p>This intermediate BA course (level 2), offered by the <a href="https://www.ntnu.edu/ims">Department of Historical Studies</a> at the <a href="https://www.ntnu.edu">Norwegian University of Science and Technology</a>, provides a practical introduction on how historians can use computational tools to learn about the past.</p>
 </section>
 <section id="description" class="level2">
 <h2 class="anchored" data-anchor-id="description">Description</h2>

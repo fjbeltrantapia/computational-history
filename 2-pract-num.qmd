@@ -1,5 +1,5 @@
 ---
-title: "2. In-class coursework: Numerical fields"
+title: "The 1860 Spanish Population Census"
 execute: 
   warning: false
   message: false
@@ -10,6 +10,8 @@ format:
     code-copy: true # adds a copy button to code blocks   
     reference-location: margin 
 ---
+
+**Case-study 3: Numerical fields**
 
 This practice session is based on the summaries of the **Spanish 1860 Population Census**. This source reports information at the **district level** for the whole of Spain and is especially suited to study the educational levels of the population. As well as the name of each administrative unit (*district*) and the *province* it belonged to, the data set contains the number of males and females living in those districts who were illiterate (*illit_m* and *illit_f*), able to read (*read_m* and *read_f*) and able to write (*write_m* and *write_f*). You can find the data <a href="data-assign/educ-1860/dist-1860.csv" download>here</a> [@beltran2018] (the Canary Islands are not included).
 
@@ -49,7 +51,7 @@ Male literacy rates by *partido judicial* (district), 1860.
 
 - Compute average male literacy rates at the province level. Do the same but weighting this measure by the existing male population. Which province ranked highest and lowest in terms of male literacy.
 
-
+<!--
 # Solution 
 
 In my case, I downloaded the associated file, `dist-1860.csv`, in the folder `data-assing`, so after setting the working directory in the course folder, the code below imports it into the R environment. As mentioned above, the raw data is in a .csv file, so we use `read_csv()` to read it into R. Note that this function is already loaded when you load the `tidyverse`, so no further packages are needed (at least for now). 
@@ -148,3 +150,4 @@ data |>
 Note that the resulting dataframe no longer have 464 rows (districts) but 48, which is the number of Spanish provinces (excluding the Canary Islands).
 
 This is just one way of looking into the topics presented above. There are different ways of extracting information from the source. You need to find your own in the sense of feeling comfortable with what you are doing and confident about understanding what the different commands are doing and the results themselves. Feel free to play around with the code. For instance, you can remove options to see what they do.
+-->

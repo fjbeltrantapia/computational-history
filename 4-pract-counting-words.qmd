@@ -1,5 +1,5 @@
 ---
-title: "Assignment: Counting words"
+title: "The State of the Union Presidential Speeches"
 execute: 
   warning: false
   message: false
@@ -11,7 +11,9 @@ format:
     reference-location: margin  
 ---
 
-This assignment explores the **State of the Union Addresses** that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them. 
+**Case-study 5: Counting words**
+
+This assignment explores the speeches that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them. 
 
 As an illustration, please read the text included in the link below that records the address that Woodrow Wilson gave in December of 1913:
 
@@ -19,7 +21,7 @@ As an illustration, please read the text included in the link below that records
 
 ![](images/wilson.jpg){width=100% height=100% fig-align="center"}
 
-The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-texts.csv" download>here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (*president*), the year the speech was delivered (*year*) and the (whole) text of the speech itself (*text*). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.
+The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-texts.csv" download>here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (*president*), the year the speech was delivered (*year*) and the (whole) text of the speech itself (*text*). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.^[An extended dataset including party affiliation is available [here](https://www.kaggle.com/datasets/rtatman/state-of-the-union-corpus-1989-2017).]
 
 We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents. 
 
@@ -40,6 +42,7 @@ We will use computational text analysis to shed light on the contents of these s
 
 **Warning**: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command `View(data)` opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with `print()` and perhaps also `select()` to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, `spstr_sub(1,200)`.
 
+<!--
 ----
 
 # Solution
@@ -433,6 +436,12 @@ This is just a first taste of how to extract and analyse the importance of geogr
 ----
 
 Well, this was quite a journey. Many more things could be done to enhance the analyses above but this is more than enough. Congrats if you have managed to somewhat perform these different exercises. As mentioned above, this way of approaching texts does not replace close reading but helps presenting evidence on a different way and find patterns that are not always visible, as well as the possibility of dealing with huge corpuses. Using these methods, as well as being creative about the way you treat the data, can indeed be a big methodological advantage for computationally-oriented historians.
+
+Computational text analysis can provide important insights about the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents. What kind of words are used more often: "war" or "peace", "justice" or "freedom"? Is education an important topic in these speeches? What about the economy ("business", "debt", "dollar")? Which locations (including countries) are mentioned more often? Are women present in these speeches? What is the context in which these terms appear? For those eager to learning more after our session, you can read more about applying computational methods to this corpus [here](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/),
+[here](https://ischoolonline.berkeley.edu/blog/trump-state-of-the-union-analysis/),
+[here](https://dl.acm.org/doi/pdf/10.1145/3603287.3651201), [here](https://www.rpubs.com/Przemyslaw_Mazurek/state_of_the_union) or [here](https://cran.r-project.org/web/packages/cleanNLP/vignettes/state-of-union.html).
+
+-->
 
 <!--
 We could easily use `ggplot()` and define that the x-axis will be *year* and add different `geom_line()` functions when the y-axis is defined separately for each of the columns (*women*, *female* and *girl*). Having the data structure in a long format (instead of a wide format) is however more flexible because we can then easily structure our analyses based on the different categories we are measuring. We therefore use `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *category* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. The resulting data frame will four rows for each speech. Feel free to run this first step separately from the graph to understand what is happening to the original data frame. We can now easily plot the information indicating that we want to have different colors according the the field *category* (whose categories are "women", "female", "girl" and "total").

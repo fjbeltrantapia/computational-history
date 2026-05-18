@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Case-study 2: The State of the Union Presidential Speeches – Computational History - HIST2025</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,15 +35,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7880cef56e955c5515e49ec1267627d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-101e0f98b87bbe2e90e74b13a7dcdce5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,8 +82,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Computational History - HIST2025</span>
     </a>
@@ -107,11 +107,6 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text">Intro to R</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
-</i> 
-<span class="menu-text">Intro to Quarto</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-fa-book" role="img">
@@ -121,11 +116,27 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
         <li>
     <a class="dropdown-item" href="./backg-paisley.html">
- <span class="dropdown-text">The Paisley Prisoners</span></a>
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./backg-speeches.html">
- <span class="dropdown-text">The State of the Union Speeches</span></a>
+    <a class="dropdown-item" href="./1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./backg-tnp.html">
@@ -137,14 +148,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./coursework.html"> <i class="bi bi-fa-home" role="img">
 </i> 
 <span class="menu-text">Coursework</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./other-data.html"> 
-<span class="menu-text">Other sources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./further-readings.html"> 
-<span class="menu-text">Further readings</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -190,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/wilson.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
 </figure>
 </div>
-<p>The full corpus contains 235 texts (speeches; with a total of almost 1.7 million words) and constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them. This information has been gathered together into a .csv file that looks like <a href="#fig-csv" class="quarto-xref">Figure&nbsp;1</a> below. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (<em>President</em>), the year the speech was delivered (<em>Year</em>), the title of the speech (<em>Title</em>) and the (whole) text of the speech itself (<em>Text</em>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.</p>
+<p>The full corpus contains 235 texts (speeches; with a total of almost 1.7 million words) and constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them. This information has been gathered together into a .csv file that looks like <a href="#fig-csv" class="quarto-xref">Figure&nbsp;1</a> below. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (<em>President</em>), the year the speech was delivered (<em>Year</em>), the title of the speech (<em>Title</em>) and the (whole) text of the speech itself (<em>Text</em>). An extended dataset including party affiliation is available <a href="https://www.kaggle.com/datasets/rtatman/state-of-the-union-corpus-1989-2017">here</a>. The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.</p>
 <div id="fig-csv" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -210,13 +213,7 @@ Figure&nbsp;1: Digital version of the State of the Union Addresses (.csv file).
 
 
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>An extended dataset including party affiliation is available here: https://www.kaggle.com/datasets/rtatman/state-of-the-union-corpus-1989-2017<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

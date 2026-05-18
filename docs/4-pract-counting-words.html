@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment: Counting words – Computational History - HIST2025</title>
+<title>The State of the Union Presidential Speeches – Computational History - HIST2025</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,15 +35,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6f26f2b31957413ebcc7940b6bc95bf4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9740d911b7302bde6b258944d591d507.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,8 +82,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Computational History - HIST2025</span>
     </a>
@@ -142,11 +107,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Intro to R</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
-</i> 
-<span class="menu-text">Intro to Quarto</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-fa-book" role="img">
@@ -156,11 +116,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
         <li>
     <a class="dropdown-item" href="./backg-paisley.html">
- <span class="dropdown-text">The Paisley Prisoners</span></a>
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./backg-speeches.html">
- <span class="dropdown-text">The State of the Union Speeches</span></a>
+    <a class="dropdown-item" href="./1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./backg-tnp.html">
@@ -173,14 +149,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Coursework</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./other-data.html"> 
-<span class="menu-text">Other sources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./further-readings.html"> 
-<span class="menu-text">Further readings</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -192,21 +160,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#solution" id="toc-solution" class="nav-link active" data-scroll-target="#solution">Solution</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content page-columns page-full column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment: Counting words</h1>
+<h1 class="title">The State of the Union Presidential Speeches</h1>
 </div>
 
 
@@ -223,7 +185,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This assignment explores the <strong>State of the Union Addresses</strong> that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them.</p>
+<p><strong>Case-study 5: Counting words</strong></p>
+<p>This assignment explores the speeches that the president of the United States delivers annually since 1790. Each of these speeches constitutes an important source of information about the US political agenda and the wider socio-economic and cultural context surrounding them.</p>
 <p>As an illustration, please read the text included in the link below that records the address that Woodrow Wilson gave in December of 1913:</p>
 <p><a href="https://www.presidency.ucsb.edu/documents/first-annual-message-18">State of the Union Presidential Address - Woodrow Wilson - December 2, 1913</a></p>
 <div class="quarto-figure quarto-figure-center">
@@ -231,8 +194,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/wilson.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
 </figure>
 </div>
-<p>The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-texts.csv" download="">here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (<em>president</em>), the year the speech was delivered (<em>year</em>) and the (whole) text of the speech itself (<em>text</em>). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.</p>
-<p>We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents.</p>
+<p>The full corpus contains 235 texts (the speeches delivered between 1790 and 2024; with a total of almost 1.7 million words). This information has been gathered together into a .csv file and can be downloaded <a href="data-assign/sotu/sotu-texts.csv" download="">here</a>. Instead of columns, comma-separate (.csv) files separate the different pieces of information using commas as delimiters: name of the president delivering the speech (<em>president</em>), the year the speech was delivered (<em>year</em>) and the (whole) text of the speech itself (<em>text</em>). The first row displays the name of these variables and the remaining rows are devoted to each observation (speech) in the dataset.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;An extended dataset including party affiliation is available <a href="https://www.kaggle.com/datasets/rtatman/state-of-the-union-corpus-1989-2017">here</a>.</p></div></div><p>We will use computational text analysis to shed light on the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents.</p>
 <p><strong>Extract the information</strong> requested below and <strong>interpret your results</strong>. Present your analysis as a <strong>PDF file</strong> using <strong>Quarto</strong> and submit it via Blackboard (deadline: <strong>March 12</strong>).</p>
 <ol type="1">
 <li><p>Explore how the data set looks like. How many observations does it contain? What is the unit of analysis? What kind of information does it report about each observation? How many speeches do we have each year? Get familiar with the data set by using <code>count()</code> or its visual equivalents: <code>ggplot()</code> plus <code>geom_bar()</code> for qualitative dimensions or <code>geom_histogram()</code> for numerical variables.</p></li>
@@ -243,23 +206,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Which locations are mentioned more often? Does the geographical scope of the speeches change over time? What about political affiliation?</p></li>
 </ol>
 <p><strong>Warning</strong>: Some commands that may work well when interacting directly with Quarto may cause trouble when rendering, especially to pdf. For instance, the command <code>View(data)</code> opens up a RStudio data viewer in a different another tab, which is very useful for exploring how the data frame looks like but it may conflict with rendering since this additional tab cannot be rendered. If you want to show the reader how the data looks like just type the name of the object in a code chunk (potentially in combination with <code>print()</code> and perhaps also <code>select()</code> to only look into particular fields). Printing very long textual fields might also be problematic, so you may want to restrict the number of characters you want to print using, for instance, <code>spstr_sub(1,200)</code>.</p>
-<hr>
-<section id="solution" class="level1 page-columns page-full">
-<h1>Solution</h1>
-<p>Let’s start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the <code>tidyverse</code> package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named <code>sotu-texts.csv</code> in the folder <code>data-assign/sotu</code>, the code below reads it into R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I also type the name of the newly created object <code>data</code> to inspect its contents.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The function <code>read_csv()</code> forms part of the tidyverse, so it becomes available when you load the <code>tidyverse</code>. Defining the <code>locale</code> helps making sure the characters are properly encoded and recognised.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;The symbol <code>&lt;-</code> (called assignment operator) takes the object that <code>read_csv()</code> imports and stores it in the environment with the name you indicate (<code>data</code> in this case).</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-assign/sotu/sotu-texts.csv"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 235 × 3
+<!--
+----
+
+# Solution
+
+Let's start by importing the data set and exploring how it looks like (as well as clearing the environment and loading the `tidyverse` package). Quarto documents do not need to set the working directory: it is automatically defined to the same folder the .qmd file is located (the root folder). Given that I have the file named `sotu-texts.csv` in the folder `data-assign/sotu`, the code below reads it into R.^[The function `read_csv()` forms part of the tidyverse, so it becomes available when you load the `tidyverse`. Defining the `locale` helps making sure the characters are properly encoded and recognised.] I also type the name of the newly created object `data` to inspect its contents.^[The symbol `<-` (called assignment operator) takes the object that `read_csv()` imports and stores it in the environment with the name you indicate (`data` in this case).] 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+rm(list=ls())
+library(tidyverse)
+data <- read_csv("data-assign/sotu/sotu-texts.csv",
+                 locale = locale(encoding = "UTF-8"))
+data
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 235 × 3
    president        year text                                                   
-   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;                                                  
+   <chr>           <dbl> <chr>                                                  
  1 Joseph R. Biden  2024 "\n[Before speaking, the President presented his prepa…
  2 Joseph R. Biden  2023 "\nThe President. Mr. Speaker——\n[At this point, the P…
  3 Joseph R. Biden  2022 "\nThe President. Thank you all very, very much. Thank…
@@ -270,33 +240,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Donald J. Trump  2017 "\nThank you very much. Mr. Speaker, Mr. Vice Presiden…
  9 Barack Obama     2016 "\nThank you. Mr. Speaker, Mr. Vice President, Members…
 10 Barack Obama     2015 "\nThe President. Mr. Speaker, Mr. Vice President, Mem…
-# ℹ 225 more rows</code></pre>
-</div>
-</div>
-<p>This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (<em>year</em> and <em>president</em>) and the text of the speech itself (<em>text</em>). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the first 200 characters from the speech from 2014,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;To (called a substring), we pass to From the package <code>stringr</code>, the function <code>str_sub()</code> extracts a part of a string. The numbers in the arguments indicate to extract from the first to the 200 character.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Note that the sequence “\\” is repeated though the text. These characters are <em>newline</em> characters that mark line breaks in the text, something that is encoded this way when text is stored in some data formats such as .csv files.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>speech_2014 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2014</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>speech_2014<span class="sc">$</span>text <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_sub</span>(<span class="dv">1</span>,<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "\nThe President. Mr. Speaker, Mr. Vice President, Members of Congress, my fellow Americans: Today in America, a teacher spent extra time with a student who needed it and did her part to lift America's "</code></pre>
-</div>
-</div>
-<p>Using <code>count()</code> on the field <em>president</em> gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of implementing this function gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field <em>president</em>, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(president)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 43 × 2
+# ℹ 225 more rows
+```
+
+
+:::
+:::
+
+
+This dataframe contains 235 rows (observations; referring to individual speeches) and 3 columns containing information about those speeches: the year and the president delivering each speech (*year* and *president*) and the text of the speech itself (*text*). The unit of analysis is therefore the speech. We could read the text of those speeches ourselves. The following for instance prints the first 200 characters from the speech from 2014,^[To (called a substring),
+we pass to From the package `stringr`, the function `str_sub()` extracts a part of a string. The numbers in the arguments indicate to extract from the first to the 200 character.] a relatively recent one. You could read a sample of them to have a sense of their contents and better ground your (computational) analysis.^[Note that the sequence "\\\\\n" is repeated though the text. These characters are *newline* characters that mark line breaks in the text, something that is encoded this way when text is stored in some data formats such as .csv files.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+speech_2014 <- data |> filter(year==2014)
+
+speech_2014$text |>
+  str_sub(1,200)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] "\nThe President. Mr. Speaker, Mr. Vice President, Members of Congress, my fellow Americans: Today in America, a teacher spent extra time with a student who needed it and did her part to lift America's "
+```
+
+
+:::
+:::
+
+
+Using `count()` on the field *president* gives us the number of speeches each president has delivered. These speeches take place annually, so the number we obtain also reflect the number of years those presidents occupied the White House. Note also that the result of implementing this function gives us a data frame (a tibble) with 43 rows. This is the number of unique categories contained in the field *president*, so it is the total number of (unique) presidents we have in the data set (each of them delivering a varying number of speeches). 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  count(president)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 43 × 2
    president                 n
-   &lt;chr&gt;                 &lt;int&gt;
+   <chr>                 <int>
  1 Abraham Lincoln           4
  2 Andrew Jackson            8
  3 Andrew Johnson            4
@@ -307,75 +298,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Donald J. Trump           4
  9 Dwight D. Eisenhower      9
 10 Franklin D. Roosevelt    11
-# ℹ 33 more rows</code></pre>
-</div>
-</div>
-<p>We could also inspect the variable <em>year</em>. Let’s do it using a histogram. Note that <code>binwidth</code> is set to equal 1, so the width of the columns is exactly 1 year.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The function <code>scale_y_continuous()</code> formats the ticks in the y-axis, so they make more sense (we don’t have 0.5 or 1.5 speeches in a year).</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>What’s going on here? Let’s look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. We could visually inspect a list of years to identify the missing ones (especially knowing that they are probably between 1930 and 1980). However, it might be useful to have one row for every possible year even if there is no speech that year, which it would imply leaving the other fields (<em>president</em> and <em>text</em> as missing values, NA). This is done with the function <code>complete()</code> indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using <code>filter()</code>: 1933, 1945 and 1973. This might be because there was no speech that year or because this particular data set missed it (or misclassified it) for whatever reason. A bit of further research would clarify this (if there were speeches those years, we should add them to the data set but let’s assume everything is fine).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">year =</span> <span class="dv">1790</span><span class="sc">:</span><span class="dv">2024</span>) </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(president))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
+# ℹ 33 more rows
+```
+
+
+:::
+:::
+
+
+We could also inspect the variable *year*. Let's do it using a histogram. Note that `binwidth` is set to equal 1, so the width of the columns is exactly 1 year.^[The function `scale_y_continuous()` formats the ticks in the y-axis, so they make more sense (we don't have 0.5 or 1.5 speeches in a year).] Our expectation is to have one speech per year but as it shown below, there are years with two speeches. These are quite rare. We only have three years with 2 speeches. It seems also that there are a few blank years, meaning having no speech then.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  ggplot(aes(x = year)) + geom_histogram(binwidth = 1) +
+  scale_y_continuous(breaks = seq(0, 2, 1))
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-4-1.png){width=672}
+:::
+:::
+
+
+What's going on here? Let's look at those years more in detail. First, we see some blanks in the plot above, which means that there are probable no speech those years. In practice, the data set does not have a row referring to those years. We could visually inspect a list of years to identify the missing ones (especially knowing that they are probably between 1930 and 1980). However, it might be useful to have one row for every possible year even if there is no speech that year, which it would imply leaving the other fields (*president* and *text* as missing values, NA). This is done with the function `complete()` indicating the column we are looking into and the range of years we are considering (the minimum and the maximum year is our period of study). We can then identify which years have missing information in the accompanying fields using `filter()`: 1933, 1945 and 1973. This might be because there was no speech that year or because this particular data set missed it (or misclassified it) for whatever reason. A bit of further research would clarify this (if there were speeches those years, we should add them to the data set but let's assume everything is fine).  
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  complete(year = 1790:2024) 
+
+data |> filter(is.na(president))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 3 × 3
    year president text 
-  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;
-1  1933 &lt;NA&gt;      &lt;NA&gt; 
-2  1945 &lt;NA&gt;      &lt;NA&gt; 
-3  1973 &lt;NA&gt;      &lt;NA&gt; </code></pre>
-</div>
-</div>
-<p>Let’s now identify those years having more than one speech. We can do it by grouping speeches by year and then summing up how many we have each year. Identifying those years with 2 (or more) speeches would then be straightforward. It seems that occasionally outgoing and incoming Presidents have given successive State of the Union addresses within the same year, for instance Truman’s final message and Eisenhower’s first message in 1953.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">obs =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(obs<span class="sc">&gt;=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
+  <dbl> <chr>     <chr>
+1  1933 <NA>      <NA> 
+2  1945 <NA>      <NA> 
+3  1973 <NA>      <NA> 
+```
+
+
+:::
+:::
+
+
+Let's now identify those years having more than one speech. We can do it by grouping speeches by year and then summing up how many we have each year. Identifying those years with 2 (or more) speeches would then be straightforward. It seems that occasionally outgoing and incoming Presidents have given successive State of the
+Union addresses within the same year, for instance Truman’s final message and Eisenhower’s
+first message in 1953. 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(year) |>
+  summarise(obs = n()) |>
+  filter(obs>=2)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 3 × 2
    year   obs
-  &lt;dbl&gt; &lt;int&gt;
+  <dbl> <int>
 1  1953     2
 2  1961     2
-3  1981     2</code></pre>
-</div>
-</div>
-<p>Having years with multiple speeches will force us to make decisions when conducting analyses looking at change over time. We will talk about that below.</p>
-<hr>
-<p>Let’s now explore the importance of terms referring to women in these speeches. The function <code>str_count()</code> computes the number of times that a particular pattern (sequence of characters) is found in the texts, so we can use it in combination to <code>mutate()</code> to create a column doing exactly that. The code below uses some basic regular expressions to detect both upper- and lower-case letters at the beginning of the term and an “a” or and “e” later on to capture both “woman” and “women”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Inspecting the revised data frame shows a column named <em>women</em> with these results.</p>
-<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;This analysis could be done tokenising the data first, lemmatising and then identifying those lemmas that refer to women.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ww]om[ae]n"</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 238 × 4
+3  1981     2
+```
+
+
+:::
+:::
+
+
+Having years with multiple speeches will force us to make decisions when conducting analyses looking at change over time. We will talk about that below.
+
+----
+
+Let's now explore the importance of terms referring to women in these speeches. The function `str_count()` computes the number of times that a particular pattern (sequence of characters) is found in the texts, so we can use it in combination to `mutate()` to create a column doing exactly that. The code below uses some basic regular expressions to detect both upper- and lower-case letters at the beginning of the term and an "a" or and "e" later on to capture both "woman" and "women".^[This analysis could be done tokenising the data first, lemmatising and then identifying those lemmas that refer to women.] Inspecting the revised data frame shows a column named *women* with these results.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  mutate(women = str_count(text, "[Ww]om[ae]n"))
+data
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 238 × 4
     year president         text                                            women
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;                                           &lt;int&gt;
+   <dbl> <chr>             <chr>                                           <int>
  1  1790 George Washington "\nFellow-Citizens of the Senate and House of …     0
  2  1791 George Washington "\nFellow-Citizens of the Senate and House of …     0
  3  1792 George Washington "\nFellow-Citizens of the Senate and House of …     0
@@ -386,171 +412,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1797 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
  9  1798 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
 10  1799 John Adams        "\nGentlemen of the Senate and Gentlemen of th…     0
-# ℹ 228 more rows</code></pre>
-</div>
-</div>
-<p>Note that the pattern used above “[Ww]om[ae]n” also captures things like “womanhood” and the like, which is something that may align well with whath we are doing here. We could nonetheless expand this analysis to include other terms explicitly referring to women, such as female/females, lady/ladies or girl/girls, or to their family positions, such as mother/mothers, wife/wives or daughter/daughters. Another option is to focus on pronouns (she, her, hers, herself),<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> which would capture indirect references to women.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> You can either construct different columns and then sum the up or use the “or” operator (<code>|</code>) within <code>str_count()</code>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> We do the former because having different columns for each term may provide distinct information about the processes at play (it is not the same to refer to women as <em>women</em> than to refer to them as <em>girls</em> (or <em>mothers</em>). For simplicity, we only focus on three terms but the same pipeline could be easily extended and include other terms. Note we are also computing the total by just summing up those three columns.</p>
-<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Be careful though because the pattern “her” will capture many things, such such hereditary, herring, etc.</p></div><div id="fn8"><p><sup>8</sup>&nbsp;These references however could refer to particular women, not to <em>women</em> in general. In this regard, we could also look for female names using the function <code>name_entity()</code>.</p></div><div id="fn9"><p><sup>9</sup>&nbsp;Something like this <code>str_count(text, "[Ww]om[ae]|[Ff]emale|[Gg]irl")</code>.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ww]om[ae]"</span>),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">female =</span> <span class="fu">str_count</span>(text, <span class="st">"[Ff]emale"</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">girl =</span> <span class="fu">str_count</span>(text, <span class="st">"[Gg]irl"</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">total =</span> women <span class="sc">+</span> female <span class="sc">+</span> girl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>We are now in a position to start tracing changes over time. In order not to over-complicate things, we are only going to plot the information contained in the column <em>women</em> depicting the other columns would be equivalent. Feel free to do it yourself.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> We should however take into account that some years have 2 speeches, so we need to make a decision of how to treat the information on those years, since we need to somewhat group them into just one single observation. We do using <code>group_by()</code> and <code>summarise()</code> to compute the average of the number of times women are mentioned in the speeches delivered that year,<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> but another solution would have been to add up the mentions in both speeches.[So, we would type <code>women = sum(women)</code> instead.]</p>
-<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;In fact, the lines for <em>women</em> and <em>total</em> track each other well, so it seems that the terms captured by “[Ww]om[ae]n” make up for most of the mentions to women.</p></div><div id="fn11"><p><sup>11</sup>&nbsp;That is, if one speech mentions women twice and the other mentions women four times, the average would be 3 times.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women)) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women)) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The pattern observed above broadly corresponds to what the evolution of women’s status in society may look like: there are hardly any mention of women in the speeches during most of the 19<sup>th</sup> century. Although the term becomes a bit more visible during the 20<sup>th</sup> century, it is only during the last 20/25 years when we can see a clear incresing trend. There are a few outliers, for instance in the early 20<sup>th</sup>, the 1940s and the early 1980s, when particular speeches seem to have mentioned women more often than usual. It would be interesting to identify them and explore in which ways they were different.</p>
-<p>Importantly, the number of times a particular term shows up in a speech might be related with the length of the text itself: longer speeches allow more opportunities to refer to women. It is therefore important to <em>relativise</em> the frequency measure by the length of the speech. The code below creates a new columns that counts the number of terms in a speech using a particular regular expression.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> We also plot the results to have a better idea of what is going on with this dimension: speeches grew in fact longer during throughout 19<sup>th</sup> century. Their length however was dramatically reduced (roughly) after WWI, with some remarkable exceptions, something which again would probably deserve further attention.</p>
-<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;The pattern there searches for groups of alphanumeric characters without a space, punctuation or line break in between. An alternative would be “[\w]+”, which searches for a sequence of one or more word characters.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word_count =</span> <span class="fu">str_count</span>(text, <span class="st">"[:alpha:]+"</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> word_count)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can now construct a relativised measure of the frequency of women in these speeches. Do not forget to take into account that we have 2 speeches in some years first. Notice that our relative frequency is computed by dividing the absolute frequency (mentions of women) by the length of the speech (in words) and multiplied it 1,000 times, which means that our indicator measures the number of times women are mentioned per 1,000 words. It is useful to include this information in the graph itself. As well as dots and lines, we are also depicting the underlying trend behind the data using <code>geom_smooth()</code>.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> The general pattern have not changed that much but the relative importance of particular years has sometimes.</p>
-<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;We set the standard errors, <code>se</code> to <code>FALSE</code> to avoid plotting the confidence intervals, something we haven’t covered yet. Notice that the degree of smoothing can be adjusted with the argument <code>span</code> and assigning values between 0 and 1: lower values produce wigglier lines, thus better capturing short-term, instead of smoother, long-term, patterns. Set it, for instance, to <code>span = 0.25</code> to see what happens.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">word_count =</span> <span class="fu">mean</span>(word_count)) <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women_rel =</span> <span class="dv">1000</span><span class="sc">*</span>women<span class="sc">/</span>word_count) <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women_rel)) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency (per 1,000 words)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<p>We are now going to conduct a similar analysis and trace the temporal evolution of the importance of “education” as a topic. Given that there are many terms that can refer to education, we construct a dictionary of words, such as “school”, “student” or “teacher”, as well as “education” itself (feel free to add others you think might be also important). In order to do so, we create a data frame, a tibble, using the function <code>tibble()</code>. This data frame will have two columns, one named <em>word</em> and another one named <em>dictionary</em>. While the values of the first column are the words we are interested in (given in the form of a list),<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> the values of the second columns are all the same (“educ”), meaning that these words refer to the topic education. We could have compared this to a different topic, such as health, so we could have created a dictionary with terms relating to health: doctor, nurse, medicine, etc. Always, make sure to check whether what you have done looks as it should be.</p>
-<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;A list is a vector of values contained within <code>c()</code>.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>educ_dict <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">word =</span> <span class="fu">c</span>(<span class="st">"education"</span>, <span class="st">"school"</span>, <span class="st">"student"</span>, <span class="st">"teacher"</span>),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dictionary =</span> <span class="st">"educ"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>educ_dict</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
+# ℹ 228 more rows
+```
+
+
+:::
+:::
+
+
+Note that the pattern used above "[Ww]om[ae]n" also captures things like "womanhood" and the like, which is something that may align well with whath we are doing here. We could nonetheless expand this analysis to include other terms explicitly referring to women, such as female/females, lady/ladies or girl/girls, or to their family positions, such as mother/mothers, wife/wives or daughter/daughters. Another option is to focus on pronouns (she, her, hers, herself),^[Be careful though because the pattern "her" will capture many things, such such hereditary, herring, etc.] which would capture indirect references to women.^[These references however could refer to particular women, not to *women* in general. In this regard, we could also look for female names using the function `name_entity()`.] You can either construct different columns and then sum the up or use the "or" operator (`|`) within `str_count()`.^[Something like this `str_count(text, "[Ww]om[ae]|[Ff]emale|[Gg]irl")`.] We do the former because having different columns for each term may provide distinct information about the processes at play (it is not the same to refer to women as *women* than to refer to them as *girls* (or *mothers*). For simplicity, we only focus on three terms but the same pipeline could be easily extended and include other terms. Note we are also computing the total by just summing up those three columns.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  mutate(women = str_count(text, "[Ww]om[ae]"),
+         female = str_count(text, "[Ff]emale"),
+         girl = str_count(text, "[Gg]irl"),
+         total = women + female + girl)
+```
+:::
+
+
+We are now in a position to start tracing changes over time. In order not to over-complicate things, we are only going to plot the information contained in the column *women* depicting the other columns would be equivalent. Feel free to do it yourself.^[In fact, the lines for *women* and *total* track each other well, so it seems that the terms captured by "[Ww]om[ae]n" make up for most of the mentions to women.] We should however take into account that some years have 2 speeches, so we need to make a decision of how to treat the information on those years, since we need to somewhat group them into just one single observation. We do using `group_by()` and `summarise()` to compute the average of the number of times women are mentioned in the speeches delivered that year,^[That is, if one speech mentions women twice and the other mentions women four times, the average would be 3 times.] but another solution would have been to add up the mentions in both speeches.[So, we would type `women = sum(women)` instead.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(year) |>
+  summarise(women = mean(women)) |>
+  ggplot(aes(x = year, y = women)) +
+  geom_point() + geom_line()   
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-9-1.png){width=672}
+:::
+:::
+
+
+The pattern observed above broadly corresponds to what the evolution of women's status in society may look like: there are hardly any mention of women in the speeches during most of the 19^th^ century. Although the term becomes a bit more visible during the 20^th^ century, it is only during the last 20/25 years when we can see a clear incresing trend. There are a few outliers, for instance in the early 20^th^, the 1940s and the early 1980s, when particular speeches seem to have mentioned women more often than usual. It would be interesting to identify them and explore in which ways they were different. 
+
+Importantly, the number of times a particular term shows up in a speech might be related with the length of the text itself: longer speeches allow more opportunities to refer to women. It is therefore important to *relativise* the frequency measure by the length of the speech. The code below creates a new columns that counts the number of terms in a speech using a particular regular expression.^[The pattern there searches for groups of alphanumeric characters without a space, punctuation or line break in between. An alternative would be "[\\w]+", which searches for a sequence of one or more word characters.] We also plot the results to have a better idea of what is going on with this dimension: speeches grew in fact longer during throughout 19^th^ century. Their length however was dramatically reduced (roughly) after WWI, with some remarkable exceptions, something which again would probably deserve further attention.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  mutate(word_count = str_count(text, "[:alpha:]+"))
+data |>
+  ggplot(aes(x = year, y = word_count)) + geom_line()
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-10-1.png){width=672}
+:::
+:::
+
+
+We can now construct a relativised measure of the frequency of women in these speeches. Do not forget to take into account that we have 2 speeches in some years first. Notice that our relative frequency is computed by dividing the absolute frequency (mentions of women) by the length of the speech (in words) and multiplied it 1,000 times, which means that our indicator measures the number of times women are mentioned per 1,000 words. It is useful to include this information in the graph itself. As well as dots and lines, we are also depicting the underlying trend behind the data using `geom_smooth()`.^[We set the standard errors, `se` to `FALSE` to avoid plotting the confidence intervals, something we haven't covered yet. Notice that the degree of smoothing can be adjusted with the argument `span` and assigning values between 0 and 1: lower values produce wigglier lines, thus better capturing short-term, instead of smoother, long-term, patterns. Set it, for instance, to `span = 0.25` to see what happens.] The general pattern have not changed that much but the relative importance of particular years has sometimes.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  group_by(year) |>
+  summarise(women = mean(women),
+            word_count = mean(word_count)) |>
+  mutate(women_rel = 1000*women/word_count) |>
+  ggplot(aes(x = year, y = women_rel)) +
+  geom_point() + geom_line() + geom_smooth(se = FALSE) +
+  ylab("Frequency (per 1,000 words)")
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-11-1.png){width=672}
+:::
+:::
+
+
+----
+
+We are now going to conduct a similar analysis and trace the temporal evolution of the importance of "education" as a topic. Given that there are many terms that can refer to education, we construct a dictionary of words, such as "school", "student" or "teacher", as well as "education" itself (feel free to add others you think might be also important). In order to do so, we create a data frame, a tibble, using the function `tibble()`. This data frame will have two columns, one named *word* and another one named *dictionary*. While the values of the first column are the words we are interested in (given in the form of a list),^[A list is a vector of values contained within `c()`.] the values of the second columns are all the same ("educ"), meaning that these words refer to the topic education. We could have compared this to a different topic, such as health, so we could have created a dictionary with terms relating to health: doctor, nurse, medicine, etc. Always, make sure to check whether what you have done looks as it should be.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+educ_dict <- tibble(
+  word = c("education", "school", "student", "teacher"),
+  dictionary = "educ")
+educ_dict
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 4 × 2
   word      dictionary
-  &lt;chr&gt;     &lt;chr&gt;     
+  <chr>     <chr>     
 1 education educ      
 2 school    educ      
 3 student   educ      
-4 teacher   educ      </code></pre>
-</div>
-</div>
-<p>We could now try to find the number of times these terms should up in the speeches. Doing it directly however would miss terms like “teachers” or “schooling” or those starting with capital letters (“Education”). We could expand the list to cover all these possibilities but an easier solution is to tokenise the speeches first using <code>unnest_tokens()</code> from the <code>tidytext</code> package. As well as removing all punctuation and splitting the text into individual words, this function converts everything into lowercase characters, thus helping with one of the issues above. In addition, having the terms structured this way allows to easily <em>lemmatise</em> them (from the package <code>textstem</code>), so the others issues are also mitigated (“schooling” becomes “school”). The resulting data frame contains almost 1,9 million rows, that is, all the tokens that make up the corpus. Crucially, the meta data about the original speeches (<em>year</em> and <em>president</em>) is preserved, so we know which year and president delivered each of those words.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textstem)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data_token <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, text) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>We can now join the two objects together, the tokenised version of the speeches and the dictionary with the words referring to the topic <em>education</em>, using <code>full_join()</code>.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>. Note that the columns that we want to join in both objects have the same name, which facilitates the matching because R recognises that is the only column with the same name in both objects.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Using <code>inner_join()</code> instead removes any terms not present in the dictionary, which prevents computing relative frequencies (based on the total number of tokens in each speech) unless you compute that beforehand.</p></div><div id="fn16"><p><sup>16</sup>&nbsp;When the names are different, you could indicate the matching columns manually using the <code>by</code> argument: <code>by = c("col1"="col2"))</code>.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data_token <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,899,259 × 5
+4 teacher   educ      
+```
+
+
+:::
+:::
+
+
+We could now try to find the number of times these terms should up in the speeches. Doing it directly however would miss terms like "teachers" or "schooling" or those starting with capital letters ("Education"). We could expand the list to cover all these possibilities but an easier solution is to tokenise the speeches first using `unnest_tokens()` from the `tidytext` package. As well as removing all punctuation and splitting the text into individual words, this function  converts everything into lowercase characters, thus helping with one of the issues above. In addition, having the terms structured this way allows to easily *lemmatise* them (from the package `textstem`), so the others issues are also mitigated ("schooling" becomes "school"). The resulting data frame contains almost 1,9 million rows, that is, all the tokens that make up the corpus. Crucially, the meta data about the original speeches (*year* and *president*) is preserved, so we know which year and president delivered each of those words.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(tidytext)
+library(textstem)
+
+data_token <- data |>
+  select(year, president, text) |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word))
+```
+:::
+
+
+We can now join the two objects together, the tokenised version of the speeches and the dictionary with the words referring to the topic *education*, using `full_join()`.^[Using `inner_join()` instead removes any terms not present in the dictionary, which prevents computing relative frequencies (based on the total number of tokens in each speech) unless you compute that beforehand.]. Note that the columns that we want to join in both objects have the same name, which facilitates the matching because R recognises that is the only column with the same name in both objects.^[When the names are different, you could indicate the matching columns manually using the `by` argument: `by = c("col1"="col2"))`.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data_token |>
+  full_join(educ_dict)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1,899,259 × 5
     year president         word            lemma          dictionary
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;     
- 1  1790 George Washington fellow          fellow         &lt;NA&gt;      
- 2  1790 George Washington citizens        citizen        &lt;NA&gt;      
- 3  1790 George Washington of              of             &lt;NA&gt;      
- 4  1790 George Washington the             the            &lt;NA&gt;      
- 5  1790 George Washington senate          senate         &lt;NA&gt;      
- 6  1790 George Washington and             and            &lt;NA&gt;      
- 7  1790 George Washington house           house          &lt;NA&gt;      
- 8  1790 George Washington of              of             &lt;NA&gt;      
- 9  1790 George Washington representatives representative &lt;NA&gt;      
-10  1790 George Washington i               i              &lt;NA&gt;      
-# ℹ 1,899,249 more rows</code></pre>
-</div>
-</div>
-<p>As evident above, this procedures adds the other columns of the object we are trying to merge to the original data frame. In this case, the other column in the object <code>dict_educ</code> was <em>dictionary</em>. R goes though all the terms in the tokenised version of the speeches and assign the value “educ” if the terms match and NA (missing) otherwise. In order to better work with this, it is better to create a dummy variable assigning 0s or 1s depending on whether the term was in the dictionary or not. Once that’s done, computing relative frequencies basically implies relying on what we already know to compute the number of occurrences per thousand words.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> We implement the full process below. Feel free to check what the code is doing sequentially:</p>
-<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;We compute the number of tokens (rows) per year and the number of terms referring to education, so we can put these two pieces of information together. Note that, given that the columns <em>educ</em> is composed of 0s and 1s, this is equivalent to compute the average times 1,000: <code>educ = mean(educ)*1000</code>.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_token <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">educ =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(dictionary), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">educ =</span> <span class="fu">sum</span>(educ),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">educ_rel =</span> <span class="dv">1000</span><span class="sc">*</span>educ<span class="sc">/</span>total) <span class="sc">|&gt;</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> educ_rel)) <span class="sc">+</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">span =</span> <span class="fl">0.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The results are interesting and correspond to the idea that the importance that governments placed on educating the population has increased over time, although the last years show a declining trend. We should also bear in mind that schooling was funded at the local and state level during a long time and it is only throughout the 20<sup>th</sup> century that the federal government started to intervene in education. Also, bear in mind that we have used only a few words as a dictionary of the topic education. This could be expanded to cover this topic more thoroughly. We should be careful when working with historical texts, since other terms might have been used in the past to refer to education (“pupil” instead of “student”, for instance) or we may have missed others that are used more often in recent times (such as “university”, “college”, “human capital”, “kindergarten”, etc. Integrating these terms probably makes the increasing trend even more pronounced. Likewise, you might be wondering whether the words in the object <code>dict_educ</code> should also be lemmatised: in our case they don’t need to be because they already constitute basic lemmas (check it yourself by applying the function <code>lemmatize_words()</code> to the words in the dictionary) but it might be necessary in other setting.</p>
-<hr>
-<p>Let’s now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our data set does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. The idea is to have a data frame containing the names of the presidents we have and then attach information on their political affiliation. We could do the research and fill in the gaps ourselves. To gain time, we can outsource this task to a research assistant or now to an AI tool. Let’s first create a list with the presidents:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>presidents <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(president) <span class="sc">|&gt;</span> <span class="fu">select</span>(president)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>presidents</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 44 × 1
+   <dbl> <chr>             <chr>           <chr>          <chr>     
+ 1  1790 George Washington fellow          fellow         <NA>      
+ 2  1790 George Washington citizens        citizen        <NA>      
+ 3  1790 George Washington of              of             <NA>      
+ 4  1790 George Washington the             the            <NA>      
+ 5  1790 George Washington senate          senate         <NA>      
+ 6  1790 George Washington and             and            <NA>      
+ 7  1790 George Washington house           house          <NA>      
+ 8  1790 George Washington of              of             <NA>      
+ 9  1790 George Washington representatives representative <NA>      
+10  1790 George Washington i               i              <NA>      
+# ℹ 1,899,249 more rows
+```
+
+
+:::
+:::
+
+
+As evident above, this procedures adds the other columns of the object we are trying to merge to the original data frame. In this case, the other column in the object `dict_educ` was *dictionary*. R goes though all the terms in the tokenised version of the speeches and assign the value "educ" if the terms match and NA (missing) otherwise. In order to better work with this, it is better to create a dummy variable assigning 0s or 1s depending on whether the term was in the dictionary or not. Once that's done, computing relative frequencies basically implies relying on what we already know to compute the number of occurrences per thousand words.^[We compute the number of tokens (rows) per year and the number of terms referring to education, so we can put these two pieces of information together. Note that, given that the columns *educ* is composed of 0s and 1s, this is equivalent to compute the average times 1,000: `educ = mean(educ)*1000`.] We implement the full process below. Feel free to check what the code is doing sequentially:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data_token |>
+  full_join(educ_dict) |>
+  mutate(educ = if_else(is.na(dictionary), 0, 1)) |>
+  group_by(year) |>
+  summarise(total = n(),
+            educ = sum(educ),
+            educ_rel = 1000*educ/total) |>
+  ggplot(aes(x = year, y = educ_rel)) +
+  geom_point() + geom_line() + 
+  geom_smooth(se = FALSE, span = 0.25)
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-15-1.png){width=672}
+:::
+:::
+
+
+The results are interesting and correspond to the idea that the importance that governments placed on educating the population has increased over time, although the last years show a declining trend. We should also bear in mind that schooling was funded at the local and state level during a long time and it is only throughout the 20^th^ century that the federal government started to intervene in education. Also, bear in mind that we have used only a few words as a dictionary of the topic education. This could be expanded to cover this topic more thoroughly. We should be careful when working with historical texts, since other terms might have been used in the past to refer to education ("pupil" instead of "student", for instance) or we may have missed others that are used more often in recent times (such as "university", "college", "human capital", "kindergarten", etc. Integrating these terms probably makes the increasing trend even more pronounced. Likewise, you might be wondering whether the words in the object `dict_educ` should also be lemmatised: in our case they don't need to be because they already constitute basic lemmas (check it yourself by applying the function `lemmatize_words()` to the words in the dictionary) but it might be necessary in other setting. 
+
+----
+
+Let's now explore the role of political affiliation in the patterns we have observed so far: who mentions these terms more often, Democrat or Republican presidents? The problem is that our data set does not have a column identifying which political party these presidents belonged to, so you have to construct it yourself. The idea is to have a data frame containing the names of the presidents we have and then attach information on their political affiliation. We could do the research and fill in the gaps ourselves. To gain time, we can outsource this task to a research assistant or now to an AI tool. Let's first create a list with the presidents:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+presidents <- data |>
+  count(president) |> select(president)
+presidents
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 44 × 1
    president            
-   &lt;chr&gt;                
+   <chr>                
  1 Abraham Lincoln      
  2 Andrew Jackson       
  3 Andrew Johnson       
@@ -561,54 +633,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Donald J. Trump      
  9 Dwight D. Eisenhower 
 10 Franklin D. Roosevelt
-# ℹ 34 more rows</code></pre>
-</div>
-</div>
-<p>We can either export this object to a .csv file (that we will stored in the folder <code>data</code>) that we can feed into the AI or copy and paste the names directly into the AI agent.</p>
-<div class="cell" data-evaluate="false">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(presidents, <span class="st">"data/presidents.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>The AI has done its part. We now have a revised file containing two columns: <em>president</em> and <em>party</em> (so we need to read it into R) or we have the information so we can create the object ourselves, copying and pasting the necessary information, as we have done below using the input from the AI. The agent also explained that it has included the following party labels: Federalist, Democratic-Republican, Democratic, Republican, Whig and None (for George Washington, who was not formally affiliated with a party). We should double-check that this classification is historically appropriate (and correct if necessary).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>presidents <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">president =</span> <span class="fu">c</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Abraham Lincoln"</span>,<span class="st">"Andrew Jackson"</span>,<span class="st">"Andrew Johnson"</span>,<span class="st">"Barack Obama"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Benjamin Harrison"</span>,<span class="st">"Calvin Coolidge"</span>,<span class="st">"Chester A. Arthur"</span>,<span class="st">"Donald J. Trump"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dwight D. Eisenhower"</span>,<span class="st">"Franklin D. Roosevelt"</span>,<span class="st">"Franklin Pierce"</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"George Bush"</span>,<span class="st">"George W. Bush"</span>,<span class="st">"George Washington"</span>,<span class="st">"Gerald R. Ford"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grover Cleveland"</span>,<span class="st">"Harry S Truman"</span>,<span class="st">"Herbert Hoover"</span>,<span class="st">"James Buchanan"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"James K. Polk"</span>,<span class="st">"James Madison"</span>,<span class="st">"James Monroe"</span>,<span class="st">"Jimmy Carter"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"John Adams"</span>,<span class="st">"John F. Kennedy"</span>,<span class="st">"John Quincy Adams"</span>,<span class="st">"John Tyler"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Joseph R. Biden"</span>,<span class="st">"Lyndon B. Johnson"</span>,<span class="st">"Martin Van Buren"</span>,<span class="st">"Millard Fillmore"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Richard M. Nixon"</span>,<span class="st">"Ronald Reagan"</span>,<span class="st">"Rutherford B. Hayes"</span>,</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Theodore Roosevelt"</span>,<span class="st">"Thomas Jefferson"</span>,<span class="st">"Ulysses S. Grant"</span>,</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Warren G. Harding"</span>,<span class="st">"William Howard Taft"</span>,<span class="st">"William J. Clinton"</span>,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"William McKinley"</span>,<span class="st">"Woodrow Wilson"</span>,<span class="st">"Zachary Taylor"</span>),</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">party =</span> <span class="fu">c</span>(</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"None"</span>,<span class="st">"Republican"</span>,</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Democratic"</span>,</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Federalist"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Whig"</span>,</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Democratic"</span>,<span class="st">"Whig"</span>,</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Republican"</span>,</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic-Republican"</span>,<span class="st">"Republican"</span>,</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Republican"</span>,<span class="st">"Democratic"</span>,<span class="st">"Whig"</span>))</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>presidents</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 43 × 2
+# ℹ 34 more rows
+```
+
+
+:::
+:::
+
+
+We can either export this object to a .csv file (that we will stored in the folder `data`) that we can feed into the AI or copy and paste the names directly into the AI agent.
+
+
+::: {.cell evaluate='false'}
+
+```{.r .cell-code}
+write_csv(presidents, "data/presidents.csv")
+```
+:::
+
+
+The AI has done its part. We now have a revised file containing two columns: *president* and *party* (so we need to read it into R) or we have the information so we can create the object ourselves, copying and pasting the necessary information, as we have done below using the input from the AI. The agent also explained that it has included the following party labels: Federalist, Democratic-Republican, Democratic, Republican, Whig and None (for George Washington, who was not formally affiliated with a party). We should double-check that this classification is historically appropriate (and correct if necessary).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+presidents <- tibble(
+  president = c(
+    "Abraham Lincoln","Andrew Jackson","Andrew Johnson","Barack Obama",
+    "Benjamin Harrison","Calvin Coolidge","Chester A. Arthur","Donald J. Trump",
+    "Dwight D. Eisenhower","Franklin D. Roosevelt","Franklin Pierce",
+    "George Bush","George W. Bush","George Washington","Gerald R. Ford",
+    "Grover Cleveland","Harry S Truman","Herbert Hoover","James Buchanan",
+    "James K. Polk","James Madison","James Monroe","Jimmy Carter",
+    "John Adams","John F. Kennedy","John Quincy Adams","John Tyler",
+    "Joseph R. Biden","Lyndon B. Johnson","Martin Van Buren","Millard Fillmore",
+    "Richard M. Nixon","Ronald Reagan","Rutherford B. Hayes",
+    "Theodore Roosevelt","Thomas Jefferson","Ulysses S. Grant",
+    "Warren G. Harding","William Howard Taft","William J. Clinton",
+    "William McKinley","Woodrow Wilson","Zachary Taylor"),
+  party = c(
+    "Republican","Democratic","Democratic","Democratic",
+    "Republican","Republican","Republican","Republican",
+    "Republican","Democratic","Democratic",
+    "Republican","Republican","None","Republican",
+    "Democratic","Democratic","Republican","Democratic",
+    "Democratic","Democratic-Republican","Democratic-Republican","Democratic",
+    "Federalist","Democratic","Democratic-Republican","Whig",
+    "Democratic","Democratic","Democratic","Whig",
+    "Republican","Republican","Republican",
+    "Republican","Democratic-Republican","Republican",
+    "Republican","Republican","Democratic",
+    "Republican","Democratic","Whig"))
+
+presidents
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 43 × 2
    president             party     
-   &lt;chr&gt;                 &lt;chr&gt;     
+   <chr>                 <chr>     
  1 Abraham Lincoln       Republican
  2 Andrew Jackson        Democratic
  3 Andrew Johnson        Democratic
@@ -619,22 +705,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Donald J. Trump       Republican
  9 Dwight D. Eisenhower  Republican
 10 Franklin D. Roosevelt Democratic
-# ℹ 33 more rows</code></pre>
-</div>
-</div>
-<p>I am going to assume that the list above is accurate. The next step is then to join this object to the original data using <code>full_join()</code>. The objects <code>data</code> and <code>presidents</code> both have a column named <em>president</em>, so the matching is straightforward:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(presidents)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">select</span>(year, president, party, text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 238 × 4
+# ℹ 33 more rows
+```
+
+
+:::
+:::
+
+
+I am going to assume that the list above is accurate. The next step is then to join this object to the original data using `full_join()`. The objects `data` and `presidents` both have a column named *president*, so the matching is straightforward:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data <- data |>
+  full_join(presidents)
+
+data |> select(year, president, party, text)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 238 × 4
     year president         party      text                                      
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;                                     
+   <dbl> <chr>             <chr>      <chr>                                     
  1  1790 George Washington None       "\nFellow-Citizens of the Senate and Hous…
  2  1791 George Washington None       "\nFellow-Citizens of the Senate and Hous…
  3  1792 George Washington None       "\nFellow-Citizens of the Senate and Hous…
@@ -645,70 +741,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1797 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
  9  1798 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
 10  1799 John Adams        Federalist "\nGentlemen of the Senate and Gentlemen …
-# ℹ 228 more rows</code></pre>
-</div>
-</div>
-<p>We can now proceed and implement the analysis recycling some of the code above. We can for instance re-do the process about the importance of topics related to education. Instead of grouping by <em>year</em>, we do it by <em>party</em> now. To make things simpler, we also restrict the analysis to president from the Republican or the Democratic parties.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word)) <span class="sc">|&gt;</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(educ_dict) <span class="sc">|&gt;</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">educ =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(dictionary), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Republican"</span>, <span class="st">"Democratic"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party) <span class="sc">|&gt;</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">educ =</span> <span class="fu">mean</span>(educ)<span class="sc">*</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
+# ℹ 228 more rows
+```
+
+
+:::
+:::
+
+
+We can now proceed and implement the analysis recycling some of the code above. We can for instance re-do the process about the importance of topics related to education. Instead of grouping by *year*, we do it by *party* now. To make things simpler, we also restrict the analysis to president from the Republican or the Democratic parties.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word)) |>
+  full_join(educ_dict) |>
+  mutate(educ = if_else(is.na(dictionary), 0, 1)) |>
+  filter(party %in% c("Republican", "Democratic")) |>
+  group_by(party) |>
+  summarise(educ = mean(educ)*1000)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 2 × 2
   party       educ
-  &lt;chr&gt;      &lt;dbl&gt;
+  <chr>      <dbl>
 1 Democratic 0.629
-2 Republican 0.590</code></pre>
-</div>
-</div>
-<p>Based on the terms chosen above, it seems that the presidents belonging to the Democratic party talk more about education than their peers in the Republican party but the difference is not very large. We could refine our analysis by checking whether these differences have always been there or are a relatively recent phenomenon (replicating the analysis but focusing, for instance, in the post-1945 period or even in more recent periods).</p>
-<p>We could something similar for the term woman/women. The lemma for these two terms is women, so the code below captures both cases and plots the results.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text, <span class="at">output =</span> word) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word)) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">women =</span> <span class="fu">if_else</span>(lemma<span class="sc">==</span><span class="st">"woman"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Republican"</span>, <span class="st">"Democratic"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party, year) <span class="sc">|&gt;</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">women =</span> <span class="fu">mean</span>(women)<span class="sc">*</span><span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> women, <span class="at">col =</span> party)) <span class="sc">+</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.5</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The most striking result is the increase in the number of times that Republicans have used the term “woman/en” from the 1950s onwards and clearly overcome the Democrats. Why? What is behind these trends?</p>
-<hr>
-<p>The next question goes back to the topic of the presence (or absence) of women in the speeches and asks about the context surrounding the terms referring to women. This is a very interesting issue because it allows getting to know more about how these speeches are using these terms and therefore qualify the previous analysis based purely on term frequencies. The graphs above, for instance, show that Republican presidents are (increasingly) mentioning women more often than Democrats. But knowing the context in which they use those terms is crucial, right?</p>
-<p>Instead of tokenising based on individual tokens (grams), this procedure implies tokenising but using (multiple) n-grams.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> In the example below, we are using a window of 5 tokens/grams, defined by the argument <code>n = 5</code> (we have chosen the name <em>window</em> to the new column containing the 5-gram chunk). A wider window could obviously be more informative but bear in mind that the further away from the term of interest, the less likely to be informative about that particular term. In any case, you as a researchers is the one to make these decisions.</p>
-<div class="no-row-height column-margin column-container"><div id="fn18"><p><sup>18</sup>&nbsp;This could also be done using the package <code>quanteda</code> as explained in the keywords-in-contec (kwic) section in the “counting words” pdf.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data_5grams <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, party, text) <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(window, text, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>data_5grams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,898,319 × 4
+2 Republican 0.590
+```
+
+
+:::
+:::
+
+
+Based on the terms chosen above, it seems that the presidents belonging to the Democratic party talk more about education than their peers in the Republican party but the difference is not very large. We could refine our analysis by checking whether these differences have always been there or are a relatively recent phenomenon (replicating the analysis but focusing, for instance, in the post-1945 period or even in more recent periods).
+
+We could something similar for the term woman/women. The lemma for these two terms is women, so the code below captures both cases and plots the results.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data |>
+  unnest_tokens(input = text, output = word) |>
+  mutate(lemma = lemmatize_words(word)) |>
+  mutate(women = if_else(lemma=="woman", 1, 0)) |>
+  filter(party %in% c("Republican", "Democratic")) |>
+  group_by(party, year) |>
+  summarise(women = mean(women)*1000) |>
+  ggplot(aes(x = year, y = women, col = party)) +
+  geom_point(alpha = 0.5) + geom_line(alpha = 0.5) +
+  geom_smooth(span = 0.5, se = FALSE)
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-21-1.png){width=672}
+:::
+:::
+
+
+The most striking result is the increase in the number of times that Republicans have used the term "woman/en" from the 1950s onwards and clearly overcome the Democrats. Why? What is behind these trends?
+
+----
+
+The next question goes back to the topic of the presence (or absence) of women in the speeches and asks about the context surrounding the terms referring to women. This is a very interesting issue because it allows getting to know more about how these speeches are using these terms and therefore qualify the previous analysis based purely on term frequencies. The graphs above, for instance, show that Republican presidents are (increasingly) mentioning women more often than Democrats. But knowing the context in which they use those terms is crucial, right? 
+
+Instead of tokenising based on individual tokens (grams), this procedure implies tokenising but using (multiple) n-grams.^[This could also be done using the package `quanteda` as explained in the keywords-in-contec (kwic) section in the "counting words" pdf.] In the example below, we are using a window of 5 tokens/grams, defined by the argument `n = 5` (we have chosen the name *window* to the new column containing the 5-gram chunk). A wider window could obviously be more informative but bear in mind that the further away from the term of interest, the less likely to be informative about that particular term. In any case, you as a researchers is the one to make these decisions.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data_5grams <- data |>
+  select(year, president, party, text) |>
+  unnest_tokens(window, text, token = "ngrams", n = 5)
+data_5grams
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1,898,319 × 4
     year president         party window                              
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;                               
+   <dbl> <chr>             <chr> <chr>                               
  1  1790 George Washington None  fellow citizens of the senate       
  2  1790 George Washington None  citizens of the senate and          
  3  1790 George Washington None  of the senate and house             
@@ -719,21 +840,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1790 George Washington None  of representatives i embrace with   
  9  1790 George Washington None  representatives i embrace with great
 10  1790 George Washington None  i embrace with great satisfaction   
-# ℹ 1,898,309 more rows</code></pre>
-</div>
-</div>
-<p>Once this is in place, we can identify whether those windows contain the term “[Ww]om[ae]n” (or any other pattern) or not. If they do, we can then easily list the accompanying terms. In order to do so, it is useful to first put the terms into separate columns using the function <code>separate_wider_delim()</code>.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_5grams <span class="ot">&lt;-</span> data_5grams <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(window, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"g1"</span>, <span class="st">"g2"</span>, <span class="st">"g3"</span>, <span class="st">"g4"</span>, <span class="st">"g5"</span>))</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>data_5grams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,898,319 × 8
+# ℹ 1,898,309 more rows
+```
+
+
+:::
+:::
+
+
+Once this is in place, we can identify whether those windows contain the term "[Ww]om[ae]n" (or any other pattern) or not. If they do, we can then easily list the accompanying terms. In order to do so, it is useful to first put the terms into separate columns using the function `separate_wider_delim()`. 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+data_5grams <- data_5grams |>
+  separate_wider_delim(window, delim = " ", names = c("g1", "g2", "g3", "g4", "g5"))
+data_5grams
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1,898,319 × 8
     year president         party g1              g2            g3    g4    g5   
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+   <dbl> <chr>             <chr> <chr>           <chr>         <chr> <chr> <chr>
  1  1790 George Washington None  fellow          citizens      of    the   sena…
  2  1790 George Washington None  citizens        of            the   sena… and  
  3  1790 George Washington None  of              the           sena… and   house
@@ -744,21 +875,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1790 George Washington None  of              representati… i     embr… with 
  9  1790 George Washington None  representatives i             embr… with  great
 10  1790 George Washington None  i               embrace       with  great sati…
-# ℹ 1,898,309 more rows</code></pre>
-</div>
-</div>
-<p>Given that the 5-gram is a moving window, we can just focus on whether the term in question shows up in the middle gram (<em>g3</em>) to avoid duplicates. This gives us the chance to read the context in which the term women shows up, which is extremely informative. Note that the data frame is reduced to 391 rows, the number of times the terms “women” or “woman” are mentioned (out of almost 1,9 million tokens originally).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> data_5grams <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(g3<span class="sc">==</span><span class="st">"women"</span> <span class="sc">|</span> g3 <span class="sc">==</span><span class="st">"woman"</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>women</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 391 × 8
+# ℹ 1,898,309 more rows
+```
+
+
+:::
+:::
+
+
+Given that the 5-gram is a moving window, we can just focus on whether the term in question shows up in the middle gram (*g3*) to avoid duplicates. This gives us the chance to read the context in which the term women shows up, which is extremely informative. Note that the data frame is reduced to 391 rows, the number of times the terms "women" or "woman" are mentioned (out of almost 1,9 million tokens originally).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+women <- data_5grams |>
+  filter(g3=="women" | g3 =="woman")
+women
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 391 × 8
     year president         party      g1               g2      g3    g4    g5   
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+   <dbl> <chr>             <chr>      <chr>            <chr>   <chr> <chr> <chr>
  1  1795 George Washington None       of               innoce… women and   chil…
  2  1862 Abraham Lincoln   Republican indiscriminately men     women and   chil…
  3  1871 Ulysses S. Grant  Republican of               men     women and   chil…
@@ -769,25 +910,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1875 Ulysses S. Grant  Republican of               chinese women but   few  
  9  1875 Ulysses S. Grant  Republican importation      of      women for   ille…
 10  1876 Ulysses S. Grant  Republican of               americ… women who   may  
-# ℹ 381 more rows</code></pre>
-</div>
-</div>
-<p>We can now transform the data into a long form to facilitate the analysis. The column <em>g3</em> is actually redundant because its value is always “women” (see code above), so we can drop it. We then put the values in the fields <em>g1</em>, <em>g2</em>, <em>g4</em> and <em>g5</em> (the terms placed next to the term women/woman) into a single column named <em>order</em> (or whatever you want) that will distinguish whether those terms come from <em>g1</em>, <em>g2</em>, <em>g4</em> or <em>g5</em>, something that can be useful for the analysis if we want to differentiate regarding how close to <em>g3</em> the terms are. The terms themselves and placed in a column automatically named <em>value</em>, which for convenience we rename to <em>word</em>.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> Lastly, we remove stop words that are not very informative.</p>
-<div class="no-row-height column-margin column-container"><div id="fn19"><p><sup>19</sup>&nbsp;Having the data structure in a long format (instead of a wide format) is more flexible because we can then easily structure our analyses based on the different categories there. <code>pivot_longer()</code>, which takes the values in the columns indicated there and puts them in a new column named <em>order</em> (or whatever name you prefer). The corresponding values for each category will be stored in a new column named <em>value</em>. Feel free to run this first step separately from the graph to understand what is happening to the original data frame.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> women <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>g3) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"g1"</span>, <span class="st">"g2"</span>, <span class="st">"g4"</span>, <span class="st">"g5"</span>), </span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"order"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">word =</span> value) <span class="sc">|&gt;</span> </span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) </span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>women</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 419 × 5
+# ℹ 381 more rows
+```
+
+
+:::
+:::
+
+
+We can now transform the data into a long form to facilitate the analysis. The column *g3* is actually redundant because its value is always "women" (see code above), so we can drop it. We then put the values in the fields *g1*, *g2*, *g4* and *g5* (the terms placed next to the term women/woman) into a single column named *order* (or whatever you want) that will distinguish whether those terms come from *g1*, *g2*, *g4* or *g5*, something that can be useful for the analysis if we want to differentiate regarding how close to *g3* the terms are. The terms themselves and placed in a column automatically named *value*, which for convenience we rename to *word*.^[Having the data structure in a long format (instead of a wide format) is more flexible because we can then easily structure our analyses based on the different categories there. `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *order* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. Feel free to run this first step separately from the graph to understand what is happening to the original data frame.] Lastly, we remove stop words that are not very informative.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+women <- women |>
+  select(-g3) |>
+  pivot_longer(cols = c("g1", "g2", "g4", "g5"), 
+               names_to = "order") |>
+  rename(word = value) |> 
+  anti_join(stop_words) 
+women
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 419 × 5
     year president         party      order word            
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;           
+   <dbl> <chr>             <chr>      <chr> <chr>           
  1  1795 George Washington None       g2    innocent        
  2  1795 George Washington None       g5    children        
  3  1862 Abraham Lincoln   Republican g1    indiscriminately
@@ -798,20 +949,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1873 Ulysses S. Grant  Republican g5    foreigners      
  9  1874 Ulysses S. Grant  Republican g2    chinese         
 10  1874 Ulysses S. Grant  Republican g2    american        
-# ℹ 409 more rows</code></pre>
-</div>
-</div>
-<p>We can now find out which words are the most common ones when talking about women, by simply counting them. The list is very informative. Most of the times women are mentioned in the presidential speeches are in relation to terms denoting their role as mothers: children, pregnant, child, infants, etc. (you can use <code>print(n = Inf)</code> to see the whole list). As well as to the nation itself (american, america, america’s), there are also terms referring to work (employment, industry) and other topics/issues.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>women <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 283 × 2
+# ℹ 409 more rows
+```
+
+
+:::
+:::
+
+
+We can now find out which words are the most common ones when talking about women, by simply counting them. The list is very informative. Most of the times women are mentioned in the presidential speeches are in relation to terms denoting their role as mothers: children, pregnant, child, infants, etc. (you can use `print(n = Inf)` to see the whole list). As well as to the nation itself (american, america, america's), there are also terms referring to work (employment, industry) and other topics/issues. 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+women |>
+  count(word, sort=TRUE)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 283 × 2
    word         n
-   &lt;chr&gt;    &lt;int&gt;
+   <chr>    <int>
  1 children    25
  2 uniform     17
  3 american     8
@@ -822,21 +983,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 law          5
  9 serving      5
 10 violence     5
-# ℹ 273 more rows</code></pre>
-</div>
-</div>
-<p>You can also refine the analysis and perhaps focus only on the terms that are right next to women and see whether the same pattern shows up or not (having a wider window of terms would allow further analyses along these lines). Doing so, for instance, also highlights that women were often mentioned in the context of minorities (a word that also appeared relatively high in the previous list), such as “chinese” or “indian” women.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>women <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(order<span class="sc">==</span><span class="st">"g2"</span> <span class="sc">|</span> order<span class="sc">==</span><span class="st">"g4"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 96 × 2
+# ℹ 273 more rows
+```
+
+
+:::
+:::
+
+
+You can also refine the analysis and perhaps focus only on the terms that are right next to women and see whether the same pattern shows up or not (having a wider window of terms would allow further analyses along these lines). Doing so, for instance, also highlights that women were often mentioned in the context of minorities (a word that also appeared relatively high in the previous list), such as "chinese" or "indian" women.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+women |>
+  filter(order=="g2" | order=="g4") |>
+  count(word, sort=TRUE)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 96 × 2
    word         n
-   &lt;chr&gt;    &lt;int&gt;
+   <chr>    <int>
  1 american     7
  2 pregnant     6
  3 act          5
@@ -847,70 +1018,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 filled       2
  9 indian       2
 10 infants      2
-# ℹ 86 more rows</code></pre>
-</div>
-</div>
-<p>Further analyses would look into how these patterns may have changed over time and whether these patterns are characteristic of particular presidents or political parties. Obviously, this is only a complementary tool to close-reading. Directly reading the context in which these terms were employed in the speeches would allow qualifying these analyses but just counting helps revealing patterns regarding the evolution of the perceived view of women in the mainstream political agenda and society more broadly, as well as the potential influence of particular historical processes (e.g.&nbsp;the suffrage movement, equal rights movements from the 1960s, etc.).</p>
-<p>Note also that this assignment has so far focused on exploring particular topics (e.g.&nbsp;women, education). A more agnostic approach would search for the most common words in particular periods using top frequencies to discover other (perhaps) unnoticed patterns. This would involve unnesting tokens, removing stop words, lemmatizing and counting which tokens are most common.</p>
-<hr>
-<p>Let’s finish this assignment by studying the locations that are mentioned in the speeches. Part of more general <em>tagging</em> tools, the package <code>entity</code> includes function for <em>named entity recognition</em>. One of them is <code>location_entity()</code> which identifies locations in a particular textual field (in our case the column <em>text</em>).<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> Unfortunately, these tools do not work well with very long texts unless you change their default options. The code below fixes that by forcing the argument <code>element.chunks</code> to be at least equal to 1. Excluding those years without a speech also assures that missing values are not an issue. These functions are computationally intensive, so the code takes a while to run (be patient and I hope the computer does not crash).<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn20"><p><sup>20</sup>&nbsp;Other functions allow identifying persons (<code>person_entity()</code>) or organisations (<code>organization_entity()</code>).</p></div><div id="fn21"><p><sup>21</sup>&nbsp;If it crashes, you can always perform the analysis on a smaller subset of the corpus, filtering for instance to the last 25 years or something like that: <code>filter(year&gt;2000)</code>.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(entity)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, president, party, text) <span class="sc">|&gt;</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(text)) <span class="sc">|&gt;</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">locations =</span> <span class="fu">location_entity</span>(text, <span class="at">element.chunks =</span> <span class="dv">1</span>))</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>locations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 235 × 5
+# ℹ 86 more rows
+```
+
+
+:::
+:::
+
+
+Further analyses would look into how these patterns may have changed over time and whether these patterns are characteristic of particular presidents or political parties. Obviously, this is only a complementary tool to close-reading. Directly reading the context in which these terms were employed in the speeches would allow qualifying these analyses but just counting helps revealing patterns regarding the evolution of the perceived view of women in the mainstream political agenda and society more broadly, as well as the potential influence of particular historical processes (e.g. the suffrage movement, equal rights movements from the 1960s, etc.).
+
+Note also that this assignment has so far focused on exploring particular topics (e.g. women, education). A more agnostic approach would search for the most common words in particular periods using top frequencies to discover other (perhaps) unnoticed patterns. This would involve unnesting tokens, removing stop words, lemmatizing and counting which tokens are most common.  
+
+----
+
+Let's finish this assignment by studying the locations that are mentioned in the speeches. Part of more general *tagging* tools, the package `entity` includes function for *named entity recognition*. One of them is `location_entity()` which identifies locations in a particular textual field (in our case the column *text*).^[Other functions allow identifying persons (`person_entity()`) or organisations (`organization_entity()`).] Unfortunately, these tools do not work well with very long texts unless you change their default options. The code below fixes that by forcing the argument `element.chunks` to be at least equal to 1. Excluding those years without a speech also assures that missing values are not an issue. These functions are computationally intensive, so the code takes a while to run (be patient and I hope the computer does not crash).^[If it crashes, you can always perform the analysis on a smaller subset of the corpus, filtering for instance to the last 25 years or something like that: `filter(year>2000)`.]
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(entity)
+locations <- data |>
+  select(year, president, party, text) |>
+  filter(!is.na(text)) |>
+  mutate(locations = location_entity(text, element.chunks = 1))
+
+locations
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 235 × 5
     year president         party      text                             locations
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;                            &lt;entity&gt; 
- 1  1790 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr [7]&gt;
- 2  1791 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 3  1792 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 4  1793 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 5  1794 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 6  1795 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 7  1796 George Washington None       "\nFellow-Citizens of the Senat… &lt;chr&gt;    
- 8  1797 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
- 9  1798 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
-10  1799 John Adams        Federalist "\nGentlemen of the Senate and … &lt;chr&gt;    
-# ℹ 225 more rows</code></pre>
-</div>
-</div>
-<p>As you can see, the column <em>locations</em> is a vector listing whatever locations the algorithm has recognised. These vectors look something like this: <code>c("Washington", "Ukraine")</code>. You can for instance extract that information using <code>pull()</code> and <code>pluck()</code>.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> The code below does it for the year 1805:</p>
-<div class="no-row-height column-margin column-container"><div id="fn22"><p><sup>22</sup>&nbsp;<code>pull()</code> extracts the list and <code>pluck(1)</code> extracts the vector inside the list.</p></div></div><div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">1805</span>) <span class="sc">|&gt;</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(locations) <span class="sc">|&gt;</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "United States" "Europe"        "His"           "New"          
+   <dbl> <chr>             <chr>      <chr>                            <entity> 
+ 1  1790 George Washington None       "\nFellow-Citizens of the Senat… <chr [7]>
+ 2  1791 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 3  1792 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 4  1793 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 5  1794 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 6  1795 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 7  1796 George Washington None       "\nFellow-Citizens of the Senat… <chr>    
+ 8  1797 John Adams        Federalist "\nGentlemen of the Senate and … <chr>    
+ 9  1798 John Adams        Federalist "\nGentlemen of the Senate and … <chr>    
+10  1799 John Adams        Federalist "\nGentlemen of the Senate and … <chr>    
+# ℹ 225 more rows
+```
+
+
+:::
+:::
+
+
+As you can see, the column *locations* is a vector listing whatever locations the algorithm has recognised. These vectors look something like this: `c("Washington", "Ukraine")`. You can for instance extract that information using `pull()` and `pluck()`.^[`pull()` extracts the list and `pluck(1)` extracts the vector inside the list.] The code below does it for the year 1805:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+locations |>
+  filter(year==1805) |>
+  pull(locations) |>
+  pluck(1)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+ [1] "United States" "Europe"        "His"           "New"          
  [5] "Spain"         "Louisiana"     "Mississippi"   "Spain"        
  [9] "Tripoli"       "Mediterranean" "Connecticut"   "Tennessee"    
-[13] "Georgia"       "Missouri"      "Mississippi"   "France"       </code></pre>
-</div>
-</div>
-<p>In order to work with the full corpus, we can use the function <code>unnest()</code> to structure that information as a regular tibble. This function expands a list-column (<em>locations</em> in our case), so that each element of the vectors inside it (each location) becomes its own row and preserved the associated metadata (<em>year</em>, <em>president</em>, <em>party</em>, etc.).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>locations_long <span class="ot">&lt;-</span> locations <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(locations)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span> <span class="fu">select</span>(year, president, party, locations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18,698 × 4
+[13] "Georgia"       "Missouri"      "Mississippi"   "France"       
+```
+
+
+:::
+:::
+
+
+In order to work with the full corpus, we can use the function `unnest()` to structure that information as a regular tibble. This function expands a list-column (*locations* in our case), so that each element of the vectors inside it (each location) becomes its own row and preserved the associated metadata (*year*, *president*, *party*, etc.).
+
+
+::: {.cell}
+
+```{.r .cell-code}
+locations_long <- locations |>
+  unnest(locations)
+
+locations_long |> select(year, president, party, locations)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 18,698 × 4
     year president         party locations     
-   &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;         
+   <dbl> <chr>             <chr> <chr>         
  1  1790 George Washington None  North Carolina
  2  1790 George Washington None  United States 
  3  1790 George Washington None  Providence    
@@ -921,61 +1125,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  1791 George Washington None  United States 
  9  1791 George Washington None  United States 
 10  1791 George Washington None  United States 
-# ℹ 18,688 more rows</code></pre>
-</div>
-</div>
-<p>We can now analyse this information. Let’s first explore how the the geographical scope of the speeches have changed over time. To make things simpler, we create four periods: 1790-1880, 1880-1914, 1915-1945 and 1946-2024. We can then count the number of times each location is mentioned within each period and select only the 15 most common using <code>slice_max()</code>. The code for the graph is a bit involved because we want to present the locations ordered in terms of popularity within each period. I would advise you to check what the code is doing sequentially. The results show how the geographical scope of the US political agenda has changed over time as the US themselves evolved from being especially focus on internal affairs to become a global power. A more fine-grain analysis (by decade for instance) would provide further insights.</p>
-<div class="cell" data-evaluate="false">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>(</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&lt;</span><span class="dv">1914</span> <span class="sc">~</span> <span class="st">"1790-1914"</span>, </span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&gt;=</span><span class="dv">1914</span> <span class="sc">&amp;</span> year<span class="sc">&lt;</span><span class="dv">1945</span> <span class="sc">~</span> <span class="st">"1915-1944"</span>,</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    year<span class="sc">&gt;=</span><span class="dv">1945</span> <span class="sc">~</span> <span class="st">"1945-2024"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(locations, <span class="at">sort=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> n, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder_within</span>(locations, n, period), <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>() <span class="sc">+</span></span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> period, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Locations"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> </span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4-pract-counting-words_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can do something similar with political affiliation. The logic is the same but instead of grouping by <em>year</em> (or <em>period</em>) we group by <em>party</em>. To narrow down the temporal scope, we focus on the period after 1945 and we present the results as a table. The results are very interesting. One of the most important is how “Europe” ranks much higher for the Democrats. The Republicans also seem to be more concerned about the Middle East (also including Iraq, Iran and Afghanistan).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>locations_long <span class="sc">|&gt;</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">&gt;</span><span class="dv">1945</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party) <span class="sc">|&gt;</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(locations, <span class="at">sort=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> n, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(party, rank, locations, n) <span class="sc">|&gt;</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> party,</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="fu">c</span>(locations, n)) <span class="sc">|&gt;</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">|&gt;</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, locations_Democratic, n_Democratic, locations_Republican, n_Republican) <span class="sc">|&gt;</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 5
+# ℹ 18,688 more rows
+```
+
+
+:::
+:::
+
+
+We can now analyse this information. Let's first explore how the the geographical scope of the speeches have changed over time. To make things simpler, we create four periods: 1790-1880, 1880-1914, 1915-1945 and 1946-2024. We can then count the number of times each location is mentioned within each period and select only the 15 most common using `slice_max()`. The code for the graph is a bit involved because we want to present the locations ordered in terms of popularity within each period. I would advise you to check what the code is doing sequentially. The results show how the geographical scope of the US political agenda has changed over time as the US themselves evolved from being especially focus on internal affairs to become a global power. A more fine-grain analysis (by decade for instance) would provide further insights.
+
+
+::: {.cell evaluate='false'}
+
+```{.r .cell-code}
+library(tidytext)
+
+locations_long |>
+  mutate(period = case_when(
+    year<1914 ~ "1790-1914", 
+    year>=1914 & year<1945 ~ "1915-1944",
+    year>=1945 ~ "1945-2024")) |>
+  group_by(period) |>
+  count(locations, sort=TRUE) |>
+  slice_max(order_by = n, n = 15) |>
+  ggplot(aes(x = reorder_within(locations, n, period), y = n)) +
+  geom_col() +
+  scale_x_reordered() +
+  coord_flip() +
+  facet_wrap(~ period, nrow = 1, scales = "free") +
+  labs(x = "Locations", y = "Frequency") + 
+  theme_bw()
+```
+
+::: {.cell-output-display}
+![](4-pract-counting-words_files/figure-html/unnamed-chunk-31-1.png){width=672}
+:::
+:::
+
+
+We can do something similar with political affiliation. The logic is the same but instead of grouping by *year* (or *period*) we group by *party*. To narrow down the temporal scope, we focus on the period after 1945 and we present the results as a table. The results are very interesting. One of the most important is how "Europe" ranks much higher for the Democrats. The Republicans also seem to be more concerned about the Middle East (also including Iraq, Iran and Afghanistan). 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+locations_long |>
+  filter(year>1945) |>
+  group_by(party) |>
+  count(locations, sort=TRUE) |>
+  slice_max(order_by = n, n = 15) |>
+  mutate(rank = row_number()) |>
+  ungroup() |>
+  select(party, rank, locations, n) |>
+  pivot_wider(names_from = party,
+              values_from = c(locations, n)) |>
+  arrange(rank) |>
+  select(rank, locations_Democratic, n_Democratic, locations_Republican, n_Republican) |>
+  print(n = 15)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 15 × 5
     rank locations_Democratic     n_Democratic locations_Republican n_Republican
-   &lt;int&gt; &lt;chr&gt;                           &lt;int&gt; &lt;chr&gt;                       &lt;int&gt;
+   <int> <chr>                           <int> <chr>                       <int>
  1     1 America                           304 America                       288
  2     2 United States                     278 United States                 189
  3     3 Europe                            110 Iraq                           96
@@ -990,12 +1205,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 12    12 Korea                              43 Earth                          21
 13    13 Africa                             42 Korea                          21
 14    14 United States of America           41 Asia                           19
-15    15 Israel                             40 Africa                         18</code></pre>
-</div>
-</div>
-<p>This is just a first taste of how to extract and analyse the importance of geographical locations from textual corpuses. Note though that we have not taken into account whether there are differences in how the length of the speeches, either by period or by political affiliation, something that should be done before attaching too much significance to these findings. Also, we have focused on the most common locations but it might be also interesting to have a look at which ones are less common or even at the variety of locations that are mention (the number of unique locations can be computed using <code>n_distinct()</code>). Crucially, here we have reported the information about locations using graphs and tables. However, the best way to present spatial information is to draw maps. We will learn how to do it next session.</p>
-<hr>
-<p>Well, this was quite a journey. Many more things could be done to enhance the analyses above but this is more than enough. Congrats if you have managed to somewhat perform these different exercises. As mentioned above, this way of approaching texts does not replace close reading but helps presenting evidence on a different way and find patterns that are not always visible, as well as the possibility of dealing with huge corpuses. Using these methods, as well as being creative about the way you treat the data, can indeed be a big methodological advantage for computationally-oriented historians.</p>
+15    15 Israel                             40 Africa                         18
+```
+
+
+:::
+:::
+
+
+This is just a first taste of how to extract and analyse the importance of geographical locations from textual corpuses. Note though that we have not taken into account whether there are differences in how the length of the speeches, either by period or by political affiliation, something that should be done before attaching too much significance to these findings. Also, we have focused on the most common locations but it might be also interesting to have a look at which ones are less common or even at the variety of locations that are mention (the number of unique locations can be computed using `n_distinct()`). Crucially, here we have reported the information about locations using graphs and tables. However, the best way to present spatial information is to draw maps. We will learn how to do it next session.
+
+----
+
+Well, this was quite a journey. Many more things could be done to enhance the analyses above but this is more than enough. Congrats if you have managed to somewhat perform these different exercises. As mentioned above, this way of approaching texts does not replace close reading but helps presenting evidence on a different way and find patterns that are not always visible, as well as the possibility of dealing with huge corpuses. Using these methods, as well as being creative about the way you treat the data, can indeed be a big methodological advantage for computationally-oriented historians.
+
+Computational text analysis can provide important insights about the contents of these speeches, including how they have changed over time or how they differ between Democrat and Republican presidents. What kind of words are used more often: "war" or "peace", "justice" or "freedom"? Is education an important topic in these speeches? What about the economy ("business", "debt", "dollar")? Which locations (including countries) are mentioned more often? Are women present in these speeches? What is the context in which these terms appear? For those eager to learning more after our session, you can read more about applying computational methods to this corpus [here](https://www.theatlantic.com/politics/archive/2015/01/mapping-the-state-of-the-union/384576/),
+[here](https://ischoolonline.berkeley.edu/blog/trump-state-of-the-union-analysis/),
+[here](https://dl.acm.org/doi/pdf/10.1145/3603287.3651201), [here](https://www.rpubs.com/Przemyslaw_Mazurek/state_of_the_union) or [here](https://cran.r-project.org/web/packages/cleanNLP/vignettes/state-of-union.html).
+
+-->
 <!--
 We could easily use `ggplot()` and define that the x-axis will be *year* and add different `geom_line()` functions when the y-axis is defined separately for each of the columns (*women*, *female* and *girl*). Having the data structure in a long format (instead of a wide format) is however more flexible because we can then easily structure our analyses based on the different categories we are measuring. We therefore use `pivot_longer()`, which takes the values in the columns indicated there and puts them in a new column named *category* (or whatever name you prefer). The corresponding values for each category will be stored in a new column named *value*. The resulting data frame will four rows for each speech. Feel free to run this first step separately from the graph to understand what is happening to the original data frame. We can now easily plot the information indicating that we want to have different colors according the the field *category* (whose categories are "women", "female", "girl" and "total").
 
@@ -1022,7 +1250,6 @@ We are using the argument `alpha` to facilitate visualisation by adding some tra
 -->
 
 
-</section>
 
 
 </main> <!-- /main -->

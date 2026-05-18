@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Case-study 3: The Tudor Network of Letters – Computational History - HIST2025</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,15 +54,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7880cef56e955c5515e49ec1267627d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-101e0f98b87bbe2e90e74b13a7dcdce5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,8 +101,6 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Computational History - HIST2025</span>
     </a>
@@ -127,11 +126,6 @@ div.csl-indent {
 </i> 
 <span class="menu-text">Intro to R</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
-</i> 
-<span class="menu-text">Intro to Quarto</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-fa-book" role="img">
@@ -141,11 +135,27 @@ div.csl-indent {
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
         <li>
     <a class="dropdown-item" href="./backg-paisley.html">
- <span class="dropdown-text">The Paisley Prisoners</span></a>
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./backg-speeches.html">
- <span class="dropdown-text">The State of the Union Speeches</span></a>
+    <a class="dropdown-item" href="./1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./backg-tnp.html">
@@ -157,14 +167,6 @@ div.csl-indent {
     <a class="nav-link" href="./coursework.html"> <i class="bi bi-fa-home" role="img">
 </i> 
 <span class="menu-text">Coursework</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./other-data.html"> 
-<span class="menu-text">Other sources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./further-readings.html"> 
-<span class="menu-text">Further readings</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -202,7 +204,7 @@ div.csl-indent {
 </header>
 
 
-<p>The third case-study deals with <strong>The Tudor Networks of Power</strong> data set <span class="citation" data-cites="tnp2023">(<a href="#ref-tnp2023" role="doc-biblioref">Ahnert et al. 2023</a>)</span>, which contains a large corpus of letters originated from the correspondence kept in the <a href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/state-papers-domestic-1547-1649/">Tudor State Papers</a>, thus covering the period from the ascension of Henry VIII (1509) and the death of Elizabeth I (1603), an important period in British and European history.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>This case-study deals with <strong>The Tudor Networks of Power</strong> data set <span class="citation" data-cites="tnp2023">(<a href="#ref-tnp2023" role="doc-biblioref">Ahnert et al. 2023</a>)</span>, which contains a large corpus of letters originated from the correspondence kept in the <a href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/state-papers-domestic-1547-1649/">Tudor State Papers</a>, thus covering the period from the ascension of Henry VIII (1509) and the death of Elizabeth I (1603), an important period in British and European history.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>The letter below, for instance, dated in April 1554, was sent from <a href="https://en.wikipedia.org/wiki/Mary_I_of_England">Queen Mary I</a> (“Marye the quene”) to inform Lord Paget of the imminent arrival of Phillip II, Prince of Spain, to England (more examples <a href="https://www.sothebys.com/en/articles/letters-from-tudor-monarchs-to-the-man-who-survived-them">here</a>). <a href="https://en.wikipedia.org/wiki/William_Paget,_1st_Baron_Paget">Lord Paget</a>, an important statesman and diplomat, was crucial during the negotiations to secure a marriage agreement between Mary and Philip, who were married at Winchester Cathedral on July 1554.</p>
 <div id="fig-mary" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -245,12 +247,12 @@ Figure&nbsp;1: Letter signed by Queen Mary I (St James’s Palace, 18 April 1554
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-ahnert-etal2023" class="csl-entry" role="listitem">
 Ahnert, Ruth, and Sebastian E. Ahnert. 2023. <em>Tudor Networks of Power</em>. Oxford University Press.
 </div>
 <div id="ref-tnp2023" class="csl-entry" role="listitem">
-Ahnert, Ruth, Sebastian E. Ahnert, Jose Cree, and Lotte Fikkers. 2023. <span>“Tudor Networks of Power - Correspondence Network Dataset.”</span> <em>Cliodynamics</em>. Apollo - University of Cambridge Repository. <a href="https://doi.org/10.17863/CAM.99562">https://doi.org/10.17863/CAM.99562</a>.
+Ahnert, Ruth, Sebastian E. Ahnert, Jose Cree, and Lotte Fikkers. 2023. <span>“Tudor Networks of Power - Correspondence Network Dataset.”</span> In <em>Cliodynamics</em>. Apollo - University of Cambridge Repository. <a href="https://doi.org/10.17863/CAM.99562">https://doi.org/10.17863/CAM.99562</a>.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 

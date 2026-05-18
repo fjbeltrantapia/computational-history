@@ -40,9 +40,11 @@ Who were these prisoners? Where they were coming from? Did prisoners' occupation
 
 \vspace{1em}
 
-Sarah Horrell, David Meredith and Deborah Oxley have relied on this information to significantly contribute to our understanding of 19th-century British society, especially regarding the living standards of the working classes and gender dynamics that drove the allocation of resources within these families [@horrell2013; @meredith2015]. In a seminal article, Sarah Horrell and Deborah Oxley had previously addressed these issues using similar registers from the Wandsworth prison, near London [@horrell2009]. We strongly encourage reading those pieces to get to know more about the source and its possibilities.  Alternatively, watch the wonderful [Tawney Lecture](https://ehs.org.uk/multimedia/tawney-lecture-2013-weighty-matters-anthropometrics-gender-and-health-inequality-in-history/) delivered by Deborah Oxley at the Economic History Society Annual Conference in 2013. Bear in mind that, for practical reasons, we will rely on a subset of the full data set, containing a thousand prisoners.
+Sarah Horrell, David Meredith and Deborah Oxley have relied on this information to significantly contribute to our understanding of 19th-century British society, especially regarding the living standards of the working classes and gender dynamics that drove the allocation of resources within these families [@horrell2013; @meredith2015]. In a seminal article, Sarah Horrell and Deborah Oxley had previously addressed these issues using similar registers from the Wandsworth prison, near London [@horrell2009]. We strongly encourage reading those pieces to get to know more about the source and its possibilities.  Alternatively, watch the wonderful [Tawney Lecture](https://ehs.org.uk/multimedia/tawney-lecture-2013-weighty-matters-anthropometrics-gender-and-health-inequality-in-history/) delivered by Deborah Oxley at the Economic History Society Annual Conference in 2013. 
 
-### Further references
+These records will constitute the backbone of our first sessions. In the process, we will not only learn about these individuals themselves, but about the wider British society at that time.
+
+**Further references**
 
 ::: {#refs}
 :::

@@ -1,5 +1,5 @@
 ---
-title: "Assignment: Mapping"
+title: "Mapping life in Norway c. 1910"
 execute: 
   warning: false
   message: false
@@ -10,6 +10,8 @@ format:
     code-copy: true # adds a copy button to code blocks   
     reference-location: margin  
 ---
+
+**Case-study 6: Mapping**
 
 This assignment explores both the 1910 Norwegian census and the newspapers published in Norway during that year. The aim is to be able to map the information contained in those sources. In the process, we will also practice the crucial skill of "cleaning" data, that is, making it ready for subsequent analyses.
 
@@ -29,6 +31,7 @@ The other source we will be using is the newspapers published in Norway in 1910.
 
 Here, you will map the number of newspapers published in Norway in 1910 according to their place of publication. The corpus of newspapers can be retrieved using the `dhlabR` package. As well as this source, you will need a spatial object to be able to do the mapping. You can either use an already existing shapefile containing Norwegian locations or use the `geocoder` package to extract the geographic coordinates that are needed to create such a (point) shapefile.
 
+<!--
 ----
 
 # Solution
@@ -233,11 +236,15 @@ news_city <- news_city |>
 news_city
 ```
 
-We are now ready to use `geocode()` to automatically retrieve the spatial coordinates of our list of locations. We are using the `osm` geocoding service and requesting `full_results` makes it easy to double-check what kind of locations we have got (more details in the course materials: mapping.pdf). <!-- To make sure I replicate the same results, I saved the results news_city_geo |> 
+We are now ready to use `geocode()` to automatically retrieve the spatial coordinates of our list of locations. We are using the `osm` geocoding service and requesting `full_results` makes it easy to double-check what kind of locations we have got (more details in the course materials: mapping.pdf). 
+-->
+<!-- To make sure I replicate the same results, I saved the results news_city_geo |> 
   select(city, obs, lat, long, place_id) |>
   write_csv("data-assign/newspapers-1910/city-locations.csv")
-  so I do not evaluate this-->
+  so I do not evaluate this
+-->
 
+<!--
 ```{r}
 #| eval: false
 news_city_geo <- news_city |>
@@ -297,3 +304,4 @@ tm_shape(norway) + tm_borders(lwd = 0.2) +
 ```
 
 And that's it. Here you have a map with the intensity of newspaper publications in 1910. Recall that there were many documents that did not have information on the city of publication, so this is not a full picture of this phenomenon. More work could be done trying to assign a location to those newspapers (if possible). In any case, this is quite informative.
+-->

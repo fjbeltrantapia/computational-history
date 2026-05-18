@@ -18,25 +18,26 @@ website:
     - text: "Intro to R"
       icon: fa-book
       href: get-r.qmd 
-    - text: "Intro to Quarto"
-      icon: fa-book
-      href: quarto.qmd       
     - text: "Case-studies"
       icon: fa-book
       menu: 
-      - text: "The Paisley Prisoners"
+      - text: "The Paisley Prisoners (19th-c.)"
         href: backg-paisley.qmd
-      - text: "The State of the Union Speeches"
-        href: backg-speeches.qmd
+      - text: "Petitioning in Early Modern England"
+        href: 1-pract-qual.qmd  
+      - text: "The 1860 Spanish Population Census"
+        href: 2-pract-num.qmd  
+      - text: "Reading and writing in the past"
+        href: 3-pract-comp-dim.qmd    
+      - text: "The State of the Union Presidential Speeches"
+        href: 4-pract-counting-words.qmd
+      - text: "Mapping life in Norway c. 1910"
+        href: 5-pract-mapping.qmd         
       - text: "The Tudor Network of Letters"
         href: backg-tnp.qmd  
     - text: "Coursework"
       icon: fa-home
       href: coursework.qmd 
-    - text: "Other sources"
-      href: other-data.qmd
-    - text: "Further readings"
-      href: further-readings.qmd  
   
   sidebar:
     title: "Contents"
@@ -67,9 +68,18 @@ website:
       - text: "3. Dealing with uncertainty"
         #file: r-scripts/uncert.qmd
       - section: "4. Writing history in Quarto"
+        file: quarto.qmd     
         contents:   
           - text: "4.1 PDFs"
           - text: "4.2 Blogposts"
+      - text: "---" # to create extra space
+      - section: "Additional material"
+        contents:
+          - text: "Other sources"
+            file: other-data.qmd
+          - text: "Further readings"
+            file: further-readings.qmd    
+            
 bibliography: refs.bib
 
 format:

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exploring the NB corpus with dhlabR – Computational History - HIST2025</title>
+<title>Exploring the National Biblioteket corpus with dhlabR – Computational History - HIST2025</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -67,15 +70,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6f26f2b31957413ebcc7940b6bc95bf4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9740d911b7302bde6b258944d591d507.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,8 +117,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Computational History - HIST2025</span>
     </a>
@@ -142,11 +142,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text">Intro to R</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./quarto.html"> <i class="bi bi-fa-book" role="img">
-</i> 
-<span class="menu-text">Intro to Quarto</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-fa-book" role="img">
@@ -156,11 +151,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
         <li>
     <a class="dropdown-item" href="./backg-paisley.html">
- <span class="dropdown-text">The Paisley Prisoners</span></a>
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./backg-speeches.html">
- <span class="dropdown-text">The State of the Union Speeches</span></a>
+    <a class="dropdown-item" href="./1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./backg-tnp.html">
@@ -172,14 +183,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./coursework.html"> <i class="bi bi-fa-home" role="img">
 </i> 
 <span class="menu-text">Coursework</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./other-data.html"> 
-<span class="menu-text">Other sources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./further-readings.html"> 
-<span class="menu-text">Further readings</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -209,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploring the NB corpus with dhlabR</h1>
+<h1 class="title">Exploring the National Biblioteket corpus with dhlabR</h1>
 </div>
 
 
@@ -270,25 +273,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 43
 Columns: 19
-$ dhlabid       &lt;named list&gt; 100176330, 100297660, 100622098, 100620297, 10061…
-$ urn           &lt;named list&gt; "URN:NBN:no-nb_digibok_2013110608034", "URN:NBN:n…
-$ title         &lt;named list&gt; "Vildanden : Skuespil i fem Akter", "Kongs-emnern…
+$ dhlabid       &lt;named list&gt; 100619301, 100619506, 100176330, 100614233, 10065…
+$ urn           &lt;named list&gt; "URN:NBN:no-nb_digibok_2010032312002", "URN:NBN:n…
+$ title         &lt;named list&gt; "Nora ( Et dukkehjem ) : näytelmä kolmessa näytök…
 $ authors       &lt;named list&gt; "Ibsen , Henrik", "Ibsen , Henrik", "Ibsen , Henr…
-$ oaiid         &lt;named list&gt; "oai:nb.bibsys.no:999001621554702202", "oai:nb.bi…
-$ sesamid       &lt;named list&gt; "ab482336ca72e79a067ac92c596b5ad2", "36850534a363…
+$ oaiid         &lt;named list&gt; "oai:nb.bibsys.no:990013618054702202", "oai:nb.bi…
+$ sesamid       &lt;named list&gt; "db394604766948763d02de0d79ff41d4", "4bd20c7a2986…
 $ isbn10        &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ city          &lt;named list&gt; "København", "København", "København", "København…
-$ timestamp     &lt;named list&gt; 18840101, 18890101, 18820101, 18800101, 18800101,…
-$ year          &lt;named list&gt; 1884, 1889, 1882, 1880, 1880, 1883, 1881, 1880, 1…
-$ publisher     &lt;named list&gt; "Gyldendalske Boghandel", "Gyldendalske Boghandel…
-$ langs         &lt;named list&gt; "nob", "nob", "nob", "nob", "fin / nob", "nob", "…
-$ subjects      &lt;named list&gt; "", "Dramatikk", "", "", "", "", "", "", "", "", …
+$ city          &lt;named list&gt; "Helsingissä", "Chicago", "København", "København…
+$ timestamp     &lt;named list&gt; 18800101, 18900101, 18840101, 18830101, 1880, 188…
+$ year          &lt;named list&gt; 1880, 1890, 1884, 1883, 1880, 1886, 1884, 1883, 1…
+$ publisher     &lt;named list&gt; "K.E. Holmin", "Markhus &amp; Kalheim", "Gyldendalske…
+$ langs         &lt;named list&gt; "fin / nob", "nob", "nob", "nob", "nob / swe / fr…
+$ subjects      &lt;named list&gt; "", "", "", "skjønnlitteratur/voksen", "Arbeiderk…
 $ ddc           &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ genres        &lt;named list&gt; "", "", "drama", "", "", "", "drama", "", "drama"…
-$ literaryform  &lt;named list&gt; "Uklassifisert", "Uklassifisert", "Skjønnlitterat…
+$ genres        &lt;named list&gt; "", "", "", "", "poetry / tekst", "", "", "", "fi…
+$ literaryform  &lt;named list&gt; "Uklassifisert", "Uklassifisert", "Uklassifisert"…
 $ doctype       &lt;named list&gt; "digibok", "digibok", "digibok", "digibok", "digi…
-$ ocr_creator   &lt;named list&gt; "nb", "nb", "dhlab", "dhlab", "dhlab", "dhlab", "…
-$ ocr_timestamp &lt;named list&gt; 20060101, 20060101, 20221201, 20221201, 20221201,…</code></pre>
+$ ocr_creator   &lt;named list&gt; "dhlab", "dhlab", "nb", "dhlab", "", "dhlab", "dh…
+$ ocr_timestamp &lt;named list&gt; 20221201, 20221201, 20060101, 20221201, "", 20221…</code></pre>
 </div>
 </div>
 <p>Notice that, instead of as characters or numerical values, the columns are formated as list-columns. This is because the API returns nested JSON, which the package converts into lists inside a tibble. Retrieving these values requires converting them. You can, for instance, transform them using <code>map_chr()</code> or <code>map_int()</code> depending on whether the underlying values are strings or numerical.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
@@ -303,25 +306,25 @@ $ ocr_timestamp &lt;named list&gt; 20060101, 20060101, 20221201, 20221201, 20221
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 43
 Columns: 19
-$ dhlabid       &lt;int&gt; 100176330, 100297660, 100622098, 100620297, 100619301, 1…
-$ urn           &lt;named list&gt; "URN:NBN:no-nb_digibok_2013110608034", "URN:NBN:n…
-$ title         &lt;chr&gt; "Vildanden : Skuespil i fem Akter", "Kongs-emnerne : his…
+$ dhlabid       &lt;int&gt; 100619301, 100619506, 100176330, 100614233, 100654413, 1…
+$ urn           &lt;named list&gt; "URN:NBN:no-nb_digibok_2010032312002", "URN:NBN:n…
+$ title         &lt;chr&gt; "Nora ( Et dukkehjem ) : näytelmä kolmessa näytöksessä",…
 $ authors       &lt;named list&gt; "Ibsen , Henrik", "Ibsen , Henrik", "Ibsen , Henr…
-$ oaiid         &lt;named list&gt; "oai:nb.bibsys.no:999001621554702202", "oai:nb.bi…
-$ sesamid       &lt;named list&gt; "ab482336ca72e79a067ac92c596b5ad2", "36850534a363…
+$ oaiid         &lt;named list&gt; "oai:nb.bibsys.no:990013618054702202", "oai:nb.bi…
+$ sesamid       &lt;named list&gt; "db394604766948763d02de0d79ff41d4", "4bd20c7a2986…
 $ isbn10        &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ city          &lt;named list&gt; "København", "København", "København", "København…
-$ timestamp     &lt;named list&gt; 18840101, 18890101, 18820101, 18800101, 18800101,…
-$ year          &lt;named list&gt; 1884, 1889, 1882, 1880, 1880, 1883, 1881, 1880, 1…
-$ publisher     &lt;named list&gt; "Gyldendalske Boghandel", "Gyldendalske Boghandel…
-$ langs         &lt;named list&gt; "nob", "nob", "nob", "nob", "fin / nob", "nob", "…
-$ subjects      &lt;named list&gt; "", "Dramatikk", "", "", "", "", "", "", "", "", …
+$ city          &lt;named list&gt; "Helsingissä", "Chicago", "København", "København…
+$ timestamp     &lt;named list&gt; 18800101, 18900101, 18840101, 18830101, 1880, 188…
+$ year          &lt;named list&gt; 1880, 1890, 1884, 1883, 1880, 1886, 1884, 1883, 1…
+$ publisher     &lt;named list&gt; "K.E. Holmin", "Markhus &amp; Kalheim", "Gyldendalske…
+$ langs         &lt;named list&gt; "fin / nob", "nob", "nob", "nob", "nob / swe / fr…
+$ subjects      &lt;named list&gt; "", "", "", "skjønnlitteratur/voksen", "Arbeiderk…
 $ ddc           &lt;named list&gt; "", "", "", "", "", "", "", "", "", "", "", "", "…
-$ genres        &lt;named list&gt; "", "", "drama", "", "", "", "drama", "", "drama"…
-$ literaryform  &lt;named list&gt; "Uklassifisert", "Uklassifisert", "Skjønnlitterat…
+$ genres        &lt;named list&gt; "", "", "", "", "poetry / tekst", "", "", "", "fi…
+$ literaryform  &lt;named list&gt; "Uklassifisert", "Uklassifisert", "Uklassifisert"…
 $ doctype       &lt;named list&gt; "digibok", "digibok", "digibok", "digibok", "digi…
-$ ocr_creator   &lt;named list&gt; "nb", "nb", "dhlab", "dhlab", "dhlab", "dhlab", "…
-$ ocr_timestamp &lt;named list&gt; 20060101, 20060101, 20221201, 20221201, 20221201,…</code></pre>
+$ ocr_creator   &lt;named list&gt; "dhlab", "dhlab", "nb", "dhlab", "", "dhlab", "dh…
+$ ocr_timestamp &lt;named list&gt; 20221201, 20221201, 20060101, 20221201, "", 20221…</code></pre>
 </div>
 </div>
 <p>You can use the metadata, the information associated with each document, to better define your corpus of interest or your subsequent analysis.</p>
@@ -354,15 +357,15 @@ $ ocr_timestamp &lt;named list&gt; 20060101, 20060101, 20221201, 20221201, 20221
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 10
 Columns: 19
-$ dhlabid       &lt;named list&gt; 201617338, 202786373, 202217748, 202786435, 20346…
-$ urn           &lt;named list&gt; "URN:NBN:no-nb_digavis_stavangeraftenblad_null_nu…
-$ title         &lt;named list&gt; "stavangeraftenblad", "skandinaven", "folketanken…
+$ dhlabid       &lt;named list&gt; 201795998, 200215777, 202039053, 203304234, 20127…
+$ urn           &lt;named list&gt; "URN:NBN:no-nb_digavis_trondhjemsadresseavis_null…
+$ title         &lt;named list&gt; "trondhjemsadresseavis", "bergenstidende", "berge…
 $ authors       &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
 $ oaiid         &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
 $ sesamid       &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
 $ isbn10        &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
-$ city          &lt;named list&gt; "Stavanger", "", "Risør", "", "", "", "", "", "",…
-$ timestamp     &lt;named list&gt; 19050703, 19050125, 19050808, 19050922, 19050412,…
+$ city          &lt;named list&gt; "Trondheim", "Bergen", "", "Drammen", "Oslo", "",…
+$ timestamp     &lt;named list&gt; 19051009, 19051219, 19050306, 19050810, 19050729,…
 $ year          &lt;named list&gt; 1905, 1905, 1905, 1905, 1905, 1905, 1905, 1905, 1…
 $ publisher     &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
 $ langs         &lt;named list&gt; "", "", "", "", "", "", "", "", "", ""
@@ -556,20 +559,20 @@ $ V4 &lt;list&gt; 138288, 109973, 130050, 45193, 23226, 118260, 85964, 53291, 51
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>books_freq </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 327,623 × 8
-     dhlabid  year city  authors         genres word    count doc_length
-       &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;
- 1 100669866  1941 Oslo  Fjelldal, Nora  ""     dame        5      78704
- 2 100669866  1941 Oslo  Fjelldal, Nora  ""     damer       5      78704
- 3 100669866  1941 Oslo  Fjelldal, Nora  ""     er        706      78704
- 4 100669866  1941 Oslo  Fjelldal, Nora  ""     kvinne     25      78704
- 5 100669866  1941 Oslo  Fjelldal, Nora  ""     kvinner    45      78704
- 6 100669866  1941 Oslo  Fjelldal, Nora  ""     og       2039      78704
- 7 100215978  1948 Oslo  Pernow , Birger ""     dame        0       9769
- 8 100215978  1948 Oslo  Pernow , Birger ""     damer       0       9769
- 9 100215978  1948 Oslo  Pernow , Birger ""     er        164       9769
-10 100215978  1948 Oslo  Pernow , Birger ""     kvinne      0       9769
-# ℹ 327,613 more rows</code></pre>
+<pre><code># A tibble: 327,607 × 8
+     dhlabid  year city   authors            genres word    count doc_length
+       &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+ 1 100042252  1950 "Oslo" Juvkam , Lizzie    ""     dame       15     111144
+ 2 100042252  1950 "Oslo" Juvkam , Lizzie    ""     damer       9     111144
+ 3 100042252  1950 "Oslo" Juvkam , Lizzie    ""     er       2573     111144
+ 4 100042252  1950 "Oslo" Juvkam , Lizzie    ""     kvinne     31     111144
+ 5 100042252  1950 "Oslo" Juvkam , Lizzie    ""     kvinner     6     111144
+ 6 100042252  1950 "Oslo" Juvkam , Lizzie    ""     og       3275     111144
+ 7 100571583  1932 ""     L ' Orange , H. P. ""     dame        0      26598
+ 8 100571583  1932 ""     L ' Orange , H. P. ""     damer       0      26598
+ 9 100571583  1932 ""     L ' Orange , H. P. ""     er        340      26598
+10 100571583  1932 ""     L ' Orange , H. P. ""     kvinne      0      26598
+# ℹ 327,597 more rows</code></pre>
 </div>
 </div>
 <p>We have some more rows now than before because the original corpus had more documents than the ones containing the terms we defined. As argued above, this is not very important, so we could easily drop them (they will have missing values in the columns <em>word</em>, <em>count</em> and <em>doc_length</em>).</p>
@@ -634,14 +637,14 @@ $ V4 &lt;list&gt; 138288, 109973, 130050, 45193, 23226, 118260, 85964, 53291, 51
 <pre><code>                counts dist bdist
 misakte              3    1   0.2
 übønnhørlige         3    1   0.2
-Jinks                2    1  0.25
-Pickwicks            2    1  0.25
-pragt                2    1  0.25
+Rodriguez            2    1  0.25
+fam                  2    1  0.25
+skjønnhetsbehov      2    1  0.25
+skidne               2    1  0.25
 livem                2    1  0.25
-Lester               2    1  0.25
-redaktøren           2    1  0.25
-revolusjon           2    1  0.25
-skjønnhetsbehov      2    1  0.25</code></pre>
+vrai                 2    1  0.25
+Dentsche             2    1  0.25
+Norwegerin           2    1  0.25</code></pre>
 </div>
 </div>
 <p>This function returns a data frame with three columns: <em>counts</em>, <em>dist</em> and <em>bdist</em>, as well as a list with the terms that are stored as row names (not as a column). <em>counts</em> is the number of times a particular term shows up within the specified window around the target word. <em>dist</em> and <em>bdist</em> are weighted distance score to identify how far from the target word (the latter is a bidirectional distance score). As before, the resulting data frame needs to be tuned before use (a bit involved to be sure because the resulting data frame may sometimes empty fields). For simplicity, let’s also drop the weighting fields: <!--Strange that dist and bdist get very high values: "dist" ranges from 1 to over 10000. How is this possible if I set the window to be 5 before and 5 after? CHECK WITH THE AUTHORS?? --></p>
@@ -661,20 +664,20 @@ skjønnhetsbehov      2    1  0.25</code></pre>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>collocations </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20,758 × 2
+<pre><code># A tibble: 20,740 × 2
    term            counts
    &lt;chr&gt;            &lt;int&gt;
  1 misakte              3
  2 übønnhørlige         3
- 3 Jinks                2
- 4 Pickwicks            2
- 5 pragt                2
- 6 livem                2
- 7 Lester               2
- 8 redaktøren           2
- 9 revolusjon           2
-10 skjønnhetsbehov      2
-# ℹ 20,748 more rows</code></pre>
+ 3 Rodriguez            2
+ 4 fam                  2
+ 5 skjønnhetsbehov      2
+ 6 skidne               2
+ 7 livem                2
+ 8 vrai                 2
+ 9 Dentsche             2
+10 Norwegerin           2
+# ℹ 20,730 more rows</code></pre>
 </div>
 </div>
 <p>The most common terms next to “dame” are stop words (and punctuation symbols), as expected.</p>
@@ -685,20 +688,20 @@ skjønnhetsbehov      2    1  0.25</code></pre>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(counts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20,758 × 2
+<pre><code># A tibble: 20,740 × 2
    term  counts
    &lt;chr&gt;  &lt;int&gt;
- 1 en     12263
- 2 ,      10925
- 3 .       9434
- 4 og      4638
- 5 som     4152
- 6 med     3028
- 7 i       2853
- 8 var     2831
- 9 den     2605
-10 er      2017
-# ℹ 20,748 more rows</code></pre>
+ 1 en     12189
+ 2 ,      10992
+ 3 .       9421
+ 4 og      4640
+ 5 som     4129
+ 6 med     3039
+ 7 var     2853
+ 8 i       2811
+ 9 den     2583
+10 er      2032
+# ℹ 20,730 more rows</code></pre>
 </div>
 </div>
 <p>We need to get rid of them. Extract Norwegian stop words. The function <code>get_stopwords()</code> from the <code>tidytext</code> package pulls stop words from different languages. Here we choose <code>"no"</code>.</p>
@@ -735,20 +738,20 @@ skjønnhetsbehov      2    1  0.25</code></pre>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(counts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20,610 × 2
+<pre><code># A tibble: 20,592 × 2
    term  counts
    &lt;chr&gt;  &lt;int&gt;
- 1 ,      10925
- 2 .       9434
- 3 ung     1964
- 4 »       1650
- 5 «       1493
- 6 En      1434
- 7 —       1374
- 8 unge    1208
- 9 sig      949
-10 ?        838
-# ℹ 20,600 more rows</code></pre>
+ 1 ,      10992
+ 2 .       9421
+ 3 ung     1953
+ 4 »       1638
+ 5 «       1491
+ 6 En      1400
+ 7 —       1372
+ 8 unge    1198
+ 9 sig      961
+10 ?        846
+# ℹ 20,582 more rows</code></pre>
 </div>
 </div>
 <p>There are still some issues here. The most apparent is all those punctuation symbols but we can also see that upper- and lower-case letters might prevent identifying terms that are otherwise equal<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Although invisible, there might also be blanks at the beginning or at the end of a string that also count as characters and complicate identifying the same terms. The code below therefore removes potential blank spaces, converts all characters into lower-case and filters out rows containing symbols instead of letters using a regular expression that allows one or more of the specified characters between the start and the end of a string. Notice also that we are removing the stop words last because that list is all in lower-case characters, so doing it before transforming <em>term</em> into lower-case would miss many stop words whose first character appears capitalised.</p>
@@ -763,20 +766,20 @@ skjønnhetsbehov      2    1  0.25</code></pre>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(counts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 19,160 × 2
+<pre><code># A tibble: 19,133 × 2
    term   counts
    &lt;chr&gt;   &lt;int&gt;
- 1 ung      1964
- 2 unge     1208
- 3 sig       949
- 4 gammel    738
- 5 gamle     670
- 6 sa        646
- 7 mig       465
- 8 liten     415
- 9 eldre     367
-10 ham       367
-# ℹ 19,150 more rows</code></pre>
+ 1 ung      1953
+ 2 unge     1198
+ 3 sig       961
+ 4 gammel    718
+ 5 gamle     661
+ 6 sa        647
+ 7 mig       450
+ 8 liten     412
+ 9 ham       377
+10 eldre     366
+# ℹ 19,123 more rows</code></pre>
 </div>
 </div>
 <p>The results look much better and are very telling about the context in which the term dame is mentioned in this corpus.</p>
@@ -797,9 +800,9 @@ skjønnhetsbehov      2    1  0.25</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 20
 Columns: 3
-$ docid &lt;named list&gt; 100554972, 100009239, 100246929, 100207563, 100219221, 10…
-$ urn   &lt;named list&gt; "URN:NBN:no-nb_digibok_2012010524068", "URN:NBN:no-nb_dig…
-$ conc  &lt;named list&gt; "... Vel , vel unge &lt;b&gt;dame&lt;/b&gt; , kom hit . »", "Efter pa…</code></pre>
+$ docid &lt;named list&gt; 100228576, 100266573, 100228971, 100365359, 100608312, 10…
+$ urn   &lt;named list&gt; "URN:NBN:no-nb_digibok_2014091908049", "URN:NBN:no-nb_dig…
+$ conc  &lt;named list&gt; "Nu kom det en &lt;b&gt;dame&lt;/b&gt; og satte sig på stolen rett fo…</code></pre>
 </div>
 </div>
 <p>The function returns a data frame with two columns that identify the individual texts containing the target term and a column named <em>conc</em> with the text surrounding that keyword. As before, it needs a bit of tuning, so we have it in a more familiar format. You could now work on this data frame the same way you work with any other object we have been looking into.</p>
@@ -817,26 +820,26 @@ $ conc  &lt;named list&gt; "... Vel , vel unge &lt;b&gt;dame&lt;/b&gt; , kom hit
 <pre><code># A tibble: 20 × 2
        docid conc                                                               
        &lt;int&gt; &lt;chr&gt;                                                              
- 1 100554972 "... Vel , vel unge &lt;b&gt;dame&lt;/b&gt; , kom hit . »"                     
- 2 100009239 "Efter pass rundt kom kløver &lt;b&gt;dame&lt;/b&gt; fra Cherbulier ."         
- 3 100246929 "&lt;b&gt;dame&lt;/b&gt; , med store kunmskaper og dyp gudsfrykt ."            
- 4 100207563 "... Men han blev ikke lite forbauset da han fant en &lt;b&gt;dame&lt;/b&gt; i…
- 5 100219221 "... Hvis vi regner føreren med , får en &lt;b&gt;dame&lt;/b&gt; dobbelt så st…
- 6 100331851 "... mottatt — han fikk virkelig nøie sig med innbydelseskortet , …
- 7 100371265 "Ja , slik gikk det til at en annen &lt;b&gt;dame&lt;/b&gt; begynte å ride på …
- 8 100541862 "« Frøken Lang er kommet hjem , har jeg hørt , » sa en litt eldre …
- 9 100112706 "... avveksling holdt de : « Bru , bru — breia » , « Veva vadmål »…
-10 100089755 "... Og da hun nu kom farende som en tordensky , så visste også al…
-11 100255721 "Den unge &lt;b&gt;dame&lt;/b&gt; strøk sig over pannen ."                     
-12 100190144 "... Knudtzon hadde lange samtaler med en forlengst gravlagt &lt;b&gt;da…
-13 100572207 "... For en &lt;b&gt;dame&lt;/b&gt; som er slik vant . Jeg har jo n ^ lrt om D…
-14 100209925 "... Overalt hvor en svart skinnmager gammel &lt;b&gt;dame&lt;/b&gt; av beste …
-15 100496197 "... var dermed gaat over i krongodset , og endelig overdrog den g…
-16 100063988 "... Han slo sig ned med sin &lt;b&gt;dame&lt;/b&gt; imellem dem og forlangte …
-17 100439217 "... Fru Bilstone er en elskverdig liten &lt;b&gt;dame&lt;/b&gt; som er enig m…
-18 100261096 "... Og nu var hun til deres forbauselse blitt en voksen ung &lt;b&gt;da…
-19 100365358 "— Hvilken &lt;b&gt;dame&lt;/b&gt; ? avbrøt Donahey skarpt ."                  
-20 100261007 "... Vi blev mottatt av en eldre , temmelig tykkfallen &lt;b&gt;dame&lt;/b&gt;…</code></pre>
+ 1 100228576 "Nu kom det en &lt;b&gt;dame&lt;/b&gt; og satte sig på stolen rett foran Cæsar…
+ 2 100266573 "... Men det er et spørsmål om ikke denne edle følelse blev noe bl…
+ 3 100228971 "Ja ja . Pen &lt;b&gt;dame&lt;/b&gt; forresten . Men hun vår nå en jåle , da .…
+ 4 100365359 "... Chaufføren trodde De var full , eller at en &lt;b&gt;dame&lt;/b&gt; hadde…
+ 5 100608312 "... to den natten for å få fatt i skoene til en stor &lt;b&gt;dame&lt;/b&gt; …
+ 6 100257063 "... de Police , Fouché , for en av hans elskerinner , en &lt;b&gt;dame&lt;…
+ 7 100330049 "... Og vi fikk øie på en kraftig middelaldrende &lt;b&gt;dame&lt;/b&gt; . Men…
+ 8 100288455 "Norsk &lt;b&gt;dame&lt;/b&gt; alm an akk . Oslo , Halvorsen &amp; Larsen Siste ut…
+ 9 100135818 "... Var det for en Handelsmand ! Se nu Pauline , hvorledes var hu…
+10 100204228 "... I almindelighet tror jeg en mann bør holde for sig seiv hvad …
+11 100548873 "... Hun har også vært en energisk &lt;b&gt;dame&lt;/b&gt; som drev den store …
+12 100289438 "... En eldre &lt;b&gt;dame&lt;/b&gt; , neppe nervøs , faller og brekker armen…
+13 100579573 "... Gaden — hvor vi saae Vinduerne , med en forfærdelig Skjælden …
+14 100169605 "... å trekke både konge og ess i en farve hvor denne har dåmen , …
+15 100210255 "... Jeg så en slik nydelig ung &lt;b&gt;dame&lt;/b&gt; gå hit for en stund si…
+16 100078233 "— De er en fortryllende ung &lt;b&gt;dame&lt;/b&gt; . Henrykt over å møte Dem…
+17 100046915 "... Den lille vennekrets visste allerede beskjed om hvem Genia va…
+18 100512670 "Georges øvede øine opdaget en &lt;b&gt;dame&lt;/b&gt; med grå pelskåpe ved ku…
+19 100078233 "gamle &lt;b&gt;dame&lt;/b&gt; som nu nærmer sig de nitti , bor altså i Newcas…
+20 100309582 "... grand støtt når jeg så ham gjøre øine til hver eneste pen &lt;b&gt;…</code></pre>
 </div>
 </div>
 <hr>
