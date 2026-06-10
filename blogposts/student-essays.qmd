@@ -12,4 +12,4 @@ Here are the best essays that students submitted in previous iterations of this 
 - [Homicide in Chicago (1860-1930): A gender analysis](2026/ronja-homicide-chicago.qmd) (by Ronja Isabell Moe Kvernes)
 :::
 
-- [Electric Vehicle Adoption in Finland](2026/helin-elec-cars.qmd) (by Helin Güler)
+- [Electric Vehicle Adoption in Finland](2026/helin-guler.qmd) (by Helin Güler)
