@@ -1,0 +1,15 @@
+---
+title: "Essays from previous years"
+---
+
+Here are the best essays that students submitted in previous iterations of this course. The published version does not show the underlying code but they provide a great illustration of what is expected here.
+
+### Spring 2026
+
+::: {.content-hidden}
+- [Lifespan in Europe and Norway, 1600-1950](2026/daniel-lifespan.qmd) (by Daniel Ervik)
+
+- [Homicide in Chicago (1860-1930): A gender analysis](2026/ronja-homicide-chicago.qmd) (by Ronja Isabell Moe Kvernes)
+:::
+
+- [Electric Vehicle Adoption in Finland](2026/helin-elec-cars.qmd) (by Helin Güler)

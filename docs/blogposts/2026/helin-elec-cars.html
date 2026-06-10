@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Helin Güler">
+
+<title>Electric vehicle adoption in Finland – Computational History - HIST2025</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-101e0f98b87bbe2e90e74b13a7dcdce5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Computational History - HIST2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../instructions.html"> <i class="bi bi-fa-list-ul" role="img">
+</i> 
+<span class="menu-text">Instructions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../get-r.html"> <i class="bi bi-fa-book" role="img">
+</i> 
+<span class="menu-text">Intro to R</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-case-studies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-fa-book" role="img">
+</i> 
+ <span class="menu-text">Case-studies</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-case-studies">    
+        <li>
+    <a class="dropdown-item" href="../../backg-paisley.html">
+ <span class="dropdown-text">The Paisley Prisoners (19th-c.)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../1-pract-qual.html">
+ <span class="dropdown-text">Petitioning in Early Modern England</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../2-pract-num.html">
+ <span class="dropdown-text">The 1860 Spanish Population Census</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../3-pract-comp-dim.html">
+ <span class="dropdown-text">Reading and writing in the past</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../4-pract-counting-words.html">
+ <span class="dropdown-text">The State of the Union Presidential Speeches</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../5-pract-mapping.html">
+ <span class="dropdown-text">Mapping life in Norway c.&nbsp;1910</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../backg-tnp.html">
+ <span class="dropdown-text">The Tudor Network of Letters</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../coursework.html"> <i class="bi bi-fa-home" role="img">
+</i> 
+<span class="menu-text">Coursework</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
+  <li><a href="#electric-vehicle-feasibility-by-sex-age-and-political-affiliation" id="toc-electric-vehicle-feasibility-by-sex-age-and-political-affiliation" class="nav-link" data-scroll-target="#electric-vehicle-feasibility-by-sex-age-and-political-affiliation">Electric vehicle feasibility by sex, age and political affiliation</a></li>
+  <li><a href="#regional-variation" id="toc-regional-variation" class="nav-link" data-scroll-target="#regional-variation">Regional variation</a></li>
+  <li><a href="#political-and-spatial-dimensions-of-ev-feasibility" id="toc-political-and-spatial-dimensions-of-ev-feasibility" class="nav-link" data-scroll-target="#political-and-spatial-dimensions-of-ev-feasibility">Political and spatial dimensions of EV feasibility</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Electric vehicle adoption in Finland</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Helin Güler </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+  .quarto-float-caption {
+    text-align: center;
+  }
+</style>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/charging.png" class="quarto-figure quarto-figure-left figure-img" style="width:50.0%;height:50.0%"></p>
+</figure>
+</div>
+<!--### Introduction -->
+<p>In recent years, the global push towards more sustainable transportation has accelerated, driven by both international climate agreements and ambitious national policies <span class="citation" data-cites="europeancomission2019 jääskeläinen2021">(<a href="#ref-europeancomission2019" role="doc-biblioref">European Comission 2019</a>; <a href="#ref-jääskeläinen2021" role="doc-biblioref">Jääskeläinen 2021</a>)</span>. The European Union has set strict CO2 emission limits for new passenger cars <span class="citation" data-cites="europeancomission2019">(<a href="#ref-europeancomission2019" role="doc-biblioref">European Comission 2019</a>)</span>, setting a regulatory framework for its member states. In alignment with these directives, Finland has committed to reducing transport-related emissions by 50% by 2030, with the long-term goal of achieving a fully fossil-free transport system by 2045 <span class="citation" data-cites="jääskeläinen2021">(<a href="#ref-jääskeläinen2021" role="doc-biblioref">Jääskeläinen 2021</a>)</span>. Electric vehicles (hereafter referred to as EVs) are often found as a key solution to these challenges, offering a cleaner alternative to traditional combustion engine vehicles <span class="citation" data-cites="europeancomission2019 jääskeläinen2021 heiskanen2024">(<a href="#ref-europeancomission2019" role="doc-biblioref">European Comission 2019</a>; <a href="#ref-jääskeläinen2021" role="doc-biblioref">Jääskeläinen 2021</a>; <a href="#ref-heiskanen2024" role="doc-biblioref">Heiskanen et al. 2024</a>)</span>.</p>
+<p>To accelerate EV adoption, Finland’s Ministry of Transport and Communications has set a concrete goal in its Roadmap for Fossil-Free Transport -project: increasing the number of EVs to 750,000 by year 2030. However, the feasibility and social acceptance of EVs are not uniform across the society, which might hinder the possibilities of reaching this goal. Research by Heiskanen et al.&nbsp;on the regional fairness of the electrification of transport points out how socio-economic factors and political orientations can shape perceptions of EV feasibility and accessibility within the national scope <span class="citation" data-cites="heiskanen2024">(<a href="#ref-heiskanen2024" role="doc-biblioref">Heiskanen et al. 2024</a>)</span>. For this reason, this essay explores how perceived feasibility of switching to an EV varies across political party affiliation and regions in Finland. The analysis is based on the EVA Survey on Finnish Values and Attitudes Autumn 2022 <span class="citation" data-cites="EVA">(<a href="#ref-EVA" role="doc-biblioref">Finnish Business and Policy Forum (EVA) 2022</a>)</span>, provided by the Finnish Social Science Data Archive. The analysis in this essay is conducted using R and R Studio programs. The aim is to gain a spatial understanding of how political ideology might influence the support or skepticism towards EVs in Finland.</p>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The survey dataset used in this essay examines Finnish citizens’ opinions on a wide range of societal issues, including economic conditions, politics, values, and attitudes towards climate change and related policy measures. The dataset is structured as a cross-sectional survey data, where each observation represents an individual respondent. The dataset includes 229 variables and 2088 respondents in total <span class="citation" data-cites="EVA">(<a href="#ref-EVA" role="doc-biblioref">Finnish Business and Policy Forum (EVA) 2022</a>)</span>.</p>
+<p>We are first interested in the background factors of the respondents, such as age and gender, to get a better understanding of the qualities of the population under study. As it is often the case with this type of data, recoding some of the variables is necessary, such as computing the age of the respondents based on their birth year. It is worth stressing that the variable measuring political party affiliation in the original data springs from the responses to the question “If parliamentary elections were held now, the candidate of which political party would you vote for?” (T13). The original question was modified as followed to exclude the options (10) “Other party or group”, (11) “Would not vote”, (12) “Can’t say” and (13) “Don’t want to say”, because we are interested only in the parties which the respondents would vote for<!-- to map them-->. These answer options contain no valuable information in this case and have therefore been considered as missing values, which means that these individuals will be dropped from the analysis (516 observations).</p>
+<p>Finally, the perceived feasibility of switching to an EV (hereafter referred to as EV feasibility) is captured using the information on the question: “There has been discussion about climate actions citizens can do to limit global warming. How possible do you think taking the following actions would be in your current situation? Exchanging petrol/diesel car to a fully electric car” (Q10_11). The answer options range from 1-5 on a likert-scale: (1) “Completely possible”, (2) “Possible to some extent”, (3) “Difficult to say”, (4) “Almost impossible” and (5) “Completely impossible”. To have a more sensible ranking, I switched the scale, so a higher value indicates that switching to an EV is perceived as more possible: 1 representing “Completely impossible” and 5 representing “Completely possible”.</p>
+</section>
+<section id="electric-vehicle-feasibility-by-sex-age-and-political-affiliation" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="electric-vehicle-feasibility-by-sex-age-and-political-affiliation">Electric vehicle feasibility by sex, age and political affiliation</h3>
+<p>Let’s now report some descriptive statistics to have a sense of what our data looks like in terms of age and gender of the respondents, as well as their perceived EV feasibility.</p>
+<div class="cell">
+<div id="tbl-ev1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ev1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Distribution of age and EV feasibility
+</figcaption>
+<div aria-describedby="tbl-ev1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_fq8km6ns0u7sia81i943(i, j, css_id) {
+          var table = document.getElementById("tinytable_fq8km6ns0u7sia81i943");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_fq8km6ns0u7sia81i943');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_fq8km6ns0u7sia81i943(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_fq8km6ns0u7sia81i943");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 4, j: 2 }, { i: 4, j: 3 }, { i: 4, j: 4 }, { i: 4, j: 5 },  ], css_id: 'tinytable_css_ps7g0fyh4q5oh2dx6yw8',}, 
+          { positions: [ { i: 3, j: 3 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 2, j: 4 }, { i: 3, j: 4 }, { i: 1, j: 3 }, { i: 2, j: 3 }, { i: 1, j: 5 }, { i: 2, j: 5 }, { i: 3, j: 5 }, { i: 1, j: 4 },  ], css_id: 'tinytable_css_itqu7qbmmz3z33z3eaxg',}, 
+          { positions: [ { i: 0, j: 2 }, { i: 0, j: 3 }, { i: 0, j: 4 }, { i: 0, j: 5 },  ], css_id: 'tinytable_css_3zku616tcigrsaznskwp',}, 
+          { positions: [ { i: 4, j: 0 }, { i: 4, j: 1 },  ], css_id: 'tinytable_css_1nxgtz71p6zuem6d355g',}, 
+          { positions: [ { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 1, j: 0 }, { i: 1, j: 1 }, { i: 2, j: 1 },  ], css_id: 'tinytable_css_fo31e5zasdy1tqqlep27',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 },  ], css_id: 'tinytable_css_8qbnv8a67fr1v5wdu8dm',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_fq8km6ns0u7sia81i943(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_ps7g0fyh4q5oh2dx6yw8, .table th.tinytable_css_ps7g0fyh4q5oh2dx6yw8 { text-align: right; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_itqu7qbmmz3z33z3eaxg, .table th.tinytable_css_itqu7qbmmz3z33z3eaxg { text-align: right; }
+      .table td.tinytable_css_3zku616tcigrsaznskwp, .table th.tinytable_css_3zku616tcigrsaznskwp { text-align: right; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_1nxgtz71p6zuem6d355g, .table th.tinytable_css_1nxgtz71p6zuem6d355g { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_fo31e5zasdy1tqqlep27, .table th.tinytable_css_fo31e5zasdy1tqqlep27 { text-align: left; }
+      .table td.tinytable_css_8qbnv8a67fr1v5wdu8dm, .table th.tinytable_css_8qbnv8a67fr1v5wdu8dm { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_fq8km6ns0u7sia81i943" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">Gender</th>
+                <th scope="col">Variable</th>
+                <th scope="col">N</th>
+                <th scope="col">Min</th>
+                <th scope="col">Max</th>
+                <th scope="col">Mean</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>Female</td>
+                  <td>Age</td>
+                  <td>1034</td>
+                  <td>18</td>
+                  <td>79</td>
+                  <td>48.5</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>EV feasibility (numeric)</td>
+                  <td>1034</td>
+                  <td>1</td>
+                  <td>5</td>
+                  <td>2.7</td>
+                </tr>
+                <tr>
+                  <td>Male</td>
+                  <td>Age</td>
+                  <td>1025</td>
+                  <td>18</td>
+                  <td>79</td>
+                  <td>49.4</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>EV feasibility (numeric)</td>
+                  <td>1028</td>
+                  <td>1</td>
+                  <td>5</td>
+                  <td>2.7</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>From <a href="#tbl-ev1" class="quarto-xref">Table&nbsp;1</a> we can see that we have in total 2088 responses on the perceived EV feasibility question, and 2085 responses on age, so we have three observations missing on age. Regarding age, the minimum age of the respondents is 18, and the maximum 79, thus representing the Finnish population aged 18-79. The distribution of men (n=1,028) and women (n=1,034) is very balanced and both their age profile and their average responses to EV feasibility are very similar.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Regarding the latter, the average is 2.7, slightly below the medium value of 3 in a scale from 1 to 5. Now let’s visualize this information to better see if there are differences in the perceived EV feasibility by gender:</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;There are 26 respondents whose sex has been categorized as “other”. Given that it is very difficult to extract meaningful patterns from such a small sample, these individuals have been excluded from the analysis.</p></div></div><div class="cell">
+<div class="cell-output-display">
+<div id="fig-ev1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ev1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-ev1-1.png" class="img-fluid figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ev1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: EV feasibility by gender
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-ev1" class="quarto-xref">Figure&nbsp;1</a> suggests that there exist moderate gender differences in the perceived feasibility of switching to an EV. Men are more likely to perceive switching to an EV as difficult or even impossible, as indicated by their overrepresentation in the lowest feasibility categories. In contrast, women display a slightly more balanced distribution and are relatively more represented in the moderate feasibility categories. However, the differences are not extreme and both groups show a general tendency towards skepticism. What needs to be noted is that these are descriptive results only, since no statistical testing has been conducted.</p>
+<p>Let’s now explore whether the mean perceived EV feasibility of men and women change by political party affiliation. <a href="#fig-ev2" class="quarto-xref">Figure&nbsp;2</a> shows that, among the observed groups, supporters of the Greens report the highest perceived feasibility of switching to an EV. This is followed by the voters of the Swedish People’s Party, while voters of the Left Alliance come in third. This pattern suggests that political orientation may be associated with differing attitudes towards technological transitions within transport. In particular, parties that tend to emphasize environmental sustainability and structural societal change appear to correspond with higher perceived feasibility of switching to an EV. The Greens typically prioritize climate policy, emissions reduction and technological transition, and have claimed an interest to invest into the electrification of transport <span class="citation" data-cites="politica">(<a href="#ref-politica" role="doc-biblioref">The Greens, n.d.</a>)</span> which aligns naturally with the high EV feasibility perceptions of their voters. The Left Alliance also tends to support strong public intervention in climate and infrastructure policy, and have also named increasing the share of hybrid and fully electric vehicles to be one of their goals within their official goals of 2020-2023 <span class="citation" data-cites="leftall">(<a href="#ref-leftall" role="doc-biblioref">Left Alliance, n.d.</a>)</span>, which may explain relatively high EV feasibility perceptions among their voters. In contrast, the Swedish People’s Party is usually considered to be more centrist/liberal, but often focus on pragmatic issues and are generally pro-EU. Additionally, they have officially mentioned renewing the vehicle fleet to support low-emission passenger cars as well as extending the public charging infrastructure to be their aims within their urban policy programme <span class="citation" data-cites="rkp2021">(<a href="#ref-rkp2021" role="doc-biblioref">Swedish People’s Party 2021</a>)</span>, which might translate into support for green transition policies even if their voters would not be ideologically driven by environmentalism in the same way as the voters of The Greens or Left Alliance.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ev2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ev2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-ev2-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ev2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Mean EV feasibility by gender and political party affiliation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In contrast, voters of the current governing parties in Finland, the National Coalition Party, the Finns Party, and the Christian Democrats, display comparatively lower perceived feasibility of switching to an EV. This pattern may reflect differences in how these parties frame their green transition and transport policy. For example, the National Coalition Party emphasizes market-based solutions, and name goals such as phasing out the vehicle tax to renew the passenger vehicle fleet, and pricing car usage based on actual emissions, as well as promoting the electricity distribution network in Finland so that the conditions for using low-emission vehicles improve throughout the country. However, they appear to be more technologically neutral and emphasize economic efficiency in their principle programme, supporting climate action but typically avoiding strong state intervention or very technology-specific mandates <span class="citation" data-cites="principl">(<a href="#ref-principl" role="doc-biblioref">National Coalition Party, n.d.</a>)</span>. While this does not imply opposition to electrification of transport, it may translate into more cautious perceptions of EV feasibility among their voters. The Finns Party, however, has expressed more critical views on rapid transport electrification, emphasizing the affordability, regional equality and the potential burden of climate policies on the finnish population. They highlight concerns about the costs of diesel and gas, as well as infrastructure limitations within transportation in their transport policy programme <span class="citation" data-cites="liikenne">(<a href="#ref-liikenne" role="doc-biblioref">The Finns Party, n.d.</a>)</span>. Interestingly, the Christian Democrats claim to support climate action and name concrete possible actions such as convertion subsidies for internal combustion engine vehicles, expanding the public charging and biogas network, as well as proposing scrappage incentive programs and a gradual exemption of taxes for lower-emission vehicles. However, they emphasize moderation and social fairness, and the emphasis regarding transport seems to be rail transport in their climate and energy programme <span class="citation" data-cites="christiandemocrats2019">(<a href="#ref-christiandemocrats2019" role="doc-biblioref">Christian Democrats 2019</a>)</span>. Even though they name multiple goals and a will to support the electrification of the passenger vehicle fleet, their voters seem to express fairly reserved assessments of their own capabilities of switching to an EV.</p>
+<p>Taken together, these findings suggest that among the current governing parties, greater skepticism or conditional support toward EV adoption may be linked to concerns about economic costs, equity and the pace of the technological change, in contrast to the more optimistic perceptions visible among the voters of environmentally oriented opposition parties. These observations relate to Heiskanen et al.&nbsp;and their analysis of “just transition” dynamics. In their article, they argue that the perceptions of feasibility and fairness are socially structured, meaning that technological transitions such as the electrification are interpreted differently depending on individuals’ broader value systems and structural positions <span class="citation" data-cites="heiskanen2024">(<a href="#ref-heiskanen2024" role="doc-biblioref">Heiskanen et al. 2024</a>)</span>. The present findings align with their argument by showing that respondents that identify with environmentally oriented or socially progressive parties tend to perceive EV adoption as more feasible.</p>
+</section>
+<section id="regional-variation" class="level3">
+<h3 class="anchored" data-anchor-id="regional-variation">Regional variation</h3>
+<p>After the observation of our respondents and their party affiliation and it’s impact on their perceptions of the feasibility of transferring to an EV, it would be interesting to see this information on a map to showcase the differences between regions. Since Finland is a sparsely populated country, with regional differences within the public charging network, as well as differences in the driving distances to access different day-to-day services <span class="citation" data-cites="jääskeläinen2021">(<a href="#ref-jääskeläinen2021" role="doc-biblioref">Jääskeläinen 2021</a>)</span>, the spatial dimensions of these observations become fascinating.</p>
+<!--Now we have obtained -->
+<p>We rely on a map of Finnish regions which is divided according to the NUTS3 classification<!-- (see @fig-ev3). The NUTS classification is -->, a three-level hierarchical regional classification, which is used for statistics submitted to Eurostat, the Statistical Office of the European Union<!--. Statistical data between European countries can be compared by means of the classification."--> <span class="citation" data-cites="tilastok">(<a href="#ref-tilastok" role="doc-biblioref"><em>Tilastokeskus</em>, n.d.</a>)</span>. NUTS3 divides the country into 19 regions. <!--Within--> Note that in this analysis, Åland is excluded, since the EVA Survey dataset does not include data from Åland. <!--The 18 regions under analysis are pictured in @fig-ev4. NOT NEEDED. THE REGIONAL DIVIDE IS CLEAR WHEN YOU PRESENT THE DATA-->Next, let’s map the average EV feasibility by the 18 regions in Finland to determine how much spatial variation exists. Let’s also look at the number of answers per region regarding the EV feasibility to get an overall picture of how reliable our results are.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ev5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ev5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-ev5-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ev5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Average EV feasibility and number of responses by region
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As can be seen from <a href="#fig-ev5" class="quarto-xref">Figure&nbsp;3</a>, the regional distribution of perceived EV feasibility in Finland follows a spatial pattern, where higher perceived feasibility tends to concentrate in the more urbanized and densely populated southern regions, such as Uusimaa, Pirkanmaa and Southwest Finland, while lower feasibility is more common in northern and peripheral areas, such as Lapland, Kainuu and Ostrobothnia. For the visualization the EV feasibility values were not limited in any way to better capture the differences between different regions. Within the areas with higher perceived feasibility, this pattern may be explained by structural factors, such as a better public charging infrastructure, higher income levels and shorter average travel distances. In contrast, within the regions that reflect lower EV feasibility, the pattern may be a result of longer travel distances, as well as more limited charging infrastructure availability.</p>
+<p>However, the variation in sample sizes across regions should be taken into account when interpreting these results. We can see from <a href="#fig-ev5" class="quarto-xref">Figure&nbsp;3</a>, that regions like Uusimaa (n=731), Pirkanmaa (n=262) and Southwest Finland (n=199) have substantially larger numbers of responses compared to regions such as Central Ostrobothnia (n=20) or Kainuu (n=23). This means that the estimates for smaller regions might be less reliable and much more sensitive to individual responses. Despite this, the overall pattern suggests that the perceived EV feasibility in Finland is not geographically evenly distributed. This supports recent research<!--the idea of Heiskanen et al., who--> claiming that transition to electric mobility may reinforce existing regional inequalities unless targeted policies are implemented to improve accessibility in less advantaged areas <span class="citation" data-cites="heiskanen2024">(<a href="#ref-heiskanen2024" role="doc-biblioref">Heiskanen et al. 2024</a>)</span>.</p>
+</section>
+<section id="political-and-spatial-dimensions-of-ev-feasibility" class="level3">
+<h3 class="anchored" data-anchor-id="political-and-spatial-dimensions-of-ev-feasibility">Political and spatial dimensions of EV feasibility</h3>
+<p>While the regional differences discussed above showcase the regional variation and might reflect structural conditions, this does not fully explain the variation in attitudes at the individual level. As suggested by <span class="citation" data-cites="heiskanen2024">Heiskanen et al. (<a href="#ref-heiskanen2024" role="doc-biblioref">2024</a>)</span>, perceptions are not only affected by material conditions but also socio-political factors, such as values and political orientation. To build on the spatial analysis, the following section integrates a political dimension by examining how the perceived feasibility of switching to an EV varies across voters of different political parties within regions. Let’s now visualize the perceived EV feasibility by political party affiliation to compare the voters of governmental parties as well as the biggest opposition parties.</p>
+<p>First we show<!--let's check (TO AVOID REPEATING LET'S CHECK TOO MUCH)--> the amount of answers within each region by the political party to get a sense of the amount of responses:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-myplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-myplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-myplot-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-myplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Heatmap of responses by region and political party
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-myplot" class="quarto-xref">Figure&nbsp;4</a> shows the number of survey responses by region and political party. The distribution is uneven, with higher concentrations in Uusimaa and among larger parties, which is not surprising. These differences in sample size should however be considered when interpreting the regional patterns in perceived EV feasibility. To further examine how political orientation interacts with spatial factors, selected political parties representing different positions in perceived EV feasibility are mapped across Finnish regions. Rather than presenting all parties individually, this approach focuses on a subset of parties to illustrate the key contrasts identified previously. The analysis includes the Greens, the Left Alliance, the National Coalition Party and the Finns Party. These parties represent relatively high, moderately high, intermediate and lower perceived EV feasibility among their voters. Additionally, this way two current governmental parties (National Coalition Party and Finns Party) and two opposition parties (The Greens and Left Alliance) are included within the comparison.</p>
+<div id="fig-map1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-map1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-map1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-map1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-map1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-map1-1.png" class="img-fluid figure-img" data-ref-parent="fig-map1" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-map1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Finns Party
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-map1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-map1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-map1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-map1-2.png" class="img-fluid figure-img" data-ref-parent="fig-map1" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-map1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) National Coalition Party
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-map1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-map1-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-map1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-map1-3.png" class="img-fluid figure-img" data-ref-parent="fig-map1" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-map1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Left Alliance
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-map1" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-map1-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-map1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="helin-elec-cars_files/figure-html/fig-map1-4.png" class="img-fluid figure-img" data-ref-parent="fig-map1" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-map1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) The Greens
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-map1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Regional EV feasiblity metric by political party affiliation
+</figcaption>
+</figure>
+</div>
+<p>The previous maps show that relationship between political orientation and perceived EV feasibility is not geographically uniform across Finland. Although party affiliation appears to structure attitudes toward EV adoption nationally, the spatial distribution of these perceptions suggest that regional conditions may either reinforce or moderate these political tendencies.</p>
+<p>Among the four selected parties, voters of the Greens display the highest and most geographically consistent perceived EV feasibility. In some regions, the average feasibility values among Green voters reach the highest category range (4.0-5.0), which is not visible among any of the other parties. Even in many northern and less densely populated regions, Green voters continue to report comparatively high feasibility perceptions relative to the other parties. This suggests that support for EV adoption among Green voters is strongly connected to ideological and value-based factors rather than solely to local infrastructural conditions. It seems that environmentally oriented political identity appears to maintain relatively optimistic perceptions even in regions where practical conditions for EV adoption may be less favorable. Voters of the Left Alliance show somewhat similar but slightly more moderate spatial pattern. In southern Finland, especially in urban regions, perceived EV feasibility is generally high, although not as consistently as among voters of The Greens. In northern and eastern regions, the average feasibility scores decline more clearly. This might indicate that while Left Alliance voters are generally supportive of climate-oriented transitions, their perceptions are somewhat more sensitive to regional structural realities, such as travel distances, income levels or infrastructure accessibility.</p>
+<p>The National Coalition Party displays a more mixed regional profile. In the southern growth regions, especially Uusimaa, average feasibility levels among their voters are relatively high, but generally remain lower than among The Greens or Left Alliance voters. Outside the major urban areas, the perceived EV feasibility declines more visibly. This might reflect the market-oriented and technologically neutral approach to climate policy discussed earlier. Supporters of the National Coalition Party might view EV adoption positively in regions where infrastructure and economic conditions already support electrification, while remaining more cautious in areas where the transition appears less practical or economically efficient. The Finns Party voters represent the lowest perceived EV feasibility across most Finnish regions. Within all but four regions, the average EV feasibility values fall into the lowerst category (1.0-1.9). Even in southern Finland, where structural conditions are generally more favorable, the feasibility perceptions among Finns Party voters remain clearly below those of the other observed parties. This pattern reflects the party’s visibly critical stance towards rapid transport electrification and concerns regarding regional equality, affordability and the uneven consequences of climate policies.</p>
+<p>The maps also indicate that regional context seems to matter regardless of party affiliation. Across nearly all parties, the southern and urbanized regions tend to exhibit higher perceived EV feasibility than nothern and sparsely populated areas. This implies that political ideology alone does not determine perceptions of EV adoption, but political attitudes appear to interact with material and spatial conditions, such as charging infrastructure availability, commuting distances and regional accessibility. However, these patterns should be interpreted with caution in regions where the number of observations is low, as indicated by the counts displayed on the maps. This is particularly visible for the Greens in certain northern, eastern and western regions as well as the Left Alliance in certain eastern and western regions containing only one or no observations. In such cases, individual responses have a disproportionate effect on regional averages, and no firm conclusions can be drawn that represents the attitudes of the general population of these areas. The maps should rather be interpreted as indicative patterns rather than precise regional measurements.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>This essay examined how the perceived feasibility of switching to an electric vehicle (EV) varies across political party affiliation and regional context in Finland. Using the “FSD3780 EVA Survey on Finnish Values and Attitudes Autumn 2022” dataset, the analysis combined descriptive statistics with spatial mapping to explore how attitudes towards EV adoption are socially and geographically structured.</p>
+<p>The results suggest that both political orientation and regional context seem to shape the perceptions of EV feasibility, although in somewhat different ways. Political party affiliation is associated with clear differences in the overall level of perceived EV feasibility. Voters of environmentally oriented parties, such as The Greens and the Left Alliance report higher EV feasibility perceptions, while voters of parties such as the Finns Party, and to a lesser extent, the National Coalition Party express more cautious or skeptical views. These differences seem to reflect broader ideological positions regarding climate policy, economic priorities and the role of technological transition within the society, At the same time, the spatial analysis demonstrates that perceived EV feasibility is also regionally differentiated. Higher feasibility perceptions are concentrated in southern and more urbanized regions, whereas lower feasibility is more common in northern and peripheral areas. This pattern is visible across nearly all political groups, suggesting that structural factors shape perceptions regardless of political affiliation. However, the political orientation might influence how these structural conditions are interpreted on an individual level. For example, voters of environmentally oriented parties seem to generally maintain more positive feasibility perceptions even in regions where infrastructural conditions may be less favorable, while voters of parties emphasizing economic caution and regional equality tend to express lower feasibility perceptions across most regions.</p>
+<p>Overall, the findings reinforce the argument presented by Heiskanen et al.&nbsp;that perceptions of sustainable technological transitions are shaped through an interaction between political values and structural conditions, as well as socially structured and linked to broader questions of fairness and accessibility. <span class="citation" data-cites="heiskanen2024">(<a href="#ref-heiskanen2024" role="doc-biblioref">Heiskanen et al. 2024</a>)</span>. Support for EV adoption in Finland therefore appears not only politically polarized, but also geographically uneven. These findings suggest that the transition towards electric mobility may develop unevenly across Finland unless regional disparities in infrastructure and accessibility are addressed.</p>
+<p>It is important to note, that the analysis within this essay also entails important limitations. The uneven distribution of responses across regions and party groups means that some estimates are based on very small sample sizes, which reduces the reliability of the findings, which is mentioned afore. Additionally, the analysis focuses on perceived EV feasibility rather than actual behavior, and given the way the original questionnaire was formulated, it is not possible to identify respondents who already own an electric car, to whom the question of switching to an electric vehicle might not apply. Furthermore, the data used in this analysis is from year 2022, which may limit the relevance of the findings to the current context. Since then, developments in EV technology, infrastructure, and policy may have influenced public pereptions, meaning that the results reflect attitudes at the time of data collection rather than the present situation.</p>
+</section>
+<section id="sources" class="level2">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Sources</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-christiandemocrats2019" class="csl-entry" role="listitem">
+Christian Democrats. 2019. <em>Kristillisdemokraattien Ilmasto- Ja Energiaohjelma 2019</em>. <a href="https://www.kd.fi/app/uploads/2026/03/Kristillisdemokraattien-ilmasto-ja-energiaohjelma-2019.pdf">https://www.kd.fi/app/uploads/2026/03/Kristillisdemokraattien-ilmasto-ja-energiaohjelma-2019.pdf</a>.
+</div>
+<div id="ref-europeancomission2019" class="csl-entry" role="listitem">
+European Comission. 2019. <em>EUR-Lex - 02019R0631-20210301 - EN - EUR-Lex</em>. <a href="https://eur-lex.europa.eu/eli/reg/2019/631/2021-03-01/eng">https://eur-lex.europa.eu/eli/reg/2019/631/2021-03-01/eng</a>.
+</div>
+<div id="ref-EVA" class="csl-entry" role="listitem">
+Finnish Business and Policy Forum (EVA). 2022. <em>FSD3780 EVA Survey on Finnish Values and Attitudes Autumn 2022 | Aila</em>. <a href="https://services.fsd.tuni.fi/catalogue/FSD3780?study_language=en">https://services.fsd.tuni.fi/catalogue/FSD3780?study_language=en</a>.
+</div>
+<div id="ref-heiskanen2024" class="csl-entry" role="listitem">
+Heiskanen, Eva, Ilona Maria Kousa, Kaisa Matschoss, and Taru Johanna Pyrhönen. 2024. <span>“Liikenteen sähköistymisen alueellinen reiluus.”</span> <em>Oikeudenmukainen siirtymä Suomessa 2025</em>, 159–86.
+</div>
+<div id="ref-jääskeläinen2021" class="csl-entry" role="listitem">
+Jääskeläinen, Saara. 2021. <em>Roadmap to Fossil-Free Transport : Government Resolution on Reducing Domestic Transport<span>’</span>s Greenhouse Gas Emissions</em>. <a href="https://julkaisut.valtioneuvosto.fi/handle/10024/163260">https://julkaisut.valtioneuvosto.fi/handle/10024/163260</a>.
+</div>
+<div id="ref-leftall" class="csl-entry" role="listitem">
+Left Alliance. n.d. <em>Left Alliance<span>’</span>s Goals 2020<span></span>2023</em>. <a href="https://vasemmisto.fi/themes-and-values/left-alliances-goals/">https://vasemmisto.fi/themes-and-values/left-alliances-goals/</a>.
+</div>
+<div id="ref-principl" class="csl-entry" role="listitem">
+National Coalition Party. n.d. <em>Principle Program</em>. <a href="https://www.kokoomus.fi/principle-program/?lang=en">https://www.kokoomus.fi/principle-program/?lang=en</a>.
+</div>
+<div id="ref-rkp2021" class="csl-entry" role="listitem">
+Swedish People’s Party. 2021. <em>Close to You - Urban Policy Programme</em>. <a href="https://sfp.fi/wp-content/uploads/2021/04/Urbanpolicyprogramme_web_smaller.pdf">https://sfp.fi/wp-content/uploads/2021/04/Urbanpolicyprogramme_web_smaller.pdf</a>.
+</div>
+<div id="ref-liikenne" class="csl-entry" role="listitem">
+The Finns Party. n.d. <em>Liikennepolitiikka</em>. <a href="https://www.perussuomalaiset.fi/liikennepolitiikka/">https://www.perussuomalaiset.fi/liikennepolitiikka/</a>.
+</div>
+<div id="ref-politica" class="csl-entry" role="listitem">
+The Greens. n.d. <em>Political Programme of the Greens 2023<span></span>2027</em>. <a href="https://www.greens.fi/political-programme-of-the-greens-2023-2027/">https://www.greens.fi/political-programme-of-the-greens-2023-2027/</a>.
+</div>
+<div id="ref-tilastok" class="csl-entry" role="listitem">
+<em>Tilastokeskus</em>. n.d. <a href="https://stat.fi/meta/kas/nuts_aluejako.html">https://stat.fi/meta/kas/nuts_aluejako.html</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
